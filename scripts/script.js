@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const lang = document.documentElement.lang || 'de';
 
         const dateString = (lang === 'de') ?
-            'Zürich/Basel, ' + today.toLocaleDateString(lang + '-' + lang.toUpperCase(), options) :
-            'Zurich/Basel, ' + today.toLocaleDateString(lang + '-' + lang.toUpperCase(), options);
+            'Jonas Hertner, Zürich/Basel, ' + today.toLocaleDateString(lang + '-' + lang.toUpperCase(), options) :
+            'Jonas Hertner, Zurich/Basel, ' + today.toLocaleDateString(lang + '-' + lang.toUpperCase(), options);
 
         const phrase = (lang === 'de') ? 'Im Namen meines Mandanten' : 'On behalf of my client';
 
