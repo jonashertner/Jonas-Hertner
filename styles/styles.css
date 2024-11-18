@@ -243,6 +243,14 @@ body.menu-opened .menu-icon span:nth-child(3) {
     border-top: 1px solid #ccc;
 }
 
+/* Prohibit Text Selection */
+* {
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard */
+}
+
 /* Responsive Adjustments */
 @media (max-width: 600px) {
     .footer {
