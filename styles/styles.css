@@ -22,14 +22,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'BradfordLLWebBook', sans-serif;
-    font-size: 18px; /* Base font size */
-    line-height: 40px; /* Matches grid line spacing */
-    color: #333; /* Softer text color */
+    font-size: 18px;
+    line-height: 40px;
+    color: #333;
     background-color: white;
     background-image: linear-gradient(to bottom, black 0.5px, transparent 0.5px);
-    background-size: 100% 40px; /* Horizontal lines every 40px */
+    background-size: 100% 40px;
     position: relative;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
 }
 
 /* 4. Left Vertical Blue Lines */
@@ -59,67 +59,73 @@ body {
 
 /* 5. Container Styling */
 .container {
-    padding-left: 80px; /* Increased padding for more space on desktop */
-    padding-right: 80px; /* Increased padding for more space on desktop */
-    max-width: 1200px; /* Line Length for Optimal Readability */
-    margin: 0 auto; /* Center the container */
+    padding-left: 80px;
+    padding-right: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
     .container {
-        padding-left: 60px; /* Reduced padding for tablets */
+        padding-left: 60px;
         padding-right: 60px;
     }
 }
 
 @media (max-width: 600px) {
     .container {
-        padding-left: 30px; /* Reduced padding for mobile */
+        padding-left: 30px;
         padding-right: 30px;
     }
 }
 
 /* 6. Spacer Div */
 .spacer {
-    height: 40px; /* Space equivalent to one grid line */
+    height: 40px;
 }
 
 .spacer.first-spacer {
-    height: 80px; /* Space equivalent to two grid lines to start on the third line */
+    height: 80px;
 }
 
 @media (max-width: 600px) {
     .spacer {
-        height: 10px; /* Reduced spacer height for mobile */
+        height: 10px;
     }
     .spacer.first-spacer {
-        height: 20px; /* Reduced first spacer height for mobile to maintain alignment */
+        height: 120px; /* Increased spacer height for mobile to avoid overlap */
     }
 }
 
-/* 7. Page Title Styling (Used on About and Contact Pages) */
+/* Horizontal Line for Mobile */
+.horizontal-line {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0 30px;
+}
+
+/* 7. Page Title Styling */
 .page-title-container {
-    display: flex; /* Enables Flexbox */
-    align-items: center; /* Vertically centers the content */
-    height: 40px; /* Aligns with grid line spacing */
+    display: flex;
+    align-items: center;
+    height: 40px;
 }
 
 .page-title {
-    font-size: 24px; /* Larger Font for Titles */
-    font-weight: bold; /* Adds prominence without increasing font size */
+    font-size: 24px;
+    font-weight: bold;
     position: relative;
     display: inline-block;
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
-/* Highlighted Text Animation (Used on About and Contact Pages) */
 .page-title.highlighted::after {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 50%; /* Focus on lower half */
+    height: 50%;
     width: 0;
     background: linear-gradient(
         to right,
@@ -129,8 +135,8 @@ body {
     filter: blur(2px);
     transform: skewX(-5deg);
     z-index: -1;
-    animation: highlightEffect 0.5s ease-out forwards; /* Fast animation */
-    animation-delay: 0.2s; /* Quick start */
+    animation: highlightEffect 0.5s ease-out forwards;
+    animation-delay: 0.2s;
 }
 
 @keyframes highlightEffect {
@@ -143,32 +149,38 @@ body {
 .about-me-content p,
 .contact-page-content p,
 .index-page-content p {
-    margin: 0; /* Remove default margin */
-    line-height: 40px; /* Exact line-height to align with grid lines */
-    text-align: justify; /* Justify text for better readability */
+    margin: 0;
+    line-height: 40px;
+    text-align: justify;
 }
 
 /* 9. Menu Styles */
+.menu-trigger {
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1002;
+    font-size: 0; /* Hide text */
+}
 
-/* Hamburger Menu Icon */
 .menu-icon {
     display: inline-block;
     cursor: pointer;
-    width: 25px; /* Adjust width */
-    height: 20px; /* Adjust height */
+    width: 25px;
+    height: 20px;
     position: relative;
 }
 
 .menu-icon span {
     display: block;
-    background-color: #333; /* Icon color */
-    height: 3px; /* Line thickness */
-    width: 100%; /* Full width */
-    margin-bottom: 5px; /* Space between lines */
-    transition: all 0.3s ease; /* Smooth transition for animations */
+    background-color: #333;
+    height: 3px;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
 }
 
-/* Adjustments when menu is open */
 body.menu-opened .menu-icon span:nth-child(1) {
     transform: rotate(45deg);
     position: absolute;
@@ -176,7 +188,7 @@ body.menu-opened .menu-icon span:nth-child(1) {
 }
 
 body.menu-opened .menu-icon span:nth-child(2) {
-    opacity: 0; /* Hide middle line */
+    opacity: 0;
 }
 
 body.menu-opened .menu-icon span:nth-child(3) {
@@ -185,33 +197,20 @@ body.menu-opened .menu-icon span:nth-child(3) {
     top: 50%;
 }
 
-.menu-trigger {
-    cursor: pointer;
-    position: fixed;
-    top: 20px; /* Adjusted to prevent overlapping */
-    right: 20px;
-    z-index: 1002;
-    font-size: 0px; /* Match the page title font size */
-}
-
-
-body.menu-opened .menu-trigger {
-    display: none; /* Hide menu trigger when menu is open */
-}
-
+/* Menu Styling */
 .menu {
     display: none;
     position: fixed;
     top: 0;
     right: 0;
     width: 250px;
-    height: 100%; /* Stretch to bottom */
+    height: 100%;
     background-color: white;
     z-index: 1001;
-    padding-top: 60px; /* Align with grid lines */
+    padding-top: 60px;
     overflow-y: auto;
     color: #333;
-    border-left: 1px solid #ccc; /* Subtle Left Border */
+    border-left: 1px solid #ccc;
 }
 
 .menu ul {
@@ -220,49 +219,17 @@ body.menu-opened .menu-trigger {
     margin: 0;
 }
 
-.menu ul li {
-    margin: 0;
-}
-
 .menu ul li a {
     display: block;
     padding-left: 20px;
     height: 40px;
-    line-height: 40px; /* Align with grid lines */
+    line-height: 40px;
     text-decoration: none;
-    color: #333; /* Ensure menu links are readable */
-    box-sizing: border-box;
-    font-size: 18px; /* Match the global font size */
-}
-
-.menu ul li a:hover,
-.menu ul li a:focus {
-    background-color: #f0f0f0;
-}
-
-.close-menu {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
     color: #333;
+    font-size: 18px;
 }
 
-/* 10. Cursor Animation */
-.cursor {
-    border-left: 2px solid #333;
-    animation: blink-caret 0.5s step-end infinite; /* Increased speed */
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: #333; }
-}
-
-/* 11. Footer Styling */
+/* Footer */
 .footer {
     position: fixed;
     bottom: 0;
@@ -273,111 +240,12 @@ body.menu-opened .menu-trigger {
     background-color: white;
     padding: 10px 0;
     box-sizing: border-box;
-    border-top: 1px solid #ccc; /* Subtle Top Border */
+    border-top: 1px solid #ccc;
 }
 
-/* 12. Specific Styling for Contact Page Email Link */
-.contact-page-content a.contact-email {
-    color: #333; /* Sets the link color to dark gray/black */
-    text-decoration: none; /* Removes underline from the link */
-}
-
-.contact-page-content a.contact-email:hover,
-.contact-page-content a.contact-email:focus {
-    color: #000; /* Changes color to black on hover/focus */
-    text-decoration: underline; /* Adds underline on hover/focus */
-}
-
-/* 13. Responsive Design */
-@media (max-width: 768px) {
-    body {
-        font-size: 16px; /* Larger font size on tablets */
-        line-height: 40px; /* Maintain line height */
-    }
-    .container {
-        padding-left: 60px; /* Reduced padding for tablets */
-        padding-right: 60px;
-    }
-    .cursor {
-        animation: blink-caret 0.4s step-end infinite; /* Slightly faster blink on tablets */
-    }
-}
-
+/* Responsive Adjustments */
 @media (max-width: 600px) {
-    body {
-        font-size: 16px; /* Slightly larger font on mobile */
-        line-height: 40px; /* Maintain line height */
-    }
-    .page-title {
-        font-size: 20px; /* Adjust title size for mobile */
-        margin: 0; /* Remove margin */
-    }
-    .menu {
-        width: 200px;
-        padding-top: 30px;
-    }
-    .menu ul li a {
-        height: 40px;
-        line-height: 40px;
-        font-size: 16px; /* Adjusted for mobile */
-    }
-    .close-menu {
-        font-size: 20px;
-    }
     .footer {
         font-size: 10px;
-        line-height: 15px;
-    }
-    .container {
-        padding-left: 30px; /* Reduced padding for mobile */
-        padding-right: 30px; /* Reduced padding for mobile */
-    }
-    .spacer {
-        height: 20px; /* Reduced spacer height for mobile */
-    }
-    .spacer.first-spacer {
-        height: 80px; /* Reduced first spacer height for mobile to maintain alignment */
-    }
-    .about-me-content p,
-    .contact-page-content p,
-    .index-page-content p {
-        margin-bottom: 20px; /* Reduced margin for mobile */
-        line-height: 40px; /* Maintain line height */
-    }
-    /* Adjust left lines for smaller screens */
-    .left-lines {
-        width: 40px;
-    }
-    .left-lines .blue-line:first-child {
-        left: 15px;
-    }
-    .left-lines .blue-line:last-child {
-        left: 25px;
-    }
-}
-
-@media (max-width: 400px) {
-    body {
-        font-size: 14px; /* Further increase font size for very small screens */
-        line-height: 40px; /* Maintain line height */
-    }
-    .menu {
-        width: 180px;
-    }
-    .menu ul li a {
-        font-size: 14px; /* Smaller menu font size */
-    }
-    .footer {
-        font-size: 8px;
-        line-height: 12px;
-    }
-    .left-lines {
-        width: 30px;
-    }
-    .left-lines .blue-line:first-child {
-        left: 10px;
-    }
-    .left-lines .blue-line:last-child {
-        left: 20px;
     }
 }

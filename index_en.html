@@ -5,6 +5,39 @@
     <title>Home - Jonas Hertner</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness -->
+    <style>
+        /* Adjust spacers to align animations */
+        .spacer {
+            height: 40px; /* Matches the grid's line height */
+        }
+
+        .spacer.first-spacer {
+            height: 80px; /* Align with the second horizontal line */
+        }
+
+        .spacer.second-spacer {
+            height: 80px; /* Align with the fourth horizontal line */
+        }
+
+        /* Blinking Cursor */
+        .cursor {
+            display: inline-block;
+            width: 1px;
+            height: 1em; /* Matches line height */
+            background-color: #333;
+            vertical-align: text-bottom;
+            animation: blink-caret 0.6s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                background-color: transparent;
+            }
+            50% {
+                background-color: #333;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -14,18 +47,17 @@
         <div class="blue-line"></div>
     </div>
 
-    <!-- Menu Trigger -->
-    <h1 class="menu-trigger" onclick="openMenu()">
-    <span class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-    </span>
-</h1>
+    <!-- Hamburger Menu Trigger -->
+    <h1 class="menu-trigger" onclick="toggleMenu()">
+        <span class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </h1>
 
     <!-- Menu -->
     <nav class="menu" id="menu">
-        <button class="close-menu" onclick="closeMenu()">✖</button>
         <ul>
             <li><a href="index_en.html">Home</a></li>
             <li><a href="about_en.html">About Jonas Hertner</a></li>
@@ -37,24 +69,21 @@
 
     <!-- Content Container -->
     <main class="container index-page-content">
-        <!-- Spacer to Align with Grid Lines -->
-        <div class="spacer"></div>
+        <!-- Spacer to Align with Second Horizontal Line -->
+        <div class="spacer first-spacer"></div>
 
-        <!-- Date with Typing Effect -->
+        <!-- First Animation: Date -->
         <section class="line">
             <p id="current-date"></p>
         </section>
 
-        <!-- Spacer Between Date and Phrase -->
-        <div class="spacer"></div>
+        <!-- Spacer Between Animations -->
+        <div class="spacer second-spacer"></div>
 
-        <!-- Phrase with Typing Effect -->
+        <!-- Second Animation: Phrase -->
         <section class="line">
             <p id="phrase"></p>
         </section>
-
-        <!-- Spacer After Phrase -->
-        <div class="spacer"></div>
     </main>
 
     <!-- Footer -->
@@ -63,6 +92,62 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="scripts/script.js"></script>
+    <script>
+        // Menu Toggle Function
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const isOpen = menu.style.display === 'block';
+
+            if (isOpen) {
+                menu.style.display = 'none';
+                document.body.classList.remove('menu-opened');
+            } else {
+                menu.style.display = 'block';
+                document.body.classList.add('menu-opened');
+            }
+        }
+
+        // Typing Effect Function
+        function typeWriter(element, text, i, callback) {
+            if (i < text.length) {
+                element.textContent = text.substring(0, i + 1); // Type character by character
+                setTimeout(function () {
+                    typeWriter(element, text, i + 1, callback);
+                }, 50);
+            } else if (typeof callback === 'function') {
+                callback(); // Execute callback after typing finishes
+            }
+        }
+
+        function addBlinkingCursor(element) {
+            const cursor = document.createElement('span');
+            cursor.classList.add('cursor');
+            element.appendChild(cursor); // Add the blinking cursor
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateElement = document.getElementById('current-date');
+            const phraseElement = document.getElementById('phrase');
+
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const lang = document.documentElement.lang || 'en';
+
+            const dateString = (lang === 'en') ?
+                'Jonas Hertner — Zurich/Basel, ' + today.toLocaleDateString('en-US', options) :
+                'Jonas Hertner — Zürich/Basel, ' + today.toLocaleDateString('de-DE', options);
+
+            const phrase = (lang === 'en') ? 'On behalf of my client' : 'Im Namen meines Mandanten';
+
+            // Start typing the date
+            typeWriter(dateElement, dateString, 0, function () {
+                // Start typing the phrase after the date finishes
+                typeWriter(phraseElement, phrase, 0, function () {
+                    // Add blinking cursor after typing the phrase
+                    addBlinkingCursor(phraseElement);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -5,6 +5,93 @@
     <title>Über Jonas Hertner</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness -->
+    <style>
+        /* Hamburger Menu Icon */
+        .menu-trigger {
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1002;
+        }
+
+        .menu-icon {
+            display: inline-block;
+            width: 25px;
+            height: 20px;
+            position: relative;
+        }
+
+        .menu-icon span {
+            display: block;
+            background-color: #333;
+            height: 3px;
+            width: 100%;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon span:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Transform hamburger to "X" when menu is open */
+        body.menu-opened .menu-icon span:nth-child(1) {
+            transform: rotate(45deg);
+            position: absolute;
+            top: 50%;
+        }
+
+        body.menu-opened .menu-icon span:nth-child(2) {
+            opacity: 0; /* Hide middle line */
+        }
+
+        body.menu-opened .menu-icon span:nth-child(3) {
+            transform: rotate(-45deg);
+            position: absolute;
+            top: 50%;
+        }
+
+        /* Menu */
+        .menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: white;
+            z-index: 1001;
+            padding-top: 60px;
+            overflow-y: auto;
+            border-left: 1px solid #ccc; /* Subtle Left Border */
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            margin: 0;
+        }
+
+        .menu ul li a {
+            display: block;
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px; /* Align with grid lines */
+            text-decoration: none;
+            color: #333;
+            font-size: 18px; /* Match the global font size */
+        }
+
+        .menu ul li a:hover,
+        .menu ul li a:focus {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,18 +101,17 @@
         <div class="blue-line"></div>
     </div>
 
-    <!-- Menu Trigger -->
-    <h1 class="menu-trigger" onclick="openMenu()">
-    <span class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-    </span>
-</h1>
+    <!-- Hamburger Menu Trigger -->
+    <h1 class="menu-trigger" onclick="toggleMenu()">
+        <span class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </h1>
 
     <!-- Menu -->
     <nav class="menu" id="menu">
-        <button class="close-menu" onclick="closeMenu()">✖</button>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">Über Jonas Hertner</a></li>
@@ -74,6 +160,20 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="scripts/script.js"></script>
+    <script>
+        // Menu Toggle Function
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const isOpen = menu.style.display === 'block';
+
+            if (isOpen) {
+                menu.style.display = 'none';
+                document.body.classList.remove('menu-opened');
+            } else {
+                menu.style.display = 'block';
+                document.body.classList.add('menu-opened');
+            }
+        }
+    </script>
 </body>
 </html>
