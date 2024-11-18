@@ -91,10 +91,10 @@ body {
 
 @media (max-width: 600px) {
     .spacer {
-        height: 20px; /* Reduced spacer height for mobile */
+        height: 10px; /* Reduced spacer height for mobile */
     }
     .spacer.first-spacer {
-        height: 40px; /* Reduced first spacer height for mobile to maintain alignment */
+        height: 20px; /* Reduced first spacer height for mobile to maintain alignment */
     }
 }
 
