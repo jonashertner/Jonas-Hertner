@@ -59,16 +59,43 @@ body {
 
 /* 5. Container Styling */
 .container {
-    padding-left: 60px; /* Align with blue lines */
-    padding-right: 60px; /* Consistent right padding */
+    padding-left: 80px; /* Increased padding for more space on desktop */
+    padding-right: 80px; /* Increased padding for more space on desktop */
     max-width: 1200px; /* Line Length for Optimal Readability */
     margin: 0 auto; /* Center the container */
     box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding-left: 60px; /* Reduced padding for tablets */
+        padding-right: 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding-left: 30px; /* Reduced padding for mobile */
+        padding-right: 30px;
+    }
+}
+
 /* 6. Spacer Div */
 .spacer {
     height: 40px; /* Space equivalent to one grid line */
+}
+
+.spacer.first-spacer {
+    height: 80px; /* Space equivalent to two grid lines to start on the third line */
+}
+
+@media (max-width: 600px) {
+    .spacer {
+        height: 20px; /* Reduced spacer height for mobile */
+    }
+    .spacer.first-spacer {
+        height: 40px; /* Reduced first spacer height for mobile to maintain alignment */
+    }
 }
 
 /* 7. Page Title Styling (Used on About and Contact Pages) */
@@ -230,6 +257,10 @@ body.menu-opened .menu-trigger {
         font-size: 16px; /* Larger font size on tablets */
         line-height: 40px; /* Maintain line height */
     }
+    .container {
+        padding-left: 60px; /* Reduced padding for tablets */
+        padding-right: 60px;
+    }
     .cursor {
         animation: blink-caret 0.4s step-end infinite; /* Slightly faster blink on tablets */
     }
@@ -261,11 +292,14 @@ body.menu-opened .menu-trigger {
         line-height: 15px;
     }
     .container {
-        padding-left: 20px; /* Reduced padding for mobile */
-        padding-right: 20px; /* Reduced padding for mobile */
+        padding-left: 30px; /* Reduced padding for mobile */
+        padding-right: 30px; /* Reduced padding for mobile */
     }
     .spacer {
         height: 20px; /* Reduced spacer height for mobile */
+    }
+    .spacer.first-spacer {
+        height: 40px; /* Reduced first spacer height for mobile to maintain alignment */
     }
     .about-me-content p,
     .contact-page-content p,
