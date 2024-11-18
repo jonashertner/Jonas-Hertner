@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Startseite - Jonas Hertner</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <!-- Left Vertical Blue Lines -->
+    <div class="left-lines">
+        <div class="blue-line"></div>
+        <div class="blue-line"></div>
+    </div>
+
+    <!-- Menu Trigger -->
+    <h1 class="menu-trigger" onclick="openMenu()">Jonas Hertner</h1>
+
+    <!-- Menu -->
+    <div class="menu" id="menu">
+        <button class="close-menu" onclick="closeMenu()">✖</button>
+        <ul>
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="about.html">Über mich</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <!-- Language Switcher -->
+            <li><a href="index_en.html">English</a></li>
+        </ul>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container index-page-content">
+        <!-- 1st Line: Blank Line -->
+        <div class="blank-line"></div>
+
+        <!-- 2nd Line: Date -->
+        <div class="line">
+            <p id="current-date"></p>
+        </div>
+
+        <!-- 3rd Line: Phrase with Typing Effect -->
+        <div class="line">
+            <p id="phrase"></p>
+        </div>
+
+        <!-- 4th Line: Blank Line After Phrase -->
+        <div class="blank-line"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © Jonas Hertner (2024)
+    </div>
+
+    <!-- JavaScript -->
+    <script src="scripts/script.js"></script>
+</body>
+</html>

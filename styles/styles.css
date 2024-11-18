@@ -1,0 +1,252 @@
+/* styles.css */
+
+/* 1. Global Box-Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 2. Font Inclusion */
+@font-face {
+    font-family: 'BradfordLLWebBook';
+    src: url('../fonts/BradfordLLWeb-Book.woff2') format('woff2'),
+         url('../fonts/BradfordLLWeb-Book.woff') format('woff'),
+         url('../fonts/BradfordLLSub-Book.woff2') format('woff2'),
+         url('../fonts/BradfordLLSub-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Ensures text is visible during font loading */
+}
+
+/* 3. Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'BradfordLLWebBook', sans-serif;
+    font-size: 18px; /* Consistent font size across all text */
+    line-height: 40px; /* Matches grid line spacing */
+    color: black;
+    background-color: white;
+    background-image: linear-gradient(to bottom, black 0.5px, transparent 0.5px);
+    background-size: 100% 40px; /* Horizontal lines every 40px */
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* 4. Left Vertical Blue Lines */
+.left-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 1000;
+}
+
+.left-lines .blue-line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: lightblue;
+}
+
+.left-lines .blue-line:first-child {
+    left: 20px;
+}
+
+.left-lines .blue-line:last-child {
+    left: 30px;
+}
+
+/* 5. Container Styling */
+.container {
+    padding-left: 60px; /* Align with blue lines */
+    padding-right: 60px; /* Consistent right padding */
+    max-width: 1200px; /* Improves readability */
+    margin: 0 auto; /* Center the container */
+    box-sizing: border-box;
+}
+
+/* 6. Blank Line Div */
+.blank-line {
+    height: 40px; /* Space equivalent to one grid line */
+}
+
+/* 7. Page Title Styling (Used on About and Contact Pages) */
+.page-title-container {
+    display: flex; /* Enables Flexbox */
+    align-items: center; /* Vertically centers the content */
+    height: 40px; /* Aligns with grid line spacing */
+}
+
+.page-title {
+    font-size: 18px; /* Same font size as other text */
+    font-weight: bold; /* Adds prominence without increasing font size */
+    position: relative;
+    display: inline-block;
+}
+
+/* Highlighted Text Animation (Used on About and Contact Pages) */
+.page-title.highlighted::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50%; /* Focus on lower half */
+    width: 0;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 0, 0.6) 0%,
+        rgba(255, 255, 0, 0.6) 100%
+    );
+    filter: blur(2px);
+    transform: skewX(-5deg);
+    z-index: -1;
+    animation: highlightEffect 0.5s ease-out forwards; /* Fast animation */
+    animation-delay: 0.2s; /* Quick start */
+}
+
+@keyframes highlightEffect {
+    to {
+        width: 100%;
+    }
+}
+
+/* 8. Text Content Styling */
+.about-me-content p, .contact-page-content p, .index-page-content p {
+    margin: 0; /* Remove default margin */
+    line-height: 40px; /* Exact line-height to align with grid lines */
+    text-align: justify; /* Justify text for better readability */
+    /* Ensure that each line of text aligns with the grid lines */
+}
+
+/* 9. Menu Styles */
+h1.menu-trigger {
+    cursor: pointer;
+    position: fixed;
+    top: 20px; /* Adjusted to prevent overlapping */
+    right: 20px;
+    z-index: 1002;
+    font-size: 18px; /* Match the page title font size */
+}
+
+body.menu-opened h1.menu-trigger {
+    display: none; /* Hide menu trigger when menu is open */
+}
+
+.menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%; /* Stretch to bottom */
+    background-color: white;
+    z-index: 1001;
+    padding-top: 60px; /* Align with grid lines */
+    overflow-y: auto;
+    color: black;
+    border-left: 1px solid black;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    margin: 0;
+}
+
+.menu ul li a {
+    display: block;
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px; /* Align with grid lines */
+    text-decoration: none;
+    color: black; /* Ensure menu links are black */
+    box-sizing: border-box;
+    font-size: 18px; /* Match the global font size */
+}
+
+.menu ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+.close-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+}
+
+/* 10. Cursor Animation */
+.cursor {
+    border-left: 2px solid black;
+    animation: blink-caret 0.5s step-end infinite; /* Increased speed */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+}
+
+/* 11. Footer Styling */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    background-color: white;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+}
+
+/* 12. Responsive Design */
+@media (max-width: 600px) {
+    body {
+        font-size: 16px; /* Slightly smaller font on mobile */
+        line-height: 40px; /* Maintain 40px line-height */
+    }
+    .page-title {
+        font-size: 16px; /* Adjust title size for mobile */
+    }
+    .menu {
+        width: 200px;
+        padding-top: 30px;
+    }
+    .menu ul li a {
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px; /* Adjusted for mobile */
+    }
+    .close-menu {
+        font-size: 20px;
+    }
+    .footer {
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .container {
+        padding-right: 20px; /* Adjusted padding for mobile */
+    }
+    .about-me-content p, .contact-page-content p, .index-page-content p {
+        margin-bottom: 20px; /* Reduced margin for mobile */
+    }
+}
+
+/* Specific Styling for Contact Page Email Link */
+.contact-email {
+    color: black; /* Ensure the email link is black */
+    text-decoration: none; /* Optional: Remove underline */
+}
+
+.contact-email:hover {
+    text-decoration: underline; /* Optional: Add underline on hover */
+}
