@@ -47,18 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const svg = document.querySelector('.drawing-canvas');
     let isDrawing = false;
     let currentPath;
+    const pencilColor = '#b000'; // Pencil color
+    const points = []; // Store recent pointer positions for smoothing
 
     svg.addEventListener('pointerdown', (event) => {
         isDrawing = true;
+        points.length = 0; // Reset points for a new path
 
         currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         currentPath.setAttribute('fill', 'none');
-        currentPath.setAttribute('stroke', '#000'); // Pencil color
+        currentPath.setAttribute('stroke', pencilColor); // Explicitly set pencil color
         currentPath.setAttribute('stroke-width', '2'); // Pencil thickness
         currentPath.setAttribute('stroke-linecap', 'round');
+        currentPath.setAttribute('stroke-linejoin', 'round'); // Smooth joins between path segments
         svg.appendChild(currentPath);
 
         const { clientX, clientY } = event;
+        points.push({ x: clientX, y: clientY });
         currentPath.setAttribute('d', `M${clientX},${clientY}`);
     });
 
@@ -66,8 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isDrawing) return;
 
         const { clientX, clientY } = event;
-        const d = currentPath.getAttribute('d');
-        currentPath.setAttribute('d', `${d} L${clientX},${clientY}`);
+        points.push({ x: clientX, y: clientY });
+
+        // Apply a more refined smoothing using a weighted average of the last points
+        if (points.length > 5) points.shift(); // Limit stored points to the last 5
+
+        const smoothedPath = smoothPath(points);
+        currentPath.setAttribute('d', smoothedPath);
     });
 
     svg.addEventListener('pointerup', () => {
@@ -77,4 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
     svg.addEventListener('pointerleave', () => {
         isDrawing = false;
     });
+
+    /**
+     * Generates a smoothed SVG path string from points
+     * @param {Array} points - Array of {x, y} objects
+     * @returns {string} - Smoothed SVG path
+     */
+    function smoothPath(points) {
+        if (points.length < 2) return ''; // Not enough points to form a path
+
+        const path = [`M${points[0].x},${points[0].y}`]; // Move to the first point
+
+        for (let i = 1; i < points.length - 1; i++) {
+            const xc = (points[i].x + points[i + 1].x) / 2;
+            const yc = (points[i].y + points[i + 1].y) / 2;
+            path.push(`Q${points[i].x},${points[i].y} ${xc},${yc}`);
+        }
+
+        // Add the last line to the final point
+        const last = points[points.length - 1];
+        path.push(`L${last.x},${last.y}`);
+
+        return path.join(' ');
+    }
 });
