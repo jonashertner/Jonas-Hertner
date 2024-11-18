@@ -251,6 +251,7 @@ body.menu-opened h1.menu-trigger {
     }
     .about-me-content p, .contact-page-content p, .index-page-content p {
         margin-bottom: 20px; /* Reduced margin for mobile */
+        line-height: 28px; /* Adjusted line-height for mobile */
     }
     /* Adjust left lines for smaller screens */
     .left-lines {

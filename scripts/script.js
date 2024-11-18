@@ -42,16 +42,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const phrase = (lang === 'de') ? 'Im Namen meines Mandanten' : 'On behalf of my client';
 
-        // Type the date without cursor blinking after completion
-        typeWriter(dateElement, dateString, 0, function () {
-            // Insert a blank line after date within the common parent
+        // Type the phrase first
+        typeWriter(phraseElement, phrase, 0, function () {
+            // Insert a blank line after phrase within the common parent
             const blankLine = document.createElement('div');
             blankLine.className = 'blank-line';
             const container = document.querySelector('.index-page-content');
-            container.insertBefore(blankLine, phraseElement.parentNode);
+            container.insertBefore(blankLine, dateElement.parentNode);
 
-            // Type the phrase with cursor blinking after completion
-            typeWriter(phraseElement, phrase, 0, null, true);
-        }, false);
+            // Type the date with cursor blinking after completion
+            typeWriter(dateElement, dateString, 0, null, true);
+        }, true);
     }
 });
