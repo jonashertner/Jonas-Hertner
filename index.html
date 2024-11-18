@@ -6,23 +6,16 @@
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Prevent one-finger scrolling but allow two-finger scrolling */
+        /* General Styling */
         body, html {
-            overflow: hidden;
-            touch-action: none; /* Prevent all touch-based scrolling */
-            user-select: none; /* Disable text selection globally */
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            touch-action: pan-y; /* Allow vertical scrolling on mobile */
+            user-select: none; /* Disable text selection globally */
         }
 
-        @media (pointer: coarse) {
-            /* On touch devices, allow two-finger scrolling */
-            body, html {
-                touch-action: pan-y;
-            }
-        }
-
-        /* Adjust spacers to align animations */
+        /* Adjust spacers for alignment */
         .spacer {
             height: 40px;
         }
@@ -35,7 +28,7 @@
             height: 80px;
         }
 
-        /* Blinking Cursor */
+        /* Typing Animation Cursor */
         .cursor {
             display: inline-block;
             width: 1px;
@@ -54,18 +47,61 @@
             }
         }
 
-        /* Fullscreen SVG Drawing Canvas */
+        /* Fullscreen Drawing Canvas */
         .drawing-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 1000; /* Ensure it remains above animations and content */
+            pointer-events: all; /* Enable drawing interactivity */
         }
 
-        nav.menu {
-            z-index: 9999; /* Ensure menu remains above everything */
+              /* Menu */
+        .menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: white;
+            z-index: 1001;
+            padding-top: 60px;
+            overflow-y: auto;
+            border-left: 1px solid #ccc; /* Subtle Left Border */
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            margin: 0;
+        }
+
+        .menu ul li a {
+            display: block;
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px; /* Align with grid lines */
+            text-decoration: none;
+            color: #333;
+            font-size: 18px; /* Match the global font size */
+        }
+
+        .menu ul li a:hover,
+        .menu ul li a:focus {
+            background-color: lightblue;
+        }
+
+        /* Ensure content visibility */
+        main {
+            z-index: 2;
+            position: relative;
         }
     </style>
 </head>
@@ -91,6 +127,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">Über Jonas Hertner</a></li>
             <li><a href="contact.html">Kontakt</a></li>
+            <!-- Language Switcher -->
             <li><a href="index_en.html">English</a></li>
         </ul>
     </nav>
@@ -115,10 +152,91 @@
     <!-- SVG Drawing Canvas -->
     <svg class="drawing-canvas" xmlns="http://www.w3.org/2000/svg"></svg>
 
+    <!-- Footer -->
     <footer class="footer">
         © Jonas Hertner (2024)
     </footer>
 
-    <script src="scripts/script.js"></script>
+    <script>
+        // Menu Toggle Function
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const isOpen = menu.style.display === 'block';
+
+            if (isOpen) {
+                menu.style.display = 'none';
+                document.body.classList.remove('menu-opened');
+            } else {
+                menu.style.display = 'block';
+                document.body.classList.add('menu-opened');
+            }
+        }
+
+        // Typing Animation
+        function typeWriter(element, text, i, callback) {
+            if (i < text.length) {
+                element.textContent = text.substring(0, i + 1);
+                setTimeout(() => typeWriter(element, text, i + 1, callback), 50);
+            } else if (callback) {
+                callback();
+            }
+        }
+
+        function addBlinkingCursor(element) {
+            const cursor = document.createElement('span');
+            cursor.classList.add('cursor');
+            element.appendChild(cursor);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateElement = document.getElementById('current-date');
+            const phraseElement = document.getElementById('phrase');
+
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const lang = document.documentElement.lang || 'de';
+
+            const dateString = lang === 'de'
+                ? `Jonas Hertner — Zürich/Basel, ${today.toLocaleDateString('de-DE', options)}`
+                : `Jonas Hertner — Zurich/Basel, ${today.toLocaleDateString('en-US', options)}`;
+
+            const phrase = lang === 'de' ? 'Im Namen meines Mandanten' : 'On behalf of my client';
+
+            typeWriter(dateElement, dateString, 0, () => {
+                typeWriter(phraseElement, phrase, 0, () => {
+                    addBlinkingCursor(phraseElement);
+                });
+            });
+
+            // Drawing Animation
+            const svg = document.querySelector('.drawing-canvas');
+            let isDrawing = false;
+            let currentPath;
+
+            svg.addEventListener('pointerdown', (event) => {
+                isDrawing = true;
+                currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                currentPath.setAttribute('fill', 'none');
+                currentPath.setAttribute('stroke', 'black');
+                currentPath.setAttribute('stroke-width', '2');
+                currentPath.setAttribute('stroke-linecap', 'round');
+                svg.appendChild(currentPath);
+
+                const { clientX, clientY } = event;
+                currentPath.setAttribute('d', `M${clientX},${clientY}`);
+            });
+
+            svg.addEventListener('pointermove', (event) => {
+                if (!isDrawing) return;
+
+                const { clientX, clientY } = event;
+                const d = currentPath.getAttribute('d');
+                currentPath.setAttribute('d', `${d} L${clientX},${clientY}`);
+            });
+
+            svg.addEventListener('pointerup', () => (isDrawing = false));
+            svg.addEventListener('pointerleave', () => (isDrawing = false));
+        });
+    </script>
 </body>
 </html>
