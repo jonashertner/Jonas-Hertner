@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Über mich - Jonas Hertner</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness -->
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <h1 class="menu-trigger" onclick="openMenu()">Jonas Hertner</h1>
 
     <!-- Menu -->
-    <div class="menu" id="menu">
+    <nav class="menu" id="menu">
         <button class="close-menu" onclick="closeMenu()">✖</button>
         <ul>
             <li><a href="index.html">Startseite</a></li>
@@ -27,41 +27,41 @@
             <!-- Language Switcher -->
             <li><a href="about_en.html">English</a></li>
         </ul>
-    </div>
+    </nav>
 
     <!-- Content Container -->
-    <div class="container about-me-content">
-        <!-- 1st Line: Blank Line -->
-        <div class="blank-line"></div>
+    <main class="container about-me-content">
+        <!-- Spacer to Align with Grid Lines -->
+        <div class="spacer"></div>
 
-        <!-- 2nd Line: Page Title with Highlighting -->
-        <div class="page-title-container">
-            <p class="page-title highlighted">Über mich</p>
-        </div>
+        <!-- Page Title -->
+        <section class="page-title-container">
+            <h2 class="page-title highlighted">Über mich</h2>
+        </section>
 
-        <!-- 3rd Line: Blank Line -->
-        <div class="blank-line"></div>
+        <!-- Spacer After Title -->
+        <div class="spacer"></div>
 
-        <!-- 4th Line: First Paragraph -->
+        <!-- First Paragraph -->
         <p>Jonas Hertner ist ein Rechtsanwalt mit Büros in Zürich und Basel. Jonas verfügt über umfangreiche Erfahrungen in der Bearbeitung komplexer kommerzieller Streitigkeiten, mit Schwerpunkt auf den Bereichen Finanzdienstleistungen, Rohstoffe, Technologie, Biotechnologie und Life Sciences, Datenschutz, Kunst sowie Non-Profit-/Ökologie-Sektoren. Er vertritt regelmäßig Unternehmen, Stiftungen, Familien und Einzelpersonen in mehrgerichtlichen Streitigkeiten sowie in strafrechtlichen und regulatorischen Untersuchungen. Darüber hinaus war Jonas an mehreren wichtigen Untersuchungen und Verfahren zur strafrechtlichen Unternehmenshaftung in der Schweiz sowohl auf Seiten der Opfer/privaten Kläger als auch auf Seiten der Angeklagten beteiligt.</p>
 
-        <!-- 5th Line: Blank Line Between Paragraphs -->
-        <div class="blank-line"></div>
+        <!-- Spacer Between Paragraphs -->
+        <div class="spacer"></div>
 
-        <!-- 6th Line: Second Paragraph -->
+        <!-- Second Paragraph -->
         <p>Zuvor arbeitete Jonas im Büro des Rechtsberaters des Schweizer Außenministeriums und als Rechtsreferendar am Appellationsgericht des Kantons Basel-Stadt. Vorher war er auch als Journalist, Übersetzer, Gymnasiallehrer und für Non-Profit-Stiftungen im Bereich Ökologie und Sport tätig.</p>
 
-        <!-- 7th Line: Blank Line Between Paragraphs -->
-        <div class="blank-line"></div>
+        <!-- Spacer Between Paragraphs -->
+        <div class="spacer"></div>
 
-        <!-- 8th Line: Third Paragraph -->
+        <!-- Third Paragraph -->
         <p>Er absolvierte sein Studium an den Universitäten Luzern und Genf mit Auszeichnung, bevor er an die Schweizer Anwaltskammer zugelassen wurde.</p>
-    </div>
+    </main>
 
     <!-- Footer -->
-    <div class="footer">
+    <footer class="footer">
         © Jonas Hertner (2024)
-    </div>
+    </footer>
 
     <!-- JavaScript -->
     <script src="scripts/script.js"></script>

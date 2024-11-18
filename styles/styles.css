@@ -24,7 +24,7 @@ body {
     font-family: 'BradfordLLWebBook', sans-serif;
     font-size: 18px; /* Base font size */
     line-height: 40px; /* Matches grid line spacing */
-    color: black;
+    color: #333; /* Softer text color */
     background-color: white;
     background-image: linear-gradient(to bottom, black 0.5px, transparent 0.5px);
     background-size: 100% 40px; /* Horizontal lines every 40px */
@@ -61,13 +61,13 @@ body {
 .container {
     padding-left: 60px; /* Align with blue lines */
     padding-right: 60px; /* Consistent right padding */
-    max-width: 1200px; /* Improves readability */
+    max-width: 1200px; /* Line Length for Optimal Readability */
     margin: 0 auto; /* Center the container */
     box-sizing: border-box;
 }
 
-/* 6. Blank Line Div */
-.blank-line {
+/* 6. Spacer Div */
+.spacer {
     height: 40px; /* Space equivalent to one grid line */
 }
 
@@ -79,10 +79,11 @@ body {
 }
 
 .page-title {
-    font-size: 18px; /* Same font size as other text */
+    font-size: 24px; /* Larger Font for Titles */
     font-weight: bold; /* Adds prominence without increasing font size */
     position: relative;
     display: inline-block;
+    margin: 0; /* Remove default margin */
 }
 
 /* Highlighted Text Animation (Used on About and Contact Pages) */
@@ -112,15 +113,16 @@ body {
 }
 
 /* 8. Text Content Styling */
-.about-me-content p, .contact-page-content p, .index-page-content p {
+.about-me-content p,
+.contact-page-content p,
+.index-page-content p {
     margin: 0; /* Remove default margin */
     line-height: 40px; /* Exact line-height to align with grid lines */
     text-align: justify; /* Justify text for better readability */
-    /* Ensure that each line of text aligns with the grid lines */
 }
 
 /* 9. Menu Styles */
-h1.menu-trigger {
+.menu-trigger {
     cursor: pointer;
     position: fixed;
     top: 20px; /* Adjusted to prevent overlapping */
@@ -129,7 +131,7 @@ h1.menu-trigger {
     font-size: 18px; /* Match the page title font size */
 }
 
-body.menu-opened h1.menu-trigger {
+body.menu-opened .menu-trigger {
     display: none; /* Hide menu trigger when menu is open */
 }
 
@@ -144,8 +146,8 @@ body.menu-opened h1.menu-trigger {
     z-index: 1001;
     padding-top: 60px; /* Align with grid lines */
     overflow-y: auto;
-    color: black;
-    border-left: 1px solid black;
+    color: #333;
+    border-left: 1px solid #ccc; /* Subtle Left Border */
 }
 
 .menu ul {
@@ -164,12 +166,13 @@ body.menu-opened h1.menu-trigger {
     height: 40px;
     line-height: 40px; /* Align with grid lines */
     text-decoration: none;
-    color: black; /* Ensure menu links are black */
+    color: #333; /* Ensure menu links are readable */
     box-sizing: border-box;
     font-size: 18px; /* Match the global font size */
 }
 
-.menu ul li a:hover {
+.menu ul li a:hover,
+.menu ul li a:focus {
     background-color: #f0f0f0;
 }
 
@@ -181,18 +184,18 @@ body.menu-opened h1.menu-trigger {
     background: none;
     border: none;
     cursor: pointer;
-    color: black;
+    color: #333;
 }
 
 /* 10. Cursor Animation */
 .cursor {
-    border-left: 2px solid black;
+    border-left: 2px solid #333;
     animation: blink-caret 0.5s step-end infinite; /* Increased speed */
 }
 
 @keyframes blink-caret {
     from, to { border-color: transparent; }
-    50% { border-color: black; }
+    50% { border-color: #333; }
 }
 
 /* 11. Footer Styling */
@@ -204,14 +207,28 @@ body.menu-opened h1.menu-trigger {
     font-size: 12px;
     line-height: 20px;
     background-color: white;
-    padding-bottom: 5px;
+    padding: 10px 0;
     box-sizing: border-box;
+    border-top: 1px solid #ccc; /* Subtle Top Border */
 }
 
-/* 12. Responsive Design */
+/* 12. Specific Styling for Contact Page Email Link */
+.contact-page-content a.contact-email {
+    color: #333; /* Sets the link color to dark gray/black */
+    text-decoration: none; /* Removes underline from the link */
+}
+
+.contact-page-content a.contact-email:hover,
+.contact-page-content a.contact-email:focus {
+    color: #000; /* Changes color to black on hover/focus */
+    text-decoration: underline; /* Adds underline on hover/focus */
+}
+
+/* 13. Responsive Design */
 @media (max-width: 768px) {
     body {
         font-size: 16px; /* Larger font size on tablets */
+        line-height: 40px; /* Maintain line height */
     }
     .cursor {
         animation: blink-caret 0.4s step-end infinite; /* Slightly faster blink on tablets */
@@ -221,10 +238,11 @@ body.menu-opened h1.menu-trigger {
 @media (max-width: 600px) {
     body {
         font-size: 16px; /* Slightly larger font on mobile */
-        line-height: 28px; /* Reduced line-height to prevent overlapping */
+        line-height: 40px; /* Maintain line height */
     }
     .page-title {
-        font-size: 16px; /* Adjust title size for mobile */
+        font-size: 20px; /* Adjust title size for mobile */
+        margin: 0; /* Remove margin */
     }
     .menu {
         width: 200px;
@@ -246,12 +264,14 @@ body.menu-opened h1.menu-trigger {
         padding-left: 20px; /* Reduced padding for mobile */
         padding-right: 20px; /* Reduced padding for mobile */
     }
-    .blank-line {
-        height: 20px; /* Reduced blank line height for mobile */
+    .spacer {
+        height: 20px; /* Reduced spacer height for mobile */
     }
-    .about-me-content p, .contact-page-content p, .index-page-content p {
+    .about-me-content p,
+    .contact-page-content p,
+    .index-page-content p {
         margin-bottom: 20px; /* Reduced margin for mobile */
-        line-height: 28px; /* Adjusted line-height for mobile */
+        line-height: 40px; /* Maintain line height */
     }
     /* Adjust left lines for smaller screens */
     .left-lines {
@@ -268,7 +288,7 @@ body.menu-opened h1.menu-trigger {
 @media (max-width: 400px) {
     body {
         font-size: 14px; /* Further increase font size for very small screens */
-        line-height: 24px; /* Further reduce line-height */
+        line-height: 40px; /* Maintain line height */
     }
     .menu {
         width: 180px;

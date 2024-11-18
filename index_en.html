@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Home - Jonas Hertner</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness -->
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <h1 class="menu-trigger" onclick="openMenu()">Jonas Hertner</h1>
 
     <!-- Menu -->
-    <div class="menu" id="menu">
+    <nav class="menu" id="menu">
         <button class="close-menu" onclick="closeMenu()">✖</button>
         <ul>
             <li><a href="index_en.html">Home</a></li>
@@ -27,31 +27,34 @@
             <!-- Language Switcher -->
             <li><a href="index.html">Deutsch</a></li>
         </ul>
-    </div>
+    </nav>
 
     <!-- Content Container -->
-    <div class="container index-page-content">
-        <!-- 1st Line: Blank Line -->
-        <div class="blank-line"></div>
+    <main class="container index-page-content">
+        <!-- Spacer to Align with Grid Lines -->
+        <div class="spacer"></div>
 
-        <!-- 2nd Line: Phrase with Typing Effect -->
-        <div class="line">
-            <p id="phrase"></p>
-        </div>
-
-        <!-- 3rd Line: Date with Typing Effect -->
-        <div class="line">
+        <!-- Date with Typing Effect -->
+        <section class="line">
             <p id="current-date"></p>
-        </div>
+        </section>
 
-        <!-- 4th Line: Blank Line After Date -->
-        <div class="blank-line"></div>
-    </div>
+        <!-- Spacer Between Date and Phrase -->
+        <div class="spacer"></div>
+
+        <!-- Phrase with Typing Effect -->
+        <section class="line">
+            <p id="phrase"></p>
+        </section>
+
+        <!-- Spacer After Phrase -->
+        <div class="spacer"></div>
+    </main>
 
     <!-- Footer -->
-    <div class="footer">
+    <footer class="footer">
         © Jonas Hertner (2024)
-    </div>
+    </footer>
 
     <!-- JavaScript -->
     <script src="scripts/script.js"></script>
