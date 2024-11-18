@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <title>Home - Jonas Hertner</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Enable two-finger scrolling on mobile */
+        body, html {
+            touch-action: pan-y; /* Allow vertical scrolling with two fingers */
+            user-select: none; /* Disable text selection globally */
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-y: scroll; /* Ensure scrolling for long content */
+        }
+
         /* Adjust spacers to align animations */
         .spacer {
             height: 40px; /* Matches the grid's line height */
@@ -37,6 +47,20 @@
                 background-color: #333;
             }
         }
+
+        /* Fullscreen SVG Drawing Canvas */
+        .drawing-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        nav.menu {
+            z-index: 9999; /* Ensure menu remains above everything */
+        }
     </style>
 </head>
 <body>
@@ -62,14 +86,12 @@
             <li><a href="index_en.html">Home</a></li>
             <li><a href="about_en.html">About Jonas Hertner</a></li>
             <li><a href="contact_en.html">Contact</a></li>
-            <!-- Language Switcher -->
             <li><a href="index.html">Deutsch</a></li>
         </ul>
     </nav>
 
     <!-- Content Container -->
     <main class="container index-page-content">
-        <!-- Spacer to Align with Second Horizontal Line -->
         <div class="spacer first-spacer"></div>
 
         <!-- First Animation: Date -->
@@ -77,7 +99,6 @@
             <p id="current-date"></p>
         </section>
 
-        <!-- Spacer Between Animations -->
         <div class="spacer second-spacer"></div>
 
         <!-- Second Animation: Phrase -->
@@ -86,25 +107,21 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- SVG Drawing Canvas -->
+    <svg class="drawing-canvas" xmlns="http://www.w3.org/2000/svg"></svg>
+
     <footer class="footer">
         © Jonas Hertner (2024)
     </footer>
 
-    <!-- JavaScript -->
     <script>
+        // Disable text selection globally
+        document.body.addEventListener('selectstart', (e) => e.preventDefault());
+
         // Menu Toggle Function
         function toggleMenu() {
             const menu = document.getElementById('menu');
-            const isOpen = menu.style.display === 'block';
-
-            if (isOpen) {
-                menu.style.display = 'none';
-                document.body.classList.remove('menu-opened');
-            } else {
-                menu.style.display = 'block';
-                document.body.classList.add('menu-opened');
-            }
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         }
 
         // Typing Effect Function
@@ -147,6 +164,41 @@
                     addBlinkingCursor(phraseElement);
                 });
             });
+        });
+
+        // Drawing Functionality
+        const svg = document.querySelector('.drawing-canvas');
+        let isDrawing = false;
+        let currentPath;
+
+        svg.addEventListener('pointerdown', (event) => {
+            isDrawing = true;
+
+            currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            currentPath.setAttribute('fill', 'none');
+            currentPath.setAttribute('stroke', '#000'); // Pencil color
+            currentPath.setAttribute('stroke-width', '2'); // Pencil thickness
+            currentPath.setAttribute('stroke-linecap', 'round');
+            svg.appendChild(currentPath);
+
+            const { clientX, clientY } = event;
+            currentPath.setAttribute('d', `M${clientX},${clientY}`);
+        });
+
+        svg.addEventListener('pointermove', (event) => {
+            if (!isDrawing) return;
+
+            const { clientX, clientY } = event;
+            const d = currentPath.getAttribute('d');
+            currentPath.setAttribute('d', `${d} L${clientX},${clientY}`);
+        });
+
+        svg.addEventListener('pointerup', () => {
+            isDrawing = false;
+        });
+
+        svg.addEventListener('pointerleave', () => {
+            isDrawing = false;
         });
     </script>
 </body>

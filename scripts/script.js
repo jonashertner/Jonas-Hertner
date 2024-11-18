@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Disable text selection globally
+    document.body.addEventListener('selectstart', (e) => e.preventDefault());
+
     // Typing Animation
     const dateElement = document.getElementById('current-date');
     const phraseElement = document.getElementById('phrase');

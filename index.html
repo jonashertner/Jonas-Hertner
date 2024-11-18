@@ -6,6 +6,22 @@
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Prevent one-finger scrolling but allow two-finger scrolling */
+        body, html {
+            overflow: hidden;
+            touch-action: none; /* Prevent all touch-based scrolling */
+            user-select: none; /* Disable text selection globally */
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (pointer: coarse) {
+            /* On touch devices, allow two-finger scrolling */
+            body, html {
+                touch-action: pan-y;
+            }
+        }
+
         /* Adjust spacers to align animations */
         .spacer {
             height: 40px;
@@ -45,17 +61,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; /* Ensures drawing is above everything */
+            z-index: 1;
         }
 
-        /* Ensure menu remains functional */
         nav.menu {
-            z-index: 9999; /* Keeps menu interactive */
+            z-index: 9999; /* Ensure menu remains above everything */
         }
     </style>
 </head>
 <body>
-
     <!-- Left Vertical Blue Lines -->
     <div class="left-lines">
         <div class="blue-line"></div>
