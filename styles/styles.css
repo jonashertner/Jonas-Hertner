@@ -22,7 +22,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'BradfordLLWebBook', sans-serif;
-    font-size: 18px; /* Consistent font size across all text */
+    font-size: 18px; /* Base font size */
     line-height: 40px; /* Matches grid line spacing */
     color: black;
     background-color: white;
@@ -209,10 +209,19 @@ body.menu-opened h1.menu-trigger {
 }
 
 /* 12. Responsive Design */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Larger font size on tablets */
+    }
+    .cursor {
+        animation: blink-caret 0.4s step-end infinite; /* Slightly faster blink on tablets */
+    }
+}
+
 @media (max-width: 600px) {
     body {
-        font-size: 16px; /* Slightly smaller font on mobile */
-        line-height: 40px; /* Maintain 40px line-height */
+        font-size: 16px; /* Slightly larger font on mobile */
+        line-height: 28px; /* Reduced line-height to prevent overlapping */
     }
     .page-title {
         font-size: 16px; /* Adjust title size for mobile */
@@ -234,19 +243,49 @@ body.menu-opened h1.menu-trigger {
         line-height: 15px;
     }
     .container {
-        padding-right: 20px; /* Adjusted padding for mobile */
+        padding-left: 20px; /* Reduced padding for mobile */
+        padding-right: 20px; /* Reduced padding for mobile */
+    }
+    .blank-line {
+        height: 20px; /* Reduced blank line height for mobile */
     }
     .about-me-content p, .contact-page-content p, .index-page-content p {
         margin-bottom: 20px; /* Reduced margin for mobile */
     }
+    /* Adjust left lines for smaller screens */
+    .left-lines {
+        width: 40px;
+    }
+    .left-lines .blue-line:first-child {
+        left: 15px;
+    }
+    .left-lines .blue-line:last-child {
+        left: 25px;
+    }
 }
 
-/* Specific Styling for Contact Page Email Link */
-.contact-email {
-    color: black; /* Ensure the email link is black */
-    text-decoration: none; /* Optional: Remove underline */
-}
-
-.contact-email:hover {
-    text-decoration: underline; /* Optional: Add underline on hover */
+@media (max-width: 400px) {
+    body {
+        font-size: 14px; /* Further increase font size for very small screens */
+        line-height: 24px; /* Further reduce line-height */
+    }
+    .menu {
+        width: 180px;
+    }
+    .menu ul li a {
+        font-size: 14px; /* Smaller menu font size */
+    }
+    .footer {
+        font-size: 8px;
+        line-height: 12px;
+    }
+    .left-lines {
+        width: 30px;
+    }
+    .left-lines .blue-line:first-child {
+        left: 10px;
+    }
+    .left-lines .blue-line:last-child {
+        left: 20px;
+    }
 }
