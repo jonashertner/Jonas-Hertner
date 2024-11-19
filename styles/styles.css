@@ -75,7 +75,7 @@ body {
 
 @media (max-width: 600px) {
     .container {
-        padding-left: 30px;
+        padding-left: 40px;
         padding-right: 30px;
     }
 }
@@ -89,14 +89,14 @@ body {
     height: 80px;
 }
 
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
     .spacer {
         height: 10px;
     }
     .spacer.first-spacer {
         height: 120px; /* Increased spacer height for mobile to avoid overlap */
-    }
-}
+/*    }
+/*}
 
 /* Horizontal Line for Mobile */
 .horizontal-line {
@@ -255,5 +255,21 @@ body.menu-opened .menu-icon span:nth-child(3) {
 @media (max-width: 600px) {
     .footer {
         font-size: 10px;
+    }
+}
+
+/* Adjust background position for mobile screens */
+@media (max-width: 600px) {
+    /* Adjust spacer heights if necessary */
+    .spacer {
+        height: 40px; /* Ensure spacer height matches line-height */
+    }
+    .spacer.first-spacer {
+        height: 80px; /* Ensure it's a multiple of line-height */
+    }
+    
+    /* Adjust background position to align lines */
+    body {
+        background-position: 0 30px; /* Align horizontal lines with text */
     }
 }
