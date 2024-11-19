@@ -273,3 +273,9 @@ body.menu-opened .menu-icon span:nth-child(3) {
         background-position: 0 30px; /* Align horizontal lines with text */
     }
 }
+
+@media (min-width: 769px) {
+    body {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 1px, transparent 1px);
+    }
+}
