@@ -5,6 +5,10 @@
     <title>Startseite - Jonas Hertner</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Include Paper.js -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.15/paper-full.min.js"></script>
+
     <style>
         /* General Styling */
         body, html {
@@ -48,17 +52,17 @@
         }
 
         /* Fullscreen Drawing Canvas */
-        .drawing-canvas {
+        #drawing-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000; /* Ensure it remains above animations and content */
+            z-index: 1; /* Set to be behind the main content */
             pointer-events: all; /* Enable drawing interactivity */
         }
 
-              /* Menu */
+        /* Menu */
         .menu {
             display: none;
             position: fixed;
@@ -100,7 +104,7 @@
 
         /* Ensure content visibility */
         main {
-            z-index: 2;
+            z-index: 2; /* Main content above the canvas */
             position: relative;
         }
     </style>
@@ -149,14 +153,15 @@
         </section>
     </main>
 
-    <!-- SVG Drawing Canvas -->
-    <svg class="drawing-canvas" xmlns="http://www.w3.org/2000/svg"></svg>
+    <!-- Canvas for Paper.js Drawing -->
+    <canvas id="drawing-canvas" resize></canvas>
 
     <!-- Footer -->
     <footer class="footer">
         © Jonas Hertner (2024)
     </footer>
 
+    <!-- Existing scripts -->
     <script>
         // Menu Toggle Function
         function toggleMenu() {
@@ -207,36 +212,56 @@
                     addBlinkingCursor(phraseElement);
                 });
             });
-
-            // Drawing Animation
-            const svg = document.querySelector('.drawing-canvas');
-            let isDrawing = false;
-            let currentPath;
-
-            svg.addEventListener('pointerdown', (event) => {
-                isDrawing = true;
-                currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                currentPath.setAttribute('fill', 'none');
-                currentPath.setAttribute('stroke', 'black');
-                currentPath.setAttribute('stroke-width', '2');
-                currentPath.setAttribute('stroke-linecap', 'round');
-                svg.appendChild(currentPath);
-
-                const { clientX, clientY } = event;
-                currentPath.setAttribute('d', `M${clientX},${clientY}`);
-            });
-
-            svg.addEventListener('pointermove', (event) => {
-                if (!isDrawing) return;
-
-                const { clientX, clientY } = event;
-                const d = currentPath.getAttribute('d');
-                currentPath.setAttribute('d', `${d} L${clientX},${clientY}`);
-            });
-
-            svg.addEventListener('pointerup', () => (isDrawing = false));
-            svg.addEventListener('pointerleave', () => (isDrawing = false));
         });
+    </script>
+
+    <!-- Paper.js Drawing Script -->
+    <script type="text/paperscript" canvas="drawing-canvas">
+        var path;
+        var textItem = new PointText({
+            content: '',
+            point: new Point(20, 30),
+            fillColor: 'black',
+            fontSize: 14
+        });
+
+        function onMouseDown(event) {
+            // If we produced a path before, deselect it:
+            if (path) {
+                path.selected = false;
+            }
+
+            // Create a new path and set its stroke color to black:
+            path = new Path({
+                segments: [event.point],
+                strokeColor: 'black',
+                strokeWidth: 2,
+                fullySelected: false
+            });
+        }
+
+        function onMouseDrag(event) {
+            path.add(event.point);
+
+            // Update the content of the text item to show how many
+            // segments it has:
+           // textItem.content = 'Segment count: ' + path.segments.length;
+        }
+
+        function onMouseUp(event) {
+            var segmentCount = path.segments.length;
+
+            // Simplify the path when the mouse is released:
+            path.simplify(10);
+
+            // Select the path to show its segments:
+            path.fullySelected = false;
+
+            var newSegmentCount = path.segments.length;
+            var difference = segmentCount - newSegmentCount;
+            var percentage = 100 - Math.round((newSegmentCount / segmentCount) * 100);
+            // textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+        }
     </script>
 </body>
 </html>

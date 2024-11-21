@@ -5,12 +5,17 @@
     <title>Home - Jonas Hertner</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Include Paper.js -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.15/paper-full.min.js"></script>
+
     <style>
         /* General Styling */
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto; /* Allow vertical scrolling */
             touch-action: pan-y; /* Allow vertical scrolling on mobile */
             user-select: none; /* Disable text selection globally */
         }
@@ -48,13 +53,13 @@
         }
 
         /* Fullscreen Drawing Canvas */
-        .drawing-canvas {
+        #drawing-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000; /* Ensure it remains above animations and content */
+            z-index: 1; /* Set to be behind the main content */
             pointer-events: all; /* Enable drawing interactivity */
         }
 
@@ -100,7 +105,7 @@
 
         /* Ensure content visibility */
         main {
-            z-index: 2;
+            z-index: 2; /* Main content above the canvas */
             position: relative;
         }
     </style>
@@ -149,14 +154,15 @@
         </section>
     </main>
 
-    <!-- SVG Drawing Canvas -->
-    <svg class="drawing-canvas" xmlns="http://www.w3.org/2000/svg"></svg>
+    <!-- Canvas for Paper.js Drawing -->
+    <canvas id="drawing-canvas" resize></canvas>
 
     <!-- Footer -->
     <footer class="footer">
         © Jonas Hertner (2024)
     </footer>
 
+    <!-- Existing scripts -->
     <script>
         // Menu Toggle Function
         function toggleMenu() {
@@ -188,55 +194,88 @@
             element.appendChild(cursor);
         }
 
+        // Function to format date with non-breaking spaces
+        function formatDateWithNonBreakingSpaces(lang, date) {
+            const dateFormatter = new Intl.DateTimeFormat(lang, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            const dateParts = dateFormatter.formatToParts(date);
+
+            let dateStr = '';
+            for (let i = 0; i < dateParts.length; i++) {
+                const part = dateParts[i];
+                let value = part.value;
+
+                // Insert non-breaking space between day and month or month and day
+                if (part.type === 'literal' && value.trim() === '') {
+                    const prevPart = dateParts[i - 1];
+                    const nextPart = dateParts[i + 1];
+                    if ((prevPart && nextPart) &&
+                        ((prevPart.type === 'day' && nextPart.type === 'month') ||
+                         (prevPart.type === 'month' && nextPart.type === 'day'))) {
+                        value = '\u00A0'; // Non-breaking space
+                    }
+                }
+
+                dateStr += value;
+            }
+
+            return dateStr;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const dateElement = document.getElementById('current-date');
             const phraseElement = document.getElementById('phrase');
 
             const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const lang = document.documentElement.lang || 'en';
 
-            const dateString = lang === 'en'
-                ? `Jonas Hertner — Zurich/Basel, ${today.toLocaleDateString('en-US', options)}`
-                : `Jonas Hertner — Zürich/Basel, ${today.toLocaleDateString('de-DE', options)}`;
+            // Use the function to format the date
+            const dateStr = formatDateWithNonBreakingSpaces('en-US', today);
 
-            const phrase = lang === 'en' ? 'On behalf of my client' : 'Im Namen meines Mandanten';
+            const dateString = `Jonas Hertner — Zurich/Basel, ${dateStr}`;
+            const phrase = 'On behalf of my client';
 
             typeWriter(dateElement, dateString, 0, () => {
                 typeWriter(phraseElement, phrase, 0, () => {
                     addBlinkingCursor(phraseElement);
                 });
             });
-
-            // Drawing Animation
-            const svg = document.querySelector('.drawing-canvas');
-            let isDrawing = false;
-            let currentPath;
-
-            svg.addEventListener('pointerdown', (event) => {
-                isDrawing = true;
-                currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                currentPath.setAttribute('fill', 'none');
-                currentPath.setAttribute('stroke', 'black');
-                currentPath.setAttribute('stroke-width', '2');
-                currentPath.setAttribute('stroke-linecap', 'round');
-                svg.appendChild(currentPath);
-
-                const { clientX, clientY } = event;
-                currentPath.setAttribute('d', `M${clientX},${clientY}`);
-            });
-
-            svg.addEventListener('pointermove', (event) => {
-                if (!isDrawing) return;
-
-                const { clientX, clientY } = event;
-                const d = currentPath.getAttribute('d');
-                currentPath.setAttribute('d', `${d} L${clientX},${clientY}`);
-            });
-
-            svg.addEventListener('pointerup', () => (isDrawing = false));
-            svg.addEventListener('pointerleave', () => (isDrawing = false));
         });
+    </script>
+
+    <!-- Paper.js Drawing Script -->
+    <script type="text/paperscript" canvas="drawing-canvas">
+        var path;
+
+        function onMouseDown(event) {
+            // Deselect the previous path
+            if (path) {
+                path.selected = false;
+            }
+
+            // Create a new path
+            path = new Path({
+                segments: [event.point],
+                strokeColor: 'black',
+                strokeWidth: 2
+            });
+        }
+
+        function onMouseDrag(event) {
+            path.add(event.point);
+        }
+
+        function onMouseUp(event) {
+            // Simplify the path
+            path.simplify(10);
+
+            // Deselect the path
+            path.selected = false;
+        }
     </script>
 </body>
 </html>
