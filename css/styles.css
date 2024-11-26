@@ -1,0 +1,567 @@
+/* styles.css */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+/* Import Bradford Font */
+@font-face {
+    font-family: 'Bradford';
+    src: url('../fonts/BradfordLLSub-Book.woff2') format('woff2'),
+         url('../fonts/BradfordLLSub-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Bradford';
+    src: url('../fonts/BradfordLLWeb-Book.woff2') format('woff2'),
+         url('../fonts/BradfordLLWeb-Book.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Reset and General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*html, body {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Bradford', sans-serif; /* Apply Bradford as default font */
+    scroll-behavior: smooth; /* Smooth scrolling for snapping */
+}
+
+body {
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+a {
+    text-decoration: none; /* Remove default underline from all links */
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Scroll Snap Setup */
+main {
+    scroll-snap-type: y mandatory; /* Enable vertical scroll snapping */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    height: 100vh; /* Occupy full viewport height */
+    scroll-padding-top: 0px; /* Offset for fixed navbar height */
+    /*scroll-padding-bottom: 40px; /* Offset for fixed footer height */
+    /* Optional: Hide scrollbar for aesthetic purposes */
+    scrollbar-width: none; /* Firefox */
+}
+
+main::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Each Section as a Snap Point */
+.section {
+    scroll-snap-align: start; /* Align the start of the section with the container */
+    scroll-padding-top: 0;
+    min-height: 100vh; /* Ensure sections fill the viewport */
+    position: relative;
+    padding: 0 30px 60px; /* Removed top padding to prevent overlap */
+    box-sizing: border-box; /* Include padding in height calculations */
+    scroll-margin-top: 0px; /* Offset to account for fixed navbar */
+}
+
+/* Navigation Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align menu items to the right */
+    padding: 15px 30px;
+    background-color: transparent; /* Fully transparent */
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.navbar a,
+.navbar .lang-btn,
+.navbar .toggle-button {
+    color: #fff; /* White color by default */
+}
+
+.navbar a:hover,
+.navbar a.active {
+    border-bottom: 2px solid currentColor;
+    text-decoration: none; /* Ensure no underline on hover/active */
+}
+
+.navbar.dark a,
+.navbar.dark .lang-btn,
+.navbar.dark .toggle-button {
+    color: #000; /* Black color in dark mode */
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.navbar-links li {
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Language Switcher */
+.language-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.language-switcher .lang-btn {
+    background: none;
+    border: none;
+    font-size: 1em;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #fff; /* Default white color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s, transform 0.3s;
+    font-family: 'Bradford', sans-serif; /* Use Bradford font */
+}
+
+.language-switcher .lang-btn:hover {
+    color: #ddd;
+    transform: scale(1.1);
+}
+
+.language-switcher .lang-btn.active {
+    font-weight: bold;
+    text-decoration: none; /* Remove underline on active */
+    /*text-decoration: underline; */ /* Uncomment if desired */
+}
+
+/* Navbar Dark Mode: Override language switcher color to black */
+.navbar.dark .language-switcher .lang-btn {
+    color: #000; /* Black color in dark mode */
+}
+
+.navbar.dark .language-switcher .lang-btn.active {
+    color: #000; /* Ensure active button remains black */
+}
+
+/* Ensure language switcher buttons are white when navbar is not dark */
+.navbar:not(.dark) .language-switcher .lang-btn {
+    color: #fff; /* White color in Home section */
+}
+
+.navbar:not(.dark) .language-switcher .lang-btn.active {
+    color: #fff; /* White color for active language button in Home */
+}
+
+/* Hamburger Menu Styles */
+.toggle-button {
+    display: none; /* Hidden by default; shown on mobile */
+    position: relative;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit; /* Inherits from navbar */
+    z-index: 1001; /* Ensure it's above the navbar-links */
+}
+
+.toggle-button .bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: currentColor; /* Inherit color from .toggle-button */
+    transition: all 0.4s ease;
+    border-radius: 2px;
+    /* Vendor prefixes for cross-browser compatibility */
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+}
+
+.toggle-button .bar:nth-child(1) {
+    top: 0;
+}
+
+.toggle-button .bar:nth-child(2) {
+    top: 10px;
+}
+
+.toggle-button .bar:nth-child(3) {
+    top: 20px;
+}
+
+/* Hamburger Menu Animation for Open State */
+.toggle-button.open .bar:nth-child(1) {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg); /* Safari */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -o-transform: rotate(45deg); /* Opera */
+    top: 10px; /* Align to center */
+}
+
+.toggle-button.open .bar:nth-child(2) {
+    opacity: 0; /* Hide the middle bar */
+}
+
+.toggle-button.open .bar:nth-child(3) {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg); /* Safari */
+    -moz-transform: rotate(-45deg); /* Firefox */
+    -o-transform: rotate(-45deg); /* Opera */
+    top: 10px; /* Align to center */
+}
+
+/* Main Content Styles */
+main {
+    padding-top: 0; /* Removed to eliminate white bar */
+    padding-bottom: 40px; /* Height of the footer (if fixed) */
+    overflow-y: scroll; /* Enable scrolling within main */
+}
+
+/* Hero Section */
+#home {
+    background-image: url('../images/hero.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 0; /* Remove padding to prevent overflow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure it fills the viewport */
+}
+
+#home::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Optional: Add an overlay if needed */
+    /* background-color: rgba(0, 0, 0, 0.3); */
+    z-index: -1; /* Ensure the background image stays behind the content */
+}
+
+.hero-content {
+    text-align: center;
+    color: #fff; /* White text for visibility over hero image */
+    padding: 0 20px; /* Padding for better mobile view */
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    /* Removed text-shadow */
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    /* Removed text-shadow */
+}
+
+/* Button Styles */
+.btn {
+    padding: 15px 30px;
+    font-size: 1em;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* About Section */
+#about {
+    background-color: #fff;
+    color: #333;
+    padding: 60px 20px;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-align: left; /* Left-align text */
+}
+
+.about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: left; /* Left-align text */
+}
+
+/* Services Section */
+#services {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+}
+
+#services h2 {
+    text-align: left; /* Left-align heading */
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align items to the left */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-item {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.service-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: left; /* Left-align text */
+}
+
+.service-item p {
+    font-size: 1em;
+    text-align: left; /* Left-align text */
+}
+
+/* Contact Section */
+#contact {
+    background-color: #fff;
+    padding: 60px 20px;
+}
+
+#contact h2 {
+    text-align: left; /* Left-align heading */
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-info {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1em;
+}
+
+.contact-info p {
+    margin-bottom: 20px;
+    text-align: left; /* Left-align text */
+}
+
+.contact-info a {
+    color: #333;
+    text-decoration: none; /* Remove underline from email link */
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: #555;
+}
+
+/* Footer */
+footer {
+    position: fixed; /* Keep fixed positioning */
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;  /* White background */
+    color: #333;             /* Black text */
+    text-align: center;
+    padding: 10px 20px;      /* Adjust as needed */
+    font-size: 0.9em;        /* Smaller font size */
+    border-top: 1px solid #eaeaea; /* Subtle border for separation */
+    z-index: 1000; /* Ensure it appears above other elements */
+    /* Initially hidden */
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show footer when active */
+footer.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    /* Show hamburger menu */
+    .toggle-button {
+        display: block;
+    }
+
+    /* Hide navigation links by default */
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    /* Display navigation links when active */
+    .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        /* Background color based on navbar state */
+        background-color: #000; /* Black background for Home section */
+        position: fixed; /* Fix the menu to cover the viewport */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 60px; /* Space for the toggle button */
+        z-index: 999; /* Ensure it appears above other content but below toggle-button */
+    }
+
+    /* Adjust background and text color based on navbar's dark class */
+    .navbar.dark .navbar-links.active {
+        background-color: #fff; /* White background for other sections */
+    }
+
+    .navbar-links.active a {
+        color: #fff; /* White text for Home section */
+    }
+
+    .navbar.dark .navbar-links.active a {
+        color: #000; /* Black text for other sections */
+    }
+
+    .navbar-links.active .lang-btn {
+        color: #fff; /* White text for Home section */
+    }
+
+    .navbar.dark .navbar-links.active .lang-btn {
+        color: #000; /* Black text for other sections */
+    }
+
+    .navbar-links ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        align-items: center;
+    }
+
+    .navbar-links li {
+        margin: 15px 0;
+        justify-content: center;
+    }
+
+    .navbar-links a {
+        font-size: 1.2em;
+        text-decoration: none; /* Ensure no underline in mobile menu */
+    }
+
+    /* Adjust hero content for mobile */
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+
+    /* Adjust footer for mobile */
+    footer {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+
+    /* Adjust language switcher in mobile view */
+    .language-switcher {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .language-switcher .lang-btn {
+        margin-left: 10px;
+    }
+
+    /* Adjustments for mobile view */
+    .services-container,
+    .about-content,
+    .contact-info {
+        padding: 0 20px;
+    }
+
+    #services h2,
+    #contact h2 {
+        padding: 0 20px;
+    }
+}
+
+/* Accessibility Focus Styles */
+
+/* Remove default focus outline and box-shadow */
+.navbar a:focus,
+.language-switcher .lang-btn:focus,
+.toggle-button:focus,
+.navbar a:active,
+.language-switcher .lang-btn:active,
+.toggle-button:active {
+    outline: none !important; /* Removes the default focus outline */
+    box-shadow: none !important; /* Removes any box-shadow */
+    border: none !important; /* Removes any border */
+}
+
+/* Implement custom focus styles for accessibility */
+.navbar a:focus,
+.language-switcher .lang-btn:focus,
+.toggle-button:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.7); /* Yellow glow for focus */
+    border-radius: 4px; /* Rounded corners for the focus indicator */
+}
+
+.navbar.dark a:focus,
+.navbar.dark .language-switcher .lang-btn:focus,
+.navbar.dark .toggle-button:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.7); /* Blue glow for focus */
+    border-radius: 4px; /* Rounded corners for the focus indicator */
+}
