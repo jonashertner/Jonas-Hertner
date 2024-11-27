@@ -64,7 +64,7 @@ main::-webkit-scrollbar {
 /* Apply scroll snapping only on small screens */
 @media (max-width: 992px) {
     main {
-        scroll-snap-type: y proximity;
+        scroll-snap-type: y mandatory;
     }
 
     /* Each Section as a Snap Point */
