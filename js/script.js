@@ -29,7 +29,7 @@ const content = {
             "subtitle": "LEGAL COUNSEL"
         },
         "about": {
-            "heading": "Jonas Hertner",
+            "heading": "About Me",
             "content": "Jonas Hertner is a lawyer based in Zurich and Basel. Jonas has extensive experience handling complex commercial disputes, with a focus on the financial services, commodities, technology, biotech and life sciences, data privacy, arts, and non-profit/ecology sectors. He frequently represents companies, foundations, families and individuals in multi-jurisdictional disputes as well as in criminal and regulatory investigations. Additionally, Jonas has been involved in several key corporate criminal liability investigations and proceedings in Switzerland both on the victims/private plaintiffs’ side as well as on the defendants’ side."
         },
         "services": {
@@ -41,18 +41,15 @@ const content = {
             "service2": {
                 "title": "Family and private clients",
                 "description": "Advise private clients on legal issues."
-            }
-                        },
+            },
             "service3": {
                 "title": "Criminal law",
                 "description": "Advise and represent parties in criminal investigations and proceedings."
-            }
             },
             "service4": {
                 "title": "Impact litigation",
                 "description": "Advise and represent parties on strategic impact litigation in the areas of ecology and fundamental rights."
             }
-
         },
         "contact": {
             "heading": "Contact",
@@ -80,8 +77,8 @@ const content = {
             "subtitle": "ADVOKAT"
         },
         "about": {
-            "heading": "Jonas Hertner",
-            "content": "Jonas Hertner ist ein Rechtsanwalt mit Büros in Zürich und Basel. Jonas verfügt über umfangreiche Erfahrungen in der Bearbeitung komplexer kommerzieller Streitigkeiten, mit Schwerpunkt auf den Bereichen Finanzdienstleistungen, Rohstoffe, Technologie, Biotechnologie und Life Sciences, Datenschutz, Kunst sowie Non-Profit-/Ökologie-Sektoren. Er vertritt regelmäßig Unternehmen, Stiftungen, Familien und Einzelpersonen in mehrgerichtlichen Streitigkeiten sowie in strafrechtlichen und regulatorischen Untersuchungen. Darüber hinaus war Jonas an mehreren wichtigen Untersuchungen und Verfahren zur strafrechtlichen Unternehmenshaftung in der Schweiz sowohl auf Seiten der Opfer/privaten Kläger als auch auf Seiten der Angeklagten beteiligt. Zuvor arbeitete Jonas im Büro des Rechtsberaters des Schweizer Außenministeriums und als Rechtsreferendar am Appellationsgericht des Kantons Basel-Stadt. Vorher war er auch als Journalist, Übersetzer, Gymnasiallehrer und für Non-Profit-Stiftungen im Bereich Ökologie und Sport tätig. Er absolvierte sein Studium an den Universitäten Luzern und Genf mit Auszeichnung, bevor er an die Schweizer Anwaltskammer zugelassen wurde."
+            "heading": "Über mich",
+            "content": "Jonas Hertner ist ein Rechtsanwalt mit Büros in Zürich und Basel. Jonas verfügt über umfangreiche Erfahrungen in der Bearbeitung komplexer kommerzieller Streitigkeiten, mit Schwerpunkt auf den Bereichen Finanzdienstleistungen, Rohstoffe, Technologie, Biotechnologie und Life Sciences, Datenschutz, Kunst sowie Non-Profit-/Ökologie-Sektoren. Er vertritt regelmäßig Unternehmen, Stiftungen, Familien und Einzelpersonen in mehrgerichtlichen Streitigkeiten sowie in strafrechtlichen und regulatorischen Untersuchungen. Darüber hinaus war Jonas an mehreren wichtigen Untersuchungen und Verfahren zur strafrechtlichen Unternehmenshaftung in der Schweiz sowohl auf Seiten der Opfer/privaten Kläger als auch auf Seiten der Angeklagten beteiligt."
         },
         "services": {
             "heading": "Expertise",
@@ -90,15 +87,22 @@ const content = {
                 "description": "Beratung und Vertretung in komplexen Streitigkeiten."
             },
             "service2": {
+                "title": "Familien und Privatkunden",
+                "description": "Beratung von Privatkunden in rechtlichen Fragen."
+            },
+            "service3": {
                 "title": "Strafrecht",
                 "description": "Beratung und Vertretung in Strafuntersuchungen und -verfahren."
+            },
+            "service4": {
+                "title": "Strategische Prozessführung",
+                "description": "Beratung und Vertretung bei strategischen Prozessen in den Bereichen Ökologie und Grundrechte."
             }
-            // Add more services as needed
         },
         "contact": {
             "heading": "Kontakt",
             "addressLabel": "Adresse:",
-            "addressPlaceholder": "Ihre Adresse Hier",
+            "addressPlaceholder": "",
             "emailLabel": "E-Mail:",
             "emailPlaceholder": "jh@jonashertner.com"
         },
@@ -120,7 +124,7 @@ function changeLanguage(lang) {
         let text = content[lang];
 
         keys.forEach(k => {
-            if (text[k]) {
+            if (text && text[k]) {
                 text = text[k];
             } else {
                 text = '';
@@ -128,10 +132,6 @@ function changeLanguage(lang) {
         });
 
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            if (element.getAttribute('type') === 'email') {
-                // Keep the email value consistent
-                element.value = "jh@jonashertner.com";
-            }
             element.placeholder = text;
         } else if (element.tagName === 'IMG') {
             element.alt = text;
@@ -143,8 +143,11 @@ function changeLanguage(lang) {
     // Update active language button
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
     });
-    document.getElementById('lang-' + lang).classList.add('active');
+    const activeBtn = document.getElementById('lang-' + lang);
+    activeBtn.classList.add('active');
+    activeBtn.setAttribute('aria-pressed', 'true');
 
     // Store selected language in localStorage
     localStorage.setItem('language', lang);
@@ -223,9 +226,9 @@ sections.forEach(section => {
 // Function to adjust navbar style based on current section
 function adjustNavbarStyle(currentSection = 'home') {
     if (currentSection === 'home') {
-        navbar.classList.remove('dark'); // White text and black background in mobile
+        navbar.classList.remove('dark'); // White text and transparent background
     } else {
-        navbar.classList.add('dark'); // Black text and white background in mobile
+        navbar.classList.add('dark'); // Black text and white background
     }
 }
 

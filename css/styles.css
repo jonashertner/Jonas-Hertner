@@ -27,22 +27,12 @@
     box-sizing: border-box;
 }
 
-/*html, body {
-    height: 100%;
-    font-family: 'Open Sans', sans-serif;
-    color: #333;
-}*/
-
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Bradford', sans-serif; /* Apply Bradford as default font */
     scroll-behavior: smooth; /* Smooth scrolling for snapping */
-}
-
-body {
-    scroll-behavior: smooth; /* Enable smooth scrolling */
 }
 
 a {
@@ -61,8 +51,6 @@ main {
     overflow-y: scroll; /* Enable vertical scrolling */
     height: 100vh; /* Occupy full viewport height */
     scroll-padding-top: 0px; /* Offset for fixed navbar height */
-    /*scroll-padding-bottom: 40px; /* Offset for fixed footer height */
-    /* Optional: Hide scrollbar for aesthetic purposes */
     scrollbar-width: none; /* Firefox */
 }
 
@@ -142,7 +130,7 @@ main::-webkit-scrollbar {
     font-size: 1em;
     margin-left: 10px;
     cursor: pointer;
-    color: #fff; /* Default white color */
+    color: inherit; /* Inherit color from navbar */
     text-decoration: none; /* Remove underline */
     transition: color 0.3s, transform 0.3s;
     font-family: 'Bradford', sans-serif; /* Use Bradford font */
@@ -156,25 +144,14 @@ main::-webkit-scrollbar {
 .language-switcher .lang-btn.active {
     font-weight: bold;
     text-decoration: none; /* Remove underline on active */
-    /*text-decoration: underline; */ /* Uncomment if desired */
 }
 
-/* Navbar Dark Mode: Override language switcher color to black */
 .navbar.dark .language-switcher .lang-btn {
-    color: #000; /* Black color in dark mode */
+    color: #000; /* Black color in other sections */
 }
 
-.navbar.dark .language-switcher .lang-btn.active {
-    color: #000; /* Ensure active button remains black */
-}
-
-/* Ensure language switcher buttons are white when navbar is not dark */
 .navbar:not(.dark) .language-switcher .lang-btn {
     color: #fff; /* White color in Home section */
-}
-
-.navbar:not(.dark) .language-switcher .lang-btn.active {
-    color: #fff; /* White color for active language button in Home */
 }
 
 /* Hamburger Menu Styles */
@@ -198,10 +175,6 @@ main::-webkit-scrollbar {
     background-color: currentColor; /* Inherit color from .toggle-button */
     transition: all 0.4s ease;
     border-radius: 2px;
-    /* Vendor prefixes for cross-browser compatibility */
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
 }
 
 .toggle-button .bar:nth-child(1) {
@@ -219,9 +192,6 @@ main::-webkit-scrollbar {
 /* Hamburger Menu Animation for Open State */
 .toggle-button.open .bar:nth-child(1) {
     transform: rotate(45deg);
-    -webkit-transform: rotate(45deg); /* Safari */
-    -moz-transform: rotate(45deg); /* Firefox */
-    -o-transform: rotate(45deg); /* Opera */
     top: 10px; /* Align to center */
 }
 
@@ -231,9 +201,6 @@ main::-webkit-scrollbar {
 
 .toggle-button.open .bar:nth-child(3) {
     transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg); /* Safari */
-    -moz-transform: rotate(-45deg); /* Firefox */
-    -o-transform: rotate(-45deg); /* Opera */
     top: 10px; /* Align to center */
 }
 
@@ -278,13 +245,11 @@ main {
 .hero-content h1 {
     font-size: 4em;
     margin-bottom: 20px;
-    /* Removed text-shadow */
 }
 
 .hero-content p {
     font-size: 1.5em;
     margin-bottom: 30px;
-    /* Removed text-shadow */
 }
 
 /* Button Styles */

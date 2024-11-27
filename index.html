@@ -14,21 +14,21 @@
         <nav class="navbar" role="navigation" aria-label="Main Navigation">
             <!-- Hamburger Menu (visible on mobile) -->
             <button class="toggle-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar-links">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
             </button>
             <!-- Navigation Links -->
             <div class="navbar-links" id="navbar-links">
                 <ul>
-                    <li><a href="#home" class="active" data-key="nav.home" aria-current="page">Home</a></li>
+                    <li><a href="#home" data-key="nav.home" aria-current="page">Home</a></li>
                     <li><a href="#about" data-key="nav.about">About</a></li>
                     <li><a href="#services" data-key="nav.services">Services</a></li>
                     <li><a href="#contact" data-key="nav.contact">Contact</a></li>
                     <!-- Language Switcher within the menu -->
                     <li class="language-switcher">
-                        <button id="lang-en" class="lang-btn active" aria-label="Switch to English">EN</button>
-                        <button id="lang-de" class="lang-btn" aria-label="Switch to German">DE</button>
+                        <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
+                        <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
                     </li>
                 </ul>
             </div>
@@ -41,7 +41,7 @@
         <section id="home" class="section">
             <div class="hero-content">
                 <h1 data-key="hero.title">Jonas Hertner</h1>
-                <p data-key="hero.subtitle"></p>
+                <p data-key="hero.subtitle">LEGAL COUNSEL</p>
                 <!-- Optional: Add a button or link here -->
                 <!-- <a href="#about" class="btn" data-key="btn.learnMore">Learn More</a> -->
             </div>
@@ -69,6 +69,16 @@
                     <h3 data-key="services.service2.title">Service Title 2</h3>
                     <p data-key="services.service2.description">Description of another service you offer.</p>
                 </div>
+                <!-- Service Item -->
+                <div class="service-item">
+                    <h3 data-key="services.service3.title">Service Title 3</h3>
+                    <p data-key="services.service3.description">Description of the service you offer.</p>
+                </div>
+                <!-- Service Item -->
+                <div class="service-item">
+                    <h3 data-key="services.service4.title">Service Title 4</h3>
+                    <p data-key="services.service4.description">Description of the service you offer.</p>
+                </div>
                 <!-- Add more service items as needed -->
             </div>
         </section>
@@ -77,8 +87,8 @@
         <section id="contact" class="section">
             <h2 data-key="contact.heading">Contact</h2>
             <div class="contact-info">
-                <p><strong data-key="contact.addressLabel">Address:</strong> <span data-key="contact.addressPlaceholder">Your Address Here</span></p>
-                <p><strong data-key="contact.emailLabel">Email:</strong> <a href="mailto:jh@jonashertner.com">jh@jonashertner.com</a></p>
+                <p><strong data-key="contact.addressLabel">Address:</strong> <span data-key="contact.addressPlaceholder"></span></p>
+                <p><strong data-key="contact.emailLabel">Email:</strong> <a href="mailto:jh@jonashertner.com" data-key="contact.emailPlaceholder">jh@jonashertner.com</a></p>
             </div>
         </section>
     </main>
