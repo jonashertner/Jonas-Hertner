@@ -64,6 +64,79 @@ main::-webkit-scrollbar {
     box-sizing: border-box;
 }
 
+/* General Container Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Apply to specific sections */
+.about-content,
+.services-container,
+.contact-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Services Container Grid Layout */
+.services-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .services-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .services-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Adjust Headings and Paragraphs */
+@media (min-width: 1200px) {
+    .about-content h2,
+    #services h2,
+    #contact h2 {
+        font-size: 3em;
+    }
+
+    .about-content p,
+    .service-item p,
+    .contact-info p {
+        font-size: 1.2em;
+    }
+
+    /* Increase Section Padding */
+    #about,
+    #services,
+    #contact {
+        padding: 80px 0;
+    }
+
+    .service-item {
+        margin-bottom: 60px;
+    }
+
+    /* Navigation Styles for Large Screens */
+    .navbar-links li {
+        margin: 0 25px;
+    }
+}
+
 /* Navigation Styles */
 .navbar {
     position: fixed;
