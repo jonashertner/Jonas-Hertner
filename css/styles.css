@@ -55,12 +55,6 @@ main::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
 }
 
-/* Remove fixed min-height from sections */
-.section {
-    /* Allow sections to adjust height based on content */
-    min-height: auto;
-}
-
 /* Apply scroll snapping only on small screens */
 @media (max-width: 992px) {
     main {
@@ -80,7 +74,7 @@ main::-webkit-scrollbar {
     }
 
     .section {
-        scroll-snap-align: unset;
+        scroll-snap-align: none;
     }
 }
 
