@@ -55,15 +55,27 @@ main::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
 }
 
+/* Remove fixed min-height from sections */
+.section {
+    /* Allow sections to adjust height based on content */
+    min-height: 100vh;
+}
+
 /* Apply scroll snapping only on small screens */
 @media (max-width: 992px) {
     main {
-        scroll-snap-type: y mandatory;
+        scroll-snap-type: y proximity;
     }
 
     /* Each Section as a Snap Point */
     .section {
         scroll-snap-align: start;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        min-height: auto; /* Allow sections to expand based on content on small screens */
     }
 }
 
