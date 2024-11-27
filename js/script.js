@@ -266,4 +266,9 @@ const contactCallback = (entries, observer) => {
 };
 
 // Create the observer
-const contactObserver = new IntersectionObserver(contactCallback, 
+const contactObserver = new IntersectionObserver(contactCallback, contactOptions);
+
+// Observe the Contact section
+if (contactSection) {
+    contactObserver.observe(contactSection);
+}
