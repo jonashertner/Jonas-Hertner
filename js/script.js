@@ -21,7 +21,7 @@ const content = {
         "nav": {
             "home": "Home",
             "about": "About Jonas Hertner",
-            "services": "Services",
+            "services": "Expertise",
             "contact": "Contact"
         },
         "hero": {
@@ -30,24 +30,34 @@ const content = {
         },
         "about": {
             "heading": "Jonas Hertner",
-            "content": "Jonas Hertner is a lawyer based in Zurich and Basel office. Jonas has extensive experience handling complex commercial disputes, with a focus on the financial services, commodities, technology, biotech and life sciences, data privacy, arts, and non-profit/ecology sectors. He frequently represents companies, foundations, families and individuals in multi-jurisdictional disputes as well as in criminal and regulatory investigations. Additionally, Jonas has been involved in several key corporate criminal liability investigations and proceedings in Switzerland both on the victims/private plaintiffs’ side as well as on the defendants’ side."
+            "content": "Jonas Hertner is a lawyer based in Zurich and Basel. Jonas has extensive experience handling complex commercial disputes, with a focus on the financial services, commodities, technology, biotech and life sciences, data privacy, arts, and non-profit/ecology sectors. He frequently represents companies, foundations, families and individuals in multi-jurisdictional disputes as well as in criminal and regulatory investigations. Additionally, Jonas has been involved in several key corporate criminal liability investigations and proceedings in Switzerland both on the victims/private plaintiffs’ side as well as on the defendants’ side."
         },
         "services": {
-            "heading": "Services",
+            "heading": "Expertise",
             "service1": {
                 "title": "Complex disputes",
                 "description": "Advise and represent parties in complex disputes."
             },
             "service2": {
+                "title": "Family and private clients",
+                "description": "Advise private clients on legal issues."
+            }
+                        },
+            "service3": {
                 "title": "Criminal law",
                 "description": "Advise and represent parties in criminal investigations and proceedings."
             }
-            // Add more services as needed
+            },
+            "service4": {
+                "title": "Impact litigation",
+                "description": "Advise and represent parties on strategic impact litigation in the areas of ecology and fundamental rights."
+            }
+
         },
         "contact": {
             "heading": "Contact",
             "addressLabel": "Address:",
-            "addressPlaceholder": "Your Address Here",
+            "addressPlaceholder": "",
             "emailLabel": "Email:",
             "emailPlaceholder": "jh@jonashertner.com"
         },
@@ -62,7 +72,7 @@ const content = {
         "nav": {
             "home": "Home",
             "about": "Jonas Hertner",
-            "services": "Dienstleistungen",
+            "services": "Expertise",
             "contact": "Kontakt"
         },
         "hero": {
@@ -74,7 +84,7 @@ const content = {
             "content": "Jonas Hertner ist ein Rechtsanwalt mit Büros in Zürich und Basel. Jonas verfügt über umfangreiche Erfahrungen in der Bearbeitung komplexer kommerzieller Streitigkeiten, mit Schwerpunkt auf den Bereichen Finanzdienstleistungen, Rohstoffe, Technologie, Biotechnologie und Life Sciences, Datenschutz, Kunst sowie Non-Profit-/Ökologie-Sektoren. Er vertritt regelmäßig Unternehmen, Stiftungen, Familien und Einzelpersonen in mehrgerichtlichen Streitigkeiten sowie in strafrechtlichen und regulatorischen Untersuchungen. Darüber hinaus war Jonas an mehreren wichtigen Untersuchungen und Verfahren zur strafrechtlichen Unternehmenshaftung in der Schweiz sowohl auf Seiten der Opfer/privaten Kläger als auch auf Seiten der Angeklagten beteiligt. Zuvor arbeitete Jonas im Büro des Rechtsberaters des Schweizer Außenministeriums und als Rechtsreferendar am Appellationsgericht des Kantons Basel-Stadt. Vorher war er auch als Journalist, Übersetzer, Gymnasiallehrer und für Non-Profit-Stiftungen im Bereich Ökologie und Sport tätig. Er absolvierte sein Studium an den Universitäten Luzern und Genf mit Auszeichnung, bevor er an die Schweizer Anwaltskammer zugelassen wurde."
         },
         "services": {
-            "heading": "Dienstleistungen",
+            "heading": "Expertise",
             "service1": {
                 "title": "Komplexe Streitigkeiten",
                 "description": "Beratung und Vertretung in komplexen Streitigkeiten."
