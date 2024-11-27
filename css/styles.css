@@ -442,6 +442,7 @@ footer.active {
     }
 
     .navbar-links ul {
+        display: flex;
         flex-direction: column;
         width: 100%;
         padding: 0;
@@ -449,8 +450,11 @@ footer.active {
     }
 
     .navbar-links li {
+        display: flex; /* Ensure flex container */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
         margin: 15px 0;
-        justify-content: center;
+        width: 100%; /* Make li elements take full width */
     }
 
     .navbar-links a {
@@ -474,12 +478,15 @@ footer.active {
 
     /* Adjust language switcher in mobile view */
     .navbar-links.active .language-switcher {
-        justify-content: center;
-        margin-top: 10px;
+        display: flex; /* Ensure flex container */
+        justify-content: center; /* Center contents */
+        align-items: center;
+        margin: 15px 0; /* Match margin with other menu items */
+        width: 100%; /* Take full width */
     }
 
     .navbar-links.active .language-switcher .lang-btn {
-        margin-left: 10px;
+        margin: 0 5px; /* Space between language buttons */
     }
 }
 

@@ -20,7 +20,7 @@ const content = {
     "en": {
         "nav": {
             "home": "Home",
-            "about": "About Jonas Hertner",
+            "about": "Jonas Hertner",
             "services": "Expertise",
             "contact": "Contact"
         },
@@ -29,7 +29,7 @@ const content = {
             "subtitle": "LEGAL COUNSEL"
         },
         "about": {
-            "heading": "About Me",
+            "heading": "About Jonas Hertner",
             "content": "Jonas Hertner is a lawyer based in Zurich and Basel. Jonas has extensive experience handling complex commercial disputes, with a focus on the financial services, commodities, technology, biotech and life sciences, data privacy, arts, and non-profit/ecology sectors. He frequently represents companies, foundations, families and individuals in multi-jurisdictional disputes as well as in criminal and regulatory investigations. Additionally, Jonas has been involved in several key corporate criminal liability investigations and proceedings in Switzerland both on the victims/private plaintiffs’ side as well as on the defendants’ side."
         },
         "services": {
@@ -53,9 +53,9 @@ const content = {
         },
         "contact": {
             "heading": "Contact",
-            "addressLabel": "Address:",
+            "addressLabel": "Address",
             "addressPlaceholder": "",
-            "emailLabel": "Email:",
+            "emailLabel": "Email",
             "emailPlaceholder": "jh@jonashertner.com"
         },
         "footer": {
@@ -77,7 +77,7 @@ const content = {
             "subtitle": "ADVOKAT"
         },
         "about": {
-            "heading": "Über mich",
+            "heading": "Jonas Hertner",
             "content": "Jonas Hertner ist ein Rechtsanwalt mit Büros in Zürich und Basel. Jonas verfügt über umfangreiche Erfahrungen in der Bearbeitung komplexer kommerzieller Streitigkeiten, mit Schwerpunkt auf den Bereichen Finanzdienstleistungen, Rohstoffe, Technologie, Biotechnologie und Life Sciences, Datenschutz, Kunst sowie Non-Profit-/Ökologie-Sektoren. Er vertritt regelmäßig Unternehmen, Stiftungen, Familien und Einzelpersonen in mehrgerichtlichen Streitigkeiten sowie in strafrechtlichen und regulatorischen Untersuchungen. Darüber hinaus war Jonas an mehreren wichtigen Untersuchungen und Verfahren zur strafrechtlichen Unternehmenshaftung in der Schweiz sowohl auf Seiten der Opfer/privaten Kläger als auch auf Seiten der Angeklagten beteiligt."
         },
         "services": {
@@ -101,7 +101,7 @@ const content = {
         },
         "contact": {
             "heading": "Kontakt",
-            "addressLabel": "Adresse:",
+            "addressLabel": "Adresse",
             "addressPlaceholder": "",
             "emailLabel": "E-Mail:",
             "emailPlaceholder": "jh@jonashertner.com"
