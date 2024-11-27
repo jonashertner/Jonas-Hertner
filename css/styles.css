@@ -29,14 +29,12 @@
 
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
     font-family: 'Bradford', sans-serif; /* Apply Bradford as default font */
-    scroll-behavior: smooth; /* Smooth scrolling for snapping */
+    scroll-behavior: smooth; /* Smooth scrolling */
 }
 
 a {
-    text-decoration: none; /* Remove default underline from all links */
+    text-decoration: none;
     color: inherit;
 }
 
@@ -47,10 +45,9 @@ img {
 
 /* Scroll Snap Setup */
 main {
-    scroll-snap-type: y mandatory; /* Enable vertical scroll snapping */
-    overflow-y: scroll; /* Enable vertical scrolling */
-    height: 100vh; /* Occupy full viewport height */
-    scroll-padding-top: 0px; /* Offset for fixed navbar height */
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
     scrollbar-width: none; /* Firefox */
 }
 
@@ -60,13 +57,11 @@ main::-webkit-scrollbar {
 
 /* Each Section as a Snap Point */
 .section {
-    scroll-snap-align: start; /* Align the start of the section with the container */
-    scroll-padding-top: 0;
-    min-height: 100vh; /* Ensure sections fill the viewport */
+    scroll-snap-align: start;
+    min-height: 100vh;
     position: relative;
-    padding: 0 30px 60px; /* Removed top padding to prevent overlap */
-    box-sizing: border-box; /* Include padding in height calculations */
-    scroll-margin-top: 0px; /* Offset to account for fixed navbar */
+    padding: 0 30px 60px;
+    box-sizing: border-box;
 }
 
 /* Navigation Styles */
@@ -77,28 +72,27 @@ main::-webkit-scrollbar {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Align menu items to the right */
+    justify-content: flex-end;
     padding: 15px 30px;
-    background-color: transparent; /* Fully transparent */
+    background-color: transparent;
     transition: color 0.3s, background-color 0.3s;
 }
 
 .navbar a,
 .navbar .lang-btn,
 .navbar .toggle-button {
-    color: #fff; /* White color by default */
+    color: #fff;
 }
 
 .navbar a:hover,
 .navbar a.active {
     border-bottom: 2px solid currentColor;
-    text-decoration: none; /* Ensure no underline on hover/active */
 }
 
 .navbar.dark a,
 .navbar.dark .lang-btn,
 .navbar.dark .toggle-button {
-    color: #000; /* Black color in dark mode */
+    color: #000;
 }
 
 .navbar-links {
@@ -130,10 +124,9 @@ main::-webkit-scrollbar {
     font-size: 1em;
     margin-left: 10px;
     cursor: pointer;
-    color: inherit; /* Inherit color from navbar */
-    text-decoration: none; /* Remove underline */
+    color: inherit;
     transition: color 0.3s, transform 0.3s;
-    font-family: 'Bradford', sans-serif; /* Use Bradford font */
+    font-family: 'Bradford', sans-serif;
 }
 
 .language-switcher .lang-btn:hover {
@@ -143,15 +136,20 @@ main::-webkit-scrollbar {
 
 .language-switcher .lang-btn.active {
     font-weight: bold;
-    text-decoration: none; /* Remove underline on active */
 }
 
+/* Language Switcher Color Correction */
 .navbar.dark .language-switcher .lang-btn {
     color: #000; /* Black color in other sections */
 }
 
 .navbar:not(.dark) .language-switcher .lang-btn {
     color: #fff; /* White color in Home section */
+}
+
+/* New Rule to Override Color in Mobile Menu on Home Section */
+.navbar:not(.dark) .navbar-links.active .language-switcher .lang-btn {
+    color: #000; /* Black color in mobile menu on Home section */
 }
 
 /* Hamburger Menu Styles */
@@ -163,8 +161,8 @@ main::-webkit-scrollbar {
     cursor: pointer;
     background: none;
     border: none;
-    color: inherit; /* Inherits from navbar */
-    z-index: 1001; /* Ensure it's above the navbar-links */
+    color: inherit;
+    z-index: 1001;
 }
 
 .toggle-button .bar {
@@ -172,7 +170,7 @@ main::-webkit-scrollbar {
     left: 0;
     width: 100%;
     height: 4px;
-    background-color: currentColor; /* Inherit color from .toggle-button */
+    background-color: currentColor;
     transition: all 0.4s ease;
     border-radius: 2px;
 }
@@ -192,63 +190,64 @@ main::-webkit-scrollbar {
 /* Hamburger Menu Animation for Open State */
 .toggle-button.open .bar:nth-child(1) {
     transform: rotate(45deg);
-    top: 10px; /* Align to center */
+    top: 10px;
 }
 
 .toggle-button.open .bar:nth-child(2) {
-    opacity: 0; /* Hide the middle bar */
+    opacity: 0;
 }
 
 .toggle-button.open .bar:nth-child(3) {
     transform: rotate(-45deg);
-    top: 10px; /* Align to center */
+    top: 10px;
 }
 
 /* Main Content Styles */
 main {
-    padding-top: 0; /* Removed to eliminate white bar */
-    padding-bottom: 40px; /* Height of the footer (if fixed) */
-    overflow-y: scroll; /* Enable scrolling within main */
+    padding-top: 0;
+    padding-bottom: 40px;
 }
 
 /* Hero Section */
 #home {
-    background-image: url('../images/hero.jpg'); /* Replace with your image path */
-    background-size: cover;
-    background-position: center;
     position: relative;
-    padding: 0; /* Remove padding to prevent overflow */
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Ensure it fills the viewport */
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-#home::before {
-    content: "";
+.hero-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Optional: Add an overlay if needed */
-    /* background-color: rgba(0, 0, 0, 0.3); */
-    z-index: -1; /* Ensure the background image stays behind the content */
+    z-index: -1;
+}
+
+.hero-image img,
+.hero-image source {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-content {
     text-align: center;
-    color: #fff; /* White text for visibility over hero image */
-    padding: 0 20px; /* Padding for better mobile view */
+    color: #fff;
+    padding: 0 20px;
 }
 
 .hero-content h1 {
-    font-size: 4em;
+    font-size: clamp(2rem, 8vw, 4rem);
     margin-bottom: 20px;
 }
 
 .hero-content p {
-    font-size: 1.5em;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     margin-bottom: 30px;
 }
 
@@ -282,15 +281,15 @@ main {
 }
 
 .about-content h2 {
-    font-size: 3em;
+    font-size: clamp(2rem, 4vw, 3em);
     margin-bottom: 20px;
-    text-align: left; /* Left-align text */
+    text-align: left;
 }
 
 .about-content p {
     font-size: 1.2em;
     line-height: 1.6;
-    text-align: left; /* Left-align text */
+    text-align: left;
 }
 
 /* Services Section */
@@ -300,36 +299,43 @@ main {
 }
 
 #services h2 {
-    text-align: left; /* Left-align heading */
+    text-align: left;
     margin-bottom: 40px;
-    font-size: 2.5em;
+    font-size: clamp(2rem, 4vw, 2.5em);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .services-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; /* Align items to the left */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
     max-width: 800px;
     margin: 0 auto;
 }
 
-.service-item {
-    width: 100%;
-    margin-bottom: 40px;
+@media (min-width: 768px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .services-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .service-item h3 {
     font-size: 1.5em;
     margin-bottom: 15px;
-    text-align: left; /* Left-align text */
+    text-align: left;
 }
 
 .service-item p {
     font-size: 1em;
-    text-align: left; /* Left-align text */
+    text-align: left;
 }
 
 /* Contact Section */
@@ -339,9 +345,9 @@ main {
 }
 
 #contact h2 {
-    text-align: left; /* Left-align heading */
+    text-align: left;
     margin-bottom: 40px;
-    font-size: 2.5em;
+    font-size: clamp(2rem, 4vw, 2.5em);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -355,12 +361,12 @@ main {
 
 .contact-info p {
     margin-bottom: 20px;
-    text-align: left; /* Left-align text */
+    text-align: left;
 }
 
 .contact-info a {
     color: #333;
-    text-decoration: none; /* Remove underline from email link */
+    text-decoration: none;
     transition: color 0.3s;
 }
 
@@ -415,36 +421,24 @@ footer.active {
     .navbar-links.active {
         display: flex;
         flex-direction: column;
-        /* Background color based on navbar state */
-        background-color: #000; /* Black background for Home section */
-        position: fixed; /* Fix the menu to cover the viewport */
+        background-color: #fff;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        padding-top: 60px; /* Space for the toggle button */
-        z-index: 999; /* Ensure it appears above other content but below toggle-button */
-    }
-
-    /* Adjust background and text color based on navbar's dark class */
-    .navbar.dark .navbar-links.active {
-        background-color: #fff; /* White background for other sections */
+        padding-top: 60px;
+        z-index: 999;
+        overflow-y: auto;
     }
 
     .navbar-links.active a {
-        color: #fff; /* White text for Home section */
+        color: #000;
     }
 
-    .navbar.dark .navbar-links.active a {
-        color: #000; /* Black text for other sections */
-    }
-
-    .navbar-links.active .lang-btn {
-        color: #fff; /* White text for Home section */
-    }
-
-    .navbar.dark .navbar-links.active .lang-btn {
-        color: #000; /* Black text for other sections */
+    /* Language Switcher in Mobile Menu */
+    .navbar-links.active .language-switcher .lang-btn {
+        color: #000;
     }
 
     .navbar-links ul {
@@ -461,16 +455,15 @@ footer.active {
 
     .navbar-links a {
         font-size: 1.2em;
-        text-decoration: none; /* Ensure no underline in mobile menu */
     }
 
     /* Adjust hero content for mobile */
     .hero-content h1 {
-        font-size: 2.5em;
+        font-size: clamp(2rem, 8vw, 4rem);
     }
 
     .hero-content p {
-        font-size: 1.2em;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
     }
 
     /* Adjust footer for mobile */
@@ -480,53 +473,20 @@ footer.active {
     }
 
     /* Adjust language switcher in mobile view */
-    .language-switcher {
+    .navbar-links.active .language-switcher {
         justify-content: center;
         margin-top: 10px;
     }
 
-    .language-switcher .lang-btn {
+    .navbar-links.active .language-switcher .lang-btn {
         margin-left: 10px;
-    }
-
-    /* Adjustments for mobile view */
-    .services-container,
-    .about-content,
-    .contact-info {
-        padding: 0 20px;
-    }
-
-    #services h2,
-    #contact h2 {
-        padding: 0 20px;
     }
 }
 
 /* Accessibility Focus Styles */
-
-/* Remove default focus outline and box-shadow */
-.navbar a:focus,
-.language-switcher .lang-btn:focus,
-.toggle-button:focus,
-.navbar a:active,
-.language-switcher .lang-btn:active,
-.toggle-button:active {
-    outline: none !important; /* Removes the default focus outline */
-    box-shadow: none !important; /* Removes any box-shadow */
-    border: none !important; /* Removes any border */
-}
-
-/* Implement custom focus styles for accessibility */
 .navbar a:focus,
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
-    box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.7); /* Yellow glow for focus */
-    border-radius: 4px; /* Rounded corners for the focus indicator */
-}
-
-.navbar.dark a:focus,
-.navbar.dark .language-switcher .lang-btn:focus,
-.navbar.dark .toggle-button:focus {
-    box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.7); /* Blue glow for focus */
-    border-radius: 4px; /* Rounded corners for the focus indicator */
+    outline: 0;
+    outline-offset: 0;
 }

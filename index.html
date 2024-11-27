@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Jonas Hertner - Legal Counsel specializing in complex disputes, family law, criminal law, and impact litigation.">
+    <meta name="keywords" content="Jonas Hertner, Legal Counsel, Lawyer, Zurich, Basel, Complex Disputes, Family Law, Criminal Law, Impact Litigation">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jonas Hertner</title>
     <!-- Link to CSS -->
@@ -37,15 +40,24 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Home Section -->
-        <section id="home" class="section">
-            <div class="hero-content">
-                <h1 data-key="hero.title">Jonas Hertner</h1>
-                <p data-key="hero.subtitle">LEGAL COUNSEL</p>
-                <!-- Optional: Add a button or link here -->
-                <!-- <a href="#about" class="btn" data-key="btn.learnMore">Learn More</a> -->
-            </div>
-        </section>
+<!-- Home Section -->
+<section id="home" class="section">
+    <!-- Responsive Hero Image -->
+    <picture class="hero-image">
+        <!-- WebP images -->
+        <source srcset="images/hero-small.webp" media="(max-width: 768px)" type="image/webp">
+        <source srcset="images/hero-large.webp" media="(min-width: 769px)" type="image/webp">
+        <!-- JPEG images as fallback -->
+        <source srcset="images/hero-small.jpg" media="(max-width: 768px)" type="image/jpeg">
+        <source srcset="images/hero-large.jpg" media="(min-width: 769px)" type="image/jpeg">
+        <!-- Fallback Image -->
+        <img src="images/hero-large.jpg" alt="Hero Image">
+    </picture>
+    <div class="hero-content">
+        <h1 data-key="hero.title">Jonas Hertner</h1>
+        <p data-key="hero.subtitle">LEGAL COUNSEL</p>
+    </div>
+</section>
 
         <!-- About Section -->
         <section id="about" class="section">
