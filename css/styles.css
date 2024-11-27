@@ -45,7 +45,6 @@ img {
 
 /* Scroll Snap Setup */
 main {
-    /*scroll-snap-type: y mandatory;*/
     overflow-y: scroll;
     height: 100vh;
     scrollbar-width: none; /* Firefox */
@@ -78,10 +77,9 @@ main::-webkit-scrollbar {
     }
 }
 
-/* Each Section as a Snap Point */
+/* Section Styles */
 .section {
-    scroll-snap-align: start;
-    min-height: 100vh;
+    /* Removed min-height to allow sections to adjust based on content */
     position: relative;
     padding: 0 30px 60px;
     box-sizing: border-box;
@@ -136,6 +134,7 @@ main::-webkit-scrollbar {
 .about-content,
 .services-container {
     font-size: 16px; /* Base font size */
+    line-height: 1.4;
 }
 
 /* Remove existing font-size declarations for paragraphs and headings within these containers */
@@ -147,27 +146,27 @@ main::-webkit-scrollbar {
     font-size: inherit;
 }
 
-/* Adjust line height for better readability at smaller font sizes */
+/* Adjust line height for better readability */
 .about-content,
 .services-container {
     line-height: 1.4;
 }
 
-
+/* Larger Screens Adjustments */
 @media (min-width: 1200px) {
     .about-content h2,
     #services h2,
     #contact h2 {
-    font-size: clamp(1.5rem, 6vw, 3rem);
-    margin-bottom: 20px;
-}
+        font-size: clamp(1.5rem, 6vw, 3rem);
+        margin-bottom: 20px;
+    }
 
     .about-content p,
     .service-item p,
     .contact-info p {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    line-height: 1.6;
-}
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        line-height: 1.6;
+    }
 
     /* Increase Section Padding */
     #about,
@@ -400,18 +399,7 @@ main {
 .about-content {
     max-width: 800px;
     margin: 0 auto;
-}
-
-.about-content h2 {
-    font-size: clamp(2rem, 4vw, 3em);
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.about-content p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    text-align: left;
+    line-height: 1.4; /* Ensure consistent line height */
 }
 
 /* Services Section */
@@ -430,33 +418,18 @@ main {
 }
 
 .services-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
     max-width: 800px;
     margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-    .services-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 992px) {
-    .services-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
 .service-item h3 {
-    font-size: 1.5em;
+    font-size: inherit;
     margin-bottom: 15px;
     text-align: left;
 }
 
 .service-item p {
-    font-size: 1em;
+    font-size: inherit;
     text-align: left;
 }
 

@@ -50,7 +50,6 @@ function adjustSectionsFontSize() {
 window.addEventListener('load', adjustSectionsFontSize);
 window.addEventListener('resize', adjustSectionsFontSize);
 
-
 // Content Object (English and German translations)
 const content = {
     "en": {
@@ -190,6 +189,9 @@ function changeLanguage(lang) {
 
     // Update the lang attribute on the html tag
     document.documentElement.lang = lang;
+
+    // Adjust font size after language change
+    adjustSectionsFontSize();
 }
 
 // Event listeners for language buttons
