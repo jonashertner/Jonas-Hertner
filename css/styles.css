@@ -131,6 +131,29 @@ main::-webkit-scrollbar {
 }
 
 /* Adjust Headings and Paragraphs */
+
+/* Ensure font size can be overridden */
+.about-content,
+.services-container {
+    font-size: 16px; /* Base font size */
+}
+
+/* Remove existing font-size declarations for paragraphs and headings within these containers */
+.about-content h2,
+#services h2,
+.about-content p,
+.service-item h3,
+.service-item p {
+    font-size: inherit;
+}
+
+/* Adjust line height for better readability at smaller font sizes */
+.about-content,
+.services-container {
+    line-height: 1.4;
+}
+
+
 @media (min-width: 1200px) {
     .about-content h2,
     #services h2,

@@ -15,6 +15,42 @@ function toggleMenu() {
 // Event listener for the toggle button
 toggleButton.addEventListener('click', toggleMenu);
 
+// Function to adjust font size to fit content within viewport
+function adjustFontSizeToFit(sectionId, minFontSize = 12, maxFontSize = 18) {
+    const section = document.getElementById(sectionId);
+    const content = section.querySelector('.about-content') || section.querySelector('.services-container');
+
+    if (!content) return;
+
+    // Initial font size
+    let fontSize = maxFontSize;
+
+    // Get viewport height minus navbar height
+    const viewportHeight = window.innerHeight;
+    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    const footerHeight = document.querySelector('footer').offsetHeight || 0;
+    const availableHeight = viewportHeight - navbarHeight - footerHeight - 40; // 40px for padding
+
+    content.style.fontSize = fontSize + 'px';
+
+    // Reduce font size until content fits or minimum font size is reached
+    while (content.scrollHeight > availableHeight && fontSize > minFontSize) {
+        fontSize -= 0.5; // Decrease font size incrementally
+        content.style.fontSize = fontSize + 'px';
+    }
+}
+
+// Function to adjust both sections
+function adjustSectionsFontSize() {
+    adjustFontSizeToFit('about', 12, 18);     // Adjust 'about' section
+    adjustFontSizeToFit('services', 12, 18);  // Adjust 'services' section
+}
+
+// Call the function on load and resize
+window.addEventListener('load', adjustSectionsFontSize);
+window.addEventListener('resize', adjustSectionsFontSize);
+
+
 // Content Object (English and German translations)
 const content = {
     "en": {
