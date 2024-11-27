@@ -93,7 +93,7 @@ main::-webkit-scrollbar {
 /* Each Section as a Snap Point */
 .section {
     scroll-snap-align: start;
-    min-height: 100vh;
+    min-height: auto;
     position: relative;
     padding: 0 30px 60px;
     box-sizing: border-box;
