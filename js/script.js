@@ -6,10 +6,10 @@ const navbarLinks = document.querySelector('.navbar-links');
 
 // Function to toggle the mobile menu
 function toggleMenu() {
-    const isExpanded = navbarLinks.classList.toggle('active');
-    toggleButton.classList.toggle('open'); // Toggles the 'open' class for animation
-    toggleButton.setAttribute('aria-expanded', isExpanded);
-    console.log('Menu toggled:', isExpanded ? 'Open' : 'Closed');
+    const isOpen = toggleButton.classList.toggle('open');
+    navbarLinks.classList.toggle('active');
+    toggleButton.setAttribute('aria-expanded', isOpen);
+    console.log('Menu toggled:', isOpen ? 'Open' : 'Closed');
 }
 
 // Event listener for the toggle button
@@ -26,7 +26,7 @@ const content = {
         },
         "hero": {
             "title": "Jonas Hertner",
-            "subtitle": "Legal counsel"
+            "subtitle": "LEGAL COUNSEL"
         },
         "about": {
             "heading": "Jonas Hertner",
@@ -236,7 +236,7 @@ const footer = document.querySelector('footer');
 const contactOptions = {
     root: null, // Relative to the viewport
     rootMargin: '0px',
-    threshold: 0.5 // 50% of the Contact section is visible
+    threshold: 0.8 // 80% of the Contact section is visible
 };
 
 // Callback for the observer
