@@ -51,6 +51,8 @@ function trapFocus() {
 
     if (navbarLinks.classList.contains('active')) {
         document.addEventListener('keydown', handleFocus);
+        // Focus the first focusable element when menu opens
+        firstElement.focus();
     } else {
         document.removeEventListener('keydown', handleFocus);
     }
@@ -105,7 +107,6 @@ function debounce(func, wait = 100) {
 }
 
 window.addEventListener('resize', debounce(adjustSectionsFontSize));
-
 
 // Content Object (English and German translations)
 const content = {
@@ -292,20 +293,32 @@ const options = {
 
 // Callback for the observer
 const callback = (entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Remove active class from all links
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === entry.target.id) {
-                    link.classList.add('active');
-                }
-            });
+    let maxRatio = 0;
+    let activeId = '';
 
-            // Adjust navbar style based on current section
-            adjustNavbarStyle(entry.target.id);
+    entries.forEach(entry => {
+        // Debugging logs
+        console.log(`Section ${entry.target.id} is intersecting: ${entry.isIntersecting}, ratio: ${entry.intersectionRatio}`);
+
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            activeId = entry.target.id;
         }
     });
+
+    if (activeId) {
+        // Remove active class from all links
+        navLinks.forEach(link => link.classList.remove('active'));
+
+        // Add active class to the current link
+        const currentLink = document.querySelector(`.navbar-links a[href="#${activeId}"]`);
+        if (currentLink) {
+            currentLink.classList.add('active');
+        }
+
+        // Adjust navbar style based on current section
+        adjustNavbarStyle(activeId);
+    }
 };
 
 // Create the observer
@@ -360,7 +373,6 @@ const contactCallback = (entries, observer) => {
     });
 };
 
-
 // Create the observer
 const contactObserver = new IntersectionObserver(contactCallback, contactOptions);
 
@@ -375,4 +387,3 @@ window.addEventListener('scroll', debounce(() => {
         closeMenu();
     }
 }, 200));
-

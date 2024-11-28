@@ -1,6 +1,6 @@
 /* styles.css */
 
-/* Regular Weight */
+/* Existing Font Faces and Reset Styles */
 @font-face {
     font-family: 'Bradford';
     src: url('../fonts/BradfordLLSub-Book.woff2') format('woff2'),
@@ -58,9 +58,9 @@ main::-webkit-scrollbar {
 /* Each Section as a Snap Point */
 .section {
     scroll-snap-align: start;
-    min-height: 100vh;
+    height: 100vh; /* Fixed height */
     position: relative;
-    padding: 20px 30px; /* Adjust padding as needed */
+    padding: 0 30px; /* Removed top and bottom padding */
     box-sizing: border-box;
 }
 
@@ -68,7 +68,7 @@ main::-webkit-scrollbar {
 .section-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px; /* Internal padding */
     box-sizing: border-box;
     font-size: clamp(1rem, 2vw, 1.125rem); /* Responsive font size */
     line-height: 1.4;
@@ -341,8 +341,8 @@ footer.active {
 
 /* Adjust Section Padding to Account for Navbar and Footer */
 .section {
-    padding-top: calc(20px + 60px); /* 20px + navbar height */
-    padding-bottom: calc(20px + 40px); /* 20px + footer height */
+    padding-top: 0; /* Removed padding-top */
+    padding-bottom: 0; /* Removed padding-bottom */
 }
 
 /* Responsive Design */
@@ -441,7 +441,6 @@ footer.active {
     main {
         scroll-padding-top: calc(60px + 20px); /* navbar height + desired space */
     }
-
 }
 
 /* Accessibility Focus Styles */
@@ -449,8 +448,8 @@ footer.active {
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
     /* Instead of removing outlines, customize them */
-    outline: 0px transparent; #000; /* Custom focus style */
-    outline-offset: 0px;
+    outline: 0px solid #000; /* Black outline */
+    outline-offset: 0px;      /* Space between outline and element */
 }
 
 /* Disable Scroll Snap on Very Large Screens */
@@ -463,8 +462,8 @@ footer.active {
     
     .section {
         scroll-snap-align: none; /* Remove snap alignment */
-        min-height: 100vh;        /* Preserve section height */
-        padding-top: 20px;        /* Remove additional padding if previously added for snap scroll */
-        padding-bottom: 20px;
+        height: 100vh;        /* Preserve section height */
+        padding-top: 0;        /* Remove additional padding if previously added for snap scroll */
+        padding-bottom: 0;
     }
 }
