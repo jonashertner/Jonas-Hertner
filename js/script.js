@@ -160,7 +160,7 @@ const content = {
     "de": {
         "nav": {
             "home": "Home",
-            "about": "Jonas jonashertner",
+            "about": "Jonas Hertner",
             "services": "Expertise",
             "contact": "Kontakt"
         },
@@ -183,12 +183,12 @@ const content = {
                 "description": "Beratung von Familien und Privatpersonen in rechtlichen Fragen."
             },
             "service3": {
-                "title": "Dienstleistung Titel 3",
-                "description": "Beschreibung der von Ihnen angebotenen Dienstleistung."
-            },
-            "service4": {
                 "title": "Strategische Prozessführung",
                 "description": "Beratung und Vertretung bei strategischen Prozessen in den Bereichen Ökologie und Grundrechte."
+            },
+            "service4": {
+                "title": "Strafrecht",
+                "description": "Beratung und Vertretung in Strafuntersuchungen und -verfahren."
             }
         },
         "contact": {
