@@ -446,11 +446,10 @@ footer.active {
 
     /* Optionally, increase padding-top in sections for more space */
     .section {
-        padding-top: calc(20px + 60px + 20px); /* existing padding + additional space */
+        padding-top: calc(20px + 60px); /* existing padding + additional space */
         /* Total padding-top: 100px */
     }
 
-    /* **New Additions End Here** */
 }
 
 /* Accessibility Focus Styles */
@@ -458,8 +457,8 @@ footer.active {
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
     /* Instead of removing outlines, customize them */
-    outline: 1px transparent; #000; /* Custom focus style */
-    outline-offset: 1px;
+    outline: 0px transparent; #000; /* Custom focus style */
+    outline-offset: 0px;
 }
 
 /* Disable Scroll Snap on Very Large Screens */
