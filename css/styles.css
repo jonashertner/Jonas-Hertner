@@ -49,6 +49,7 @@ main {
     overflow-y: scroll;
     height: 100vh;
     scrollbar-width: none; /* Firefox */
+    scroll-padding-top: 60px; /* Height of navbar */
 }
 
 main::-webkit-scrollbar {
@@ -58,11 +59,11 @@ main::-webkit-scrollbar {
 /* Each Section as a Snap Point */
 .section {
     scroll-snap-align: start;
-    min-height: 100vh; /* Changed to min-height for flexibility */
+    height: 100vh; /* Fixed height to ensure exact viewport fit */
     position: relative;
-    padding: 0 30px; /* Removed top and bottom padding */
+    padding: 0 30px; /* Removed top and bottom padding to prevent overflow */
     box-sizing: border-box;
-    display: flex; /* Enable Flexbox */
+    display: flex; /* Enable Flexbox for centering */
     align-items: center; /* Vertically center content */
     justify-content: center; /* Horizontally center content */
 }
@@ -71,13 +72,13 @@ main::-webkit-scrollbar {
 .section-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px; /* Internal padding */
+    padding: 20px; /* Internal padding for content spacing */
     box-sizing: border-box;
     font-size: clamp(1rem, 2vw, 1.125rem); /* Responsive font size */
     line-height: 1.4;
     display: flex; /* Enable Flexbox */
     flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center content vertically */
+    justify-content: center; /* Center content vertically within section */
     height: 100%; /* Ensure it takes full height of the section */
 }
 
@@ -196,7 +197,7 @@ main::-webkit-scrollbar {
     color: #fff; /* White color in Home section */
 }
 
-/* New Rule to Override Color in Mobile Menu on Home Section */
+/* Override Color in Mobile Menu on Home Section */
 .navbar:not(.dark) .navbar-links.active .language-switcher .lang-btn {
     color: #000; /* Black color in mobile menu on Home section */
 }
@@ -467,8 +468,9 @@ footer.active {
     
     .section {
         scroll-snap-align: none; /* Remove snap alignment */
-        min-height: 100vh;        /* Preserve section height */
-        padding-top: 0;        /* Remove additional padding if previously added for snap scroll */
+        height: auto; /* Allow sections to expand based on content */
+        min-height: 100vh; /* Preserve minimum section height */
+        padding-top: 0; /* Remove additional padding if previously added for snap scroll */
         padding-bottom: 0;
     }
 
