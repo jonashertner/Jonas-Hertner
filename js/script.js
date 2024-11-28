@@ -109,8 +109,102 @@ window.addEventListener('resize', debounce(adjustSectionsFontSize));
 
 // Content Object (English and German translations)
 const content = {
-    "en": { /* ... existing content ... */ },
-    "de": { /* ... existing content ... */ }
+    "en": {
+        "nav": {
+            "home": "Home",
+            "about": "Jonas Hertner",
+            "services": "Expertise",
+            "contact": "Contact"
+        },
+        "hero": {
+            "title": "Jonas Hertner",
+            "subtitle": "LEGAL COUNSEL"
+        },
+        "about": {
+            "heading": "Jonas Hertner",
+            "content": "Jonas Hertner is a lawyer based in Zurich and Basel. Jonas has extensive experience handling complex commercial disputes, with a focus on the financial services, commodities, technology, biotech and life sciences, data privacy, arts, and non-profit/ecology sectors. He frequently represents companies, foundations, families and individuals in multi-jurisdictional disputes as well as in criminal and regulatory investigations. Additionally, Jonas has been involved in several key corporate criminal liability investigations and proceedings in Switzerland both on the victims/private plaintiffs’ side as well as on the defendants’ side."
+        },
+        "services": {
+            "heading": "Expertise",
+            "service1": {
+                "title": "Complex disputes",
+                "description": "Advise and represent parties in complex disputes."
+            },
+            "service2": {
+                "title": "Family and private clients",
+                "description": "Advise private clients on legal issues."
+            },
+            "service3": {
+                "title": "Impact litigation",
+                "description": "Advise and represent parties on strategic impact litigation in the areas of ecology and fundamental rights."
+            },
+            "service4": {
+                "title": "Criminal law",
+                "description": "Advise and represent parties in criminal investigations and proceedings."
+            }
+        },
+        "contact": {
+            "heading": "Contact",
+            "addressLabel": "Address",
+            "addressPlaceholder": "Basel",
+            "emailLabel": "Email",
+            "emailPlaceholder": "jh@jonashertner.com"
+        },
+        "footer": {
+            "text": "© 2024 Jonas Hertner. All rights reserved."
+        },
+        "btn": {
+            "learnMore": "Learn More"
+        }
+    },
+    "de": {
+        "nav": {
+            "home": "Home",
+            "about": "Jonas jonashertner",
+            "services": "Expertise",
+            "contact": "Kontakt"
+        },
+        "hero": {
+            "title": "Jonas Hertner",
+            "subtitle": "ADVOKAT"
+        },
+        "about": {
+            "heading": "Jonas Hertner",
+            "content": "Jonas Hertner ist ein Rechtsanwalt mit Büros in Zürich und Basel. Jonas verfügt über umfangreiche Erfahrungen in der Bearbeitung komplexer kommerzieller Streitigkeiten, mit Schwerpunkt auf den Bereichen Finanzdienstleistungen, Rohstoffe, Technologie, Biotechnologie und Life Sciences, Datenschutz, Kunst sowie Non-Profit-/Ökologie-Sektoren. Er vertritt regelmäßig Unternehmen, Stiftungen, Familien und Einzelpersonen in mehrgerichtlichen Streitigkeiten sowie in strafrechtlichen und regulatorischen Untersuchungen. Darüber hinaus war Jonas an mehreren wichtigen Untersuchungen und Verfahren zur strafrechtlichen Unternehmenshaftung in der Schweiz sowohl auf Seiten der Opfer/privaten Kläger als auch auf Seiten der Angeklagten beteiligt."
+        },
+        "services": {
+            "heading": "Expertise",
+            "service1": {
+                "title": "Komplexe Streitigkeiten",
+                "description": "Beratung und Vertretung in komplexen Streitigkeiten."
+            },
+            "service2": {
+                "title": "Familien und Privatpersonen",
+                "description": "Beratung von Familien und Privatpersonen in rechtlichen Fragen."
+            },
+            "service3": {
+                "title": "Dienstleistung Titel 3",
+                "description": "Beschreibung der von Ihnen angebotenen Dienstleistung."
+            },
+            "service4": {
+                "title": "Strategische Prozessführung",
+                "description": "Beratung und Vertretung bei strategischen Prozessen in den Bereichen Ökologie und Grundrechte."
+            }
+        },
+        "contact": {
+            "heading": "Kontakt",
+            "addressLabel": "Adresse",
+            "addressPlaceholder": "Basel",
+            "emailLabel": "E-Mail",
+            "emailPlaceholder": "jh@jonashertner.com"
+        },
+        "footer": {
+            "text": "© 2024 Jonas Hertner. Alle Rechte vorbehalten."
+        },
+        "btn": {
+            "learnMore": "Mehr erfahren"
+        }
+    }
 };
 
 // Function to change language
@@ -281,3 +375,4 @@ window.addEventListener('scroll', debounce(() => {
         closeMenu();
     }
 }, 200));
+
