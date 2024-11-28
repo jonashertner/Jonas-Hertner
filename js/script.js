@@ -28,6 +28,7 @@ function closeMenu() {
 // Function to trap focus within the menu for accessibility
 function trapFocus() {
     const focusableElements = navbarLinks.querySelectorAll('a, button');
+    if (focusableElements.length === 0) return;
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -240,8 +241,10 @@ function changeLanguage(lang) {
         btn.setAttribute('aria-pressed', 'false');
     });
     const activeBtn = document.getElementById('lang-' + lang);
-    activeBtn.classList.add('active');
-    activeBtn.setAttribute('aria-pressed', 'true');
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-pressed', 'true');
+    }
 
     // Store selected language in localStorage
     localStorage.setItem('language', lang);
@@ -287,7 +290,7 @@ const navbar = document.querySelector('.navbar');
 
 // Options for the observer
 const options = {
-    root: null, // Observe relative to the viewport
+    root: main, // Set root to the main element
     rootMargin: '0px',
     threshold: 0.6 // 60% of the section is visible
 };
@@ -354,7 +357,7 @@ const footer = document.querySelector('footer');
 
 // Adjusted Intersection Observer Options
 const contactOptions = {
-    root: null, // Relative to the viewport
+    root: main, // Set root to the main element
     rootMargin: '0px',
     threshold: 0.8 // 80% of the Contact section is visible
 };
@@ -383,7 +386,7 @@ if (contactSection) {
 }
 
 // Optional: Close the menu when scrolling
-window.addEventListener('scroll', debounce(() => {
+main.addEventListener('scroll', debounce(() => { // Changed from window to main
     if (navbarLinks.classList.contains('active')) {
         closeMenu();
     }

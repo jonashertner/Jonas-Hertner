@@ -79,7 +79,7 @@ main::-webkit-scrollbar {
     display: flex; /* Enable Flexbox */
     flex-direction: column; /* Stack children vertically */
     justify-content: center; /* Center content vertically within section */
-    height: 100%; /* Ensure it takes full height of the section */
+    /* Removed height: 100%; to prevent overflow */
 }
 
 /* Section Headings */
@@ -484,6 +484,6 @@ footer.active {
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
     /* Custom focus style */
-    outline: 2px solid #000; /* Black outline */
-    outline-offset: 2px;      /* Space between outline and element */
+    outline: 0px solid #000; /* Black outline */
+    outline-offset: 0px;      /* Space between outline and element */
 }
