@@ -3,6 +3,7 @@
 // Toggle Navigation Menu (for mobile view)
 const toggleButton = document.querySelector('.toggle-button');
 const navbarLinks = document.querySelector('.navbar-links');
+const main = document.querySelector('main'); // Select the main element
 
 // Function to toggle the mobile menu
 function toggleMenu() {
@@ -122,7 +123,7 @@ const content = {
             "subtitle": "LEGAL COUNSEL"
         },
         "about": {
-            "heading": "Jonas Hertner",
+            "heading": "About Jonas Hertner",
             "content": "Jonas Hertner is a lawyer based in Zurich and Basel. Jonas has extensive experience handling complex commercial disputes, with a focus on the financial services, commodities, technology, biotech and life sciences, data privacy, arts, and non-profit/ecology sectors. He frequently represents companies, foundations, families and individuals in multi-jurisdictional disputes as well as in criminal and regulatory investigations. Additionally, Jonas has been involved in several key corporate criminal liability investigations and proceedings in Switzerland both on the victims/private plaintiffs’ side as well as on the defendants’ side."
         },
         "services": {

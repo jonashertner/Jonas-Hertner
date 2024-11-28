@@ -1,6 +1,6 @@
 /* styles.css */
 
-/* Existing Font Faces and Reset Styles */
+/* Regular Weight */
 @font-face {
     font-family: 'Bradford';
     src: url('../fonts/BradfordLLSub-Book.woff2') format('woff2'),
@@ -58,10 +58,13 @@ main::-webkit-scrollbar {
 /* Each Section as a Snap Point */
 .section {
     scroll-snap-align: start;
-    height: 100vh; /* Fixed height */
+    min-height: 100vh; /* Changed to min-height for flexibility */
     position: relative;
     padding: 0 30px; /* Removed top and bottom padding */
     box-sizing: border-box;
+    display: flex; /* Enable Flexbox */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
 }
 
 /* Content Containers */
@@ -72,8 +75,13 @@ main::-webkit-scrollbar {
     box-sizing: border-box;
     font-size: clamp(1rem, 2vw, 1.125rem); /* Responsive font size */
     line-height: 1.4;
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    height: 100%; /* Ensure it takes full height of the section */
 }
 
+/* Section Headings */
 .section-content h2 {
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 20px;
@@ -441,15 +449,12 @@ footer.active {
     main {
         scroll-padding-top: calc(60px + 20px); /* navbar height + desired space */
     }
-}
 
-/* Accessibility Focus Styles */
-.navbar a:focus,
-.language-switcher .lang-btn:focus,
-.toggle-button:focus {
-    /* Instead of removing outlines, customize them */
-    outline: 0px solid #000; /* Black outline */
-    outline-offset: 0px;      /* Space between outline and element */
+    /* Flexbox Adjustments for Sections */
+    .section-content {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 }
 
 /* Disable Scroll Snap on Very Large Screens */
@@ -462,8 +467,21 @@ footer.active {
     
     .section {
         scroll-snap-align: none; /* Remove snap alignment */
-        height: 100vh;        /* Preserve section height */
+        min-height: 100vh;        /* Preserve section height */
         padding-top: 0;        /* Remove additional padding if previously added for snap scroll */
         padding-bottom: 0;
     }
+
+    .section-content {
+        padding: 60px 20px; /* Increased padding for larger screens */
+    }
+}
+
+/* Accessibility Focus Styles */
+.navbar a:focus,
+.language-switcher .lang-btn:focus,
+.toggle-button:focus {
+    /* Custom focus style */
+    outline: 2px solid #000; /* Black outline */
+    outline-offset: 2px;      /* Space between outline and element */
 }
