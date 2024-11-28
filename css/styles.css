@@ -437,17 +437,9 @@ footer.active {
         margin: 0 5px;
     }
 
-    /* **New Additions Start Here** */
-
     /* Add scroll-padding-top to main to account for navbar and additional space */
     main {
         scroll-padding-top: calc(60px + 20px); /* navbar height + desired space */
-    }
-
-    /* Optionally, increase padding-top in sections for more space */
-    .section {
-        padding-top: calc(20px + 60px); /* existing padding + additional space */
-        /* Total padding-top: 100px */
     }
 
 }
