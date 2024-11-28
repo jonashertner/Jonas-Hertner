@@ -16,34 +16,40 @@ function toggleMenu() {
 toggleButton.addEventListener('click', toggleMenu);
 
 // Function to adjust font size to fit content within viewport
-function adjustFontSizeToFit(sectionId, minFontSize = 12, maxFontSize = 18) {
+function adjustFontSizeToFit(sectionId, minFontSize = 10, maxFontSize = 18) {
     const section = document.getElementById(sectionId);
-    const content = section.querySelector('.about-content') || section.querySelector('.services-container');
+    const content = section.querySelector('.section-content');
 
     if (!content) return;
 
-    // Initial font size
+    // Reset font size
+    content.style.fontSize = maxFontSize + 'px';
+
+    // Get the available height
+    const viewportHeight = window.innerHeight;
+    const navbarHeight = document.querySelector('.navbar').offsetHeight || 0;
+    const footerHeight = document.querySelector('footer').offsetHeight || 0;
+    const sectionPaddingTop = parseFloat(window.getComputedStyle(section).paddingTop);
+    const sectionPaddingBottom = parseFloat(window.getComputedStyle(section).paddingBottom);
+    const availableHeight = viewportHeight - navbarHeight - footerHeight - sectionPaddingTop - sectionPaddingBottom;
+
+    let contentHeight = content.scrollHeight;
+
     let fontSize = maxFontSize;
 
-    // Get viewport height minus navbar height
-    const viewportHeight = window.innerHeight;
-    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-    const footerHeight = document.querySelector('footer').offsetHeight || 0;
-    const availableHeight = viewportHeight - navbarHeight - footerHeight - 40; // 40px for padding
-
-    content.style.fontSize = fontSize + 'px';
-
-    // Reduce font size until content fits or minimum font size is reached
-    while (content.scrollHeight > availableHeight && fontSize > minFontSize) {
-        fontSize -= 0.5; // Decrease font size incrementally
+    // Decrease font size until content fits or reaches minimum font size
+    while (contentHeight > availableHeight && fontSize > minFontSize) {
+        fontSize -= 0.5;
         content.style.fontSize = fontSize + 'px';
+        contentHeight = content.scrollHeight;
     }
 }
 
-// Function to adjust both sections
+// Function to adjust all sections
 function adjustSectionsFontSize() {
-    adjustFontSizeToFit('about', 12, 18);     // Adjust 'about' section
-    adjustFontSizeToFit('services', 12, 18);  // Adjust 'services' section
+    adjustFontSizeToFit('about', 10, 18);
+    adjustFontSizeToFit('services', 10, 18);
+    adjustFontSizeToFit('contact', 10, 18);
 }
 
 // Call the function on load and resize
@@ -88,7 +94,7 @@ const content = {
         },
         "contact": {
             "heading": "Contact",
-            "addressLabel": "Address",
+            "addressLabel": "",
             "addressPlaceholder": "",
             "emailLabel": "Email",
             "emailPlaceholder": "jh@jonashertner.com"
@@ -136,9 +142,9 @@ const content = {
         },
         "contact": {
             "heading": "Kontakt",
-            "addressLabel": "Adresse",
+            "addressLabel": "",
             "addressPlaceholder": "",
-            "emailLabel": "E-Mail:",
+            "emailLabel": "E-Mail",
             "emailPlaceholder": "jh@jonashertner.com"
         },
         "footer": {
@@ -283,11 +289,11 @@ document.querySelectorAll('.navbar-links a').forEach(link => {
 const contactSection = document.querySelector('#contact');
 const footer = document.querySelector('footer');
 
-// Options for the observer
+// Adjusted Intersection Observer Options
 const contactOptions = {
     root: null, // Relative to the viewport
     rootMargin: '0px',
-    threshold: 0.8 // 80% of the Contact section is visible
+    threshold: 0.8 // 10% of the Contact section is visible
 };
 
 // Callback for the observer
@@ -300,8 +306,11 @@ const contactCallback = (entries, observer) => {
             // Hide the footer
             footer.classList.remove('active');
         }
+        // Adjust font size when footer visibility changes
+        adjustSectionsFontSize();
     });
 };
+
 
 // Create the observer
 const contactObserver = new IntersectionObserver(contactCallback, contactOptions);

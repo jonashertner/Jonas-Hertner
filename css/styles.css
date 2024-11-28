@@ -45,6 +45,7 @@ img {
 
 /* Scroll Snap Setup */
 main {
+    scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: 100vh;
     scrollbar-width: none; /* Firefox */
@@ -54,135 +55,55 @@ main::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
 }
 
-/* Apply scroll snapping only on small screens */
-@media (max-width: 992px) {
-    main {
-        scroll-snap-type: y mandatory;
-    }
-
-    /* Each Section as a Snap Point */
-    .section {
-        scroll-snap-align: start;
-    }
-}
-
-/* Disable scroll snapping on large screens */
-@media (min-width: 993px) {
-    main {
-        scroll-snap-type: none;
-    }
-
-    .section {
-        scroll-snap-align: none;
-    }
-}
-
-/* Section Styles */
+/* Each Section as a Snap Point */
 .section {
-    /* Removed min-height to allow sections to adjust based on content */
+    scroll-snap-align: start;
+    min-height: 100vh;
     position: relative;
-    padding: 0 30px 60px;
+    padding: 20px 30px; /* Adjust padding as needed */
     box-sizing: border-box;
 }
 
-/* General Container Styles */
-.container {
-    width: 100%;
+/* Content Containers */
+.section-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
     box-sizing: border-box;
 }
 
-/* Apply to specific sections */
-.about-content,
-.services-container,
-.contact-info {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* Remove font-size declarations to allow JavaScript adjustments */
+.section-content h2,
+.section-content p,
+.service-item h3,
+.service-item p {
+    font-size: inherit;
+    margin-bottom: 10px;
+}
+
+/* Base Font Sizes */
+.section-content {
+    font-size: 18px; /* Starting font size; will be adjusted by JavaScript */
+    line-height: 1.4;
+}
+
+/* Adjust font sizes for section titles */
+.section-content h2 {
+    font-size: 1.5em; /* 1.5 times the base font size */
+    margin-bottom: 20px;
+}
+
+/* Adjust font size for service item headings */
+.service-item h3 {
+    font-size: 1.2em; /* Slightly larger than body text */
+    margin-bottom: 10px;
 }
 
 /* Services Container Grid Layout */
 .services-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Always one column */
     gap: 20px;
-}
-
-@media (min-width: 768px) {
-    .services-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 992px) {
-    .services-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (min-width: 1200px) {
-    .services-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* Adjust Headings and Paragraphs */
-
-/* Ensure font size can be overridden */
-.about-content,
-.services-container {
-    font-size: 16px; /* Base font size */
-    line-height: 1.4;
-}
-
-/* Remove existing font-size declarations for paragraphs and headings within these containers */
-.about-content h2,
-#services h2,
-.about-content p,
-.service-item h3,
-.service-item p {
-    font-size: inherit;
-}
-
-/* Adjust line height for better readability */
-.about-content,
-.services-container {
-    line-height: 1.4;
-}
-
-/* Larger Screens Adjustments */
-@media (min-width: 1200px) {
-    .about-content h2,
-    #services h2,
-    #contact h2 {
-        font-size: clamp(1.5rem, 6vw, 3rem);
-        margin-bottom: 20px;
-    }
-
-    .about-content p,
-    .service-item p,
-    .contact-info p {
-        font-size: clamp(1rem, 4vw, 1.5rem);
-        line-height: 1.6;
-    }
-
-    /* Increase Section Padding */
-    #about,
-    #services,
-    #contact {
-        padding: 80px 0;
-    }
-
-    .service-item {
-        margin-bottom: 60px;
-    }
-
-    /* Navigation Styles for Large Screens */
-    .navbar-links li {
-        margin: 0 25px;
-    }
 }
 
 /* Navigation Styles */
@@ -190,6 +111,7 @@ main::-webkit-scrollbar {
     position: fixed;
     top: 0;
     width: 100%;
+    height: 60px; /* Adjust as needed */
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -389,89 +311,16 @@ main {
     transform: scale(1.05);
 }
 
-/* About Section */
-#about {
-    background-color: #fff;
-    color: #333;
-    padding: 60px 20px;
-}
-
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.4; /* Ensure consistent line height */
-}
-
-/* Services Section */
-#services {
-    background-color: #f9f9f9;
-    padding: 60px 20px;
-}
-
-#services h2 {
-    text-align: left;
-    margin-bottom: 40px;
-    font-size: clamp(2rem, 4vw, 2.5em);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.services-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.service-item h3 {
-    font-size: inherit;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.service-item p {
-    font-size: inherit;
-    text-align: left;
-}
-
 /* Contact Section */
 #contact {
     background-color: #fff;
     padding: 60px 20px;
 }
 
-#contact h2 {
-    text-align: left;
-    margin-bottom: 40px;
-    font-size: clamp(2rem, 4vw, 2.5em);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contact-info {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1em;
-}
-
-.contact-info p {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.contact-info a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.contact-info a:hover {
-    color: #555;
-}
 
 /* Footer */
 footer {
-    position: fixed; /* Keep fixed positioning */
+    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #fff;  /* White background */
@@ -480,9 +329,8 @@ footer {
     padding: 10px 20px;      /* Adjust as needed */
     font-size: 0.9em;        /* Smaller font size */
     border-top: 1px solid #eaeaea; /* Subtle border for separation */
-    z-index: 1000; /* Ensure it appears above other elements */
+    z-index: 9999; /* Increased z-index to ensure it appears above other elements */
     /* Initially hidden */
-    display: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -490,15 +338,21 @@ footer {
 
 /* Show footer when active */
 footer.active {
-    display: block;
     opacity: 1;
     visibility: visible;
+}
+
+/* Adjust Section Padding to Account for Navbar and Footer */
+.section {
+    padding-top: calc(20px + 60px); /* 20px + navbar height */
+    padding-bottom: calc(20px + 40px); /* 20px + footer height */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
+        height: 60px; /* Ensure consistent height */
     }
 
     /* Show hamburger menu */
@@ -534,6 +388,7 @@ footer.active {
     /* Language Switcher in Mobile Menu */
     .navbar-links.active .language-switcher .lang-btn {
         color: #000;
+        transform: none;
     }
 
     .navbar-links ul {
@@ -545,11 +400,11 @@ footer.active {
     }
 
     .navbar-links li {
-        display: flex; /* Ensure flex container */
-        justify-content: center; /* Center items horizontally */
-        align-items: center; /* Center items vertically */
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 15px 0;
-        width: 100%; /* Make li elements take full width */
+        width: 100%;
     }
 
     .navbar-links a {
@@ -569,19 +424,20 @@ footer.active {
     footer {
         padding: 8px 15px;
         font-size: 0.8em;
+        height: 40px; /* Ensure consistent height */
     }
 
     /* Adjust language switcher in mobile view */
     .navbar-links.active .language-switcher {
-        display: flex; /* Ensure flex container */
-        justify-content: center; /* Center contents */
+        display: flex;
+        justify-content: center;
         align-items: center;
-        margin: 15px 0; /* Match margin with other menu items */
-        width: 100%; /* Take full width */
+        margin: 15px 0;
+        width: 100%;
     }
 
     .navbar-links.active .language-switcher .lang-btn {
-        margin: 0 5px; /* Space between language buttons */
+        margin: 0 5px;
     }
 }
 
