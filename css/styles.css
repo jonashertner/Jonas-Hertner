@@ -1,23 +1,23 @@
 /* styles.css */
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-
-/* Import Bradford Font */
+/* Regular Weight */
 @font-face {
     font-family: 'Bradford';
     src: url('../fonts/BradfordLLSub-Book.woff2') format('woff2'),
          url('../fonts/BradfordLLSub-Book.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
+/* Bold Weight */
 @font-face {
     font-family: 'Bradford';
     src: url('../fonts/BradfordLLWeb-Book.woff2') format('woff2'),
          url('../fonts/BradfordLLWeb-Book.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 /* Reset and General Styles */
@@ -70,40 +70,38 @@ main::-webkit-scrollbar {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-}
-
-/* Remove font-size declarations to allow JavaScript adjustments */
-.section-content h2,
-.section-content p,
-.service-item h3,
-.service-item p {
-    font-size: inherit;
-    margin-bottom: 10px;
-}
-
-/* Base Font Sizes */
-.section-content {
-    font-size: 18px; /* Starting font size; will be adjusted by JavaScript */
+    font-size: clamp(1rem, 2vw, 1.125rem); /* Responsive font size */
     line-height: 1.4;
 }
 
-/* Adjust font sizes for section titles */
 .section-content h2 {
-    font-size: 1.5em; /* 1.5 times the base font size */
+    font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 20px;
 }
 
-/* Adjust font size for service item headings */
 .service-item h3 {
-    font-size: 1.2em; /* Slightly larger than body text */
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-bottom: 10px;
+}
+
+.service-item p,
+.section-content p {
+    font-size: clamp(1rem, 2vw, 1.125rem);
     margin-bottom: 10px;
 }
 
 /* Services Container Grid Layout */
 .services-container {
     display: grid;
-    grid-template-columns: 1fr; /* Always one column */
+    grid-template-columns: 1fr; /* Single column by default */
     gap: 20px;
+}
+
+/* Adjust grid for larger screens */
+@media (min-width: 769px) {
+    .services-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }
 
 /* Navigation Styles */
@@ -317,7 +315,6 @@ main {
     padding: 60px 20px;
 }
 
-
 /* Footer */
 footer {
     position: fixed;
@@ -445,6 +442,7 @@ footer.active {
 .navbar a:focus,
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
-    outline: 0;
-    outline-offset: 0;
+    /* Instead of removing outlines, customize them */
+    outline: 2px solid #005fcc; /* Custom focus style */
+    outline-offset: 2px;
 }

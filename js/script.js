@@ -52,9 +52,16 @@ function adjustSectionsFontSize() {
     adjustFontSizeToFit('contact', 10, 18);
 }
 
-// Call the function on load and resize
-window.addEventListener('load', adjustSectionsFontSize);
-window.addEventListener('resize', adjustSectionsFontSize);
+function debounce(func, wait = 100) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+window.addEventListener('resize', debounce(adjustSectionsFontSize));
+
 
 // Content Object (English and German translations)
 const content = {
