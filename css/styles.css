@@ -458,8 +458,8 @@ footer.active {
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
     /* Instead of removing outlines, customize them */
-    outline: 1px solid #000; /* Custom focus style */
-    outline-offset: 2px;
+    outline: 1px transparent; #000; /* Custom focus style */
+    outline-offset: 1px;
 }
 
 /* Disable Scroll Snap on Very Large Screens */
