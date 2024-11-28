@@ -436,6 +436,21 @@ footer.active {
     .navbar-links.active .language-switcher .lang-btn {
         margin: 0 5px;
     }
+
+    /* **New Additions Start Here** */
+
+    /* Add scroll-padding-top to main to account for navbar and additional space */
+    main {
+        scroll-padding-top: calc(60px + 20px); /* navbar height + desired space */
+    }
+
+    /* Optionally, increase padding-top in sections for more space */
+    .section {
+        padding-top: calc(20px + 60px + 20px); /* existing padding + additional space */
+        /* Total padding-top: 100px */
+    }
+
+    /* **New Additions End Here** */
 }
 
 /* Accessibility Focus Styles */
@@ -443,8 +458,8 @@ footer.active {
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
     /* Instead of removing outlines, customize them */
-    outline: 1px transparent; #000; /* Custom focus style */
-    outline-offset: 0px;
+    outline: 1px solid #000; /* Custom focus style */
+    outline-offset: 2px;
 }
 
 /* Disable Scroll Snap on Very Large Screens */
@@ -458,7 +473,7 @@ footer.active {
     .section {
         scroll-snap-align: none; /* Remove snap alignment */
         min-height: 100vh;        /* Preserve section height */
-        /*padding-top: 20px;*/   /* Remove additional padding if previously added for snap scroll */
+        padding-top: 20px;        /* Remove additional padding if previously added for snap scroll */
         padding-bottom: 20px;
     }
 }
