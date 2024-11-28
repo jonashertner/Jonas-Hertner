@@ -458,11 +458,4 @@ footer.active {
     .section {
         scroll-snap-align: none; /* Remove snap alignment */
         min-height: auto;        /* Allow sections to adjust height */
-    }
-    
-    /* Optional: Adjust Padding if Needed */
-    .section {
-        padding-top: 20px;   /* Remove additional padding if previously added for snap scroll */
-        padding-bottom: 20px;
-    }
 }
