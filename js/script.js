@@ -58,12 +58,6 @@ const content = {
             "emailLabel": "Email",
             "emailPlaceholder": "jh@jonashertner.com"
         },
-        "footer": {
-            "text": "© 2024 Jonas Hertner. All rights reserved."
-        },
-        "btn": {
-            "learnMore": "Learn More"
-        }
     },
     "de": {
         "nav": {
@@ -106,12 +100,6 @@ const content = {
             "emailLabel": "E-Mail:",
             "emailPlaceholder": "jh@jonashertner.com"
         },
-        "footer": {
-            "text": "© 2024 Jonas Hertner. Alle Rechte vorbehalten."
-        },
-        "btn": {
-            "learnMore": "Mehr erfahren"
-        }
     }
 };
 
@@ -240,35 +228,3 @@ document.querySelectorAll('.navbar-links a').forEach(link => {
         }
     });
 });
-
-// Footer Visibility Based on Contact Section
-const contactSection = document.querySelector('#contact');
-const footer = document.querySelector('footer');
-
-// Options for the observer
-const contactOptions = {
-    root: null, // Relative to the viewport
-    rootMargin: '0px',
-    threshold: 0.8 // 80% of the Contact section is visible
-};
-
-// Callback for the observer
-const contactCallback = (entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Show the footer
-            footer.classList.add('active');
-        } else {
-            // Hide the footer
-            footer.classList.remove('active');
-        }
-    });
-};
-
-// Create the observer
-const contactObserver = new IntersectionObserver(contactCallback, contactOptions);
-
-// Observe the Contact section
-if (contactSection) {
-    contactObserver.observe(contactSection);
-}

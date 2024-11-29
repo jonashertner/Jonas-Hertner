@@ -148,7 +148,6 @@ main::-webkit-scrollbar {
     justify-content: flex-end;
     padding: 15px 30px;
     background-color: transparent;
-    transition: color 0.3s, background-color 0.3s;
 }
 
 .navbar a,
@@ -198,7 +197,7 @@ main::-webkit-scrollbar {
     margin-left: 10px;
     cursor: pointer;
     color: inherit;
-    transition: color 0.3s, transform 0.3s;
+/*    transition: color 0.3s, transform 0.3s;*/
     font-family: 'Bradford', sans-serif;
 }
 
