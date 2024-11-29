@@ -218,11 +218,6 @@ main::-webkit-scrollbar {
     color: #fff; /* White color in Home section */
 }
 
-/* New Rule to Override Color in Mobile Menu on Home Section */
-.navbar:not(.dark) .navbar-links.active .language-switcher .lang-btn {
-    color: #000; /* Black color in mobile menu on Home section */
-}
-
 /* Hamburger Menu Styles */
 .toggle-button {
     display: none; /* Hidden by default; shown on mobile */
@@ -531,17 +526,6 @@ main {
 /* Language Switcher in Mobile Menu */
 .navbar-links.active .language-switcher .lang-btn {
     color: #000;
-}
-
-.navbar-links {
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    opacity: 0;
-    transform: translateY(-100%);
-}
-
-.navbar-links.active {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .navbar-links ul {
