@@ -230,8 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Delegation: Automatically close the mobile menu when any navigation link or language button is clicked
     navbarLinks.addEventListener('click', (event) => {
         const target = event.target;
-        // Check if the clicked element is a navigation link or a language button
-        if (target.tagName === 'A' || target.classList.contains('lang-btn')) {
+        const link = target.closest('a');
+        const langButton = target.closest('.lang-btn');
+
+        if (link || langButton) {
             closeMenu();
         }
     });
