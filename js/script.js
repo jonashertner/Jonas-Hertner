@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.navbar-links a');
-    const languageSwitcher = document.querySelector('.language-switcher');
+    const languageButtons = document.querySelectorAll('.language-switcher .lang-btn');
 
     // Function to toggle the mobile menu
     function toggleMenu() {
         const isOpen = toggleButton.classList.toggle('open');
         navbarLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open', isOpen); // Prevent body scrolling
         toggleButton.setAttribute('aria-expanded', isOpen);
         console.log('Menu toggled:', isOpen ? 'Open' : 'Closed');
     }
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (toggleButton.classList.contains('open')) {
             toggleButton.classList.remove('open');
             navbarLinks.classList.remove('active');
+            document.body.classList.remove('menu-open'); // Allow body scrolling
             toggleButton.setAttribute('aria-expanded', 'false');
             console.log('Menu closed');
         }
@@ -144,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update active language button
-        document.querySelectorAll('.lang-btn').forEach(btn => {
+        languageButtons.forEach(btn => {
             btn.classList.remove('active');
             btn.setAttribute('aria-pressed', 'false');
         });
@@ -167,17 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event listeners for language buttons
-    const langEnBtn = document.getElementById('lang-en');
-    const langDeBtn = document.getElementById('lang-de');
-
-    langEnBtn.addEventListener('click', () => {
-        changeLanguage('en');
-        closeMenuIfOpen();
-    });
-
-    langDeBtn.addEventListener('click', () => {
-        changeLanguage('de');
-        closeMenuIfOpen();
+    languageButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.id === 'lang-en' ? 'en' : 'de';
+            changeLanguage(lang);
+            closeMenuIfOpen();
+        });
     });
 
     // Load language on page load
@@ -227,14 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event Delegation: Automatically close the mobile menu when any navigation link or language button is clicked
-    navbarLinks.addEventListener('click', (event) => {
-        const target = event.target;
-        const link = target.closest('a');
-        const langButton = target.closest('.lang-btn');
-
-        if (link || langButton) {
+    // Add individual event listeners to each navigation link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
             closeMenu();
-        }
+        });
     });
+
+    // Add individual event listeners to each language button (optional)
+    // (Already handled above)
 });
