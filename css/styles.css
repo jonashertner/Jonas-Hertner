@@ -472,7 +472,7 @@ main {
     }
 
     .about-content p {
-     font-size: clamp(12px, 2vw, 18px);
+     font-size: clamp(14px, 2vw, 18px);
     }
 
     .about-content h2 {
@@ -480,7 +480,7 @@ main {
     }
 
     .services-container p {
-     font-size: clamp(12px, 2vw, 18px);
+     font-size: clamp(14px, 2vw, 18px);
     }
 
     .services-container h3 {
