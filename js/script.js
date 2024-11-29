@@ -3,7 +3,6 @@
 // Toggle Navigation Menu (for mobile view)
 const toggleButton = document.querySelector('.toggle-button');
 const navbarLinks = document.querySelector('.navbar-links');
-const main = document.querySelector('main'); // Select the main element
 
 // Function to toggle the mobile menu
 function toggleMenu() {
@@ -11,104 +10,10 @@ function toggleMenu() {
     navbarLinks.classList.toggle('active');
     toggleButton.setAttribute('aria-expanded', isOpen);
     console.log('Menu toggled:', isOpen ? 'Open' : 'Closed');
-    trapFocus();
-}
-
-// Function to close the mobile menu
-function closeMenu() {
-    if (toggleButton.classList.contains('open')) {
-        toggleButton.classList.remove('open');
-        navbarLinks.classList.remove('active');
-        toggleButton.setAttribute('aria-expanded', 'false');
-        console.log('Menu closed');
-        trapFocus();
-    }
-}
-
-// Function to trap focus within the menu for accessibility
-function trapFocus() {
-    const focusableElements = navbarLinks.querySelectorAll('a, button');
-    if (focusableElements.length === 0) return;
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-
-    function handleFocus(e) {
-        if (e.key === 'Tab') {
-            if (e.shiftKey) { // Shift + Tab
-                if (document.activeElement === firstElement) {
-                    e.preventDefault();
-                    lastElement.focus();
-                }
-            } else { // Tab
-                if (document.activeElement === lastElement) {
-                    e.preventDefault();
-                    firstElement.focus();
-                }
-            }
-        } else if (e.key === 'Escape') {
-            closeMenu();
-            toggleButton.focus();
-        }
-    }
-
-    if (navbarLinks.classList.contains('active')) {
-        document.addEventListener('keydown', handleFocus);
-        // Focus the first focusable element when menu opens
-        firstElement.focus();
-    } else {
-        document.removeEventListener('keydown', handleFocus);
-    }
 }
 
 // Event listener for the toggle button
 toggleButton.addEventListener('click', toggleMenu);
-
-// Function to adjust font size to fit content within viewport
-function adjustFontSizeToFit(sectionId, minFontSize = 10, maxFontSize = 18) {
-    const section = document.getElementById(sectionId);
-    const content = section.querySelector('.section-content');
-
-    if (!content) return;
-
-    // Reset font size
-    content.style.fontSize = maxFontSize + 'px';
-
-    // Get the available height
-    const viewportHeight = window.innerHeight;
-    const navbarHeight = document.querySelector('.navbar').offsetHeight || 0;
-    const footerHeight = document.querySelector('footer').offsetHeight || 0;
-    const sectionPaddingTop = parseFloat(window.getComputedStyle(section).paddingTop);
-    const sectionPaddingBottom = parseFloat(window.getComputedStyle(section).paddingBottom);
-    const availableHeight = viewportHeight - navbarHeight - footerHeight - sectionPaddingTop - sectionPaddingBottom;
-
-    let contentHeight = content.scrollHeight;
-
-    let fontSize = maxFontSize;
-
-    // Decrease font size until content fits or reaches minimum font size
-    while (contentHeight > availableHeight && fontSize > minFontSize) {
-        fontSize -= 0.5;
-        content.style.fontSize = fontSize + 'px';
-        contentHeight = content.scrollHeight;
-    }
-}
-
-// Function to adjust all sections
-function adjustSectionsFontSize() {
-    adjustFontSizeToFit('about', 10, 18);
-    adjustFontSizeToFit('services', 10, 18);
-    adjustFontSizeToFit('contact', 10, 18);
-}
-
-function debounce(func, wait = 100) {
-    let timeout;
-    return function(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-}
-
-window.addEventListener('resize', debounce(adjustSectionsFontSize));
 
 // Content Object (English and German translations)
 const content = {
@@ -138,18 +43,18 @@ const content = {
                 "description": "Advise private clients on legal issues."
             },
             "service3": {
-                "title": "Impact litigation",
-                "description": "Advise and represent parties on strategic impact litigation in the areas of ecology and fundamental rights."
-            },
-            "service4": {
                 "title": "Criminal law",
                 "description": "Advise and represent parties in criminal investigations and proceedings."
+            },
+            "service4": {
+                "title": "Impact litigation",
+                "description": "Advise and represent parties on strategic impact litigation in the areas of ecology and fundamental rights."
             }
         },
         "contact": {
             "heading": "Contact",
             "addressLabel": "Address",
-            "addressPlaceholder": "Basel",
+            "addressPlaceholder": "",
             "emailLabel": "Email",
             "emailPlaceholder": "jh@jonashertner.com"
         },
@@ -182,23 +87,23 @@ const content = {
                 "description": "Beratung und Vertretung in komplexen Streitigkeiten."
             },
             "service2": {
-                "title": "Familien und Privatpersonen",
-                "description": "Beratung von Familien und Privatpersonen in rechtlichen Fragen."
+                "title": "Familien und Privatkunden",
+                "description": "Beratung von Privatkunden in rechtlichen Fragen."
             },
             "service3": {
-                "title": "Strategische Prozessführung",
-                "description": "Beratung und Vertretung bei strategischen Prozessen in den Bereichen Ökologie und Grundrechte."
-            },
-            "service4": {
                 "title": "Strafrecht",
                 "description": "Beratung und Vertretung in Strafuntersuchungen und -verfahren."
+            },
+            "service4": {
+                "title": "Strategische Prozessführung",
+                "description": "Beratung und Vertretung bei strategischen Prozessen in den Bereichen Ökologie und Grundrechte."
             }
         },
         "contact": {
             "heading": "Kontakt",
             "addressLabel": "Adresse",
-            "addressPlaceholder": "Basel",
-            "emailLabel": "E-Mail",
+            "addressPlaceholder": "",
+            "emailLabel": "E-Mail:",
             "emailPlaceholder": "jh@jonashertner.com"
         },
         "footer": {
@@ -241,19 +146,14 @@ function changeLanguage(lang) {
         btn.setAttribute('aria-pressed', 'false');
     });
     const activeBtn = document.getElementById('lang-' + lang);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-        activeBtn.setAttribute('aria-pressed', 'true');
-    }
+    activeBtn.classList.add('active');
+    activeBtn.setAttribute('aria-pressed', 'true');
 
     // Store selected language in localStorage
     localStorage.setItem('language', lang);
 
     // Update the lang attribute on the html tag
     document.documentElement.lang = lang;
-
-    // Adjust font size after language change
-    adjustSectionsFontSize();
 }
 
 // Event listeners for language buttons
@@ -261,7 +161,7 @@ document.getElementById('lang-en').addEventListener('click', () => {
     changeLanguage('en');
     // Close the mobile menu if it's open
     if (navbarLinks.classList.contains('active')) {
-        closeMenu();
+        toggleMenu();
     }
 });
 
@@ -269,7 +169,7 @@ document.getElementById('lang-de').addEventListener('click', () => {
     changeLanguage('de');
     // Close the mobile menu if it's open
     if (navbarLinks.classList.contains('active')) {
-        closeMenu();
+        toggleMenu();
     }
 });
 
@@ -280,7 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
     adjustNavbarStyle('home'); // Set initial navbar style
 
     // Ensure the menu is closed on page load
-    closeMenu();
+    navbarLinks.classList.remove('active');
+    toggleButton.classList.remove('open');
+    toggleButton.setAttribute('aria-expanded', 'false');
 });
 
 // Intersection Observer for Active Navigation Link and Navbar Style
@@ -290,39 +192,27 @@ const navbar = document.querySelector('.navbar');
 
 // Options for the observer
 const options = {
-    root: main, // Set root to the main element
+    root: null, // Observe relative to the viewport
     rootMargin: '0px',
     threshold: 0.6 // 60% of the section is visible
 };
 
 // Callback for the observer
 const callback = (entries) => {
-    let maxRatio = 0;
-    let activeId = '';
-
     entries.forEach(entry => {
-        // Debugging logs
-        console.log(`Section ${entry.target.id} is intersecting: ${entry.isIntersecting}, ratio: ${entry.intersectionRatio}`);
+        if (entry.isIntersecting) {
+            // Remove active class from all links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === entry.target.id) {
+                    link.classList.add('active');
+                }
+            });
 
-        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
-            maxRatio = entry.intersectionRatio;
-            activeId = entry.target.id;
+            // Adjust navbar style based on current section
+            adjustNavbarStyle(entry.target.id);
         }
     });
-
-    if (activeId) {
-        // Remove active class from all links
-        navLinks.forEach(link => link.classList.remove('active'));
-
-        // Add active class to the current link
-        const currentLink = document.querySelector(`.navbar-links a[href="#${activeId}"]`);
-        if (currentLink) {
-            currentLink.classList.add('active');
-        }
-
-        // Adjust navbar style based on current section
-        adjustNavbarStyle(activeId);
-    }
 };
 
 // Create the observer
@@ -346,7 +236,7 @@ function adjustNavbarStyle(currentSection = 'home') {
 document.querySelectorAll('.navbar-links a').forEach(link => {
     link.addEventListener('click', () => {
         if (navbarLinks.classList.contains('active')) {
-            closeMenu();
+            toggleMenu();
         }
     });
 });
@@ -355,9 +245,9 @@ document.querySelectorAll('.navbar-links a').forEach(link => {
 const contactSection = document.querySelector('#contact');
 const footer = document.querySelector('footer');
 
-// Adjusted Intersection Observer Options
+// Options for the observer
 const contactOptions = {
-    root: main, // Set root to the main element
+    root: null, // Relative to the viewport
     rootMargin: '0px',
     threshold: 0.8 // 80% of the Contact section is visible
 };
@@ -372,8 +262,6 @@ const contactCallback = (entries, observer) => {
             // Hide the footer
             footer.classList.remove('active');
         }
-        // Adjust font size when footer visibility changes
-        adjustSectionsFontSize();
     });
 };
 
@@ -384,10 +272,3 @@ const contactObserver = new IntersectionObserver(contactCallback, contactOptions
 if (contactSection) {
     contactObserver.observe(contactSection);
 }
-
-// Optional: Close the menu when scrolling
-main.addEventListener('scroll', debounce(() => { // Changed from window to main
-    if (navbarLinks.classList.contains('active')) {
-        closeMenu();
-    }
-}, 200));

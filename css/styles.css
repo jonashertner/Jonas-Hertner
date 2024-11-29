@@ -1,23 +1,23 @@
 /* styles.css */
 
-/* Regular Weight */
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+/* Import Bradford Font */
 @font-face {
     font-family: 'Bradford';
     src: url('../fonts/BradfordLLSub-Book.woff2') format('woff2'),
          url('../fonts/BradfordLLSub-Book.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
 }
 
-/* Bold Weight */
 @font-face {
     font-family: 'Bradford';
     src: url('../fonts/BradfordLLWeb-Book.woff2') format('woff2'),
          url('../fonts/BradfordLLWeb-Book.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-    font-display: swap;
 }
 
 /* Reset and General Styles */
@@ -49,7 +49,6 @@ main {
     overflow-y: scroll;
     height: 100vh;
     scrollbar-width: none; /* Firefox */
-    scroll-padding-top: 60px; /* Height of navbar */
 }
 
 main::-webkit-scrollbar {
@@ -59,57 +58,82 @@ main::-webkit-scrollbar {
 /* Each Section as a Snap Point */
 .section {
     scroll-snap-align: start;
-    height: 100vh; /* Fixed height to ensure exact viewport fit */
+    min-height: 100vh;
     position: relative;
-    padding: 0 30px; /* Removed top and bottom padding to prevent overflow */
+    padding: 0 30px 60px;
     box-sizing: border-box;
-    display: flex; /* Enable Flexbox for centering */
-    align-items: center; /* Vertically center content */
-    justify-content: center; /* Horizontally center content */
 }
 
-/* Content Containers */
-.section-content {
+/* General Container Styles */
+.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px; /* Internal padding for content spacing */
+    padding: 0 20px;
     box-sizing: border-box;
-    font-size: clamp(1rem, 2vw, 1.125rem); /* Responsive font size */
-    line-height: 1.4;
-    display: flex; /* Enable Flexbox */
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center content vertically within section */
-    /* Removed height: 100%; to prevent overflow */
 }
 
-/* Section Headings */
-.section-content h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: 20px;
-}
-
-.service-item h3 {
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-    margin-bottom: 10px;
-}
-
-.service-item p,
-.section-content p {
-    font-size: clamp(1rem, 2vw, 1.125rem);
-    margin-bottom: 10px;
+/* Apply to specific sections */
+.about-content,
+.services-container,
+.contact-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Services Container Grid Layout */
 .services-container {
     display: grid;
-    grid-template-columns: 1fr; /* Single column by default */
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
-/* Adjust grid for larger screens */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     .services-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .services-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .services-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Adjust Headings and Paragraphs */
+@media (min-width: 1200px) {
+    .about-content h2,
+    #services h2,
+    #contact h2 {
+        font-size: 3em;
+    }
+
+    .about-content p,
+    .service-item p,
+    .contact-info p {
+        font-size: 1.2em;
+    }
+
+    /* Increase Section Padding */
+    #about,
+    #services,
+    #contact {
+        padding: 80px 0;
+    }
+
+    .service-item {
+        margin-bottom: 60px;
+    }
+
+    /* Navigation Styles for Large Screens */
+    .navbar-links li {
+        margin: 0 25px;
     }
 }
 
@@ -118,7 +142,6 @@ main::-webkit-scrollbar {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 60px; /* Adjust as needed */
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -197,7 +220,7 @@ main::-webkit-scrollbar {
     color: #fff; /* White color in Home section */
 }
 
-/* Override Color in Mobile Menu on Home Section */
+/* New Rule to Override Color in Mobile Menu on Home Section */
 .navbar:not(.dark) .navbar-links.active .language-switcher .lang-btn {
     color: #000; /* Black color in mobile menu on Home section */
 }
@@ -318,15 +341,135 @@ main {
     transform: scale(1.05);
 }
 
+/* About Section */
+#about {
+    background-color: #fff;
+    color: #333;
+    padding: 60px 20px;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    font-size: clamp(2rem, 4vw, 3em);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Services Section */
+#services {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+#services h2 {
+    text-align: left;
+    align-self: end;
+    margin-left: 20px;
+    margin-bottom: 40px;
+    font-size: clamp(2rem, 4vw, 2.5em);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 0 20px;
+    padding-bottom: 20px;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    align-self: start;
+}
+
+@media (min-width: 768px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .services-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.service-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.service-item p {
+    font-size: 1em;
+    text-align: left;
+}
+
 /* Contact Section */
 #contact {
     background-color: #fff;
     padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+#contact h2 {
+    text-align: left;
+    align-self: end;
+    margin-left: 20px;
+    margin-bottom: 40px;
+    font-size: clamp(2rem, 4vw, 2.5em);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 0 20px;
+    padding-bottom: 20px;
+}
+
+.contact-info {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    align-self: start;
+}
+
+.contact-info p {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact-info a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: #555;
 }
 
 /* Footer */
 footer {
-    position: fixed;
+    position: fixed; /* Keep fixed positioning */
     bottom: 0;
     width: 100%;
     background-color: #fff;  /* White background */
@@ -335,8 +478,9 @@ footer {
     padding: 10px 20px;      /* Adjust as needed */
     font-size: 0.9em;        /* Smaller font size */
     border-top: 1px solid #eaeaea; /* Subtle border for separation */
-    z-index: 9999; /* Increased z-index to ensure it appears above other elements */
+    z-index: 1000; /* Ensure it appears above other elements */
     /* Initially hidden */
+    display: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -344,21 +488,15 @@ footer {
 
 /* Show footer when active */
 footer.active {
+    display: block;
     opacity: 1;
     visibility: visible;
-}
-
-/* Adjust Section Padding to Account for Navbar and Footer */
-.section {
-    padding-top: 0; /* Removed padding-top */
-    padding-bottom: 0; /* Removed padding-bottom */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
-        height: 60px; /* Ensure consistent height */
     }
 
     /* Show hamburger menu */
@@ -394,7 +532,6 @@ footer.active {
     /* Language Switcher in Mobile Menu */
     .navbar-links.active .language-switcher .lang-btn {
         color: #000;
-        transform: none;
     }
 
     .navbar-links ul {
@@ -406,11 +543,11 @@ footer.active {
     }
 
     .navbar-links li {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: flex; /* Ensure flex container */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
         margin: 15px 0;
-        width: 100%;
+        width: 100%; /* Make li elements take full width */
     }
 
     .navbar-links a {
@@ -430,52 +567,19 @@ footer.active {
     footer {
         padding: 8px 15px;
         font-size: 0.8em;
-        height: 40px; /* Ensure consistent height */
     }
 
     /* Adjust language switcher in mobile view */
     .navbar-links.active .language-switcher {
-        display: flex;
-        justify-content: center;
+        display: flex; /* Ensure flex container */
+        justify-content: center; /* Center contents */
         align-items: center;
-        margin: 15px 0;
-        width: 100%;
+        margin: 15px 0; /* Match margin with other menu items */
+        width: 100%; /* Take full width */
     }
 
     .navbar-links.active .language-switcher .lang-btn {
-        margin: 0 5px;
-    }
-
-    /* Add scroll-padding-top to main to account for navbar and additional space */
-    main {
-        scroll-padding-top: calc(60px + 20px); /* navbar height + desired space */
-    }
-
-    /* Flexbox Adjustments for Sections */
-    .section-content {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-}
-
-/* Disable Scroll Snap on Very Large Screens */
-@media (min-width: 1200px) {
-    main {
-        scroll-snap-type: none; /* Disable scroll snapping */
-        overflow-y: visible;    /* Allow normal scrolling */
-        height: auto;           /* Remove fixed height */
-    }
-    
-    .section {
-        scroll-snap-align: none; /* Remove snap alignment */
-        height: auto; /* Allow sections to expand based on content */
-        min-height: 100vh; /* Preserve minimum section height */
-        padding-top: 0; /* Remove additional padding if previously added for snap scroll */
-        padding-bottom: 0;
-    }
-
-    .section-content {
-        padding: 60px 20px; /* Increased padding for larger screens */
+        margin: 0 5px; /* Space between language buttons */
     }
 }
 
@@ -483,7 +587,6 @@ footer.active {
 .navbar a:focus,
 .language-switcher .lang-btn:focus,
 .toggle-button:focus {
-    /* Custom focus style */
-    outline: 0px solid #000; /* Black outline */
-    outline-offset: 0px;      /* Space between outline and element */
+    outline: 0;
+    outline-offset: 0;
 }
