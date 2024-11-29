@@ -7,26 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.navbar-links a');
-    const languageButtons = document.querySelectorAll('.language-switcher .lang-btn');
+    const languageSwitcher = document.querySelector('.language-switcher');
 
     // Function to toggle the mobile menu
     function toggleMenu() {
         const isOpen = toggleButton.classList.toggle('open');
         navbarLinks.classList.toggle('active');
-        document.body.classList.toggle('menu-open', isOpen); // Prevent body scrolling
         toggleButton.setAttribute('aria-expanded', isOpen);
         console.log('Menu toggled:', isOpen ? 'Open' : 'Closed');
     }
 
     // Function to close the mobile menu
     function closeMenu() {
-        if (toggleButton.classList.contains('open')) {
-            toggleButton.classList.remove('open');
-            navbarLinks.classList.remove('active');
-            document.body.classList.remove('menu-open'); // Allow body scrolling
-            toggleButton.setAttribute('aria-expanded', 'false');
-            console.log('Menu closed');
-        }
+        // Remove 'open' and 'active' classes unconditionally
+        toggleButton.classList.remove('open');
+        navbarLinks.classList.remove('active');
+        toggleButton.setAttribute('aria-expanded', 'false');
+        console.log('Menu closed');
     }
 
     // Event listener for the toggle button
@@ -146,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update active language button
-        languageButtons.forEach(btn => {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.remove('active');
             btn.setAttribute('aria-pressed', 'false');
         });
@@ -169,12 +166,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event listeners for language buttons
-    languageButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.id === 'lang-en' ? 'en' : 'de';
-            changeLanguage(lang);
-            closeMenuIfOpen();
-        });
+    const langEnBtn = document.getElementById('lang-en');
+    const langDeBtn = document.getElementById('lang-de');
+
+    langEnBtn.addEventListener('click', () => {
+        changeLanguage('en');
+        closeMenuIfOpen();
+    });
+
+    langDeBtn.addEventListener('click', () => {
+        changeLanguage('de');
+        closeMenuIfOpen();
     });
 
     // Load language on page load
@@ -224,13 +226,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Add individual event listeners to each navigation link
+    // **NEW CODE: Add Individual Event Listeners to All Navigation Links**
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            closeMenu();
-        });
+        link.addEventListener('click', closeMenu);
     });
 
-    // Add individual event listeners to each language button (optional)
-    // (Already handled above)
+    // **NEW CODE: Add Individual Event Listeners to Language Buttons**
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', closeMenu);
+    });
 });

@@ -153,7 +153,7 @@ main::-webkit-scrollbar {
 .navbar a,
 .navbar .lang-btn,
 .navbar .toggle-button {
-    color: #fff; /* White color by default */
+    color: #fff;
 }
 
 .navbar a:hover,
@@ -164,7 +164,7 @@ main::-webkit-scrollbar {
 .navbar.dark a,
 .navbar.dark .lang-btn,
 .navbar.dark .toggle-button {
-    color: #000; /* Black color in non-Home sections */
+    color: #000;
 }
 
 .navbar-links {
@@ -211,7 +211,7 @@ main::-webkit-scrollbar {
 
 /* Language Switcher Color Correction */
 .navbar.dark .language-switcher .lang-btn {
-    color: #000; /* Black color in non-Home sections */
+    color: #000; /* Black color in other sections */
 }
 
 .navbar:not(.dark) .language-switcher .lang-btn {
@@ -227,8 +227,9 @@ main::-webkit-scrollbar {
     cursor: pointer;
     background: none;
     border: none;
-    color: inherit;
+    color: #fff; /* Default color when menu is closed */
     z-index: 1001;
+    transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .toggle-button .bar {
@@ -268,9 +269,9 @@ main::-webkit-scrollbar {
     top: 10px;
 }
 
-/* Ensure the toggle-button's color changes to black when the menu is open */
+/* Change toggle-button's color when menu is open */
 .toggle-button.open {
-    color: #000; /* Black color for visibility against white menu */
+    color: #000; /* Black color for the "X" */
 }
 
 /* Main Content Styles */
