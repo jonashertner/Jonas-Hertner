@@ -12,6 +12,16 @@ function toggleMenu() {
     console.log('Menu toggled:', isOpen ? 'Open' : 'Closed');
 }
 
+// Function to close the mobile menu
+function closeMenu() {
+    if (toggleButton.classList.contains('open')) {
+        toggleButton.classList.remove('open');
+        navbarLinks.classList.remove('active');
+        toggleButton.setAttribute('aria-expanded', 'false');
+        console.log('Menu closed');
+    }
+}
+
 // Event listener for the toggle button
 toggleButton.addEventListener('click', toggleMenu);
 
@@ -144,21 +154,22 @@ function changeLanguage(lang) {
     document.documentElement.lang = lang;
 }
 
+// Function to close the mobile menu if it's open
+function closeMenuIfOpen() {
+    if (navbarLinks.classList.contains('active')) {
+        closeMenu();
+    }
+}
+
 // Event listeners for language buttons
 document.getElementById('lang-en').addEventListener('click', () => {
     changeLanguage('en');
-    // Close the mobile menu if it's open
-    if (navbarLinks.classList.contains('active')) {
-        toggleMenu();
-    }
+    closeMenuIfOpen();
 });
 
 document.getElementById('lang-de').addEventListener('click', () => {
     changeLanguage('de');
-    // Close the mobile menu if it's open
-    if (navbarLinks.classList.contains('active')) {
-        toggleMenu();
-    }
+    closeMenuIfOpen();
 });
 
 // Load language on page load
@@ -168,9 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     adjustNavbarStyle('home'); // Set initial navbar style
 
     // Ensure the menu is closed on page load
-    navbarLinks.classList.remove('active');
-    toggleButton.classList.remove('open');
-    toggleButton.setAttribute('aria-expanded', 'false');
+    closeMenu();
 });
 
 // Intersection Observer for Active Navigation Link and Navbar Style
@@ -220,11 +229,12 @@ function adjustNavbarStyle(currentSection = 'home') {
     }
 }
 
-// Automatically close the mobile menu when a menu item is clicked
+// Automatically close the mobile menu when a navigation link is clicked
 document.querySelectorAll('.navbar-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        if (navbarLinks.classList.contains('active')) {
-            toggleMenu();
-        }
-    });
+    link.addEventListener('click', closeMenuIfOpen);
+});
+
+// Automatically close the mobile menu when a language button is clicked
+document.querySelectorAll('.language-switcher .lang-btn').forEach(btn => {
+    btn.addEventListener('click', closeMenuIfOpen);
 });
