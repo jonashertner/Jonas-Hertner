@@ -53,8 +53,8 @@ const content = {
         },
         "contact": {
             "heading": "Contact",
-            "addressLabel": "Address",
-            "addressPlaceholder": "",
+            "addressLabel": "Mail address",
+            "addressPlaceholder": "4051 Basel. 8032 Zurich.",
             "emailLabel": "Email",
             "emailPlaceholder": "jh@jonashertner.com"
         },
@@ -95,9 +95,9 @@ const content = {
         },
         "contact": {
             "heading": "Kontakt",
-            "addressLabel": "Adresse",
-            "addressPlaceholder": "",
-            "emailLabel": "E-Mail:",
+            "addressLabel": "Postadresse",
+            "addressPlaceholder": "4052 Basel. 8032 Zürich. Schweiz",
+            "emailLabel": "E-Mail",
             "emailPlaceholder": "jh@jonashertner.com"
         },
     }

@@ -471,33 +471,34 @@ main {
         padding: 15px 20px;
     }
 
-    .about-content p {
-     font-size: clamp(14px, 3vw, 18px);
-    }
-
+    /* About Section */
     .about-content h2 {
-     font-size: clamp(16px, 3.5vw, 18px);
+        font-size: clamp(16px, 3.5vw, 24px); /* Scales between 16px and 24px */
+    }
+    .about-content p {
+        font-size: clamp(14px, 3vw, 18px); /* Scales between 14px and 18px */
     }
 
-    .services-container p {
-     font-size: clamp(14px, 3vw, 18px);
-    }
-
+    /* Services Section */
     .services-container h3 {
-     font-size: clamp(16px, 3.5vw, 18px);
+        font-size: clamp(16px, 3.5vw, 22px); /* Scales between 16px and 22px */
     }
-
+    .services-container p {
+        font-size: clamp(14px, 3vw, 18px); /* Consistent with paragraphs in other sections */
+    }
     #services h2 {
-    font-size: clamp(24px, 3.5vw, 40px); /* Adjust the values as needed */
+        font-size: clamp(24px, 4vw, 32px); /* Scales heading size appropriately */
     }
 
+    /* Contact Section */
     #contact h2 {
-        font-size: clamp(24px, 3.5vw, 40px); /* Adjust the values as needed */
+        font-size: clamp(24px, 4vw, 32px); /* Matches services section heading size */
     }
+    .contact-info p {
+        font-size: clamp(14px, 3vw, 18px); /* Aligns with paragraph styling */
+    }
+}
 
-    .contact-info {
-     font-size: clamp(12px, 3vw, 18px);
-    }
 
     /* Show hamburger menu */
     .toggle-button {
