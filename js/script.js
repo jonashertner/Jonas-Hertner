@@ -3,6 +3,7 @@
 // Toggle Navigation Menu (for mobile view)
 const toggleButton = document.querySelector('.toggle-button');
 const navbarLinks = document.querySelector('.navbar-links');
+const navbar = document.querySelector('.navbar');
 
 // Function to toggle the mobile menu
 function toggleMenu() {
@@ -229,12 +230,21 @@ function adjustNavbarStyle(currentSection = 'home') {
     }
 }
 
-// Automatically close the mobile menu when a navigation link is clicked
-document.querySelectorAll('.navbar-links a').forEach(link => {
-    link.addEventListener('click', closeMenuIfOpen);
+// Event Delegation: Automatically close the mobile menu when any navigation link is clicked
+navbarLinks.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target.tagName === 'A') {
+        closeMenuIfOpen();
+    }
 });
 
-// Automatically close the mobile menu when a language button is clicked
-document.querySelectorAll('.language-switcher .lang-btn').forEach(btn => {
-    btn.addEventListener('click', closeMenuIfOpen);
-});
+// Event Delegation: Automatically close the mobile menu when any language button is clicked
+const languageSwitcher = document.querySelector('.language-switcher');
+if (languageSwitcher) {
+    languageSwitcher.addEventListener('click', (event) => {
+        const target = event.target;
+        if (target.classList.contains('lang-btn')) {
+            closeMenuIfOpen();
+        }
+    });
+}
