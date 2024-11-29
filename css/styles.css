@@ -466,34 +466,14 @@ main {
     color: #555;
 }
 
-/* Footer */
-footer {
-    position: fixed; /* Keep fixed positioning */
-    bottom: 0;
-    width: 100%;
-    background-color: #fff;  /* White background */
-    color: #333;             /* Black text */
-    text-align: center;
-    padding: 10px 20px;      /* Adjust as needed */
-    font-size: 0.9em;        /* Smaller font size */
-    border-top: 1px solid #eaeaea; /* Subtle border for separation */
-    z-index: 1000; /* Ensure it appears above other elements */
-    /* Initially hidden */
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-/* Show footer when active */
-footer.active {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+.section {
+  font-size: 3vw; /* Adjust the value as needed */
+}
+
     .navbar {
         padding: 15px 20px;
     }
@@ -562,11 +542,6 @@ footer.active {
         font-size: clamp(1rem, 2.5vw, 1.5rem);
     }
 
-    /* Adjust footer for mobile */
-    footer {
-        padding: 8px 15px;
-        font-size: 0.8em;
-    }
 
     /* Adjust language switcher in mobile view */
     .navbar-links.active .language-switcher {
