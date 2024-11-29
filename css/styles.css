@@ -472,31 +472,31 @@ main {
     }
 
     .about-content p {
-     font-size: clamp(14px, 2vw, 18px);
+     font-size: clamp(14px, 3vw, 18px);
     }
 
     .about-content h2 {
-     font-size: clamp(16px, 2.5vw, 18px);
+     font-size: clamp(16px, 3.5vw, 18px);
     }
 
     .services-container p {
-     font-size: clamp(14px, 2vw, 18px);
+     font-size: clamp(14px, 3vw, 18px);
     }
 
     .services-container h3 {
-     font-size: clamp(16px, 2.5vw, 18px);
+     font-size: clamp(16px, 3.5vw, 18px);
     }
 
     #services h2 {
-    font-size: clamp(24px, 3vw, 40px); /* Adjust the values as needed */
+    font-size: clamp(24px, 3.5vw, 40px); /* Adjust the values as needed */
     }
 
     #contact h2 {
-        font-size: clamp(24px, 3vw, 40px); /* Adjust the values as needed */
+        font-size: clamp(24px, 3.5vw, 40px); /* Adjust the values as needed */
     }
 
     .contact-info {
-     font-size: clamp(12px, 2vw, 18px);
+     font-size: clamp(12px, 3vw, 18px);
     }
 
     /* Show hamburger menu */
