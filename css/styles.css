@@ -197,7 +197,6 @@ main::-webkit-scrollbar {
     margin-left: 10px;
     cursor: pointer;
     color: inherit;
-/*    transition: color 0.3s, transform 0.3s;*/
     font-family: 'Bradford', sans-serif;
 }
 
@@ -466,16 +465,38 @@ main {
     color: #555;
 }
 
-
 /* Responsive Design */
 @media (max-width: 768px) {
-
-.section {
-  font-size: 3vw; /* Adjust the value as needed */
-}
-
     .navbar {
         padding: 15px 20px;
+    }
+
+    .about-content p {
+     font-size: clamp(12px, 2vw, 18px);
+    }
+
+    .about-content h2 {
+     font-size: clamp(16px, 2.5vw, 18px);
+    }
+
+    .services-container p {
+     font-size: clamp(12px, 2vw, 18px);
+    }
+
+    .services-container h3 {
+     font-size: clamp(16px, 2.5vw, 18px);
+    }
+
+    #services h2 {
+    font-size: clamp(24px, 3vw, 40px); /* Adjust the values as needed */
+    }
+
+    #contact h2 {
+        font-size: clamp(24px, 3vw, 40px); /* Adjust the values as needed */
+    }
+
+    .contact-info {
+     font-size: clamp(12px, 2vw, 18px);
     }
 
     /* Show hamburger menu */
