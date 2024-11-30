@@ -400,6 +400,9 @@ main {
         font-size: clamp(1.5rem, 6vw, 2.5rem);
     }
 
+  .services-container {
+    margin-bottom: 20px; /* Or padding-bottom: 20px; */
+  }
 
     .service-item h3 {
         font-size: clamp(1.2rem, 4vw, 2.4rem);
@@ -416,6 +419,7 @@ main {
 @media (min-width: 769px) and (max-width: 991px) {
     .services-container {
         grid-template-columns: 1fr;
+        margin-bottom: 20px;
     }
 
     .section h2 {
