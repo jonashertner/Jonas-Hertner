@@ -318,7 +318,7 @@ main {
     text-align: left;
     align-self: start;
     margin: 0 0 20px;
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     font-size: clamp(2rem, 4vw, 3rem);
 }
 
