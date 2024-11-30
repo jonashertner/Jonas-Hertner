@@ -7,42 +7,32 @@
     <meta name="keywords" content="Jonas Hertner, Legal Counsel, Lawyer, Zurich, Basel, Complex Disputes, Family Law, Criminal Law, Impact Litigation">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jonas Hertner</title>
+    
+    <!-- Favicon and Touch Icons (Optional) -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    
     <!-- Link to CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- Navigation Menu -->
-<header>
-    <nav class="navbar" role="navigation" aria-label="Main Navigation">
-        <!-- Hamburger Menu (visible on mobile) -->
-        <button class="toggle-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar-links">
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-        </button>
-        <!-- Navigation Links -->
-        <div class="navbar-links" id="navbar-links">
-            <ul>
-                <li><a href="#home" data-key="nav.home" aria-current="page">Home</a></li>
-                <li><a href="#about" data-key="nav.about">About</a></li>
-                <li><a href="#services" data-key="nav.services">Services</a></li>
-                <li><a href="#contact" data-key="nav.contact">Contact</a></li>
-                <!-- Language Switcher within the menu -->
-                <li class="language-switcher">
-                    <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
-                    <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+    <!-- Header with Language Switcher -->
+    <header>
+        <nav class="navbar" role="navigation" aria-label="Language Switcher">
+            <!-- Language Switcher Positioned at Top Right -->
+            <div class="language-switcher">
+                <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
+                <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
+            </div>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main>
         <!-- Home Section -->
-        <section id="home" class="section">
-            <!-- Responsive Hero Image -->
+        <section id="home" class="section" aria-labelledby="home-heading">
+            <!-- Responsive Hero Image with Lazy Loading -->
             <picture class="hero-image">
                 <!-- WebP images -->
                 <source srcset="images/hero-small.webp" media="(max-width: 768px)" type="image/webp">
@@ -50,26 +40,26 @@
                 <!-- JPEG images as fallback -->
                 <source srcset="images/hero-small.jpg" media="(max-width: 768px)" type="image/jpeg">
                 <source srcset="images/hero-large.jpg" media="(min-width: 769px)" type="image/jpeg">
-                <!-- Fallback Image -->
-                <img src="images/hero-large.jpg" alt="Hero Image">
+                <!-- Fallback Image with Lazy Loading -->
+                <img src="images/hero-large.jpg" alt="Hero Image" loading="lazy">
             </picture>
             <div class="hero-content">
-                <h1 data-key="hero.title">Jonas Hertner</h1>
+                <h1 id="home-heading" data-key="hero.title">Jonas Hertner</h1>
                 <p data-key="hero.subtitle">LEGAL COUNSEL</p>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="section">
+        <section id="about" class="section" aria-labelledby="about-heading">
             <div class="about-content">
-                <h2 data-key="about.heading">About Me</h2>
+                <h2 id="about-heading" data-key="about.heading">About Me</h2>
                 <p data-key="about.content">Provide information about yourself or your business here.</p>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="section">
-            <h2 data-key="services.heading">Services</h2>
+        <section id="services" class="section" aria-labelledby="services-heading">
+            <h2 id="services-heading" data-key="services.heading">Services</h2>
 
             <div class="services-container">
 
@@ -98,8 +88,8 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section">
-            <h2 data-key="contact.heading">Contact</h2>
+        <section id="contact" class="section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading" data-key="contact.heading">Contact</h2>
             <div class="contact-info">
                 <p><strong data-key="contact.addressLabel">Address:</strong> <span data-key="contact.addressPlaceholder"></span></p>
                 <p><strong data-key="contact.emailLabel">Email:</strong> <a href="mailto:jh@jonashertner.com" data-key="contact.emailPlaceholder">jh@jonashertner.com</a></p>
@@ -107,7 +97,19 @@
         </section>
     </main>
 
-    <!-- JavaScript -->
+    <!-- Fallback JavaScript for Older Browsers (Optional) -->
+    <noscript>
+        <style>
+            /* Ensure language switcher is visible even if JavaScript is disabled */
+            .language-switcher {
+                display: flex;
+                justify-content: flex-end;
+                padding: 15px 30px;
+            }
+        </style>
+    </noscript>
+
+    <!-- Link to JavaScript -->
     <script src="js/script.js"></script>
 </body>
 </html>

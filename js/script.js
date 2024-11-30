@@ -2,40 +2,19 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Select essential DOM elements
-    const toggleButton = document.querySelector('.toggle-button');
-    const navbarLinks = document.querySelector('.navbar-links');
+    const languageButtons = document.querySelectorAll('.lang-btn');
     const navbar = document.querySelector('.navbar');
     const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.navbar-links a');
-    const languageSwitcher = document.querySelector('.language-switcher');
-
-    // Function to toggle the mobile menu
-    function toggleMenu() {
-        const isOpen = toggleButton.classList.toggle('open');
-        navbarLinks.classList.toggle('active');
-        toggleButton.setAttribute('aria-expanded', isOpen);
-        console.log('Menu toggled:', isOpen ? 'Open' : 'Closed');
-    }
-
-    // Function to close the mobile menu
-    function closeMenu() {
-        // Remove 'open' and 'active' classes unconditionally
-        toggleButton.classList.remove('open');
-        navbarLinks.classList.remove('active');
-        toggleButton.setAttribute('aria-expanded', 'false');
-        console.log('Menu closed');
-    }
-
-    // Event listener for the toggle button
-    toggleButton.addEventListener('click', toggleMenu);
+    const navLinks = []; // No navigation links, so this can be an empty array or removed
+    // Removed toggleButton and navbarLinks since the menu is no longer present
 
     // Content Object (English and German translations)
     const content = {
         "en": {
             "nav": {
                 "home": "Home",
-                "about": "Jonas Hertner",
-                "services": "Expertise",
+                "about": "About",
+                "services": "Services",
                 "contact": "Contact"
             },
             "hero": {
@@ -43,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "subtitle": "LEGAL COUNSEL"
             },
             "about": {
-                "heading": "About Jonas Hertner",
+                "heading": "Jonas Hertner",
                 "content": "Jonas Hertner is a lawyer based in Zurich and Basel. Jonas has extensive experience handling complex commercial disputes, with a focus on the financial services, commodities, technology, biotech and life sciences, data privacy, arts, and non-profit/ecology sectors. He frequently represents companies, foundations, families and individuals in multi-jurisdictional disputes as well as in criminal and regulatory investigations. Additionally, Jonas has been involved in several key corporate criminal liability investigations and proceedings in Switzerland both on the victims/private plaintiffs’ side as well as on the defendants’ side."
             },
             "services": {
@@ -67,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "contact": {
                 "heading": "Contact",
-                "addressLabel": "Mail address",
+                "addressLabel": "Address",
                 "addressPlaceholder": "4051 Basel. 8032 Zurich.",
                 "emailLabel": "Email",
                 "emailPlaceholder": "jh@jonashertner.com"
@@ -76,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         "de": {
             "nav": {
                 "home": "Home",
-                "about": "Jonas Hertner",
-                "services": "Expertise",
+                "about": "Über",
+                "services": "Dienstleistungen",
                 "contact": "Kontakt"
             },
             "hero": {
@@ -143,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update active language button
-        document.querySelectorAll('.lang-btn').forEach(btn => {
+        languageButtons.forEach(btn => {
             btn.classList.remove('active');
             btn.setAttribute('aria-pressed', 'false');
         });
@@ -158,25 +137,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.lang = lang;
     }
 
-    // Function to close the mobile menu if it's open
-    function closeMenuIfOpen() {
-        if (navbarLinks.classList.contains('active')) {
-            closeMenu();
+    // Function to adjust navbar style based on current section
+    function adjustNavbarStyle(currentSection = 'home') {
+        if (currentSection === 'home') {
+            navbar.classList.remove('dark'); // Light navbar for home
+        } else {
+            navbar.classList.add('dark'); // Dark navbar for other sections
         }
     }
 
     // Event listeners for language buttons
-    const langEnBtn = document.getElementById('lang-en');
-    const langDeBtn = document.getElementById('lang-de');
-
-    langEnBtn.addEventListener('click', () => {
-        changeLanguage('en');
-        closeMenuIfOpen();
-    });
-
-    langDeBtn.addEventListener('click', () => {
-        changeLanguage('de');
-        closeMenuIfOpen();
+    languageButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.id.split('-')[1];
+            changeLanguage(lang);
+        });
     });
 
     // Load language on page load
@@ -184,10 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     changeLanguage(storedLang);
     adjustNavbarStyle('home'); // Set initial navbar style
 
-    // Ensure the menu is closed on page load
-    closeMenu();
-
-    // Intersection Observer for Active Navigation Link and Navbar Style
+    // Intersection Observer for Navbar Style based on visible section
     const options = {
         root: null, // Observe relative to the viewport
         rootMargin: '0px',
@@ -197,14 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const callback = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Remove active class from all links
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').substring(1) === entry.target.id) {
-                        link.classList.add('active');
-                    }
-                });
-
                 // Adjust navbar style based on current section
                 adjustNavbarStyle(entry.target.id);
             }
@@ -217,22 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // Function to adjust navbar style based on current section
-    function adjustNavbarStyle(currentSection = 'home') {
-        if (currentSection === 'home') {
-            navbar.classList.remove('dark'); // White text and transparent background
-        } else {
-            navbar.classList.add('dark'); // Black text and white background
-        }
-    }
+    /* 
+    * Removed all menu-related JavaScript since the navigation menu is no longer present.
+    * This includes the toggleMenu and closeMenu functions, as well as any event listeners related to the menu.
+    */
 
-    // **NEW CODE: Add Individual Event Listeners to All Navigation Links**
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    // **NEW CODE: Add Individual Event Listeners to Language Buttons**
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', closeMenu);
-    });
 });

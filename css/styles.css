@@ -1,6 +1,6 @@
 /* styles.css */
 
-/* Google Fonts */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 /* Import Bradford Font */
@@ -20,6 +20,38 @@
     font-style: normal;
 }
 
+/* Define CSS Variables for Typography and Colors */
+:root {
+    /* Font Families */
+    --font-family-primary: 'Bradford', sans-serif;
+    --font-family-secondary: 'Open Sans', sans-serif;
+    
+    /* Font Sizes */
+    --font-size-base: 16px;
+    --font-size-small: 0.875rem; /* 14px */
+    --font-size-large: 1.25rem; /* 20px */
+    --font-size-xlarge: 2rem; /* 32px */
+    
+    /* Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    
+    /* Line Heights */
+    --line-height-base: 1.6;
+    --line-height-heading: 1.2;
+    
+    /* Colors */
+    --color-primary: #333;
+    --color-secondary: #fff;
+    --color-accent: #555;
+    --color-background: #f9f9f9;
+    --color-navbar-bg: transparent;
+    --color-navbar-bg-dark: #fff;
+    --color-text-dark: #000;
+    --color-text-light: #fff;
+    --color-overlay: rgba(0, 0, 0, 0.4);
+}
+
 /* Reset and General Styles */
 * {
     margin: 0;
@@ -29,8 +61,11 @@
 
 html, body {
     height: 100%;
-    font-family: 'Bradford', sans-serif; /* Apply Bradford as default font */
-    scroll-behavior: smooth; /* Smooth scrolling */
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    color: var(--color-primary);
+    line-height: var(--line-height-base);
+    scroll-behavior: smooth;
 }
 
 a {
@@ -41,6 +76,7 @@ a {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 /* Scroll Snap Setup */
@@ -81,60 +117,34 @@ main::-webkit-scrollbar {
     padding: 0 20px;
 }
 
-/* Services Container Grid Layout */
+/* Services Container Enhanced Grid Layout */
 .services-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-@media (min-width: 768px) {
-    .services-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* Adjust Headings and Paragraphs with Responsive Scaling */
+.section h2 {
+    font-family: var(--font-family-primary);
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    line-height: var(--line-height-heading);
+    margin-bottom: 0.5em;
 }
 
-@media (min-width: 992px) {
-    .services-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.service-item h3 {
+    font-family: var(--font-family-primary);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    line-height: var(--line-height-heading);
+    margin-bottom: 0.75em;
 }
 
-@media (min-width: 1200px) {
-    .services-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* Adjust Headings and Paragraphs */
-@media (min-width: 1200px) {
-    .about-content h2,
-    #services h2,
-    #contact h2 {
-        font-size: 3em;
-    }
-
-    .about-content p,
-    .service-item p,
-    .contact-info p {
-        font-size: 1.2em;
-    }
-
-    /* Increase Section Padding */
-    #about,
-    #services,
-    #contact {
-        padding: 80px 0;
-    }
-
-    .service-item {
-        margin-bottom: 60px;
-    }
-
-    /* Navigation Styles for Large Screens */
-    .navbar-links li {
-        margin: 0 25px;
-    }
+p {
+    font-size: clamp(0.875rem, 2.5vw, 1.25rem);
+    margin-bottom: 1em;
 }
 
 /* Navigation Styles */
@@ -144,151 +154,64 @@ main::-webkit-scrollbar {
     width: 100%;
     z-index: 1000;
     display: flex;
+    justify-content: flex-end; /* Align language switcher to the right */
     align-items: center;
-    justify-content: flex-end;
-    padding: 15px 30px;
+/*    padding: 15px 30px;*/
     background-color: transparent;
+    transition: background-color 0.3s ease;
 }
 
-.navbar a,
-.navbar .lang-btn,
-.navbar .toggle-button {
-    color: #fff;
-}
+/*.navbar.dark {
+    background-color: var(--color-navbar-bg-dark);
+}*/
 
-.navbar a:hover,
-.navbar a.active {
-    border-bottom: 2px solid currentColor;
-}
-
-.navbar.dark a,
-.navbar.dark .lang-btn,
-.navbar.dark .toggle-button {
-    color: #000;
-}
-
-.navbar-links {
-    display: flex;
-    align-items: center;
-}
-
-.navbar-links ul {
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-.navbar-links li {
-    margin: 0 15px;
-    display: flex;
-    align-items: center;
-}
-
-/* Language Switcher */
 .language-switcher {
     display: flex;
     align-items: center;
 }
 
-.language-switcher .lang-btn {
+.lang-btn {
     background: none;
     border: none;
     font-size: 1em;
     margin-left: 10px;
     cursor: pointer;
     color: inherit;
-    font-family: 'Bradford', sans-serif;
+    font-family: var(--font-family-primary);
+/*    padding: 5px 10px;*/
+    border-radius: 3px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.language-switcher .lang-btn:hover {
-    color: #ddd;
-    transform: scale(1.1);
+.lang-btn:hover,
+.lang-btn.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
-.language-switcher .lang-btn.active {
-    font-weight: bold;
-}
-
-/* Language Switcher Color Correction */
 .navbar.dark .language-switcher .lang-btn {
-    color: #000; /* Black color in other sections */
+    color: var(--color-text-dark);
 }
 
 .navbar:not(.dark) .language-switcher .lang-btn {
-    color: #fff; /* White color in Home section */
-}
-
-/* Hamburger Menu Styles */
-.toggle-button {
-    display: none; /* Hidden by default; shown on mobile */
-    position: relative;
-    width: 30px;
-    height: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: #fff; /* Default color when menu is closed */
-    z-index: 1001;
-    transition: color 0.3s ease; /* Smooth color transition */
-}
-
-.toggle-button .bar {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background-color: currentColor;
-    transition: all 0.4s ease;
-    border-radius: 2px;
-}
-
-.toggle-button .bar:nth-child(1) {
-    top: 0;
-}
-
-.toggle-button .bar:nth-child(2) {
-    top: 10px;
-}
-
-.toggle-button .bar:nth-child(3) {
-    top: 20px;
-}
-
-/* Hamburger Menu Animation for Open State */
-.toggle-button.open .bar:nth-child(1) {
-    transform: rotate(45deg);
-    top: 10px;
-}
-
-.toggle-button.open .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.toggle-button.open .bar:nth-child(3) {
-    transform: rotate(-45deg);
-    top: 10px;
-}
-
-/* Change toggle-button's color when menu is open */
-.toggle-button.open {
-    color: #000; /* Black color for the "X" */
+    color: var(--color-text-light);
 }
 
 /* Main Content Styles */
 main {
-    padding-top: 0;
+    padding-top: 60px; /* Height of navbar to prevent content being hidden behind it */
     padding-bottom: 40px;
 }
 
 /* Hero Section */
 #home {
-    position: relative;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     min-height: 100vh;
-    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .hero-image {
@@ -297,7 +220,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero-image img,
@@ -309,11 +232,23 @@ main {
 
 .hero-content {
     text-align: center;
-    color: #fff;
-    padding: 0 20px;
+    color: var(--color-text-light);
+    z-index: 1; /* Ensure content is above the image */
+}
+
+#home::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-overlay); /* Semi-transparent overlay */
+    z-index: 0;
 }
 
 .hero-content h1 {
+    font-family: var(--font-family-primary);
     font-size: clamp(2rem, 8vw, 4rem);
     margin-bottom: 20px;
 }
@@ -321,18 +256,20 @@ main {
 .hero-content p {
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     margin-bottom: 30px;
+    font-weight: var(--font-weight-normal);
 }
 
 /* Button Styles */
 .btn {
     padding: 15px 30px;
     font-size: 1em;
-    color: #fff;
+    color: var(--color-text-light);
     background-color: rgba(255, 255, 255, 0.2);
     border: 2px solid #fff;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    font-family: var(--font-family-primary);
 }
 
 .btn:hover {
@@ -342,8 +279,8 @@ main {
 
 /* About Section */
 #about {
-    background-color: #fff;
-    color: #333;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
     padding: 60px 20px;
     display: grid;
     place-items: center;
@@ -356,20 +293,20 @@ main {
 }
 
 .about-content h2 {
-    font-size: clamp(2rem, 4vw, 3em);
-    margin-bottom: 20px;
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    margin-bottom: 0.5em;
     text-align: left;
 }
 
 .about-content p {
-    font-size: 1.2em;
-    line-height: 1.6;
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    line-height: var(--line-height-base);
     text-align: left;
 }
 
 /* Services Section */
 #services {
-    background-color: #f9f9f9;
+    background-color: var(--color-background);
     padding: 60px 20px;
     display: grid;
     place-items: center;
@@ -377,53 +314,37 @@ main {
 }
 
 #services h2 {
+    font-family: var(--font-family-primary);
     text-align: left;
-    align-self: end;
-    margin-left: 20px;
-    margin-bottom: 40px;
-    font-size: clamp(2rem, 4vw, 2.5em);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    align-self: start;
     margin: 0 0 20px;
     padding-bottom: 20px;
+    font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .services-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    align-self: start;
-}
-
-@media (min-width: 768px) {
-    .services-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 992px) {
-    .services-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
+    padding: 0 20px;
 }
 
 .service-item h3 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    margin-bottom: 0.75em;
     text-align: left;
 }
 
 .service-item p {
-    font-size: 1em;
+    font-size: clamp(0.875rem, 2.5vw, 1.25rem);
     text-align: left;
 }
 
 /* Contact Section */
 #contact {
-    background-color: #fff;
+    background-color: var(--color-secondary);
     padding: 60px 20px;
     display: grid;
     place-items: center;
@@ -431,22 +352,18 @@ main {
 }
 
 #contact h2 {
+    font-family: var(--font-family-primary);
     text-align: left;
-    align-self: end;
-    margin-left: 20px;
-    margin-bottom: 40px;
-    font-size: clamp(2rem, 4vw, 2.5em);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    align-self: start;
     margin: 0 0 20px;
     padding-bottom: 20px;
+    font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .contact-info {
     max-width: 800px;
     margin: 0 auto;
-    font-size: 1.1em;
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
     align-self: start;
 }
 
@@ -466,120 +383,102 @@ main {
 }
 
 /* Responsive Design */
+
+/* Mobile Styles */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
     }
 
-    /* About Section */
-    .about-content h2 {
-        font-size: clamp(16px, 3.5vw, 24px); /* Scales between 16px and 24px */
-    }
-    .about-content p {
-        font-size: clamp(14px, 3vw, 18px); /* Scales between 14px and 18px */
+    /* Language Switcher Styling */
+    .language-switcher {
+        justify-content: flex-end;
     }
 
-    /* Services Section */
-    .services-container h3 {
-        font-size: clamp(16px, 3.5vw, 22px); /* Scales between 16px and 22px */
-    }
-    .services-container p {
-        font-size: clamp(14px, 3vw, 18px); /* Consistent with paragraphs in other sections */
-    }
-    #services h2 {
-        font-size: clamp(24px, 4vw, 32px); /* Scales heading size appropriately */
+    /* Adjust font sizes for better readability on mobile */
+    .section h2 {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
     }
 
-    /* Contact Section */
-    #contact h2 {
-        font-size: clamp(24px, 4vw, 32px); /* Matches services section heading size */
+
+    .service-item h3 {
+        font-size: clamp(1.2rem, 4vw, 2.4rem);
     }
+
+    .service-item p,
+    .about-content p,
     .contact-info p {
-        font-size: clamp(14px, 3vw, 18px); /* Aligns with paragraph styling */
+        font-size: clamp(1rem, 3vw, 2rem);
     }
 }
 
-/* Show hamburger menu on mobile */
-.toggle-button {
-    display: block;
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 991px) {
+    .services-container {
+        grid-template-columns: 1fr;
+    }
+
+    .section h2 {
+        font-size: clamp(1.75rem, 4vw, 3rem);
+    }
+
+    .service-item h3 {
+        font-size: clamp(1.25rem, 3.5vw, 2rem);
+    }
+
+    .service-item p,
+    .about-content p,
+    .contact-info p {
+        font-size: clamp(0.875rem, 2.5vw, 1.25rem);
+    }
 }
 
-/* Hide navigation links by default on mobile */
-.navbar-links {
-    display: none;
-    width: 100%;
+/* Desktop Styles */
+@media (min-width: 992px) {
+    .services-container {
+        grid-template-columns: 1fr;
+    }
+
+    .section h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .service-item h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .service-item p,
+    .about-content p,
+    .contact-info p {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+    }
 }
 
-/* Display navigation links when active on mobile */
-.navbar-links.active {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 60px;
-    z-index: 999;
-    overflow-y: auto;
-}
+/* Large Desktop Styles */
+@media (min-width: 1200px) {
+    .services-container {
+        grid-template-columns: 1fr;
+    }
 
-.navbar-links.active a {
-    color: #000;
-}
+    .section h2 {
+        font-size: clamp(2.5rem, 3.5vw, 4rem);
+    }
 
-/* Language Switcher in Mobile Menu */
-.navbar-links.active .language-switcher .lang-btn {
-    color: #000;
-}
-
-.navbar-links ul {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-    align-items: center;
-}
-
-.navbar-links li {
-    display: flex; /* Ensure flex container */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-    margin: 15px 0;
-    width: 100%; /* Make li elements take full width */
-}
-
-.navbar-links a {
-    font-size: 1.2em;
-}
-
-/* Adjust hero content for mobile */
-.hero-content h1 {
-    font-size: clamp(2rem, 8vw, 4rem);
-}
-
-.hero-content p {
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-}
-
-/* Adjust language switcher in mobile view */
-.navbar-links.active .language-switcher {
-    display: flex; /* Ensure flex container */
-    justify-content: center; /* Center contents */
-    align-items: center;
-    margin: 15px 0; /* Match margin with other menu items */
-    width: 100%; /* Take full width */
-}
-
-.navbar-links.active .language-switcher .lang-btn {
-    margin: 0 5px; /* Space between language buttons */
+    .service-item h3 {
+        font-size: clamp(1.75rem, 3vw, 2rem);
+    }
 }
 
 /* Accessibility Focus Styles */
-.navbar a:focus,
-.language-switcher .lang-btn:focus,
-.toggle-button:focus {
-    outline: 0;
-    outline-offset: 0;
+a:focus,
+.lang-btn:focus,
+.btn:focus {
+    outline: 0px dashed var(--color-accent);
+    outline-offset: 1px;
+}
+
+/* Ensure smooth transitions for interactive elements */
+.lang-btn,
+.btn {
+    transition: all 0.3s ease;
 }
