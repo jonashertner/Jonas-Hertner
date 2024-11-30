@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Complex disputes",
-                    "description": "Advise and represent parties in complex disputes."
+                    "description": "Advise and represent parties in complex disputes. Jonas Hertner est un avocat basé à Zurich et Bâle. Jonas possède une vaste expérience dans la gestion de litiges commerciaux complexes, avec un accent sur les services financiers, les matières premières, la technologie, la biotechnologie et les sciences de la vie, la confidentialité des données, les arts et les secteurs à but non lucratif/écologie. Il représente fréquemment des entreprises, des fondations, des familles et des particuliers dans des litiges multi-juridictionnels ainsi que dans des enquêtes criminelles et réglementaires. De plus, Jonas a été impliqué dans plusieurs enquêtes et procédures clés sur la responsabilité pénale des entreprises en Suisse, tant du côté des victimes/plaintifs privés que du côté des défendeurs."
                 },
                 "service2": {
                     "title": "Family and private clients",
