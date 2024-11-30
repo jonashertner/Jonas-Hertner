@@ -117,16 +117,6 @@ main::-webkit-scrollbar {
     padding: 0 20px;
 }
 
-/* Services Container Enhanced Grid Layout */
-.services-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 /* Adjust Headings and Paragraphs with Responsive Scaling */
 .section h2 {
     font-family: var(--font-family-primary);
@@ -305,40 +295,66 @@ main {
 }
 
 /* Services Section */
-#services {
-    background-color: var(--color-background);
+
+#services1 {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
     padding: 60px 20px;
     display: grid;
     place-items: center;
     min-height: 100vh;
 }
 
-#services h2 {
-    font-family: var(--font-family-primary);
-    text-align: left;
-    align-self: start;
-    margin: 0 0 20px;
-    /*padding-bottom: 10px;*/
-    font-size: clamp(2rem, 4vw, 3rem);
-}
-
-.services-container {
+#services2 {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 60px 20px;
     display: grid;
-/*    grid-template-columns: 1fr;*/
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 10px;
+    place-items: center;
+    min-height: 100vh;
 }
 
-.service-item h3 {
-    font-size: clamp(1.25rem, 3vw, 2rem);
-    margin-bottom: 0.75em;
+#services3 {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+#services4 {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+#services5 {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.services-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.services-content h2 {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    margin-bottom: 0.5em;
     text-align: left;
 }
 
-.service-item p {
-    font-size: clamp(0.875rem, 2.5vw, 1.25rem);
+.services-content p {
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    line-height: var(--line-height-base);
     text-align: left;
 }
 
@@ -380,6 +396,32 @@ main {
 
 .contact-info a:hover {
     color: #555;
+}
+
+#bio {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.bio-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.bio-content h2 {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    margin-bottom: 0.5em;
+    text-align: left;
+}
+
+.bio-content p {
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    line-height: var(--line-height-base);
+    text-align: left;
 }
 
 /* Responsive Design */
