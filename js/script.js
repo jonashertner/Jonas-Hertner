@@ -5,10 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageButtons = document.querySelectorAll('.lang-btn');
     const navbar = document.querySelector('.navbar');
     const sections = document.querySelectorAll('.section');
-    const navLinks = []; // No navigation links, so this can be an empty array or removed
-    // Removed toggleButton and navbarLinks since the menu is no longer present
 
-    // Content Object (English and German translations)
+    // Content Object (English, German, and French translations)
     const content = {
         "en": {
             "nav": {
@@ -91,6 +89,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 "addressLabel": "Postadresse",
                 "addressPlaceholder": "4052 Basel. 8032 Zürich. Schweiz",
                 "emailLabel": "E-Mail",
+                "emailPlaceholder": "jh@jonashertner.com"
+            },
+        },
+        "fr": { // Added French translations
+            "nav": {
+                "home": "Accueil",
+                "about": "À propos",
+                "services": "Services",
+                "contact": "Contact"
+            },
+            "hero": {
+                "title": "Jonas Hertner",
+                "subtitle": "CONSEIL JURIDIQUE"
+            },
+            "about": {
+                "heading": "Jonas Hertner",
+                "content": "Jonas Hertner est un avocat basé à Zurich et Bâle. Jonas possède une vaste expérience dans la gestion de litiges commerciaux complexes, avec un accent sur les services financiers, les matières premières, la technologie, la biotechnologie et les sciences de la vie, la confidentialité des données, les arts et les secteurs à but non lucratif/écologie. Il représente fréquemment des entreprises, des fondations, des familles et des particuliers dans des litiges multi-juridictionnels ainsi que dans des enquêtes criminelles et réglementaires. De plus, Jonas a été impliqué dans plusieurs enquêtes et procédures clés sur la responsabilité pénale des entreprises en Suisse, tant du côté des victimes/plaintifs privés que du côté des défendeurs."
+            },
+            "services": {
+                "heading": "Expertise",
+                "service1": {
+                    "title": "Litiges complexes",
+                    "description": "Conseiller et représenter les parties dans des litiges complexes."
+                },
+                "service2": {
+                    "title": "Clients familiaux et privés",
+                    "description": "Conseiller les clients privés sur des questions juridiques."
+                },
+                "service3": {
+                    "title": "Droit pénal",
+                    "description": "Conseiller et représenter les parties dans les enquêtes et procédures pénales."
+                },
+                "service4": {
+                    "title": "Contentieux d'impact",
+                    "description": "Conseiller et représenter les parties dans des contentieux d'impact stratégiques dans les domaines de l'écologie et des droits fondamentaux."
+                }
+            },
+            "contact": {
+                "heading": "Contact",
+                "addressLabel": "Adresse",
+                "addressPlaceholder": "4051 Bâle. 8032 Zurich.",
+                "emailLabel": "Email",
                 "emailPlaceholder": "jh@jonashertner.com"
             },
         }
@@ -180,10 +220,5 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         observer.observe(section);
     });
-
-    /* 
-    * Removed all menu-related JavaScript since the navigation menu is no longer present.
-    * This includes the toggleMenu and closeMenu functions, as well as any event listeners related to the menu.
-    */
 
 });
