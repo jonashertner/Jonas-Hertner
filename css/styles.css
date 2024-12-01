@@ -319,6 +319,28 @@ main {
     place-items: center;
 }
 
+#services3 {
+    background-image: url('../images/services3-bg.jpg'); /* Replace with the actual path to your background image */
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light); /* Set font color to white */
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+#services5 {
+    background-image: url('../images/services5-bg.jpg'); /* Replace with the actual path to your background image */
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light); /* Set font color to white */
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
 /* Contact Section */
 .contact-section {
     background-color: var(--color-secondary);
