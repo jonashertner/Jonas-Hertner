@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageButtons = document.querySelectorAll('.lang-btn');
     const navbar = document.querySelector('.navbar');
     const sections = document.querySelectorAll('.section');
+    const languageSwitcher = document.querySelector('.language-switcher');
 
     // Content Object (English, German, and French translations)
     const content = {
@@ -198,13 +199,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to adjust navbar style based on current section
-    function adjustNavbarStyle(currentSection = 'home') {
-        if (currentSection === 'home') {
-            navbar.classList.remove('dark'); // Light navbar for home
-        } else {
-            navbar.classList.add('dark'); // Dark navbar for other sections
-        }
+function adjustNavbarStyle(currentSection = 'home') {
+    if (currentSection === 'home' || currentSection === 'services1') {
+        navbar.classList.remove('dark'); // Light navbar for home and services1
+        languageSwitcher.style.color = 'white'; // Ensure font color is white
+    } else {
+        navbar.classList.add('dark'); // Dark navbar for other sections
+        languageSwitcher.style.color = ''; // Revert to default or inherit styling
     }
+}
 
     // Event listeners for language buttons
     languageButtons.forEach(btn => {
