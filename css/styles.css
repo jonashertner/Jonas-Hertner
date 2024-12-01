@@ -96,7 +96,7 @@ main::-webkit-scrollbar {
     scroll-snap-align: start;
     min-height: 100vh;
     position: relative;
-    padding: 0 30px 60px;
+    padding: 0 30px 30px;
     box-sizing: border-box;
 }
 
