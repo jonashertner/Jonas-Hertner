@@ -108,11 +108,12 @@ main::-webkit-scrollbar {
     box-sizing: border-box;
 }
 
-/* Apply to specific sections */
+/* Apply to specific content containers */
 .about-content,
-.services-container,
-.contact-info {
-    max-width: 1200px;
+.services-content,
+.bio-content,
+.contact-content {
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -123,6 +124,7 @@ main::-webkit-scrollbar {
     font-size: clamp(1.75rem, 4vw, 3rem);
     line-height: var(--line-height-heading);
     margin-bottom: 0.5em;
+    text-align: left;
 }
 
 .service-item h3 {
@@ -135,6 +137,7 @@ main::-webkit-scrollbar {
 p {
     font-size: clamp(0.875rem, 2.5vw, 1.25rem);
     margin-bottom: 1em;
+    text-align: left;
 }
 
 /* Navigation Styles */
@@ -151,9 +154,11 @@ p {
     transition: background-color 0.3s ease;
 }
 
-/*.navbar.dark {
+/* Uncomment if dark navbar is needed
+.navbar.dark {
     background-color: var(--color-navbar-bg-dark);
-}*/
+}
+*/
 
 .language-switcher {
     display: flex;
@@ -221,20 +226,15 @@ main {
 }
 
 .hero-content {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers children horizontally */
+    justify-content: center; /* Centers children vertically */
+    text-align: center; /* Centers text inside children */
     color: var(--color-text-light);
-    z-index: 1; /* Ensure content is above the image */
-}
-
-#home::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--color-overlay); /* Semi-transparent overlay */
-    z-index: 0;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 20px;
 }
 
 .hero-content h1 {
@@ -247,6 +247,9 @@ main {
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     margin-bottom: 30px;
     font-weight: var(--font-weight-normal);
+    /* Adjusted for centering */
+    max-width: 600px; /* Limits paragraph width */
+    text-align: center; /* Centers text inside the paragraph */
 }
 
 /* Button Styles */
@@ -277,89 +280,36 @@ main {
     min-height: 100vh;
 }
 
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
 .about-content h2 {
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    margin-bottom: 0.5em;
-    text-align: left;
+    /* Inherited styles from .section h2 */
 }
 
 .about-content p {
     font-size: clamp(1.2rem, 2.5vw, 1.4rem);
     line-height: var(--line-height-base);
-    text-align: left;
 }
 
 /* Services Section */
-
-#services1 {
+.services-section {
     background-color: var(--color-secondary);
     color: var(--color-primary);
     padding: 60px 20px;
     display: grid;
     place-items: center;
     min-height: 100vh;
-}
-
-#services2 {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    padding: 60px 20px;
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-}
-
-#services3 {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    padding: 60px 20px;
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-}
-
-#services4 {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    padding: 60px 20px;
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-}
-
-#services5 {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    padding: 60px 20px;
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-}
-
-.services-content {
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 .services-content h2 {
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    margin-bottom: 0.5em;
-    text-align: left;
+    /* Inherited styles from .section h2 */
 }
 
 .services-content p {
     font-size: clamp(1.2rem, 2.5vw, 1.4rem);
     line-height: var(--line-height-base);
-    text-align: left;
 }
 
 /* Contact Section */
-#contact {
+.contact-section {
     background-color: var(--color-secondary);
     padding: 60px 20px;
     display: grid;
@@ -367,13 +317,8 @@ main {
     min-height: 100vh;
 }
 
-#contact h2 {
-    font-family: var(--font-family-primary);
-    text-align: left;
-    align-self: start;
-    margin: 0 0 20px;
-    padding-bottom: 20px;
-    font-size: clamp(2rem, 4vw, 3rem);
+.contact-content h2 {
+    /* Inherited styles from .section h2 */
 }
 
 .contact-info {
@@ -385,7 +330,6 @@ main {
 
 .contact-info p {
     margin-bottom: 20px;
-    text-align: left;
 }
 
 .contact-info a {
@@ -396,32 +340,6 @@ main {
 
 .contact-info a:hover {
     color: #555;
-}
-
-#bio {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    padding: 60px 20px;
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-}
-
-.bio-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.bio-content h2 {
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    margin-bottom: 0.5em;
-    text-align: left;
-}
-
-.bio-content p {
-    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-    line-height: var(--line-height-base);
-    text-align: left;
 }
 
 /* Responsive Design */
@@ -442,28 +360,20 @@ main {
         font-size: clamp(1.5rem, 6vw, 2.5rem);
     }
 
-  .services-container {
-    margin-bottom: 20px; /* Or padding-bottom: 20px; */
-  }
-
     .service-item h3 {
         font-size: clamp(1.2rem, 4vw, 2.4rem);
     }
 
     .service-item p,
     .about-content p,
-    .contact-info p {
+    .contact-info p,
+    .bio-content p {
         font-size: clamp(1rem, 3vw, 2rem);
     }
 }
 
 /* Tablet Styles */
 @media (min-width: 769px) and (max-width: 991px) {
-    .services-container {
-        grid-template-columns: 1fr;
-        margin-bottom: 20px;
-    }
-
     .section h2 {
         font-size: clamp(1.75rem, 4vw, 3rem);
     }
@@ -474,17 +384,14 @@ main {
 
     .service-item p,
     .about-content p,
-    .contact-info p {
+    .contact-info p,
+    .bio-content p {
         font-size: clamp(0.875rem, 2.5vw, 1.25rem);
     }
 }
 
 /* Desktop Styles */
 @media (min-width: 992px) {
-    .services-container {
-        grid-template-columns: 1fr;
-    }
-
     .section h2 {
         font-size: clamp(2rem, 4vw, 3rem);
     }
@@ -495,17 +402,14 @@ main {
 
     .service-item p,
     .about-content p,
-    .contact-info p {
+    .contact-info p,
+    .bio-content p {
         font-size: clamp(1rem, 2.5vw, 1.25rem);
     }
 }
 
 /* Large Desktop Styles */
 @media (min-width: 1200px) {
-    .services-container {
-        grid-template-columns: 1fr;
-    }
-
     .section h2 {
         font-size: clamp(2.5rem, 3.5vw, 4rem);
     }
