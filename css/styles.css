@@ -216,6 +216,10 @@ main {
     width: 100%;
     height: 100%;
     z-index: 0;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-image img,
@@ -317,6 +321,8 @@ main {
     min-height: 100vh;
     display: grid;
     place-items: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
 }
 
 #services1 {
