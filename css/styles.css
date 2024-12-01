@@ -274,7 +274,7 @@ main {
 #about {
     background-color: var(--color-secondary);
     color: var(--color-primary);
-    padding: 60px 20px;
+/*    padding: 60px 20px;*/
     display: grid;
     place-items: center;
     min-height: 100vh;
@@ -293,7 +293,7 @@ main {
 .services-section {
     background-color: var(--color-secondary);
     color: var(--color-primary);
-    padding: 60px 20px;
+/*    padding: 60px 20px;*/
     display: grid;
     place-items: center;
     min-height: 100vh;
@@ -313,7 +313,7 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-    padding: 60px 20px;
+/*    padding: 60px 20px;*/
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -324,7 +324,7 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-    padding: 60px 20px;
+/*    padding: 60px 20px;*/
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -335,7 +335,7 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-    padding: 60px 20px;
+/*    padding: 60px 20px;*/
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -346,7 +346,7 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-    padding: 60px 20px;
+/*    padding: 60px 20px;*/
     min-height: 100vh;
     display: grid;
     place-items: center;
