@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to adjust navbar style based on current section
 function adjustNavbarStyle(currentSection = 'home') {
-    if (currentSection === 'home' || currentSection === 'about' || currentSection === 'services1' || currentSection === 'services3' || currentSection === 'services5') {
+    if (currentSection === 'home' || currentSection === 'contact' || currentSection === 'services1' || currentSection === 'services3' || currentSection === 'services5') {
         navbar.classList.remove('dark'); // Light navbar for home and services1,3
         languageSwitcher.style.color = 'white'; // Ensure font color is white
     } else {

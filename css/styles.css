@@ -308,7 +308,7 @@ main {
     line-height: var(--line-height-base);
 }
 
-#about {
+#contact {
     background-image: url('../images/jh.jpg'); /* Replace with the actual path to your background image */
     background-size: cover;
     background-position: center;
@@ -377,13 +377,13 @@ main {
 }
 
 .contact-info a {
-    color: #333;
+    color: var(--color-text-light);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .contact-info a:hover {
-    color: #555;
+    color: var(--color-text-light);
 }
 
 /* Responsive Design */
