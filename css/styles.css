@@ -98,7 +98,15 @@ main::-webkit-scrollbar {
     position: relative;
     padding: 0 /*30px 30px*/;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
 }
+
 
 /* General Container Styles */
 .container {
@@ -278,7 +286,7 @@ main {
 #about {
     background-color: var(--color-secondary);
     color: var(--color-primary);
-/*    padding: 60px 20px;*/
+    padding: 60px 20px;
     display: grid;
     place-items: center;
     min-height: 100vh;
@@ -297,7 +305,7 @@ main {
 .services-section {
     background-color: var(--color-secondary);
     color: var(--color-primary);
-/*    padding: 60px 20px;*/
+    padding: 60px 20px;
     display: grid;
     place-items: center;
     min-height: 100vh;
@@ -317,12 +325,11 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-/*    padding: 60px 20px;*/
+    padding: 60px 20px;
     min-height: 100vh;
     display: grid;
     place-items: center;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
+    margin: 0;
 }
 
 #services1 {
@@ -330,7 +337,7 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-/*    padding: 60px 20px;*/
+    padding: 60px 20px;
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -341,7 +348,7 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-/*    padding: 60px 20px;*/
+    padding: 60px 20px;
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -352,7 +359,7 @@ main {
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */
-/*    padding: 60px 20px;*/
+    padding: 60px 20px;
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -361,6 +368,8 @@ main {
 /* Contact Section */
 .contact-section {
     background-color: var(--color-secondary);
+    background-size: cover;
+    background-position: center;
     padding: 60px 20px;
     display: grid;
     place-items: center;
