@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "services": {
                 "heading": "Expertise",
                 "service1": {
-                    "title": "Komplexe Streitigkeiten",
+                    "title": "Rechtsstreitigkeiten",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
                 },
                 "service2": {
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "services": {
                 "heading": "Expertise",
                 "service1": {
-                    "title": "Litiges complexes",
+                    "title": "Litiges",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
                 },
                 "service2": {
