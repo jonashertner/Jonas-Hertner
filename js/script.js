@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "en": {
             "hero": {
                 "title": "Jonas Hertner",
-                "subtitle": "ATTORNEY"
+                "subtitle": "LEGAL COUNSEL"
             },
             "about": {
                 "heading": "Jonas Hertner",
-                "content": "Jonas Hertner is an independent lawyer in Zurich and Basel. He represents private individuals and companies in legally complex situations."
+                "content": "Jonas Hertner is an independent lawyer in Zurich and Basel with more than a decade of experience serving as counsel to Swiss and international clients in some of the most high-stakes legal disputes in Switzerland. Jonas advises private individuals and companies in legally complex situations. His practice encompasses advising and representing private individuals, families, foundations, and companies in navigating legal complexities on the way to achieving their goals. To his clients, Jonas is a trusted advisor and an unwavering advocate, committed to excellence and to serving the long-term interest of his clients."
             },
             "services": {
                 "heading": "Expertise",
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "about": {
                 "heading": "Jonas Hertner",
-                "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel. Er vertritt Privatpersonen und Unternehmen in rechtlich komplexen Situationen."
+                "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel mit mehr als zehn Jahren Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der wichtigsten Rechtsstreitigkeiten in der Schweiz. Jonas berät Privatpersonen und Unternehmen in rechtlich komplexen Situationen. Seine Tätigkeit umfasst die Beratung und Vertretung von Privatpersonen, Familien, Stiftungen und Unternehmen auf dem Weg zur Erreichung ihrer Ziele. Für seine Mandanten ist Jonas ein verlässlicher Berater und unerschütterlicher Advokat, der sich mit dem Anspruch an höchste Qualität für die langfristigen Interessen seiner Mandanten einsetzt."
             },
             "services": {
                 "heading": "Expertise",
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "about": {
                 "heading": "Jonas Hertner",
-                "content": "Jonas Hertner est un avocat indépendant à Zurich et à Bâle. Il représente des particuliers et des entreprises dans des situations juridiquement complexes."
+                "content": "Jonas Hertner est un avocat indépendant basé à Zurich et à Bâle, avec plus de dix ans d'expérience en tant que conseiller de clients suisses et internationaux dans certains des plus importants litiges en Suisse. Jonas conseille des clients privés et des entreprises dans des situations juridiquement complexes. Il intervient en tant que conseiller et représentant des clients privés, des familles, des fondations et des entreprises dans la réalisation de leurs objectifs. Pour ses clients, Jonas est un conseiller de confiance et un avocat inébranlable qui s'engage à défendre les intérêts à long terme de ses clients avec la plus haute exigence de qualité."
             },
             "services": {
                 "heading": "Expertise",
