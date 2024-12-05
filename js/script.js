@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "about": {
                 "heading": "Jonas Hertner",
-                "content": "Jonas Hertner ist ein Rechtsanwalt mit Büros in Zürich und Basel. Jonas verfügt über umfangreiche Erfahrungen in der Bearbeitung komplexer kommerzieller Streitigkeiten, mit Schwerpunkt auf den Bereichen Finanzdienstleistungen, Rohstoffe, Technologie, Biotechnologie und Life Sciences, Datenschutz, Kunst sowie Non-Profit-/Ökologie-Sektoren. Er vertritt regelmäßig Unternehmen, Stiftungen, Familien und Einzelpersonen in mehrgerichtlichen Streitigkeiten sowie in strafrechtlichen und regulatorischen Untersuchungen. Darüber hinaus war Jonas an mehreren wichtigen Untersuchungen und Verfahren zur strafrechtlichen Unternehmenshaftung in der Schweiz sowohl auf Seiten der Opfer/privaten Kläger als auch auf Seiten der Angeklagten beteiligt."
+                "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel. Er vertritt Privatpersonen und Unternehmen in rechtlich komplexen Situationen."
             },
             "services": {
                 "heading": "Expertise",
