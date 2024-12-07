@@ -364,6 +364,15 @@ main {
     place-items: center;
 }
 
+#services6 {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
 /* Contact Section */
 .contact-section {
     background-color: var(--color-secondary);
