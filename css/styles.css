@@ -354,7 +354,7 @@ main {
 }
 
 #services3 {
-    background-image: url('../images/services3-bg.jpg'); /* Replace with the actual path to your background image */
+    background-image: url('../images/services3n2-bg.jpg'); /* Replace with the actual path to your background image */
     background-size: cover;
     background-position: center;
     color: var(--color-text-light); /* Set font color to white */

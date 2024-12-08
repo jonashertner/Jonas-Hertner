@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             },
             "bio": {
-                "heading": "Brief biography",
+                "heading": "Biography",
                 "content": "bio"
             },
             "contact": {
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             },
             "bio": {
-                "heading": "Erfahrung",
+                "heading": "Biographie",
                 "content": "bio"
             },
             "contact": {
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
 
             "bio": {
-                "heading": "Expérience",
+                "heading": "Biographie",
                 "content": "bio"
             },
 
