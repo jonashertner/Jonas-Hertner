@@ -320,6 +320,17 @@ main {
     line-height: var(--line-height-base);
 }
 
+#bio {
+    background-image: url('../images/bio-bg.jpg'); /* Replace with the actual path to your background image */
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light); /* Set font color to white */
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
 #contact {
     background-image: url('../images/jh.jpg'); /* Replace with the actual path to your background image */
     background-size: cover;
