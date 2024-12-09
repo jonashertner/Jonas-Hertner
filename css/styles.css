@@ -91,6 +91,13 @@ main::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
 }
 
+@media (min-width: 992px) {
+    main {
+        scroll-snap-type: none;
+        overflow-y: auto; /* Ensure normal scrolling on desktops */
+    }
+}
+
 /* Each Section as a Snap Point */
 .section {
     scroll-snap-align: start;
