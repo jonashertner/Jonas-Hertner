@@ -324,10 +324,10 @@ p {
 }
 
 #contact {
-    background-image: url('../images/jh.jpg');
+/*    background-image: url('../images/jh.jpg');*/
     background-size: cover;
     background-position: center;
-    color: var(--color-text-light);
+    color: var(--color-primary);
     padding: 60px 20px;
     min-height: 100vh;
     display: grid;
@@ -399,15 +399,25 @@ p {
 }
 
 .contact-info a {
-    color: var(--color-text-light);
+    color: var(--color-primary);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .contact-info a:hover {
-    color: var(--color-text-light);
+    color: var(--color-primary);
 }
 
+#jh {
+    background-image: url('../images/jh.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light);
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
 /* Responsive Design */
 
 /* Mobile Styles */

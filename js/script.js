@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Disputes",
-                    "description": "When you anticipate a dispute that you sense is worth taking, call your lawyer. Your lawyer will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitor or judge asked to decide the dispute. Doing so will help you take the most effective action at each turn on the way to securing your interest."
+                    "description": "Not every legal dispute is worth taking to court. Often, parties can find reasonable settlements out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitral tribunal or court asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
                 },
                 "service2": {
                     "title": "Family and private clients",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and private clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures."
                 },
                 "service3": {
                     "title": "Arts and media",
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biography",
-                "content": "bio"
+                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations in the development sector to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. He later helped to establish the Swiss office of the world's largest law firm specialising in litigation. Outside of his legal career, Jonas has worked as a freelance contributor for a non-commercial radio station and a major daily newspaper, and as a teacher of ethics and philosophy at the university-track secondary school level."
             },
             "contact": {
                 "heading": "Contact",
@@ -70,17 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "about": {
                 "heading": "Jonas Hertner",
-                "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel mit mehr als zehn Jahren Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der wichtigsten Rechtsstreitigkeiten in der Schweiz. Jonas berät Privatpersonen und Unternehmen in rechtlich komplexen Situationen. Seine Tätigkeit umfasst die Beratung und Vertretung von Privatpersonen, Familien, Stiftungen und Unternehmen auf dem Weg zur Erreichung ihrer Ziele. Für seine Mandanten ist Jonas ein verlässlicher Berater und unerschütterlicher Advokat, der sich mit dem Anspruch an höchste Qualität für die langfristigen Interessen seiner Mandanten einsetzt."
+                "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel mit über einem Jahrzehnt an Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der wichtigsten Rechtsstreitigkeiten in der Schweiz. Jonas berät Privatpersonen, Familien, Stiftungen und Unternehmen auf dem Weg zur Erreichung ihrer Ziele. Für seine Mandanten ist Jonas ein verlässlicher Berater und unerschütterlicher Advokat, der sich mit dem Anspruch an höchste Qualität für die langfristigen Interessen seiner Mandanten einsetzt."
             },
             "services": {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Rechtsstreitigkeiten",
-                    "description": "Wenn Sie einen Rechtsstreit erwarten, der sich Ihrer Meinung nach lohnt, wenden Sie sich an Ihren Anwalt. Ihr Anwalt wird Ihnen dabei helfen, Ihre eigene Perspektive, die Perspektive der Gegenseite und die Perspektive eines eventuellen Gerichts, das über den Rechtsstreit entscheiden soll, zu durchdenken. So können Sie auf dem Weg zur Sicherung Ihrer Interessen in jeder Situation die bestmögliche Entscheidung treffen."
+                    "description": "Nicht jeder Rechtsstreit ist es wert, vor Gericht gebracht zu werden. In vielen Fällen können die Parteien eine vernünftige außergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein günstiges Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes so früh wie möglich zu antizipieren, wenn sich ein Streit abzeichnet. Mit seiner Erfahrung aus über zehn Jahren Prozessführung auf höchstem Level wird Jonas Ihnen dabei helfen, Ihre eigene Perspektive, die Perspektive der Gegenseite und die Perspektive eines eventuellen Schiedsgerichts oder Gerichts, das über den Streit entscheiden soll, zu durchdenken, damit Sie auf dem Weg zur Sicherung Ihrer Interessen in jeder Situation die bestmögliche Entscheidung treffen können."
                 },
                 "service2": {
-                    "title": "Familien und Privatkunden",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "title": "Familien und Einzelpersonen",
+                    "description": "Jonas Hertner verfügt über weitreichende Erfahrung in der Beratung von in der Schweiz ansässigen und internationalen Familien und Einzelpersonen auf höchstem Niveau in komplexen Rechtssituationen – einschließlich wichtiger Aktionärsstreitigkeiten, großer Finanzprozesse, strafrechtlicher Untersuchungen sowie nichtstreitiger Situationen wie der Unterstützung beim Aufbau von Unternehmen."
                 },
                 "service3": {
                     "title": "Kunst und Medien",
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biographie",
-                "content": "bio"
+                "content": "Jonas Hertner hat an den Universitäten Luzern und Genf das Studium der Rechtswissenschaften mit Auszeichnung abgeschlossen. Seine Laufbahn führte ihn von Nonprofit-Unternehmungen im Entwicklungsbereich zunächst zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später hat er das Schweizer Büro der weltweit grössten, auf Rechtsstreitigkeiten spezialisierten Anwaltskanzlei mitaufgebaut. Ausserhalb seiner juristischen Karriere war Jonas u.a. als freischaffender Mitarbeiter eines nonkommerziellen Radios sowie einer grossen Tageszeitung und als Lehrer für Ethik und Philosophie auf Gymnasialstufe tätig."
             },
             "contact": {
                 "heading": "Kontakt",
@@ -124,17 +124,17 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "about": {
                 "heading": "Jonas Hertner",
-                "content": "Jonas Hertner est un avocat indépendant basé à Zurich et à Bâle, avec plus de dix ans d'expérience en tant que conseiller de clients suisses et internationaux dans certains des plus importants litiges en Suisse. Jonas conseille des clients privés et des entreprises dans des situations juridiquement complexes. Il intervient en tant que conseiller et représentant des clients privés, des familles, des fondations et des entreprises dans la réalisation de leurs objectifs. Pour ses clients, Jonas est un conseiller de confiance et un avocat inébranlable qui s'engage à défendre les intérêts à long terme de ses clients avec la plus haute exigence de qualité."
+                "content": "Jonas Hertner est un avocat indépendant basé à Zurich et à Bâle, avec plus d'une décennie d'expérience guidant des clients suisses et internationaux dans des litiges juridiques de grande importance. Il conseille des particuliers, des familles, des fondations et des entreprises dans des situations complexes afin qu'ils puissent atteindre leurs objectifs. Pour ses clients, il est un conseiller de confiance et un avocat inébranlable, voué à l'excellence dans la protection et la promotion de leurs intérêts à long terme."
             },
             "services": {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Litiges",
-                    "description": "Si vous prévoyez un litige qui vous semble digne d'intérêt, appelez votre avocat. Votre avocat vous aidera à examiner votre propre point de vue, celui de la partie adverse et celui d'un éventuel arbitre ou juge chargé de trancher le litige. Cela vous aidera à prendre les mesures les plus efficaces à chaque étape de la procédure pour protéger vos intérêts."
+                    "description": "Tous les litiges juridiques ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent trouver des solutions raisonnables à l'amiable. Pour parvenir à une issue favorable, que ce soit en justice ou à l'amiable, il est important d'anticiper les conséquences possibles de toute mesure prise le plus tôt possible lorsqu'un litige se profile à l'horizon. Avec son expérience de plus de dix ans de contentieux au plus haut niveau, Jonas Hertner vous aidera à réfléchir à votre propre perspective, à celle de la partie adverse et à celle d'un éventuel tribunal arbitral ou judiciaire appelé à trancher le litige, ce qui vous permettra de prendre les mesures les plus efficaces à chaque étape afin de garantir vos intérêts. "
                 },
                 "service2": {
                     "title": "Clients familiaux et privés",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner a une grande expérience du conseil aux familles et aux particuliers basés en Suisse ou à l'étranger, au plus haut niveau, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires, de litiges financiers importants, d'enquêtes sur des actes criminels, ainsi que dans des situations non litigieuses telles que l'aide à la création d'entreprises."
                 },
                 "service3": {
                     "title": "Arts et média",
@@ -156,16 +156,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             "bio": {
                 "heading": "Biographie",
-                "content": "bio"
+                "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a d'abord conduit d'entreprises à but non lucratif dans le domaine du développement à la Direction du droit international public du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite contribué à la création du bureau suisse du plus grand cabinet d'avocats au monde spécialisé dans le contentieux. En dehors de sa carrière juridique, Jonas a notamment travaillé comme collaborateur indépendant pour une radio non commerciale ainsi que pour un grand quotidien et comme enseignant d'éthique et de philosophie au niveau du lycée."
             },
 
             "contact": {
                 "heading": "Contact",
-                "addressLabel": "Adresse",
+                "addressLabel": "",
                 "addressPlaceholder": "4051 Bâle. 8032 Zurich.",
-                "emailLabel": "Email",
+                "emailLabel": "",
                 "emailPlaceholder": "jh@jonashertner.com"
             }
+
         }
     };
 
@@ -214,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to adjust navbar style based on current section
 function adjustNavbarStyle(currentSection = 'home') {
-    if (currentSection === 'home' || currentSection === 'contact' || currentSection === 'services1' || currentSection === 'services3' || currentSection === 'services5' || currentSection === 'bio') {
+    if (currentSection === 'home' || currentSection === 'jh' || currentSection === 'services1' || currentSection === 'services3' || currentSection === 'services5' || currentSection === 'bio') {
         navbar.classList.remove('dark'); // Light navbar for home and services1,3
         languageSwitcher.style.color = 'white'; // Ensure font color is white
     } else {
