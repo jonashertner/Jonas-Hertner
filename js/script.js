@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service3": {
                     "title": "Arts et média",
+                    "description": "Jonas Hertner conseille et représente des artistes, des collectionneurs, des galeries et des foires d'art sur des questions juridiques. En outre, Jonas a une grande expérience des relations avec la presse et dispose de bons contacts avec les médias nationaux et internationaux."
                 },
                 "service4": {
                     "title": "Contentieux d'impact",
