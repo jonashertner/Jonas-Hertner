@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service3": {
                     "title": "Arts and media",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters. In addition, Jonas has extensive experience in dealing with the press and has good contacts with national and international media."
                 },
                 "service4": {
                     "title": "Impact litigation",
@@ -84,15 +84,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Rechtsstreitigkeiten",
-                    "description": "Nicht jeder Rechtsstreit ist es wert, vor Gericht gebracht zu werden. In vielen Fällen können die Parteien eine vernünftige außergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein günstiges Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes so früh wie möglich zu antizipieren, wenn sich ein Streit abzeichnet. Mit seiner Erfahrung aus über zehn Jahren Prozessführung auf höchstem Level wird Jonas Ihnen dabei helfen, Ihre eigene Perspektive, die Perspektive der Gegenseite und die Perspektive eines eventuellen Schiedsgerichts oder Gerichts, das über den Streit entscheiden soll, zu durchdenken, damit Sie auf dem Weg zur Sicherung Ihrer Interessen in jeder Situation die bestmögliche Entscheidung treffen können."
+                    "description": "Nicht jeder Rechtsstreit ist es wert, vor Gericht gebracht zu werden. In vielen Fällen können die Parteien eine vernünftige aussergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein günstiges Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes so früh wie möglich zu antizipieren, wenn sich ein Streit abzeichnet. Mit seiner Erfahrung aus über zehn Jahren Prozessführung auf höchstem Level wird Jonas Ihnen dabei helfen, Ihre eigene Perspektive, die Perspektive der Gegenseite und die Perspektive eines eventuellen Schiedsgerichts oder Gerichts, das über den Streit entscheiden soll, zu durchdenken, damit Sie auf dem Weg zur Sicherung Ihrer Interessen in jeder Situation die bestmögliche Entscheidung treffen können."
                 },
                 "service2": {
                     "title": "Familien und Einzelpersonen",
-                    "description": "Jonas Hertner verfügt über weitreichende Erfahrung in der Beratung von in der Schweiz ansässigen und internationalen Familien und Einzelpersonen auf höchstem Niveau in komplexen Rechtssituationen – einschließlich wichtiger Aktionärsstreitigkeiten, großer Finanzprozesse, strafrechtlicher Untersuchungen sowie nichtstreitiger Situationen wie der Unterstützung beim Aufbau von Unternehmen."
+                    "description": "Jonas Hertner verfügt über weitreichende Erfahrung in der Beratung von in der Schweiz ansässigen und internationalen Familien und Einzelpersonen auf höchstem Niveau in komplexen Rechtssituationen – einschliesslich wichtiger Aktionärsstreitigkeiten, großer Finanzprozesse, strafrechtlicher Untersuchungen sowie nichtstreitiger Situationen wie der Unterstützung beim Aufbau von Unternehmen oder in der Durchführung von Due Diligence-Prüfungen vor Transaktionen."
                 },
                 "service3": {
                     "title": "Kunst und Medien",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner berät und vertritt Künstler, Sammler, Galerien und Kunstmessen in rechtlichen Angelegenheiten. Darüber hinaus hat Jonas weitreichende Erfahrungen im Umgang mit der Presse und verfügt über gute Kontakte zu nationalen und internationalen Medien."
                 },
                 "service4": {
                     "title": "Strategische Prozessführung",
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biographie",
-                "content": "Jonas Hertner hat an den Universitäten Luzern und Genf das Studium der Rechtswissenschaften mit Auszeichnung abgeschlossen. Seine Laufbahn führte ihn von Nonprofit-Unternehmungen im Entwicklungsbereich zunächst zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später hat er das Schweizer Büro der weltweit grössten, auf Rechtsstreitigkeiten spezialisierten Anwaltskanzlei mitaufgebaut. Ausserhalb seiner juristischen Karriere war Jonas u.a. als freischaffender Mitarbeiter eines nonkommerziellen Radios sowie einer grossen Tageszeitung und als Lehrer für Ethik und Philosophie auf Gymnasialstufe tätig."
+                "content": "Jonas Hertner hat an den Universitäten Luzern und Genf das Studium der Rechtswissenschaften mit Auszeichnung abgeschlossen. Seine Laufbahn führte ihn von Nonprofit-Unternehmungen im Entwicklungsbereich zunächst zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später hat er das Schweizer Büro der weltweit grössten, auf Rechtsstreitigkeiten spezialisierten Anwaltskanzlei mitaufgebaut. Ausserhalb seiner juristischen Karriere war Jonas u.a. als freischaffender Mitarbeiter eines nonkommerziellen Radios und einer grossen Tageszeitung sowie als Lehrer für Ethik und Philosophie auf Gymnasialstufe tätig."
             },
             "contact": {
                 "heading": "Kontakt",
@@ -146,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service3": {
                     "title": "Arts et média",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
                 },
                 "service4": {
                     "title": "Contentieux d'impact",
@@ -164,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             "bio": {
                 "heading": "Biographie",
-                "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a d'abord conduit d'entreprises à but non lucratif dans le domaine du développement à la Direction du droit international public du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite contribué à la création du bureau suisse du plus grand cabinet d'avocats au monde spécialisé dans le contentieux. En dehors de sa carrière juridique, Jonas a notamment travaillé comme collaborateur indépendant pour une radio non commerciale ainsi que pour un grand quotidien et comme enseignant d'éthique et de philosophie au niveau du lycée."
+                "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a d'abord conduit d'entreprises à but non lucratif dans le domaine du développement à la Direction du droit international public du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite contribué à la création du bureau suisse du plus grand cabinet d'avocats au monde spécialisé dans le contentieux. En dehors de sa carrière juridique, Jonas a notamment travaillé comme collaborateur indépendant pour une radio non commerciale et un grand quotidien ainsi que comme enseignant d'éthique et de philosophie au niveau du lycée."
             },
 
             "contact": {
