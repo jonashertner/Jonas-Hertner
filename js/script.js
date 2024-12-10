@@ -1,6 +1,14 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    const password = prompt("Please enter the password:");
+    if (password !== "tryanderror137") {
+        document.body.innerHTML = "<h1>Access Denied</h1>";
+        return;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
     // Select essential DOM elements
     const languageButtons = document.querySelectorAll('.lang-btn');
     const navbar = document.querySelector('.navbar');
