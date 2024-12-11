@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Not every legal dispute is worth taking to court. Often, parties can find reasonable settlements out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitral tribunal or court asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
                 },
                 "service2": {
-                    "title": "Family and private clients",
-                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and private clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, review of governance structures and due diligence."
+                    "title": "Family and individual clients",
+                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and individual clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, review of governance structures and due diligence."
                 },
                 "service3": {
                     "title": "Arts and media",
-                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters. In addition, Jonas has extensive experience in dealing with the press and has good contacts with national and international media."
+                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters. Jonas also regularly interacts with the Swiss and international press if and when it serves his clients' interests."
                 },
                 "service4": {
                     "title": "Impact litigation",
@@ -46,16 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service5": {
                     "title": "Criminal law",
-                    "description": "Jonas Hertner has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of white collar/economic crime and civil rights."
+                    "description": "Jonas Hertner has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights."
                 },
                 "service6": {
                     "title": "Philosophy",
-                    "description": "At the heart of my practice is an unwavering dedication to my clients’ long-term interests, informed by my extensive experience at the highest level of the profession. Beginning from first principles, I question assumptions and consider every angle to identify the most effective approach. Guided by curiosity, empathy, excellence, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals."
+                    "description": "At the heart of my practice is an unwavering dedication to my clients’ long-term interests, informed by an extensive experience at the highest level of the profession. Beginning from first principles, I question assumptions and consider every angle to identify the most effective approach. Guided by curiosity, empathy, excellence, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals."
                 }
             },
             "bio": {
                 "heading": "Biography",
-                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations in the development sector to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. He later helped to establish the Swiss office of the world's largest law firm specialising in litigation. Outside of his legal career, Jonas has worked as a freelance contributor for a non-commercial radio station and a major daily newspaper, and as a teacher of ethics and philosophy at the university-track secondary school level."
+                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, helped to establish the Swiss office of the world's largest law firm specialising in litigation. Outside of his legal career, Jonas has worked as a freelance contributor for radio and press, and as a teacher of ethics and philosophy at the university-track secondary school level. Today, aside from his legal practice, Jonas is engaged in ventures in the areas of children's education and ecology."
             },
             "contact": {
                 "heading": "Contact",
