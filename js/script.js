@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biography",
-                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, helped to establish the Swiss office of the world's largest law firm specialising in litigation. Outside of his legal career, Jonas has worked as a freelance contributor for radio and press, and as a teacher of ethics and philosophy at the university-track secondary school level. Today, aside from his legal practice, Jonas is engaged in ventures in the areas of children's education and ecology."
+                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, he helped to establish the Swiss office of the world's largest law firm specialising in litigation. Outside of his legal career, Jonas has worked as a freelance contributor for radio and press, and as a teacher of ethics and philosophy at the university-track secondary school level. Today, aside from his legal practice, Jonas is engaged in ventures in the areas of children's education, ecology, and the arts."
             },
             "contact": {
                 "heading": "Contact",
