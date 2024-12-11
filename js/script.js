@@ -1,12 +1,12 @@
 // script.js
 
-document.addEventListener('DOMContentLoaded', () => {
-    const password = prompt("Please enter the password:");
-    if (password !== "tryanderror137") {
-        document.body.innerHTML = "<h1>Access Denied</h1>";
-        return;
-    }
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     const password = prompt("Please enter the password:");
+//     if (password !== "tryanderror137") {
+//         document.body.innerHTML = "<h1>Access Denied</h1>";
+//         return;
+//     }
+// });
 
 document.addEventListener('DOMContentLoaded', () => {
     // Select essential DOM elements
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service2": {
                     "title": "Family and private clients",
-                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and private clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures."
+                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and private clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, review of governance structures and due diligence."
                 },
                 "service3": {
                     "title": "Arts and media",
@@ -42,15 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service4": {
                     "title": "Impact litigation",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue strategic litigation to effect policy and societal change in the areas of ecology and fundamental justice. Jonas is experienced in working with litigation funders and collectives of affected claimants."
                 },
                 "service5": {
                     "title": "Criminal law",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of white collar/economic crime and civil rights."
                 },
                 "service6": {
                     "title": "Philosophy",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "At the heart of my practice is an unwavering dedication to my clients’ long-term interests, informed by my extensive experience at the highest level of the profession. Beginning from first principles, I question assumptions and consider every angle to identify the most effective approach. Guided by curiosity, empathy, excellence, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals."
                 }
             },
             "bio": {
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "contact": {
                 "heading": "Contact",
-                "addressLabel": "Address",
-                "addressPlaceholder": "4051 Basel. 8032 Zurich.",
+                "addressLabel": "",
+                "addressPlaceholder": "",
                 "emailLabel": "Email",
                 "emailPlaceholder": "jh@jonashertner.com"
             }
@@ -96,15 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service4": {
                     "title": "Strategische Prozessführung",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner arbeitet mit Parteien in der Schweiz und international zusammen, um strategische Prozesse zu führen, die politische und gesellschaftliche Veränderungen in den Bereichen Ökologie und Grundrechte bewirken sollen. Jonas hat Erfahrung in der Zusammenarbeit mit Prozessfinanzierern und Kollektiven betroffener Kläger."
                 },
                 "service5": {
                     "title": "Strafrecht",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner hat eine grosse Erfahrung im Führen strafrechtlicher Verfahren durch alle Instanzen, insbesondere in den Bereichen Wirtschaftskriminalität und Grundrechte."
                 },
                 "service6": {
                     "title": "Philosophie",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Der Kern meiner Tätigkeit ist das konsequente Engagement für die langfristigen Interessen meiner Mandanten, das auf meiner weitreichenden Erfahrung auf höchster Ebene unseres Berufsstandes beruht. Dabei gehe ich von Grundprinzipien aus, hinterfrage Annahmen und betrachte jeden Aspekt, um für jeden Fall die wirkungsvollste Herangehensweise zu finden. Geleitet von Neugier, Empathie, Exzellenz und dem Streben nach fairen und gerechten Ergebnissen konzentriere ich mich auf das Wesentliche. Auf diese Weise helfe ich meinen Mandanten, sich in komplexen Situationen zurechtzufinden, ihre Rechte zu schützen und ihre Ziele zu erreichen."
                 }
             },
             "bio": {
@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "contact": {
                 "heading": "Kontakt",
-                "addressLabel": "Postadresse",
-                "addressPlaceholder": "4052 Basel. 8032 Zürich. Schweiz",
+                "addressLabel": "",
+                "addressPlaceholder": "",
                 "emailLabel": "E-Mail",
                 "emailPlaceholder": "jh@jonashertner.com"
             }
@@ -150,15 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service4": {
                     "title": "Contentieux d'impact",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner collabore avec des parties en Suisse et sur le plan international afin de poursuivre des litiges stratégiques visant à provoquer des changements politiques et sociétaux dans les domaines de l'écologie et de la justice fondamentale. Jonas a l'habitude de travailler avec des financeurs de litiges et des collectifs des plaignants."
                 },
                 "service5": {
                     "title": "Droit pénal",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Jonas Hertner a une grande expérience dans la conduite de procédures pénales à travers toutes les instances, en particulier dans les domaines de la criminalité économique et des droits fondamentaux."
                 },
                 "service6": {
                     "title": "Philosophie",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet venenatis nulla. Morbi consequat sapien sed lectus facilisis, eget tincidunt magna vulputate. Integer consequat turpis ac lacus luctus, id faucibus lorem blandit. Sed et ligula vel odio faucibus dictum. Proin convallis justo nec sapien finibus, sed ultricies ipsum tristique. Curabitur quis malesuada lorem. Mauris luctus dui nec diam dictum, vel elementum purus condimentum. Vivamus facilisis tortor nec augue mollis, nec sagittis ligula gravida. Donec efficitur nunc sit amet ex scelerisque, sed vulputate purus vestibulum. Aliquam porttitor, ligula sit amet tempor sagittis, magna lorem faucibus ligula, ac consequat metus libero non magna. Nulla facilisi."
+                    "description": "Au cœur de ma pratique se trouve un dévouement inébranlable aux intérêts à long terme de mes clients, nourri par ma vaste expérience au plus haut niveau de la profession. Partant des principes de base, je remets en question les hypothèses et j'envisage tous les angles d'attaque afin d'identifier l'approche la plus efficace. Guidé par la curiosité, l'empathie, l'excellence et la recherche de résultats justes et équitables, je reste concentré sur ce qui compte. Ce faisant, j'aide mes clients à naviguer dans la complexité, à protéger leurs droits et à atteindre leurs objectifs."
                 }
             },
 
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "contact": {
                 "heading": "Contact",
                 "addressLabel": "",
-                "addressPlaceholder": "4051 Bâle. 8032 Zurich.",
+                "addressPlaceholder": "",
                 "emailLabel": "",
                 "emailPlaceholder": "jh@jonashertner.com"
             }
