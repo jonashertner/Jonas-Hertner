@@ -50,11 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service6": {
                     "title": "Philosophy",
-<<<<<<< Updated upstream
-                    "description": "At the heart of my practice is an unwavering dedication to my clients’ long-term interests, informed by an extensive experience at the highest level of the profession. Beginning from first principles, I question assumptions and consider every angle to identify the most effective approach. Guided by curiosity, empathy, excellence, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals."
-=======
                     "description": "«At the heart of my practice is an unwavering dedication to my clients’ long-term interests, informed by my extensive experience at the highest level of the profession. Beginning from first principles, I question assumptions and consider every angle to identify the most effective approach. Guided by curiosity, empathy, excellence, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals.»"
->>>>>>> Stashed changes
                 }
             },
             "bio": {
