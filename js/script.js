@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "content": "Jonas Hertner is an independent lawyer based in Zurich and Basel, with more than a decade of experience guiding Swiss and international clients through high-stakes legal disputes. He advises individuals, families, foundations, and companies in navigating complex situations on the way to achieving their goals. To his clients, he is a trusted advisor and unwavering advocate, committed to excellence in protecting and advancing their long-term interests."
             },
             "services": {
-                "heading": "Expertise",
+                // "heading": "Expertise",
                 "service1": {
                     "title": "Disputes",
                     "description": "Not every legal dispute is worth taking to court. Often, parties can find reasonable settlements out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitral tribunal or court asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
@@ -40,9 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     "title": "Arts and media",
                     "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters. Jonas also regularly interacts with the Swiss and international press if and when it serves his clients' interests."
                 },
-                "service4": {
-                    "title": "Impact litigation",
-                    "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue strategic litigation to effect policy change in the areas of ecology and fundamental justice. Jonas is experienced in working with litigation funders and collectives of affected claimants."
+                // "service4": {
+                //     "title": "Impact litigation",
+                //     "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue strategic litigation to effect policy change in the areas of ecology and fundamental justice. Jonas is experienced in working with litigation funders and collectives of affected claimants."
+                // },
+                                "service4": {
+                    "title": "Fundamental rights and freedoms",
+                    "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms."
                 },
                 "service5": {
                     "title": "Criminal law",
@@ -50,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service6": {
                     "title": "Philosophy",
-                    "description": "«At the heart of my practice is an unwavering dedication to my clients’ long-term interests, informed by my extensive experience at the highest level of the profession. Beginning from first principles, I question assumptions and consider every angle to identify the most effective approach. Guided by curiosity, empathy, excellence, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals.»"
+                    "description": "«At the heart of my practice is an unwavering dedication to my clients’ long-term interests, informed by my extensive experience at the highest level of the profession. I question assumptions and consider every angle to identify the most effective approach. Guided by curiosity, empathy, excellence, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals.»"
                 }
             },
             "bio": {
@@ -94,9 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     "title": "Kunst und Medien",
                     "description": "Jonas Hertner berät und vertritt Künstler, Sammler, Galerien und Kunstmessen in rechtlichen Angelegenheiten. Darüber hinaus hat Jonas weitreichende Erfahrungen im Umgang mit der Presse und verfügt über gute Kontakte zu nationalen und internationalen Medien."
                 },
+                // "service4": {
+                //     "title": "Strategische Prozessführung",
+                //     "description": "Jonas Hertner arbeitet mit Parteien in der Schweiz und international zusammen, um strategische Prozesse zu führen, die politische Veränderungen in den Bereichen Ökologie und Grundrechte bewirken sollen. Jonas hat Erfahrung in der Zusammenarbeit mit Prozessfinanzierern und Kollektiven betroffener Kläger."
+                // },
                 "service4": {
-                    "title": "Strategische Prozessführung",
-                    "description": "Jonas Hertner arbeitet mit Parteien in der Schweiz und international zusammen, um strategische Prozesse zu führen, die politische Veränderungen in den Bereichen Ökologie und Grundrechte bewirken sollen. Jonas hat Erfahrung in der Zusammenarbeit mit Prozessfinanzierern und Kollektiven betroffener Kläger."
+                    "title": "Grundrechte und Grundfreiheiten",
+                    "description": "Jonas Hertner arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen."
                 },
                 "service5": {
                     "title": "Strafrecht",
@@ -104,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service6": {
                     "title": "Philosophie",
-                    "description": "«Der Kern meiner Tätigkeit ist das konsequente Engagement für die langfristigen Interessen meiner Mandanten, das auf meiner weitreichenden Erfahrung auf höchster Ebene unseres Berufsstandes beruht. Dabei gehe ich von Grundprinzipien aus, hinterfrage Annahmen und betrachte jeden Aspekt, um für jeden Fall die wirkungsvollste Herangehensweise zu finden. Geleitet von Neugier, Empathie, Exzellenz und dem Streben nach fairen und gerechten Ergebnissen konzentriere ich mich auf das Wesentliche. Auf diese Weise helfe ich meinen Mandanten, sich in komplexen Situationen zurechtzufinden, ihre Rechte zu schützen und ihre Ziele zu erreichen.»"
+                    "description": "«Der Kern meiner Tätigkeit ist das konsequente Engagement für die langfristigen Interessen meiner Mandanten, das auf meiner weitreichenden Erfahrung auf höchster Ebene unseres Berufsstandes beruht. Ich hinterfrage Annahmen und betrachte jeden Aspekt, um für jeden Fall die wirkungsvollste Herangehensweise zu finden. Geleitet von Neugier, Empathie, Exzellenz und dem Streben nach fairen und gerechten Ergebnissen konzentriere ich mich auf das Wesentliche. Auf diese Weise helfe ich meinen Mandanten, sich in komplexen Situationen zurechtzufinden, ihre Rechte zu schützen und ihre Ziele zu erreichen.»"
                 }
             },
             "bio": {
@@ -148,9 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     "title": "Arts et média",
                     "description": "Jonas Hertner conseille et représente des artistes, des collectionneurs, des galeries et des foires d'art sur des questions juridiques. En outre, Jonas a une grande expérience des relations avec la presse et dispose de bons contacts avec les médias nationaux et internationaux."
                 },
+                // "service4": {
+                //     "title": "Contentieux d'impact",
+                //     "description": "Jonas Hertner collabore avec des parties en Suisse et sur le plan international afin de poursuivre des litiges stratégiques visant à provoquer des changements politiques dans les domaines de l'écologie et de la justice fondamentale. Jonas a l'habitude de travailler avec des financeurs de litiges et des collectifs des plaignants."
+                // },
                 "service4": {
-                    "title": "Contentieux d'impact",
-                    "description": "Jonas Hertner collabore avec des parties en Suisse et sur le plan international afin de poursuivre des litiges stratégiques visant à provoquer des changements politiques dans les domaines de l'écologie et de la justice fondamentale. Jonas a l'habitude de travailler avec des financeurs de litiges et des collectifs des plaignants."
+                    "title": "Droits et libertés fondamentaux",
+                    "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux."
                 },
                 "service5": {
                     "title": "Droit pénal",
@@ -158,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service6": {
                     "title": "Philosophie",
-                    "description": "«Au cœur de ma pratique se trouve un dévouement inébranlable aux intérêts à long terme de mes clients, nourri par ma vaste expérience au plus haut niveau de la profession. Partant des principes de base, je remets en question les hypothèses et j'envisage tous les angles d'attaque afin d'identifier l'approche la plus efficace. Guidé par la curiosité, l'empathie, l'excellence et la recherche de résultats justes et équitables, je reste concentré sur ce qui compte. Ce faisant, j'aide mes clients à naviguer dans la complexité, à protéger leurs droits et à atteindre leurs objectifs.»"
+                    "description": "«Au cœur de ma pratique se trouve un dévouement inébranlable aux intérêts à long terme de mes clients, nourri par ma vaste expérience au plus haut niveau de la profession. Je remets en question les hypothèses et j'envisage tous les angles d'attaque afin d'identifier l'approche la plus efficace. Guidé par la curiosité, l'empathie, l'excellence et la recherche de résultats justes et équitables, je reste concentré sur ce qui compte. Ce faisant, j'aide mes clients à naviguer dans la complexité, à protéger leurs droits et à atteindre leurs objectifs.»"
                 }
             },
 
