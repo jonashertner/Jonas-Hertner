@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Contact",
                 "addressLabel": "",
                 "addressPlaceholder": "",
-                "emailLabel": "Email",
+                "emailLabel": "",
                 "emailPlaceholder": "jh@jonashertner.com"
             }
         },
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Kontakt",
                 "addressLabel": "",
                 "addressPlaceholder": "",
-                "emailLabel": "E-Mail",
+                "emailLabel": "",
                 "emailPlaceholder": "jh@jonashertner.com"
             }
         },
