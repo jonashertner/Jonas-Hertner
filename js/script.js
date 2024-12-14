@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service3": {
                     "title": "Arts, media and technology",
-                    "description": "Jonas Hertner has built a diverse practice combining expertise and experience in the areas of arts, media, and technology. In the arts, Jonas advises and represents artists, collectors, galleries and art fairs in legal matters. In the media and technology areas, Jonas advises on classical as well as novel issues arising from new technologies, including on fundamental rights and freedoms. Beyond that, Jonas is experienced in interacting with domestic and international media, and regularly exchanges with the press, if and when it serves hos clients' interests."
+                    "description": "Jonas Hertner has built a diverse practice combining expertise and experience in the areas of arts, media, and technology. In the arts, Jonas advises and represents artists, collectors, galleries and art fairs in legal matters. In the media and technology areas, Jonas advises on classical as well as novel issues arising from new technologies, including on fundamental rights and freedoms. Beyond that, Jonas is experienced in interacting with domestic and international media, and regularly exchanges with the press, if and when it serves his clients' interests."
                 },
                 // "service4": {
                 //     "title": "Impact litigation",
