@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and individual clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, review of governance structures and due diligence."
                 },
                 "service3": {
-                    "title": "Arts, media and technology",
+                    "title": "Arts, media, and technology",
                     "description": "Jonas Hertner has built a diverse practice combining expertise and experience in the areas of arts, media, and technology. In the arts, Jonas advises and represents artists, collectors, galleries and art fairs in legal matters. In the media and technology areas, Jonas advises on classical as well as novel issues arising from new technologies, including on fundamental rights and freedoms. Beyond that, Jonas is experienced in interacting with domestic and international media, and regularly exchanges with the press, if and when it serves his clients' interests."
                 },
                 // "service4": {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biography",
-                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, he helped to establish the Swiss office of the world's largest law firm specialising in litigation. Outside of his legal career, Jonas has worked as a freelance contributor for radio and press, and as a teacher of ethics and philosophy at the university-track secondary school level. Today, aside from his legal practice, Jonas is engaged in ventures in the areas of children's education, ecology, and the arts."
+                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the world's largest law firm specialising in litigation. Aside from his legal practice, Jonas is engaged in ventures in the areas of children's education, ecology, and the arts."
             },
             "contact": {
                 "heading": "Contact",
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biographie",
-                "content": "Jonas Hertner hat an den Universitäten Luzern und Genf das Studium der Rechtswissenschaften mit Auszeichnung abgeschlossen. Seine Laufbahn führte ihn von Nonprofit-Unternehmungen im Entwicklungsbereich zunächst zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später hat er das Schweizer Büro der weltweit grössten, auf Rechtsstreitigkeiten spezialisierten Anwaltskanzlei mitaufgebaut. Ausserhalb seiner juristischen Karriere war Jonas u.a. als freischaffender Mitarbeiter eines nonkommerziellen Radios und einer grossen Tageszeitung sowie als Lehrer für Ethik und Philosophie auf Gymnasialstufe tätig."
+                "content": "Jonas Hertner schloss sein Jurastudium an den Universitäten Luzern und Genf mit Auszeichnung ab. Seine Karriere führte ihn von Non-Profit-Organisationen über die Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten bis hin zum Appellationsgericht Basel-Stadt. Später half er beim Aufbau des Schweizer Büros der weltweit größten auf Prozessführung spezialisierten Anwaltskanzlei. Neben seiner Tätigkeit als Anwalt engagiert sich Jonas Hertner in Projekten in den Bereichen Bildung, Ökologie und Kunst."
             },
             "contact": {
                 "heading": "Kontakt",
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             "bio": {
                 "heading": "Biographie",
-                "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a d'abord conduit d'entreprises à but non lucratif dans le domaine du développement à la Direction du droit international public du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite contribué à la création du bureau suisse du plus grand cabinet d'avocats au monde spécialisé dans le contentieux. En dehors de sa carrière juridique, Jonas a notamment travaillé comme collaborateur indépendant pour une radio non commerciale et un grand quotidien ainsi que comme enseignant d'éthique et de philosophie au niveau du lycée."
+                "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a mené d'organisations à but non lucratif à la Direction du droit international du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite participé à la création du bureau suisse du plus grand cabinet d'avocats au monde spécialisé dans les litiges. Outre sa pratique juridique, Jonas est engagé dans des projets dans les domaines de l'éducation des enfants, de l'écologie et des arts."
             },
 
             "contact": {
