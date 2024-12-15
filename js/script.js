@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "en": {
             "hero": {
                 "title": "Jonas Hertner",
-                "subtitle": "LEGAL COUNSEL"
+                "subtitle": "ATTORNEY"
             },
             "about": {
                 "heading": "Jonas Hertner",
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "hero": {
                 "title": "Jonas Hertner",
-                "subtitle": "CONSEIL JURIDIQUE"
+                "subtitle": "AVOCAT"
             },
             "about": {
                 "heading": "Jonas Hertner",
