@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "services": {
                 // "heading": "Expertise",
                 "service1": {
-                    "title": "Disputes",
+                    "title": "Advocacy",
                     "description": "Not every legal dispute is worth taking to court. Often, parties can find reasonable settlements out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitral tribunal or court asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
                 },
                 "service2": {
