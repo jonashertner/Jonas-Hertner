@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and individual clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, review of governance structures and due diligence."
                 },
                 "service3": {
-                    "title": "Arts, media, and technology",
-                    "description": "Jonas Hertner has built a diverse practice combining expertise and experience in the areas of arts, media, and technology. In the arts, Jonas advises and represents artists, collectors, galleries and art fairs in legal matters. In the media and technology areas, Jonas advises on classical as well as novel issues arising from new technologies, including on fundamental rights and freedoms. Beyond that, Jonas is experienced in interacting with domestic and international media, and regularly exchanges with the press, if and when it serves his clients' interests."
+                    "title": "Arts",
+                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters."
                 },
                 // "service4": {
                 //     "title": "Impact litigation",
@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner verfügt über weitreichende Erfahrung in der Beratung von in der Schweiz ansässigen und internationalen Familien und Einzelpersonen auf höchstem Niveau in komplexen Rechtssituationen – einschliesslich wichtiger Aktionärsstreitigkeiten, großer Finanzprozesse, strafrechtlicher Untersuchungen sowie nichtstreitiger Situationen wie der Unterstützung beim Aufbau von Unternehmen oder in der Durchführung von Due Diligence-Prüfungen vor Transaktionen."
                 },
                 "service3": {
-                    "title": "Kunst, Medien und Technologie",
-                    "description": "Jonas Hertner verfügt über eine vielseitige Praxis, die Kompetenz und Erfahrung in den Bereichen Kunst, Medien und Technologie vereint. Im Kunstbereich berät und vertritt Jonas Künstler, Sammler, Galerien und Kunstmessen in rechtlichen Angelegenheiten. In den Bereichen Medien und Technologie berät Jonas sowohl zu klassischen als auch zu neuartigen Fragen, die sich aus neuen Technologien ergeben, darunter zu Grundrechten und Freiheiten. Darüber hinaus ist Jonas erfahren im Umgang mit nationalen und internationalen Medien und tauscht sich regelmässig mit der Presse aus, wenn es den Interessen seiner Mandanten dient."
+                    "title": "Kunst",
+                    "description": "Jonas Hertner berät und vertritt Jonas Künstler, Sammler, Galerien und Kunstmessen in rechtlichen Angelegenheiten."
                 },
                 // "service4": {
                 //     "title": "Strategische Prozessführung",
@@ -153,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner a une grande expérience du conseil aux familles et aux particuliers basés en Suisse ou à l'étranger, au plus haut niveau, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires, de litiges financiers importants, d'enquêtes sur des actes criminels, ainsi que dans des situations non litigieuses telles que l'aide à la création d'entreprises."
                 },
                 "service3": {
-                    "title": "Arts, média et technologie",
-                    "description": "Jonas Hertner a développé une pratique polyvalente combinant expertise et expérience dans les domaines des arts, des médias et de la technologie. Dans le domaine des arts, Jonas conseille et représente des artistes, des collectionneurs, des galeries et des foires d'art dans des affaires juridiques. Dans les domaines des médias et de la technologie, Jonas conseille sur les questions classiques ainsi que sur les nouvelles questions découlant des nouvelles technologies, y compris sur les droits et libertés fondamentaux. En outre, Jonas est expérimenté dans l'interaction avec les médias nationaux et internationaux, et échange régulièrement avec la presse, si et quand cela sert les intérêts de ses clients."
+                    "title": "Arts",
+                    "description": "Jonas Hertner conseille et représente des artistes, des collectionneurs, des galeries et des foires d'art dans des affaires juridiques."
                 },
                 // "service4": {
                 //     "title": "Contentieux d'impact",
