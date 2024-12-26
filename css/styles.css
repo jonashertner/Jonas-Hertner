@@ -345,7 +345,7 @@ p {
     place-items: center;
 }
 
-#services3 {
+/*#services3 {
     background-image: url('../images/services3n2-bg.jpg');
     background-size: cover;
     background-position: center;
@@ -354,10 +354,9 @@ p {
     min-height: 100vh;
     display: grid;
     place-items: center;
-}
+}*/
 
 #services5 {
-    background-image: url('../images/services5-bg.jpg');
     background-size: cover;
     background-position: center;
     color: var(--color-text-light);
@@ -368,6 +367,7 @@ p {
 }
 
 #services6 {
+    background-image: url('../images/services5-bg.jpg');
     background-color: var(--color-secondary);
     color: var(--color-primary);
     padding: 60px 20px;
