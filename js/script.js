@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service3": {
                     "title": "Arts",
-                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters."
+                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal disputes."
                 },
                 // "service4": {
                 //     "title": "Impact litigation",
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service3": {
                     "title": "Kunst",
-                    "description": "Jonas Hertner berät und vertritt Jonas Künstler, Sammler, Galerien und Kunstmessen in rechtlichen Angelegenheiten."
+                    "description": "Jonas Hertner berät und vertritt Künstler, Sammler, Galerien und Kunstmessen in Rechtsstreitigkeiten."
                 },
                 // "service4": {
                 //     "title": "Strategische Prozessführung",
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service3": {
                     "title": "Arts",
-                    "description": "Jonas Hertner conseille et représente des artistes, des collectionneurs, des galeries et des foires d'art dans des affaires juridiques."
+                    "description": "Jonas Hertner conseille et représente les artistes, les collectionneurs, les galeries et les foires d'art dans les litiges juridiques."
                 },
                 // "service4": {
                 //     "title": "Contentieux d'impact",
