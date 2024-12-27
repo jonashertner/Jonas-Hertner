@@ -36,17 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     "title": "Family and individual clients",
                     "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and individual clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, review of governance structures and due diligence."
                 },
-                // "service3": {
-                //     "title": "Arts",
-                //     "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters."
-                // },
+                "service3": {
+                    "title": "Arts",
+                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal matters."
+                },
                 // "service4": {
                 //     "title": "Impact litigation",
                 //     "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue strategic litigation to effect policy change in the areas of ecology and fundamental justice. Jonas is experienced in working with litigation funders and collectives of affected claimants."
                 // },
                                 "service4": {
                     "title": "Constitutional law",
-                    "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms."
+                    "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies."
                 },
                 "service5": {
                     "title": "Criminal law",
@@ -94,17 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     "title": "Familien und Einzelpersonen",
                     "description": "Jonas Hertner verfügt über weitreichende Erfahrung in der Beratung von in der Schweiz ansässigen und internationalen Familien und Einzelpersonen auf höchstem Niveau in komplexen Rechtssituationen – einschliesslich wichtiger Aktionärsstreitigkeiten, großer Finanzprozesse, strafrechtlicher Untersuchungen sowie nichtstreitiger Situationen wie der Unterstützung beim Aufbau von Unternehmen oder in der Durchführung von Due Diligence-Prüfungen vor Transaktionen."
                 },
-                // "service3": {
-                //     "title": "Kunst",
-                //     "description": "Jonas Hertner berät und vertritt Jonas Künstler, Sammler, Galerien und Kunstmessen in rechtlichen Angelegenheiten."
-                // },
+                "service3": {
+                    "title": "Kunst",
+                    "description": "Jonas Hertner berät und vertritt Jonas Künstler, Sammler, Galerien und Kunstmessen in rechtlichen Angelegenheiten."
+                },
                 // "service4": {
                 //     "title": "Strategische Prozessführung",
                 //     "description": "Jonas Hertner arbeitet mit Parteien in der Schweiz und international zusammen, um strategische Prozesse zu führen, die politische Veränderungen in den Bereichen Ökologie und Grundrechte bewirken sollen. Jonas hat Erfahrung in der Zusammenarbeit mit Prozessfinanzierern und Kollektiven betroffener Kläger."
                 // },
                 "service4": {
                     "title": "Verfassungsrecht",
-                    "description": "Jonas Hertner arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen."
+                    "description": "Jonas Hertner arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen, insbesondere in den Bereichen Ökologie und neue Technologien."
                 },
                 "service5": {
                     "title": "Strafrecht",
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biographie",
-                "content": "Jonas Hertner schloss sein Jurastudium an den Universitäten Luzern und Genf mit Auszeichnung ab. Seine Karriere führte ihn von Non-Profit-Organisationen über die Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten zum Appellationsgericht Basel-Stadt. Später half er beim Aufbau des Schweizer Büros der weltweit größten auf Prozessführung spezialisierten Anwaltskanzlei. Neben seiner Tätigkeit als Anwalt engagiert sich Jonas Hertner in Projekten in den Bereichen Bildung, Ökologie und Kunst."
+                "content": "Jonas Hertner schloss sein Jurastudium an den Universitäten Luzern und Genf mit Auszeichnung ab. Seine Karriere führte ihn von Non-Profit-Organisationen über die Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten bis hin zum Appellationsgericht Basel-Stadt. Später half er beim Aufbau des Schweizer Büros der weltweit größten auf Prozessführung spezialisierten Anwaltskanzlei. Neben seiner Tätigkeit als Anwalt engagiert sich Jonas Hertner in Projekten in den Bereichen Bildung, Ökologie und Kunst."
             },
             "contact": {
                 "heading": "Kontakt",
@@ -152,17 +152,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     "title": "Clients familiaux et privés",
                     "description": "Jonas Hertner a une grande expérience du conseil aux familles et aux particuliers basés en Suisse ou à l'étranger, au plus haut niveau, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires, de litiges financiers importants, d'enquêtes sur des actes criminels, ainsi que dans des situations non litigieuses telles que l'aide à la création d'entreprises."
                 },
-                // "service3": {
-                //     "title": "Arts",
-                //     "description": "Jonas Hertner conseille et représente des artistes, des collectionneurs, des galeries et des foires d'art dans des affaires juridiques."
-                // },
+                "service3": {
+                    "title": "Arts",
+                    "description": "Jonas Hertner conseille et représente des artistes, des collectionneurs, des galeries et des foires d'art dans des affaires juridiques."
+                },
                 // "service4": {
                 //     "title": "Contentieux d'impact",
                 //     "description": "Jonas Hertner collabore avec des parties en Suisse et sur le plan international afin de poursuivre des litiges stratégiques visant à provoquer des changements politiques dans les domaines de l'écologie et de la justice fondamentale. Jonas a l'habitude de travailler avec des financeurs de litiges et des collectifs des plaignants."
                 // },
                 "service4": {
                     "title": "Droit constitutionnel",
-                    "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux."
+                    "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux, notamment dans les domaines de l'écologie et des nouvelles technologies."
                 },
                 "service5": {
                     "title": "Droit pénal",
