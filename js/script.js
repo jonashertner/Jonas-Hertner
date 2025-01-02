@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // "heading": "Expertise",
                 "service1": {
                     "title": "Advocacy and litigation",
-                    "description": "Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitral tribunal or court asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
+                    "description": "Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective and the perspectives of the opposing side and of an eventual arbiter asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
                 },
                 "service2": {
                     "title": "Family and individual clients",
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Rechtsstreitigkeiten",
-                    "description": "Nicht jeder Rechtsstreit ist es wert, vor Gericht gebracht zu werden. In vielen Fällen können die Parteien eine vernünftige aussergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein günstiges Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes so früh wie möglich zu antizipieren, wenn sich ein Streit abzeichnet. Mit seiner Erfahrung aus über zehn Jahren Prozessführung auf höchstem Level wird Jonas Ihnen dabei helfen, Ihre eigene Perspektive, die Perspektive der Gegenseite und die Perspektive eines eventuellen Schiedsgerichts oder Gerichts, das über den Streit entscheiden soll, zu durchdenken, damit Sie auf dem Weg zur Sicherung Ihrer Interessen in jeder Situation die bestmögliche Entscheidung treffen können."
+                    "description": "Nicht jeder Rechtsstreit ist es wert, vor Gericht gebracht zu werden. In vielen Fällen können die Parteien eine vernünftige aussergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes so früh wie möglich zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über mehr als zehn Jahre Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und wird Ihnen dabei helfen, Ihre eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheiden soll, zu durchdenken, damit Sie auf dem Weg zur Sicherung Ihrer Interessen bei jedem Schritt die effektivsten Massnahmen ergreifen können."
                 },
                 "service2": {
                     "title": "Familien und Einzelpersonen",
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Litiges",
-                    "description": "Tous les litiges juridiques ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent trouver une solution raisonnable à l'amiable. Pour parvenir à une issue favorable, que ce soit en justice ou à l'amiable, il est important d'anticiper les conséquences possibles de toute mesure prise le plus tôt possible lorsqu'un litige se profile à l'horizon. Avec son expérience de plus de dix ans de contentieux au plus haut niveau, Jonas Hertner vous aidera à réfléchir à votre propre perspective, à celle de la partie adverse et à celle d'un éventuel tribunal arbitral ou judiciaire appelé à trancher le litige, ce qui vous permettra de prendre les mesures les plus efficaces à chaque étape afin de garantir vos intérêts. "
+                    "description": "Tous les litiges ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent parvenir à un accord raisonnable à l'amiable. Pour obtenir un bon résultat dans un litige, il est important d'anticiper les conséquences possibles de chaque étape le plus tôt possible lorsqu'un différend se dessine. Jonas a plus de dix ans d'expérience dans les litiges de haut niveau et vous aidera à réfléchir à votre propre perspective ainsi qu'à celle de la partie adverse et d'un éventuel tribunal appelé à trancher le litige, afin que vous puissiez prendre les mesures les plus efficaces à chaque étape du processus de protection de vos intérêts."
                 },
                 "service2": {
                     "title": "Clients familiaux et privés",
