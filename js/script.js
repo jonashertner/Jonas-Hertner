@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Rechtsstreitigkeiten",
-                    "description": "Nicht jeder Rechtsstreit muss vor Gericht gebracht werden. Oft können die Parteien eine vernünftige aussergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft dabei, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheiden soll, zu durchdenken, um bei jedem Schritt die effektivsten Massnahmen ergreifen zu können."
+                    "description": "Nicht jeder Streit muss vor Gericht gebracht werden. Oft können die Parteien eine vernünftige Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft Ihnen, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheiden soll, zu durchdenken, um bei jedem Schritt die effektivsten Massnahmen ergreifen zu können."
                 },
                 "service2": {
                     "title": "Familien und Einzelpersonen",
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service6": {
                     "title": "Philosophie",
-                    "description": "«Der Kern meiner Tätigkeit ist das konsequente Engagement für die langfristigen Interessen meiner Mandanten, das auf meiner weitreichenden Erfahrung auf höchster Ebene unseres Berufsstandes beruht. Ich hinterfrage Annahmen und betrachte jeden Aspekt, um für jeden Fall die wirkungsvollste Herangehensweise zu finden. Geleitet von Neugier, Empathie, Exzellenz und dem Streben nach fairen und gerechten Ergebnissen konzentriere ich mich auf das Wesentliche. Auf diese Weise helfe ich meinen Mandanten, sich in komplexen Situationen zurechtzufinden, ihre Rechte zu schützen und ihre Ziele zu erreichen.»"
+                    "description": "«Der Kern meiner Tätigkeit ist das konsequente Engagement für die langfristigen Interessen meiner Mandanten, das auf meiner weitreichenden Erfahrung auf höchster Ebene der Anwaltstätigkeit  beruht. Ich hinterfrage Annahmen und betrachte jeden Aspekt, um für jeden Fall die wirkungsvollste Herangehensweise zu finden. Geleitet von Neugier, Empathie, höchster Professionalität und dem Streben nach gerechten Ergebnissen konzentriere ich mich auf das Wesentliche. Auf diese Weise helfe ich meinen Mandanten, sich in komplexen Situationen zurechtzufinden, ihre Rechte zu schützen und ihre Ziele zu erreichen.»"
                 }
             },
             "bio": {
