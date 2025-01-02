@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Rechtsstreitigkeiten",
-                    "description": "Nicht jeder Rechtsstreit sollye vor Gericht gebracht werden. In vielen Fällen können die Parteien eine vernünftige aussergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes so früh wie möglich zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft dabei, Ihre eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheiden soll, zu durchdenken, um auf dem Weg zur Sicherung Ihrer Interessen bei jedem Schritt die effektivsten Massnahmen ergreifen zu können."
+                    "description": "Nicht jeder Rechtsstreit muss vor Gericht gebracht werden. Oft können die Parteien eine vernünftige aussergerichtliche Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft dabei, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheiden soll, zu durchdenken, um bei jedem Schritt die effektivsten Massnahmen ergreifen zu können."
                 },
                 "service2": {
                     "title": "Familien und Einzelpersonen",
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux, notamment dans les domaines de l'écologie et des nouvelles technologies."
                 },
                 "service5": {
-                    "title": "",
+                    "title": "L'intelligence artificielle et Large Language Models",
                     "description": "Avec une expérience approfondie dans le développement et l'utilisation d'outils d'IA et de LLM dans les domaines de la bonne gouvernance et de l'éducation, Jonas peut conseiller sur des questions juridiques inédites dans ce domaine, notamment la conformité avec les règles de protection des données et les règles prudentielles, les droits de propriété intellectuelle et les considérations éthiques."
                 },
                 "service6": {
