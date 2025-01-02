@@ -29,16 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
             "services": {
                 // "heading": "Expertise",
                 "service1": {
-                    "title": "Advocacy",
-                    "description": "Not every legal dispute is worth taking to court. Often, parties can find reasonable settlements out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitral tribunal or court asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
+                    "title": "Advocacy and litigation",
+                    "description": "Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective, through the perspective of the opposing side, and through the perspective of an eventual arbitral tribunal or court asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
                 },
                 "service2": {
                     "title": "Family and individual clients",
-                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and individual clients at the very highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, review of governance structures and due diligence."
+                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value property, review of governance structures, good governance advice, and due diligence."
                 },
                 "service3": {
-                    "title": "Arts",
-                    "description": "Jonas Hertner advises and represents artists, collectors, galleries and art fairs in legal disputes."
+                    "title": "Criminal law",
+                    "description": "Jonas Hertner has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights."
                 },
                 // "service4": {
                 //     "title": "Impact litigation",
@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies."
                 },
                 "service5": {
-                    "title": "Criminal law",
-                    "description": "Jonas Hertner has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights."
+                    "title": "Artificial intelligence and large language models",
+                    "description": "With in-depth experience in the development and use of AI tools and LLMs in the areas of good governance and education/tutoring, Jonas is able to advise on novel legal issues in this area, including data protection and regulatory compliance, intellectual property rights, and ethical considerations."
                 },
                 "service6": {
                     "title": "Philosophy",
@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner verfügt über weitreichende Erfahrung in der Beratung von in der Schweiz ansässigen und internationalen Familien und Einzelpersonen auf höchstem Niveau in komplexen Rechtssituationen – einschliesslich wichtiger Aktionärsstreitigkeiten, großer Finanzprozesse, strafrechtlicher Untersuchungen sowie nichtstreitiger Situationen wie der Unterstützung beim Aufbau von Unternehmen oder in der Durchführung von Due Diligence-Prüfungen vor Transaktionen."
                 },
                 "service3": {
-                    "title": "Kunst",
-                    "description": "Jonas Hertner berät und vertritt Künstler, Sammler, Galerien und Kunstmessen in Rechtsstreitigkeiten."
+                    "title": "Strafrecht",
+                    "description": "Jonas Hertner hat eine grosse Erfahrung im Führen strafrechtlicher Verfahren durch alle Instanzen, insbesondere in den Bereichen Wirtschaftskriminalität und Grundrechte."
                 },
                 // "service4": {
                 //     "title": "Strategische Prozessführung",
@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen, insbesondere in den Bereichen Ökologie und neue Technologien."
                 },
                 "service5": {
-                    "title": "Strafrecht",
-                    "description": "Jonas Hertner hat eine grosse Erfahrung im Führen strafrechtlicher Verfahren durch alle Instanzen, insbesondere in den Bereichen Wirtschaftskriminalität und Grundrechte."
+                    "title": "Künstliche Intelligence und Large Language Models",
+                    "description": "Mit eingehender Erfahrung in der Entwicklung und Nutzung von KI-Tools und LLMs in den Bereichen Good Governance und Bildung kann Jonas in diesem Bereich zu neuartigen Rechtsfragen beraten, darunter die Einhaltung von Datenschutzbestimmungen und aufsichtsrechtlichen Vorschriften, Rechte an geistigem Eigentum und ethische Überlegungen."
                 },
                 "service6": {
                     "title": "Philosophie",
@@ -146,15 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Litiges",
-                    "description": "Tous les litiges juridiques ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent trouver des solutions raisonnables à l'amiable. Pour parvenir à une issue favorable, que ce soit en justice ou à l'amiable, il est important d'anticiper les conséquences possibles de toute mesure prise le plus tôt possible lorsqu'un litige se profile à l'horizon. Avec son expérience de plus de dix ans de contentieux au plus haut niveau, Jonas Hertner vous aidera à réfléchir à votre propre perspective, à celle de la partie adverse et à celle d'un éventuel tribunal arbitral ou judiciaire appelé à trancher le litige, ce qui vous permettra de prendre les mesures les plus efficaces à chaque étape afin de garantir vos intérêts. "
+                    "description": "Tous les litiges juridiques ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent trouver une solution raisonnable à l'amiable. Pour parvenir à une issue favorable, que ce soit en justice ou à l'amiable, il est important d'anticiper les conséquences possibles de toute mesure prise le plus tôt possible lorsqu'un litige se profile à l'horizon. Avec son expérience de plus de dix ans de contentieux au plus haut niveau, Jonas Hertner vous aidera à réfléchir à votre propre perspective, à celle de la partie adverse et à celle d'un éventuel tribunal arbitral ou judiciaire appelé à trancher le litige, ce qui vous permettra de prendre les mesures les plus efficaces à chaque étape afin de garantir vos intérêts. "
                 },
                 "service2": {
                     "title": "Clients familiaux et privés",
                     "description": "Jonas Hertner a une grande expérience du conseil aux familles et aux particuliers basés en Suisse ou à l'étranger, au plus haut niveau, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires, de litiges financiers importants, d'enquêtes sur des actes criminels, ainsi que dans des situations non litigieuses telles que l'aide à la création d'entreprises."
                 },
                 "service3": {
-                    "title": "Arts",
-                    "description": "Jonas Hertner conseille et représente les artistes, les collectionneurs, les galeries et les foires d'art dans les litiges juridiques."
+                    "title": "Droit pénal",
+                    "description": "Jonas Hertner a une grande expérience dans la conduite de procédures pénales à travers toutes les instances, en particulier dans les domaines de la criminalité économique et des droits fondamentaux."
                 },
                 // "service4": {
                 //     "title": "Contentieux d'impact",
@@ -165,8 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux, notamment dans les domaines de l'écologie et des nouvelles technologies."
                 },
                 "service5": {
-                    "title": "Droit pénal",
-                    "description": "Jonas Hertner a une grande expérience dans la conduite de procédures pénales à travers toutes les instances, en particulier dans les domaines de la criminalité économique et des droits fondamentaux."
+                    "title": "",
+                    "description": "Avec une expérience approfondie dans le développement et l'utilisation d'outils d'IA et de LLM dans les domaines de la bonne gouvernance et de l'éducation, Jonas peut conseiller sur des questions juridiques inédites dans ce domaine, notamment la conformité avec les règles de protection des données et les règles prudentielles, les droits de propriété intellectuelle et les considérations éthiques."
                 },
                 "service6": {
                     "title": "Philosophie",
