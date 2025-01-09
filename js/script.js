@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //     "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue strategic litigation to effect policy change in the areas of ecology and fundamental justice. Jonas is experienced in working with litigation funders and collectives of affected claimants."
                 // },
                                 "service4": {
-                    "title": "Constitutional law",
+                    "title": "Constitutional law and impact litigation",
                     "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies."
                 },
                 "service5": {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //     "description": "Jonas Hertner arbeitet mit Parteien in der Schweiz und international zusammen, um strategische Prozesse zu führen, die politische Veränderungen in den Bereichen Ökologie und Grundrechte bewirken sollen. Jonas hat Erfahrung in der Zusammenarbeit mit Prozessfinanzierern und Kollektiven betroffener Kläger."
                 // },
                 "service4": {
-                    "title": "Verfassungsrecht",
+                    "title": "Verfassungsrecht und strategische Prozessführung",
                     "description": "Jonas Hertner arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen, insbesondere in den Bereichen Ökologie und neue Technologien."
                 },
                 "service5": {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //     "description": "Jonas Hertner collabore avec des parties en Suisse et sur le plan international afin de poursuivre des litiges stratégiques visant à provoquer des changements politiques dans les domaines de l'écologie et de la justice fondamentale. Jonas a l'habitude de travailler avec des financeurs de litiges et des collectifs des plaignants."
                 // },
                 "service4": {
-                    "title": "Droit constitutionnel",
+                    "title": "Droit constitutionnel et litiges stratégiques",
                     "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux, notamment dans les domaines de l'écologie et des nouvelles technologies."
                 },
                 "service5": {
