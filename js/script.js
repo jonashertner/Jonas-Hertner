@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "about": {
                 "heading": "Jonas Hertner",
-                "content": "Jonas Hertner is an independent lawyer based in Zurich and Basel, with more than a decade of experience guiding Swiss and international clients through high-stakes legal disputes. He advises individuals, families, foundations, and companies in navigating complex situations on the way to achieving their goals. To his clients, he is a trusted advisor and unwavering advocate, committed to excellence in protecting and advancing their long-term interests."
+                "content": "Jonas Hertner is an independent lawyer based in Zurich and Basel, with more than a decade of experience guiding Swiss and international clients through high-stakes legal disputes. He advises individuals, families, foundations, and companies in navigating complex situations as they work toward achieving their goals. To his clients, he is a trusted advisor and unwavering advocate, committed to excellence in protecting and advancing their long-term interests."
             },
             "services": {
                 // "heading": "Expertise",
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service2": {
                     "title": "Family and individual clients",
-                    "description": "Jonas Hertner has extensive experience advising Switzerland based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value property, review of governance structures, good governance advice, and due diligence."
+                    "description": "Jonas Hertner has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value property, review of governance structures, good governance advice, and due diligence."
                 },
                 "service3": {
                     "title": "Criminal law",
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen, insbesondere in den Bereichen Ökologie und neue Technologien."
                 },
                 "service5": {
-                    "title": "Künstliche Intelligence und Large Language Models",
+                    "title": "Künstliche Intelligenz und Large Language Models",
                     "description": "Mit eingehender Erfahrung in der Entwicklung und Nutzung von KI-Tools und LLMs in den Bereichen Good Governance und Bildung kann Jonas in diesem Bereich zu neuartigen Rechtsfragen beraten, darunter die Einhaltung von Datenschutzbestimmungen und aufsichtsrechtlichen Vorschriften, Rechte an geistigem Eigentum und ethische Überlegungen."
                 },
                 "service6": {
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux, notamment dans les domaines de l'écologie et des nouvelles technologies."
                 },
                 "service5": {
-                    "title": "L'intelligence artificielle et Large Language Models",
+                    "title": "Le droit de l'intelligence artificielle et des Large Language Models",
                     "description": "Avec une expérience approfondie dans le développement et l'utilisation d'outils d'IA et de LLM dans les domaines de la bonne gouvernance et de l'éducation, Jonas peut conseiller sur des questions juridiques inédites dans ce domaine, notamment la conformité avec les règles de protection des données et les règles prudentielles, les droits de propriété intellectuelle et les considérations éthiques."
                 },
                 "service6": {
