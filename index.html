@@ -1,158 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="description" 
-      content="Jonas Hertner is an experienced attorney in Zurich and Basel, guiding Swiss and international clients through complex legal situations." />
+  <meta charset="UTF-8">
+  <meta name="description"
+        content="Jonas Hertner is an experienced attorney in Zurich and Basel, guiding Swiss and international clients through complex legal situations."/>
+  <meta name="keywords"
+        content="Jonas Hertner, attorney, lawyer, Zurich, Basel, complex disputes, impact litigation, litigation, criminal law, constitutional law, AI law, shareholder disputes"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="keywords" 
-      content="Jonas Hertner, attorney, lawyer, Zurich, Basel, complex disputes, impact litigation, litigation, criminal law, constitutional law, AI law, shareholder disputes" />
+  <meta property="og:title" content="Jonas Hertner" />
+  <meta property="og:description" content="Experienced attorney in Zurich and Basel." />
+  <meta property="og:url" content="https://www.jonashertner.com" />
 
-<meta name="robots" content="index, follow" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Jonas Hertner</title>
+  <title>Jonas Hertner</title>
     
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    
-<link rel="stylesheet" href="css/styles.css">
-
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <header>
-        <nav class="navbar" role="navigation" aria-label="Language Switcher">
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Language Switcher">
+      <div class="language-switcher">
+        <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
+        <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
+        <button id="lang-fr" class="lang-btn" aria-label="Switch to French" aria-pressed="false">FR</button>
+      </div>
+    </nav>
+  </header>
 
-            <div class="language-switcher">
-                <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
-                <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
-                <button id="lang-fr" class="lang-btn" aria-label="Switch to French" aria-pressed="false">FR</button>
-            </div>
-        </nav>
-    </header>
+  <main id="main-content">
+    <!-- Home Section -->
+    <section id="home" class="section" aria-labelledby="home-heading">
+      <!-- Responsive Hero Image with Lazy Loading -->
+      <picture class="hero-image">
+        <!-- Example: WebP images (uncomment if you have them) 
+        <source srcset="images/hero-small.webp" media="(max-width: 768px)" type="image/webp">
+        <source srcset="images/hero-large.webp" media="(min-width: 769px)" type="image/webp">
+        <source srcset="images/hero-small.jpg" media="(max-width: 768px)" type="image/jpeg">
+        <source srcset="images/hero-large.jpg" media="(min-width: 769px)" type="image/jpeg">
+        -->
+        <!-- Fallback Image with Lazy Loading -->
+        <img src="images/services5-bg.jpg" alt="Hero background" loading="lazy">
+      </picture>
+      <div class="hero-content">
+        <h1 id="home-heading" data-key="hero.title">Jonas Hertner</h1>
+        <p data-key="hero.subtitle">ATTORNEY</p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="about-content">
+        <h2 id="about-heading" data-key="about.heading">About Me</h2>
+        <p data-key="about.content">Information</p>
+      </div>
+    </section>
+
+    <!-- Services Section 1 -->
+    <section id="services1" class="section services-section" aria-labelledby="services1-heading">
+      <div class="services-content">
+        <h2 id="services1-heading" data-key="services.service1.title">Service Title 1</h2>
+        <div class="service-item">
+          <p data-key="services.service1.description">Description</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 2 -->
+    <section id="services2" class="section services-section" aria-labelledby="services2-heading">
+      <div class="services-content">
+        <h2 id="services2-heading" data-key="services.service2.title">Service Title 2</h2>
+        <div class="service-item">
+          <p data-key="services.service2.description">Description</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 3 -->
+    <section id="services3" class="section services-section" aria-labelledby="services3-heading">
+      <div class="services-content">
+        <h2 id="services3-heading" data-key="services.service3.title">Service Title 3</h2>
+        <div class="service-item">
+          <p data-key="services.service3.description">Description</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 4 -->
+    <section id="services4" class="section services-section" aria-labelledby="services4-heading">
+      <div class="services-content">
+        <h2 id="services4-heading" data-key="services.service4.title">Service Title 4</h2>
+        <div class="service-item">
+          <p data-key="services.service4.description">Description</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 5 -->
+    <section id="services5" class="section services-section" aria-labelledby="services5-heading">
+      <div class="services-content">
+        <h2 id="services5-heading" data-key="services.service5.title">Service Title 5</h2>
+        <div class="service-item">
+          <p data-key="services.service5.description">Description</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 6 -->
+    <section id="services6" class="section services-section" aria-labelledby="services6-heading">
+      <div class="services-content">
+        <h2 id="services6-heading" data-key="services.service6.title">Service Title 6</h2>
+        <div class="service-item">
+          <p data-key="services.service6.description">Description</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section id="bio" class="section" aria-labelledby="bio-heading">
+      <div class="about-content">
+        <h2 id="bio-heading" data-key="bio.heading">Biography</h2>
+        <p data-key="bio.content">Bio</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="contact-content">
+        <h2 id="contact-heading" data-key="contact.heading">Contact</h2>
+        <div class="contact-info">
+          <p><strong data-key="contact.addressLabel">Address:</strong>
+            <span data-key="contact.addressPlaceholder">4051 Basel. 8032 Zurich.</span>
+          </p>
+          <p><strong data-key="contact.emailLabel">Email:</strong>
+            <a href="mailto:jh@jonashertner.com" data-key="contact.emailPlaceholder">jh@jonashertner.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="jh" class="section contact-section">
+      <div class="contact-content">
 
 
-    <main>
-        <!-- Home Section -->
-        <section id="home" class="section" aria-labelledby="home-heading">
-            <!-- Responsive Hero Image with Lazy Loading -->
-            <picture class="hero-image">
-                <!-- WebP images -->
-                <!-- <source srcset="images/hero-small.webp" media="(max-width: 768px)" type="image/webp"> -->
-                <!-- <source srcset="images/hero-large.webp" media="(min-width: 769px)" type="image/webp"> -->
-                <!-- JPEG images as fallback -->
-                <!-- <source srcset="images/hero-small.jpg" media="(max-width: 768px)" type="image/jpeg"> -->
-                <!-- <source srcset="images/hero-large.jpg" media="(min-width: 769px)" type="image/jpeg"> -->
-                <!-- Fallback Image with Lazy Loading -->
-                <img src="images/services5-bg.jpg"loading="lazy">
-            </picture>
-            <div class="hero-content">
-                <h1 id="home-heading" data-key="hero.title">Jonas Hertner</h1>
-                <p data-key="hero.subtitle">ATTORNEY</p>
-            </div>
-        </section>
+      </div>
+    </section>
+  </main>
 
-        <!-- About Section -->
-        <section id="about" class="section" aria-labelledby="about-heading">
-            <div class="about-content">
-                <h2 id="about-heading" data-key="about.heading">About Me</h2>
-                <p data-key="about.content">Information</p>
-            </div>
-        </section>
+  <noscript>
+    <style>
+      .language-switcher {
+        display: flex;
+        justify-content: flex-end;
+        padding: 15px 30px;
+      }
+    </style>
+  </noscript>
 
-        <!-- Services Sections -->
-        <section id="services1" class="section services-section" aria-labelledby="services-heading">
-            <div class="services-content">
-                <h2 data-key="services.service1.title">Service Title 1</h2>
-                <div class="service-item">
-                    <p data-key="services.service1.description">Description</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="services2" class="section services-section" aria-labelledby="services-heading">
-            <div class="services-content">
-                <h2 data-key="services.service2.title">Service Title 2</h2>
-                <div class="service-item">
-                    <p data-key="services.service2.description">Description</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="services3" class="section services-section" aria-labelledby="services-heading">
-            <div class="services-content">
-                <h2 data-key="services.service3.title">Service Title 3</h2>
-                <div class="service-item">
-                    <p data-key="services.service3.description">Description</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="services4" class="section services-section" aria-labelledby="services-heading">
-            <div class="services-content">
-                <h2 data-key="services.service4.title">Service Title 4</h2>
-                <div class="service-item">
-                    <p data-key="services.service4.description">Description</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="services5" class="section services-section" aria-labelledby="services-heading">
-            <div class="services-content">
-                <h2 data-key="services.service5.title">Service Title 5</h2>
-                <div class="service-item">
-                    <p data-key="services.service5.description">Description</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="services6" class="section services-section" aria-labelledby="services-heading">
-            <div class="services-content">
-                <h2 data-key="services.service6.title">Service Title 6</h2>
-                <div class="service-item">
-                    <p data-key="services.service6.description">Description</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bio Section -->
-        <section id="bio" class="section" aria-labelledby="about-heading">
-            <div class="about-content">
-                <h2 id="about-heading" data-key="bio.heading">Biography</h2>
-                <p data-key="bio.content">Bio</p>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
-            <div class="contact-content">
-                <h2 id="contact-heading" data-key="contact.heading">Contact</h2>
-                <div class="contact-info">
-                    <p><strong data-key="contact.addressLabel">Address:</strong> <span data-key="contact.addressPlaceholder">4051 Basel. 8032 Zurich.</span></p>
-                    <p><strong data-key="contact.emailLabel">Email:</strong> <a href="mailto:jh@jonashertner.com" data-key="contact.emailPlaceholder">jh@jonashertner.com</a></p>
-                </div>
-            </div>
-        </section>
-
-        <section id="jh" class="section contact-section">
-                        <div class="contact-content">
-
-        </section>
-
-    </main>
-
-    <noscript>
-        <style>
-            .language-switcher {
-                display: flex;
-                justify-content: flex-end;
-                padding: 15px 30px;
-            }
-        </style>
-    </noscript>
-
-    <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
