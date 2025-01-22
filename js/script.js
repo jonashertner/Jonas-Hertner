@@ -1,4 +1,4 @@
-see// script.js
+// script.js
 
 document.addEventListener('DOMContentLoaded', () => {
     const password = prompt("Please enter the password:");
