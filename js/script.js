@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "heading": "Expertise",
                 "service1": {
                     "title": "Rechtsstreitigkeiten",
-                    "description": "Nicht jeder Streit muss vor Gericht gebracht werden. Oft können die Parteien einvernehmlich oder durch Mediation eine vernünftige Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, ist es wichtig, die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft Ihnen, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheidet, zu durchdenken, um bei jedem Schritt die effektivste Massnahme ergreifen zu können."
+                    "description": "Nicht jeder Streit muss vor Gericht gebracht werden. Oft können die Parteien einvernehmlich oder durch Mediation eine vernünftige Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, sind die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft Ihnen, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheidet, zu durchdenken, um bei jedem Schritt die effektivste Massnahme ergreifen zu können."
                 },
                 "service2": {
                     "title": "Familien und Einzelpersonen",
