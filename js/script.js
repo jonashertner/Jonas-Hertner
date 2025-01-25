@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "contact": {
                 "heading": "Kontakt",
                 "addressLabel1": "ZÜRICH",
-                "addressPlaceholder2": "Asylstrasse 41, Postfach, 8032 Zürich",
+                "addressPlaceholder1": "Asylstrasse 41, Postfach, 8032 Zürich",
                 "addressLabel2": "BASEL",
                 "addressPlaceholder2": "4052 Basel",
                 "emailLabel": "",
