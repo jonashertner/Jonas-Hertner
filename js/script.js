@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "contact": {
                 "heading": "Contact",
-                "addressLabel": "Zurich",
-                "addressPlaceholder": "Asylstrasse 41, PO Box, 8032 Zurich",
-                "addressLabel2": "Basel",
+                "addressLabel1": "ZURICH",
+                "addressPlaceholder1": "Asylstrasse 41, PO Box, 8032 Zurich",
+                "addressLabel2": "BASEL",
                 "addressPlaceholder2": "4052 Basel",
                 "emailLabel": "",
                 "emailPlaceholder": "jh@jonashertner.com"
@@ -123,9 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "contact": {
                 "heading": "Kontakt",
-                "addressLabel": "Zürich",
-                "addressPlaceholder": "Asylstrasse 41, Postfach, 8032 Zürich",
-                "addressLabel2": "Basel",
+                "addressLabel1": "ZÜRICH",
+                "addressPlaceholder2": "Asylstrasse 41, Postfach, 8032 Zürich",
+                "addressLabel2": "BASEL",
                 "addressPlaceholder2": "4052 Basel",
                 "emailLabel": "",
                 "emailPlaceholder": "jh@jonashertner.com"
@@ -185,9 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             "contact": {
                 "heading": "Contact",
-                "addressLabel1": "Zurich",
+                "addressLabel1": "ZURICH",
                 "addressPlaceholder1": "Asylstrasse 41, case postale, 8032 Zurich",
-                "addressLabel2": "Basel",
+                "addressLabel2": "BASEL",
                 "addressPlaceholder2": "4052 Basel",
                 "emailLabel": "",
                 "emailPlaceholder": "jh@jonashertner.com"
