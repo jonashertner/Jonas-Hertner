@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //     "description": "Jonas Hertner collabore avec des parties en Suisse et sur le plan international afin de poursuivre des litiges stratégiques visant à provoquer des changements politiques dans les domaines de l'écologie et de la justice fondamentale. Jonas a l'habitude de travailler avec des financeurs de litiges et des collectifs des plaignants."
                 // },
                 "service4": {
-                    "title": "Droit constitutionnel, droits civil et litiges stratégiques",
+                    "title": "Droit constitutionnel, droits civils et litiges stratégiques",
                     "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux, notamment dans les domaines de l'écologie et des nouvelles technologies."
                 },
                 "service5": {
