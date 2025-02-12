@@ -507,3 +507,34 @@ a:focus,
 .btn {
     transition: all 0.3s ease;
 }
+
+/* BLOG PAGE STYLES */
+#blog-main {
+  padding: 60px 20px;
+  min-height: 100vh;
+  background-color: var(--color-secondary); 
+  color: var(--color-primary);
+  overflow-y: auto; /* Normal scrolling */
+}
+
+.blog-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.blog-post {
+  margin-bottom: 40px;
+}
+
+.blog-post h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 0.5em;
+}
+
+.blog-post p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: var(--line-height-base);
+  margin-bottom: 1em;
+}
+

@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biography",
-                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the world's largest law firm specialising in litigation. Aside from his legal practice, Jonas is engaged in ventures in the areas of children's education, ecology, and the arts."
+                "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. Aside from his legal practice, Jonas is engaged in ventures in the areas of children's education, ecology, and the arts."
             },
             "contact": {
                 "heading": "Contact",
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "bio": {
                 "heading": "Biographie",
-                "content": "Jonas Hertner schloss sein Jurastudium an den Universitäten Luzern und Genf mit Auszeichnung ab. Seine Karriere führte ihn von Non-Profit-Organisationen über die Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten bis hin zum Appellationsgericht Basel-Stadt. Später half er beim Aufbau des Schweizer Büros der weltweit grössten auf Prozessführung spezialisierten Anwaltskanzlei. Neben seiner Tätigkeit als Anwalt engagiert sich Jonas Hertner in Projekten in den Bereichen Bildung, Ökologie und Kunst."
+                "content": "Jonas Hertner schloss sein Jurastudium an den Universitäten Luzern und Genf mit Auszeichnung ab. Seine Karriere führte ihn von Non-Profit-Organisationen über die Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten bis hin zum Appellationsgericht Basel-Stadt. Später half er beim Aufbau des Schweizer Büros der Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan. Neben seiner Tätigkeit als Anwalt engagiert sich Jonas Hertner in Projekten in den Bereichen Bildung, Ökologie und Kunst."
             },
             "contact": {
                 "heading": "Kontakt",
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             "bio": {
                 "heading": "Biographie",
-                "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a mené d'organisations à but non lucratif à la Direction du droit international du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite participé à la création du bureau suisse du plus grand cabinet d'avocats au monde spécialisé dans les litiges. Outre sa pratique juridique, Jonas est engagé dans des projets dans les domaines de l'éducation des enfants, de l'écologie et des arts."
+                "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a mené d'organisations à but non lucratif à la Direction du droit international du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite participé à la création du bureau suisse du cabinet d'avocats Quinn Emanuel Urquhart & Sullivan. Outre sa pratique juridique, Jonas est engagé dans des projets dans les domaines de l'éducation des enfants, de l'écologie et des arts."
             },
 
             "contact": {
