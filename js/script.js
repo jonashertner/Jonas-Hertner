@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service5": {
                     "title": "Artificial intelligence and large language models",
-                    "description": "With in-depth experience in the application of AI tools and LLMs in the areas of good governance and education/tutoring, Jonas is able to advise on novel legal issues in this area, including data protection and regulatory compliance, intellectual property rights, and ethical considerations."
+                    "description": "With in-depth experience in the application of AI tools and LLMs in the areas of good governance and education/tutoring, Jonas regularly advises on novel legal issues in this area, including on corporate governance and good decision-making practices, data protection and regulatory compliance, intellectual property rights, and ethical considerations."
                 },
                 "service6": {
                     "title": "Philosophy",
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service5": {
                     "title": "Künstliche Intelligenz und Large Language Models",
-                    "description": "Mit eingehender Erfahrung in der Anwendung von KI-Tools und LLMs in den Bereichen Good Governance und Bildung kann Jonas in diesem Bereich zu neuartigen Rechtsfragen beraten, darunter die Einhaltung von Datenschutzbestimmungen und aufsichtsrechtlichen Vorschriften, Rechte an geistigem Eigentum und ethische Überlegungen."
+                    "description": "Mit eingehender Erfahrung in der Anwendung von KI-Tools und LLMs in den Bereichen Good Governance und Bildung kann Jonas in diesem Bereich zu neuartigen Rechtsfragen beraten, darunter zu guter Unternehmensführung und best practices in der Entscheidfindung, die Einhaltung von Datenschutzbestimmungen und aufsichtsrechtlichen Vorschriften, Rechte an geistigem Eigentum und ethische Überlegungen."
                 },
                 "service6": {
                     "title": "Philosophie",
@@ -170,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 "service5": {
                     "title": "Le droit de l'intelligence artificielle et des Large Language Models",
-                    "description": "Avec une expérience approfondie dans l'application des outils d'IA et de LLM dans les domaines de la bonne gouvernance et de l'éducation, Jonas peut conseiller sur des questions juridiques inédites dans ce domaine, notamment la conformité avec les règles de protection des données et les règles prudentielles, les droits de propriété intellectuelle et les considérations éthiques."
+                    "description": "Avec une expérience approfondie dans l'application des outils d'IA et de LLM dans les domaines de la bonne gouvernance et de l'éducation, Jonas conseille régulièrement sur des questions juridiques nouvelles dans ce domaine, notamment sur la «good governance» et les bonnes pratiques de prise de décision, la conformité avec les règles de protection des données et les règles prudentielles, les droits de propriété intellectuelle et les considérations éthiques."
+
                 },
                 "service6": {
                     "title": "Philosophie",
