@@ -18,9 +18,9 @@
       overflow-x: hidden;
     }
 
+    /* Remove fixed height or overflow restrictions to allow normal scrolling */
     main {
-      height: 100vh;
-      overflow-y: scroll;
+      /* No height or overflow-y defined here */
     }
 
     .snap-section {
@@ -81,13 +81,6 @@
       line-height: 1.6;
       text-align: justify;
       margin-bottom: 1em;
-    }
-
-    @media (min-width: 992px) {
-      main {
-        scroll-snap-type: none;
-        overflow-y: auto;
-      }
     }
   </style>
 </head>
