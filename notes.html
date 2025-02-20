@@ -1,36 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <!-- Add a responsive meta tag -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="UTF-8" />
+  <!-- Responsive Meta Tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jonas Hertner - Notes</title>
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/styles.css" />
 
-  <!-- Inline styles specific to the notes page -->
   <style>
     /* Use Bradford for an elegant newspaper style */
     body {
       font-family: 'Bradford', sans-serif;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
 
-    /* Background video styling */
-    .bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    /* Main container set up for snap scrolling on smaller devices */
+    /* Main container for snap scrolling */
     main {
       scroll-snap-type: y mandatory;
       height: 100vh;
@@ -45,21 +33,31 @@
       flex-direction: column;
       justify-content: center;
       padding: 0 20px;
+      position: relative;
     }
 
-    /* Landing section styling */
+    /* Section 1: Landing with background video */
     .landing {
       text-align: center;
       color: var(--color-text-light);
-      background: rgba(0, 0, 0, 0.3); /* Optional overlay for contrast */
     }
     .landing h1 {
-      /* Use clamp for responsiveness across screen sizes */
       font-size: clamp(2rem, 8vw, 3rem);
       margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .landing .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
 
-    /* Each note section styling */
+    /* Section 2: Note Article (solid background) */
     .note-section {
       background-color: var(--color-secondary);
       color: var(--color-primary);
@@ -89,8 +87,7 @@
       margin-bottom: 1em;
     }
 
-    /* Disable snap scrolling for desktops (≥992px) 
-       so it behaves like a normal page */
+    /* Disable snap scrolling for desktops (≥992px) */
     @media (min-width: 992px) {
       main {
         scroll-snap-type: none;
@@ -100,23 +97,21 @@
   </style>
 </head>
 <body>
-  <!-- Background Video -->
-  <video class="bg-video" autoplay loop muted playsinline>
-    <source src="images/ocean anim 2.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
   <header>
-    <!-- Could add a navbar or logo here if needed -->
+    <!-- Navigation bar or logo can be added here if needed -->
   </header>
 
   <main>
-    <!-- Landing Section (Snap Section) -->
+    <!-- Section 1: Landing with Video Background -->
     <section class="landing snap-section">
+      <video class="bg-video" autoplay loop muted playsinline>
+        <source src="images/ocean anim 2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <h1>Changes of note</h1>
     </section>
 
-    <!-- Note Article Section (Snap Section) -->
+    <!-- Section 2: Article with Solid Background -->
     <section class="note-section snap-section">
       <article class="note">
         <h2>Quiet Currents of Change</h2>
@@ -141,8 +136,7 @@
         </p>
       </article>
     </section>
-
-    <!-- Additional note sections can be added as separate .note-section snap-section blocks -->
+    <!-- Additional sections can be added here if needed -->
   </main>
 
   <script src="js/script.js"></script>
