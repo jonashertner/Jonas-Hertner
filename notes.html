@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Add a responsive meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Jonas Hertner - Notes</title>
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Inline styles specific to the notes page -->
   <style>
     /* Use Bradford for an elegant newspaper style */
     body {
@@ -13,6 +18,7 @@
       margin: 0;
       padding: 0;
     }
+
     /* Background video styling */
     .bg-video {
       position: fixed;
@@ -23,12 +29,14 @@
       object-fit: cover;
       z-index: -1;
     }
-    /* Main container set up for snap scrolling */
+
+    /* Main container set up for snap scrolling on smaller devices */
     main {
       scroll-snap-type: y mandatory;
       height: 100vh;
       overflow-y: scroll;
     }
+
     /* Common snap section styling */
     .snap-section {
       scroll-snap-align: start;
@@ -38,6 +46,7 @@
       justify-content: center;
       padding: 0 20px;
     }
+
     /* Landing section styling */
     .landing {
       text-align: center;
@@ -45,9 +54,11 @@
       background: rgba(0, 0, 0, 0.3); /* Optional overlay for contrast */
     }
     .landing h1 {
-      font-size: 3rem;
+      /* Use clamp for responsiveness across screen sizes */
+      font-size: clamp(2rem, 8vw, 3rem);
       margin: 0;
     }
+
     /* Each note section styling */
     .note-section {
       background-color: var(--color-secondary);
@@ -59,47 +70,44 @@
     .note {
       max-width: 800px;
       margin: 0 auto;
+      padding: 20px;
     }
     .note h2 {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 5vw, 2rem);
       margin-bottom: 0.5em;
-      border-bottom: 1px solid var(--color-primary);
-      padding-bottom: 0.5em;
     }
     .note .meta {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
       color: #555;
       margin-bottom: 1em;
-      font-style: italic;
+      text-align: left;
     }
     .note p {
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 2.8vw, 1rem);
       line-height: 1.6;
       text-align: justify;
       margin-bottom: 1em;
     }
-    /* Responsive adjustments for mobile view */
-    @media (max-width: 768px) {
-      .landing h1 {
-        font-size: 2.5rem;
-      }
-      .note h2 {
-        font-size: 1.75rem;
-      }
-      .note p {
-        font-size: 0.95rem;
+
+    /* Disable snap scrolling for desktops (≥992px) 
+       so it behaves like a normal page */
+    @media (min-width: 992px) {
+      main {
+        scroll-snap-type: none;
+        overflow-y: auto;
       }
     }
   </style>
 </head>
 <body>
   <!-- Background Video -->
-  <video class="bg-video" autoplay loop muted>
+  <video class="bg-video" autoplay loop muted playsinline>
     <source src="images/ocean anim 2.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <header>
+    <!-- Could add a navbar or logo here if needed -->
   </header>
 
   <main>
