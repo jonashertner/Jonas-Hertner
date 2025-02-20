@@ -18,16 +18,12 @@
       overflow-x: hidden;
     }
 
-    /* Main container for snap scrolling */
     main {
-      scroll-snap-type: y mandatory;
       height: 100vh;
       overflow-y: scroll;
     }
 
-    /* Common snap section styling */
     .snap-section {
-      scroll-snap-align: start;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -87,7 +83,6 @@
       margin-bottom: 1em;
     }
 
-    /* Disable snap scrolling for desktops (≥992px) */
     @media (min-width: 992px) {
       main {
         scroll-snap-type: none;
