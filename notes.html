@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/styles.css" />
 
   <style>
-    /* Use Bradford for an elegant newspaper style */
+
     body {
       font-family: 'Bradford', sans-serif;
       margin: 0;
@@ -18,9 +18,7 @@
       overflow-x: hidden;
     }
 
-    /* Remove fixed height or overflow restrictions to allow normal scrolling */
     main {
-      /* No height or overflow-y defined here */
     }
 
     .snap-section {
@@ -53,14 +51,12 @@
       z-index: -1;
     }
 
-    /* Section 2: Note Article (solid background) */
 .note-section {
   background-color: var(--color-secondary);
   color: var(--color-primary);
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  overflow-y: auto;
 }    
 
 .note {
@@ -88,11 +84,10 @@
 </head>
 <body>
   <header>
-    <!-- Navigation bar or logo can be added here if needed -->
   </header>
 
   <main>
-    <!-- Section 1: Landing with Video Background -->
+
     <section class="landing snap-section">
       <video class="bg-video" autoplay loop muted playsinline>
         <source src="images/ocean anim 2.mp4" type="video/mp4" />
@@ -101,7 +96,6 @@
       <h1>Changes of note</h1>
     </section>
 
-    <!-- Section 2: Article with Solid Background -->
     <section class="note-section snap-section">
       <article class="note">
         <h2>Quiet Currents of Change</h2>
@@ -124,12 +118,10 @@
         <p>
           If there is clarity to be found, it is in recognizing that emotions do not merely react to change; they mark it. The mind unsettles because it is learning, recalibrating, making room for what will soon feel as though it has always been there.
         </p>
-        <p></p>
-         <p></p>
-         <p></p>
+
       </article>
     </section>
-    <!-- Additional sections can be added here if needed -->
+    <!-- Article -->
   </main>
 
   <script src="js/script.js"></script>
