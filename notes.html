@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive Meta Tag -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jonas Hertner - Notes</title>
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
@@ -10,98 +10,19 @@
   <link rel="stylesheet" href="css/styles.css" />
 
   <style>
-    body {
-      font-family: 'Bradford', sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
 
-    /* Main scroll container with momentum scrolling */
-    main {
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-      height: 100vh;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    /* This class is used for full-screen snap sections (e.g. the landing section) */
-    .snap-section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    /* Landing Section */
-    .landing {
-      text-align: center;
-      color: var(--color-text-light);
-    }
-    .landing h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-      margin: 0;
-      position: relative;
-      z-index: 1;
-    }
-    .landing .bg-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    /* Updated note-section:
-       - Removed the snap behavior by not including the "snap-section" class.
-       - Disabled snap alignment.
-       - Enabled internal vertical scrolling.
-    */
-    .note-section {
-      background-color: var(--color-secondary);
-      color: var(--color-primary);
-      overflow-y: auto;
-      padding: 20px;
-      scroll-snap-align: none;
-    }
-
-    .note {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .note h2 {
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      margin-bottom: 0.5em;
-    }
-    .note .meta {
-      font-size: clamp(0.8rem, 2.5vw, 1rem);
-      color: #555;
-      margin-bottom: 1em;
-      text-align: left;
-    }
-    .note p {
-      font-size: clamp(0.9rem, 2.8vw, 1rem);
-      line-height: 1.6;
-      text-align: justify;
-      margin-bottom: 1em;
+    body.notes-page main {
+      scroll-snap-type: none;
+      height: auto;
     }
   </style>
 </head>
-<body>
-  <header>
-  </header>
-
+<body class="notes-page">
+  <header></header>
+  
   <main>
-    <!-- Landing section remains a snap-section -->
-    <section class="landing snap-section">
+
+    <section class="landing">
       <video class="bg-video" autoplay loop muted playsinline>
         <source src="images/ocean anim 2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
@@ -109,7 +30,6 @@
       <h1>Changes of note</h1>
     </section>
 
-    <!-- Note section is now continuous (removed snap-section) -->
     <section class="note-section">
       <article class="note">
         <h2>Quiet Currents of Change</h2>
