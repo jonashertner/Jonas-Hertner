@@ -85,6 +85,7 @@ main {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: 100vh;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
     padding-top: 0; 
     padding-bottom: 0;
@@ -205,7 +206,6 @@ p {
 .navbar:not(.dark) .language-switcher .lang-btn {
     color: var(--color-text-light);
 }
-
 
 /* Hero Section */
 #home {
@@ -367,8 +367,6 @@ p {
     place-items: center;
 }
 
-
-
 #services6 {
     background-color: var(--color-secondary);
     color: var(--color-primary);
@@ -420,7 +418,6 @@ p {
     display: grid;
     place-items: center;
 }
-/* Responsive Design */
 
 /* Mobile Styles */
 @media (max-width: 768px) {
@@ -447,7 +444,6 @@ p {
         font-size: clamp(1.2rem, 3.5vw, 2.2rem); 
     }
 }
-
 
 /* Tablet Styles */
 @media (min-width: 769px) and (max-width: 991px) {
@@ -504,7 +500,7 @@ a:focus,
     outline-offset: 1px;
 }
 
-/* Ensure smooth transitions for interactive elements */
+/* Smooth transitions for interactive elements */
 .lang-btn,
 .btn {
     transition: all 0.3s ease;
@@ -516,7 +512,7 @@ a:focus,
   min-height: 100vh;
   background-color: var(--color-secondary); 
   color: var(--color-primary);
-  overflow-y: auto; /* Normal scrolling */
+  overflow-y: auto;
 }
 
 .blog-section .container {

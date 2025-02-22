@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/styles.css" />
 
   <style>
-
     body {
       font-family: 'Bradford', sans-serif;
       margin: 0;
@@ -18,9 +17,18 @@
       overflow-x: hidden;
     }
 
+    /* Main scroll container with iOS momentum scrolling enabled */
     main {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      padding-top: 0; 
+      padding-bottom: 0;
     }
 
+    /* Default snap-section styles */
     .snap-section {
       min-height: 100vh;
       display: flex;
@@ -30,7 +38,7 @@
       position: relative;
     }
 
-    /* Section 1: Landing with background video */
+    /* Landing Section */
     .landing {
       text-align: center;
       color: var(--color-text-light);
@@ -51,15 +59,19 @@
       z-index: -1;
     }
 
-.note-section {
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}    
+    /* Updated note-section for proper mobile scrolling */
+    .note-section {
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      overflow-y: auto;
+      min-height: 100vh;
+      padding: 20px;
+    }    
 
-.note {
+    .note {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
@@ -87,7 +99,6 @@
   </header>
 
   <main>
-
     <section class="landing snap-section">
       <video class="bg-video" autoplay loop muted playsinline>
         <source src="images/ocean anim 2.mp4" type="video/mp4" />
@@ -118,7 +129,6 @@
         <p>
           If there is clarity to be found, it is in recognizing that emotions do not merely react to change; they mark it. The mind unsettles because it is learning, recalibrating, making room for what will soon feel as though it has always been there.
         </p>
-
       </article>
     </section>
     <!-- Article -->
