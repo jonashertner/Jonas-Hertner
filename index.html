@@ -14,7 +14,6 @@
   <meta property="og:url" content="https://www.jonashertner.com" />
   <meta property="og:image" content="https://www.jonashertner.com/images/jh.jpg" />
 
-
   <title>Jonas Hertner</title>
     
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -29,7 +28,6 @@
         <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
         <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
         <button id="lang-fr" class="lang-btn" aria-label="Switch to French" aria-pressed="false">FR</button>
-
       </div>
     </nav>
   </header>
@@ -37,14 +35,7 @@
   <main id="main-content">
     <!-- Home Section -->
     <section id="home" class="section" aria-labelledby="home-heading">
-      <!-- Responsive Hero Image with Lazy Loading -->
       <picture class="hero-image">
-        <!-- Example: WebP images (uncomment if you have them) 
-        <source srcset="images/hero-small.webp" media="(max-width: 768px)" type="image/webp">
-        <source srcset="images/hero-large.webp" media="(min-width: 769px)" type="image/webp">
-        <source srcset="images/hero-small.jpg" media="(max-width: 768px)" type="image/jpeg">
-        <source srcset="images/hero-large.jpg" media="(min-width: 769px)" type="image/jpeg">
-        -->
         <!-- Fallback Image with Lazy Loading -->
         <img src="images/services5-bg.jpg" alt="Hero background" loading="lazy">
       </picture>
@@ -126,7 +117,8 @@
     <section id="bio" class="section" aria-labelledby="bio-heading">
       <div class="about-content">
         <h2 id="bio-heading" data-key="bio.heading">Biography</h2>
-        <p data-key="bio.content">Bio</p>
+        <!-- The data-html attribute instructs the script to render HTML -->
+        <p data-key="bio.content" data-html="true">Bio</p>
       </div>
     </section>
 
@@ -150,8 +142,7 @@
 
     <section id="jh" class="section contact-section">
       <div class="contact-content">
-
-
+        <!-- Additional content if needed -->
       </div>
     </section>
   </main>
