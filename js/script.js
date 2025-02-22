@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "services": {
         "service1": {
           "title": "Advocacy and litigation",
-          "description": "Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of experience in litigation at the highest level, Jonas will help you think through your own perspective and the perspectives of the opposing side and of an eventual arbiter asked to decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
+          "description": "Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of top-level litigation experience, Jonas will help you consider not only your own perspective, but also those of the opposing side and any arbiter who may ultimately decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
         },
         "service2": {
           "title": "Family and individual clients",
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "Artificial intelligence and large language models",
-          "description": "With in-depth experience in the application of AI tools and LLMs in the areas of good governance and education/tutoring, Jonas regularly advises on novel legal issues in this area, including on corporate governance and good decision-making practices, data protection and regulatory compliance, intellectual property rights, and ethical considerations."
+          "description": "With in-depth experience in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area, including on corporate governance and good decision-making practices, data protection and regulatory compliance, intellectual property rights, and ethical considerations."
         },
         "service6": {
           "title": "Philosophy",
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biography",
-        "content": "Jonas Hertner graduated from the Universities of Lucerne and Geneva with a law degree with honours. His career took him from non-profit organisations to the Directorate of International Law in the Federal Department of Foreign Affairs and to the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. Aside from his legal practice, Jonas is engaged in ventures in the areas of children's education, ecology, and the arts. <br><br><a href='notes.html'>Published notes <i>here</i></a>."
+        "content": "Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children’s education, ecology, and the arts. <br><br><a href='notes.html'>Published notes <i>here</i></a>."
       },
       "contact": {
         "heading": "Contact",
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "about": {
         "heading": "Jonas Hertner",
-        "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel mit über einem Jahrzehnt an Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der wichtigsten Rechtsstreitigkeiten in der Schweiz. Jonas berät Privatpersonen, Familien, Stiftungen und Unternehmen auf dem Weg zur Erreichung ihrer Ziele. Für seine Mandanten ist Jonas ein verlässlicher Berater und unerschütterlicher Advokat, der sich mit dem Anspruch an höchste Qualität für die langfristigen Interessen seiner Mandanten einsetzt."
+        "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel mit über einem Jahrzehnt Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der wichtigsten Rechtsstreitigkeiten in der Schweiz. Jonas berät Privatpersonen, Familien, Stiftungen und Unternehmen auf dem Weg zur Erreichung ihrer Ziele. Für seine Mandanten ist Jonas ein verlässlicher Berater und unerschütterlicher Advokat, der sich mit dem Anspruch an höchste Qualität für die langfristigen Interessen seiner Mandanten einsetzt."
       },
       "services": {
         "heading": "Expertise",
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "heading": "Expertise",
         "service1": {
           "title": "Litiges",
-          "description": "Tous les litiges ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent parvenir à un accord raisonnable à l'amiable ou par la mediation. Pour obtenir un bon résultat dans un litige, il est important d'anticiper les conséquences possibles de chaque étape le plus tôt possible lorsqu'un différend se dessine. Jonas a plus de dix ans d'expérience dans les litiges de haut niveau et vous aidera à réfléchir à votre propre perspective ainsi qu'à celle de la partie adverse et d'un éventuel tribunal appelé à trancher le litige, afin que vous puissiez prendre les mesures les plus efficaces à chaque étape du processus de protection de vos intérêts."
+          "description": "Tous les litiges ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent parvenir à un accord raisonnable à l'amiable ou par la médiation. Pour obtenir un bon résultat dans un litige, il est important d'anticiper les conséquences possibles de chaque étape le plus tôt possible lorsqu'un différend se dessine. Jonas a plus de dix ans d'expérience dans les litiges de haut niveau et vous aidera à réfléchir à votre propre perspective ainsi qu'à celle de la partie adverse et d'un éventuel tribunal appelé à trancher le litige, afin que vous puissiez prendre les mesures les plus efficaces à chaque étape du processus de protection de vos intérêts."
         },
         "service2": {
           "title": "Clients familiaux et privés",
