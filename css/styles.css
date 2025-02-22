@@ -346,7 +346,7 @@ p {
 }
 
 #services3 {
-    background-image: url('../images/services3n2-bg.jpg');
+    background-image: url('../images/library.png');
     background-size: cover;
     background-position: center;
     color: var(--color-text-light);
