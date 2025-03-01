@@ -538,7 +538,7 @@ a:focus,
   .service-item p,
   .contact-info p,
   .bio-content p {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
   }
   
   /* Optionally adjust section headings */
