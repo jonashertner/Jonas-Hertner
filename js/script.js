@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
           "description": "Jonas collabore avec des acteurs en Suisse et à l’international afin de mener des procédures judiciaires visant à protéger les droits et libertés fondamentaux, notamment en matière de protection de l’environnement (préservation des habitats) et de nouvelles technologies."
         },
         "service5": {
-          "title": "Le droit de l'intelligence artificielle et des Large Language Models",
+          "title": "L'intelligence artificielle et des grands modèles de langage",
           "description": "Fort d’une expérience approfondie dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) dans les domaines de la gouvernance et de l’éducation, Jonas conseille régulièrement ses clients sur les questions juridiques émergentes dans ce secteur, notamment sur les bonnes pratiques de gouvernance et de prise de décision, l’utilisation de données d’entraînement de haute qualité, la protection des données et la conformité réglementaire, les droits de propriété intellectuelle ainsi que les enjeux éthiques."
         },
         "service6": {
