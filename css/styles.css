@@ -538,7 +538,7 @@ a:focus,
   .service-item p,
   .contact-info p,
   .bio-content p {
-    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
   }
   
   /* Optionally adjust section headings */
@@ -548,9 +548,9 @@ a:focus,
   
   /* Adjust hero text if needed */
   .hero-content h1 {
-    font-size: clamp(2.1rem, 7vw, 3.6rem);
+    font-size: clamp(2.2rem, 7vw, 3.7rem);
   }
   .hero-content p {
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
   }
 }
