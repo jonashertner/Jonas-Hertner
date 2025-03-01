@@ -14,14 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   const sections = document.querySelectorAll('.section');
   const languageSwitcher = document.querySelector('.language-switcher');
+  const mainContent = document.getElementById('main-content'); // scrolling container
 
   // Content Object (English, German, and French translations)
   const content = {
     "en": {
-      "hero": {
-        "title": "Jonas Hertner",
-        "subtitle": "ATTORNEY"
-      },
+      "hero": { "title": "Jonas Hertner", "subtitle": "ATTORNEY" },
       "about": {
         "heading": "Jonas Hertner",
         "content": "Jonas Hertner is an independent lawyer based in Zurich and Basel, with more than a decade of experience guiding Swiss and international clients through high-stakes legal disputes, often across multiple jurisdictions. He advises individuals, families, foundations, and companies in navigating complex situations as they work toward achieving their goals. To his clients, he is a trusted advisor and unwavering advocate, committed to excellence in protecting and advancing their long-term interests."
@@ -54,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biography",
-        "content": "Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children’s education, ecology, and the arts. <br><br><a href='notes.html'>Published notes <i>here</i></a>."
+        "content": "Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children’s education, ecology, and the arts. <br><br><a href='notes.html'>Published notes <i>here</i></a>"
       },
       "contact": {
         "heading": "Contact",
@@ -67,16 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     "de": {
-      "nav": {
-        "home": "Home",
-        "about": "Über",
-        "services": "Dienstleistungen",
-        "contact": "Kontakt"
-      },
-      "hero": {
-        "title": "Jonas Hertner",
-        "subtitle": "ADVOKAT"
-      },
+      "nav": { "home": "Home", "about": "Über", "services": "Dienstleistungen", "contact": "Kontakt" },
+      "hero": { "title": "Jonas Hertner", "subtitle": "ADVOKAT" },
       "about": {
         "heading": "Jonas Hertner",
         "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel mit über einem Jahrzehnt Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der wichtigsten Rechtsstreitigkeiten in der Schweiz. Jonas berät Privatpersonen, Familien, Stiftungen und Unternehmen auf dem Weg zur Erreichung ihrer Ziele. Für seine Mandanten ist Jonas ein verlässlicher Berater und unerschütterlicher Advokat, der sich mit dem Anspruch an höchste Qualität für die langfristigen Interessen seiner Mandanten einsetzt."
@@ -123,16 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     "fr": {
-      "nav": {
-        "home": "Accueil",
-        "about": "À propos",
-        "services": "Services",
-        "contact": "Contact"
-      },
-      "hero": {
-        "title": "Jonas Hertner",
-        "subtitle": "AVOCAT"
-      },
+      "nav": { "home": "Accueil", "about": "À propos", "services": "Services", "contact": "Contact" },
+      "hero": { "title": "Jonas Hertner", "subtitle": "AVOCAT" },
       "about": {
         "heading": "Jonas Hertner",
         "content": "Jonas Hertner est avocat indépendant établi à Zurich et à Bâle. Fort de plus de dix ans d'expérience, il accompagne une clientèle suisse et internationale dans des litiges complexes à fort enjeu, souvent portés devant plusieurs juridictions. Il conseille des particuliers, des familles, des fondations et des entreprises confrontés à des situations délicates, les aidant à atteindre leurs objectifs stratégiques. Ses clients trouvent en lui un conseiller de confiance et un défenseur déterminé, engagé à protéger et à promouvoir durablement leurs intérêts avec rigueur et excellence."
@@ -180,6 +162,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Determine the active section based on which section's top is closest to the viewport top
+  function onScroll() {
+    let closestSection = null;
+    let minDistance = Infinity;
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      // Use the absolute distance of the top from 0
+      const distance = Math.abs(rect.top);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestSection = section;
+      }
+    });
+    if (closestSection) {
+      adjustNavbarStyle(closestSection.id);
+    }
+  }
+
   // Function to change language
   function changeLanguage(lang) {
     document.querySelectorAll('[data-key]').forEach(element => {
@@ -187,22 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const keys = key.split('.');
       let text = content[lang];
       keys.forEach(k => {
-        if (text && text[k] !== undefined) {
-          text = text[k];
-        } else {
-          text = '';
-        }
+        text = text && text[k] !== undefined ? text[k] : '';
       });
       if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
         element.placeholder = text;
       } else if (element.tagName === 'IMG') {
         element.alt = text;
       } else {
-        if (element.getAttribute('data-html') === "true") {
-          element.innerHTML = text;
-        } else {
-          element.textContent = text;
-        }
+        element.getAttribute('data-html') === "true" ? element.innerHTML = text : element.textContent = text;
       }
     });
     languageButtons.forEach(btn => {
@@ -220,7 +212,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to adjust navbar style based on current section
   function adjustNavbarStyle(currentSection = 'home') {
-    if (currentSection === 'home' || currentSection === 'jh' || currentSection === 'services1' || currentSection === 'services3' || currentSection === 'services5' || currentSection === 'bio') {
+    if (
+      currentSection === 'home' ||
+      currentSection === 'jh' ||
+      currentSection === 'services1' ||
+      currentSection === 'services3' ||
+      currentSection === 'services5' ||
+      currentSection === 'bio'
+    ) {
       navbar.classList.remove('dark');
       languageSwitcher.style.color = 'white';
     } else {
@@ -240,22 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
   changeLanguage(storedLang);
   adjustNavbarStyle('home');
 
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.6
-  };
+  // Listen for scroll events on the scrolling container instead of window
+  mainContent.addEventListener('scroll', onScroll);
 
-  const callback = (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        adjustNavbarStyle(entry.target.id);
-      }
-    });
-  };
-
-  const observer = new IntersectionObserver(callback, options);
-  sections.forEach(section => {
-    observer.observe(section);
-  });
+  // Optionally, call onScroll on load to set initial navbar style
+  onScroll();
 });
