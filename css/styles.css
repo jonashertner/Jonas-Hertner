@@ -186,7 +186,7 @@ p {
     font-family: var(--font-family-primary);
     padding: 5px 10px;
     border-radius: 3px;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
 }
 
 .lang-btn:hover,
@@ -529,4 +529,28 @@ a:focus,
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   line-height: var(--line-height-base);
   margin-bottom: 1em;
+}
+
+/* Extra Small Mobile Devices (e.g., max-width: 480px) */
+@media (max-width: 480px) {
+  /* Adjust content paragraphs */
+  .about-content p,
+  .service-item p,
+  .contact-info p,
+  .bio-content p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+  
+  /* Optionally adjust section headings */
+  .section h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  /* Adjust hero text if needed */
+  .hero-content h1 {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+  }
+  .hero-content p {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+  }
 }
