@@ -533,24 +533,24 @@ a:focus,
 
 /* Extra Small Mobile Devices (e.g., max-width: 480px) */
 @media (max-width: 480px) {
-  /* Adjust content paragraphs */
+  /* Adjust content paragraphs to be slightly larger */
   .about-content p,
   .service-item p,
   .contact-info p,
   .bio-content p {
-    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
   }
   
   /* Optionally adjust section headings */
   .section h2 {
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
   }
   
   /* Adjust hero text if needed */
   .hero-content h1 {
-    font-size: clamp(2rem, 7vw, 3.5rem);
+    font-size: clamp(2.1rem, 7vw, 3.6rem);
   }
   .hero-content p {
-    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
   }
 }
