@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
           "description": "Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of top-level litigation experience, Jonas will help you consider not only your own perspective, but also those of the opposing side and any arbiter who may ultimately decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
         },
         "service2": {
-          "title": "Family and individual clients",
-          "description": "Jonas Hertner has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value property, review of governance structures, good governance advice, and due diligence."
+          "title": "Families, foundations, and individuals",
+          "description": "Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value assets, due diligence, and good governance advice."
         },
         "service3": {
           "title": "Criminal law",
-          "description": "Jonas Hertner has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights."
+          "description": "Jonas has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights."
         },
         "service4": {
           "title": "Constitutional law, civil rights and impact litigation",
-          "description": "Jonas Hertner is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies."
+          "description": "Jonas is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies."
         },
         "service5": {
           "title": "Artificial intelligence and large language models",
@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "contact": {
         "heading": "Contact",
-        "addressLabel1": "ZURICH",
+        "addressLabel1": "",
         "addressPlaceholder1": "Asylstrasse 41, 8032 Zurich",
-        "addressLabel2": "BASEL",
+        "addressLabel2": "",
         "addressPlaceholder2": "PO Box, 4010 Basel",
         "emailLabel": "",
         "emailPlaceholder": "jh@jonashertner.com"
@@ -85,38 +85,38 @@ document.addEventListener('DOMContentLoaded', () => {
         "heading": "Expertise",
         "service1": {
           "title": "Rechtsstreitigkeiten",
-          "description": "Nicht jeder Streit muss vor Gericht gebracht werden. Oft können die Parteien einvernehmlich oder durch Mediation eine vernünftige Einigung erzielen. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, sind die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft Ihnen, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheidet, zu durchdenken, um bei jedem Schritt die effektivste Massnahme ergreifen zu können."
+          "description": "Nicht jeder Streit muss vor Gericht gebracht werden. Oft gelangen die Parteien einvernehmlich oder durch Mediation zu einer vernünftigen Einigung. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, sind die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft Ihnen, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheidet, zu durchdenken, um bei jedem Schritt die effektivste Massnahme ergreifen zu können."
         },
         "service2": {
-          "title": "Familien und Einzelpersonen",
-          "description": "Jonas Hertner verfügt über weitreichende Erfahrung in der Beratung von in der Schweiz ansässigen und internationalen Familien und Einzelpersonen auf höchstem Niveau in komplexen Rechtssituationen – einschliesslich wichtiger Aktionärsstreitigkeiten, grosser Finanzprozesse, strafrechtlicher Untersuchungen sowie nichtstreitiger Situationen wie der Unterstützung beim Aufbau von Unternehmen oder in der Durchführung von Due Diligence-Prüfungen vor Transaktionen."
+          "title": "Familien, Stiftungen und Einzelpersonen",
+          "description": "Jonas verfügt über umfassende Erfahrung in der Beratung von Familien und Privatpersonen in der Schweiz und international auf höchstem Niveau. Er begleitet sie in komplexen rechtlichen Angelegenheiten, insbesondere bei gesellschaftsrechtlichen Streitigkeiten und Aktionärsdisputen, Finanzstreitigkeiten und strafrechtlichen Untersuchungen. Zudem berät er bei nicht-streitigen Themen wie Unternehmensgründungen, dem Erwerb hochwertiger Vermögenswerte, Due-Diligence-Prüfungen sowie der Einführung wirksamer Corporate-Governance-Strukturen."
         },
         "service3": {
           "title": "Strafrecht",
-          "description": "Jonas Hertner hat eine grosse Erfahrung im Führen strafrechtlicher Verfahren durch alle Instanzen, insbesondere in den Bereichen Wirtschaftskriminalität und Grundrechte."
+          "description": "Jonas hat eine grosse Erfahrung im Führen strafrechtlicher Verfahren durch alle Instanzen, insbesondere in den Bereichen Wirtschaftskriminalität und Grundrechte."
         },
         "service4": {
           "title": "Verfassungsrecht, Grundrechte und strategische Prozessführung",
-          "description": "Jonas Hertner arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen, insbesondere in den Bereichen Ökologie und neue Technologien."
+          "description": "Jonas arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen, insbesondere in den Bereichen Ökologie (Schutz von Lebensräumen) und neue Technologien."
         },
         "service5": {
           "title": "Künstliche Intelligenz und Large Language Models",
-          "description": "Mit eingehender Erfahrung in der Anwendung von KI-Tools und LLMs in den Bereichen Good Governance und Bildung kann Jonas in diesem Bereich zu neuartigen Rechtsfragen beraten, darunter zu guter Unternehmensführung und best practices in der Entscheidfindung, die Einhaltung von Datenschutzbestimmungen und aufsichtsrechtlichen Vorschriften, Rechte an geistigem Eigentum und ethische Überlegungen."
+          "description": "Dank seiner umfassenden Erfahrung im Einsatz von KI-Tools und großen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas regelmäßig zu neuartigen rechtlichen Fragestellungen in diesem Gebiet. Schwerpunkte seiner Beratung bilden gute Unternehmensführung und Entscheidungsprozesse, die Nutzung hochwertiger Trainingsdaten, Datenschutz und regulatorische Anforderungen, der Schutz geistigen Eigentums sowie ethische Aspekte."
         },
         "service6": {
           "title": "Philosophie",
-          "description": "«Der Kern meiner Tätigkeit ist das konsequente Engagement für die langfristigen Interessen meiner Mandanten, das auf meiner weitreichenden Erfahrung auf höchster Ebene der Anwaltstätigkeit beruht. Ich hinterfrage Annahmen und betrachte jeden Aspekt, um für jeden Fall die wirkungsvollste Herangehensweise zu finden. Geleitet von Neugier, Empathie, höchster Professionalität und dem Streben nach gerechten Ergebnissen fokussiere ich auf das Wesentliche. Auf diese Weise helfe ich meinen Mandanten, sich in komplexen Situationen zurechtzufinden, ihre Rechte zu schützen und ihre Ziele zu erreichen.»"
+          "description": "«Im Mittelpunkt meiner Tätigkeit steht das unerschütterliche Engagement für die langfristigen Interessen meiner Mandanten, geprägt von fundierter Erfahrung auf höchster Ebene der anwaltlichen Beratung. Ich hinterfrage vermeintliche Gewissheiten und betrachte jede Fragestellung aus unterschiedlichen Perspektiven, um aus komplexen Situationen klare, praktikable und wirkungsvolle Lösungen abzuleiten. Geleitet von Neugier, Empathie, höchstem Anspruch an Qualität und Integrität sowie dem Streben nach fairen und gerechten Ergebnissen fokussiere ich mich konsequent auf das, was wirklich zählt. So begleite ich meine Mandanten durch anspruchsvolle Situationen, schütze ihre Rechte und unterstütze sie dabei, ihre Ziele zu verwirklichen.»"
         }
       },
       "bio": {
         "heading": "Biographie",
-        "content": "Jonas Hertner schloss sein Jurastudium an den Universitäten Luzern und Genf mit Auszeichnung ab. Seine Karriere führte ihn von Non-Profit-Organisationen über die Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten bis hin zum Appellationsgericht Basel-Stadt. Später half er beim Aufbau des Schweizer Büros der Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan. Neben seiner Tätigkeit als Anwalt engagiert sich Jonas Hertner in Projekten in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Publizierte Artikel <i>hier</i></a>."
+        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er maßgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner aktiv in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Publizierte Artikel <i>hier</i></a>."
       },
       "contact": {
         "heading": "Kontakt",
-        "addressLabel1": "ZÜRICH",
+        "addressLabel1": "",
         "addressPlaceholder1": "Asylstrasse 41, 8032 Zürich",
-        "addressLabel2": "BASEL",
+        "addressLabel2": "",
         "addressPlaceholder2": "Postfach, 4010 Basel",
         "emailLabel": "",
         "emailPlaceholder": "jh@jonashertner.com"
@@ -135,45 +135,45 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "about": {
         "heading": "Jonas Hertner",
-        "content": "Jonas Hertner est un avocat indépendant basé à Zurich et à Bâle, avec plus d'une décennie d'expérience guidant des clients suisses et internationaux dans des litiges juridiques de grande importance. Il conseille des particuliers, des familles, des fondations et des entreprises dans des situations complexes afin qu'ils puissent atteindre leurs objectifs. Pour ses clients, il est un conseiller de confiance et un avocat inébranlable, voué à l'excellence dans la protection et la promotion de leurs intérêts à long terme."
+        "content": "Jonas Hertner est avocat indépendant établi à Zurich et à Bâle. Fort de plus de dix ans d'expérience, il accompagne une clientèle suisse et internationale dans des litiges complexes à fort enjeu, souvent portés devant plusieurs juridictions. Il conseille des particuliers, des familles, des fondations et des entreprises confrontés à des situations délicates, les aidant à atteindre leurs objectifs stratégiques. Ses clients trouvent en lui un conseiller de confiance et un défenseur déterminé, engagé à protéger et à promouvoir durablement leurs intérêts avec rigueur et excellence."
       },
       "services": {
         "heading": "Expertise",
         "service1": {
           "title": "Litiges",
-          "description": "Tous les litiges ne méritent pas d'être portés devant les tribunaux. Souvent, les parties peuvent parvenir à un accord raisonnable à l'amiable ou par la médiation. Pour obtenir un bon résultat dans un litige, il est important d'anticiper les conséquences possibles de chaque étape le plus tôt possible lorsqu'un différend se dessine. Jonas a plus de dix ans d'expérience dans les litiges de haut niveau et vous aidera à réfléchir à votre propre perspective ainsi qu'à celle de la partie adverse et d'un éventuel tribunal appelé à trancher le litige, afin que vous puissiez prendre les mesures les plus efficaces à chaque étape du processus de protection de vos intérêts."
+          "description": "Tous les litiges ne doivent pas nécessairement finir devant les tribunaux. Une solution avantageuse peut souvent être trouvée à l’amiable ou par médiation. Afin d'obtenir le meilleur résultat, que ce soit en justice ou en dehors, il est essentiel d’anticiper les conséquences de chaque décision dès les premiers signes d’un différend. Avec plus de dix ans d’expérience dans les litiges complexes, Jonas vous aide à évaluer votre position ainsi que celles de la partie adverse et des autorités concernées. Vous pourrez ainsi agir avec confiance et efficacité pour protéger au mieux vos intérêts."
         },
         "service2": {
-          "title": "Clients familiaux et privés",
-          "description": "Jonas Hertner a une grande expérience du conseil aux familles et aux particuliers basés en Suisse ou à l'étranger, au plus haut niveau, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires, de litiges financiers importants, d'enquêtes sur des actes criminels, ainsi que dans des situations non litigieuses telles que l'aide à la création d'entreprises."
+          "title": "Familles, fondations et particuliers",
+          "description": "Jonas possède une vaste expérience du conseil au plus haut niveau auprès de familles et de particuliers établis en Suisse et à l’international, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires à fort enjeu, de contentieux financiers importants et d’enquêtes sur des infractions pénales, ainsi que dans des contextes non litigieux tels que la création d’entreprises, l’acquisition d’actifs de grande valeur, les procédures de due diligence et la mise en place de bonnes pratiques de gouvernance."
         },
         "service3": {
           "title": "Droit pénal",
-          "description": "Jonas Hertner a une grande expérience dans la conduite de procédures pénales à travers toutes les instances, en particulier dans les domaines de la criminalité économique et des droits fondamentaux."
+          "description": "Jonas possède une vaste expérience dans la conduite de procédures pénales à tous les niveaux judiciaires, en particulier dans les domaines de la responsabilité pénale des entreprises, de la criminalité économique et financière, ainsi que de la protection des droits fondamentaux."
         },
         "service4": {
           "title": "Droit constitutionnel, droits civils et litiges stratégiques",
-          "description": "Jonas Hertner collabore avec des parties en Suisse et au niveau international afin de poursuivre des litiges visant à protéger les droits et libertés fondamentaux, notamment dans les domaines de l'écologie et des nouvelles technologies."
+          "description": "Jonas collabore avec des acteurs en Suisse et à l’international afin de mener des procédures judiciaires visant à protéger les droits et libertés fondamentaux, notamment en matière de protection de l’environnement (préservation des habitats) et de nouvelles technologies."
         },
         "service5": {
           "title": "Le droit de l'intelligence artificielle et des Large Language Models",
-          "description": "Avec une expérience approfondie dans l'application des outils d'IA et de LLM dans les domaines de la bonne gouvernance et de l'éducation, Jonas conseille régulièrement sur des questions juridiques nouvelles dans ce domaine, notamment sur la «good governance» et les bonnes pratiques de prise de décision, la conformité avec les règles de protection des données et les règles prudentielles, les droits de propriété intellectuelle et les considérations éthiques."
+          "description": "Fort d’une expérience approfondie dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) dans les domaines de la gouvernance et de l’éducation, Jonas conseille régulièrement ses clients sur les questions juridiques émergentes dans ce secteur, notamment sur les bonnes pratiques de gouvernance et de prise de décision, l’utilisation de données d’entraînement de haute qualité, la protection des données et la conformité réglementaire, les droits de propriété intellectuelle ainsi que les enjeux éthiques."
         },
         "service6": {
           "title": "Philosophie",
-          "description": "«Au cœur de ma pratique se trouve un dévouement inébranlable aux intérêts à long terme de mes clients, nourri par ma vaste expérience au plus haut niveau de la profession. Je remets en question les hypothèses et j'envisage tous les angles d'attaque afin d'identifier l'approche la plus efficace. Guidé par la curiosité, l'empathie, l'excellence et la recherche de résultats justes et équitables, je reste concentré sur ce qui compte. Ce faisant, j'aide mes clients à naviguer dans la complexité, à protéger leurs droits et à atteindre leurs objectifs.»"
+          "description": "« Au cœur de ma pratique se trouve un engagement indéfectible envers les intérêts à long terme de mes clients, fort d’une expérience approfondie au plus haut niveau de la profession. Je questionne les idées reçues et examine chaque perspective afin d’élaborer l’approche la plus pertinente, en transformant une situation complexe en conseils précis et efficaces. Animé par la curiosité, l’excellence, l’empathie et la recherche de solutions justes et équitables, je me concentre sur l’essentiel. Ainsi, j’accompagne mes clients face à la complexité, protège leurs droits et favorise la réalisation de leurs objectifs. »"
         }
       },
       "bio": {
         "heading": "Biographie",
-        "content": "Jonas Hertner a obtenu son diplôme de droit avec mention aux universités de Lucerne et de Genève. Sa carrière l'a mené d'organisations à but non lucratif à la Direction du droit international du Département fédéral des affaires étrangères et à la Cour d'appel de Bâle-Ville. Il a ensuite participé à la création du bureau suisse du cabinet d'avocats Quinn Emanuel Urquhart & Sullivan. Outre sa pratique juridique, Jonas est engagé dans des projets dans les domaines de l'éducation des enfants, de l'écologie et des arts. <br><br><a href='notes.html'>Notes publiées <i>ici</i></a>."
+        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts. <br><br><a href='notes.html'>Notes publiées <i>ici</i></a>."
       },
       "contact": {
         "heading": "Contact",
-        "addressLabel1": "ZURICH",
+        "addressLabel1": "",
         "addressPlaceholder1": "Asylstrasse 41, 8032 Zurich",
-        "addressLabel2": "BASEL",
-        "addressPlaceholder2": "Case postale, 4010 Basel",
+        "addressLabel2": "",
+        "addressPlaceholder2": "Case postale, 4010 Bâle",
         "emailLabel": "",
         "emailPlaceholder": "jh@jonashertner.com"
       }
