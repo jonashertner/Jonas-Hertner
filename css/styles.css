@@ -551,6 +551,6 @@ a:focus,
     font-size: clamp(2.2rem, 7vw, 3.7rem);
   }
   .hero-content p {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
   }
 }

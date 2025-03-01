@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service2": {
           "title": "Familien, Stiftungen und Einzelpersonen",
-          "description": "Jonas verfügt über umfassende Erfahrung in der Beratung von Familien und Privatpersonen in der Schweiz und international auf höchstem Niveau. Er begleitet sie in komplexen rechtlichen Angelegenheiten, insbesondere bei gesellschaftsrechtlichen Streitigkeiten und Aktionärsdisputen, Finanzstreitigkeiten und strafrechtlichen Untersuchungen. Zudem berät er bei nicht-streitigen Themen wie Unternehmensgründungen, dem Erwerb hochwertiger Vermögenswerte, Due-Diligence-Prüfungen sowie der Einführung wirksamer Corporate-Governance-Strukturen."
+          "description": "Jonas verfügt über umfassende Erfahrung in der Beratung von Familien und Privatpersonen in der Schweiz und international auf höchstem Niveau. Er begleitet sie in komplexen rechtlichen Angelegenheiten, insbesondere bei gesellschaftsrechtlichen Streitigkeiten und Aktionärsdisputen, Finanzstreitigkeiten und strafrechtlichen Untersuchungen. Zudem berät er bei Themen wie Gründungen, dem Erwerb hochwertiger Vermögenswerte, Due-Diligence-Prüfungen sowie der Einführung wirksamer Corporate-Governance-Strukturen."
         },
         "service3": {
           "title": "Strafrecht",
