@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "Artificial intelligence and large language models",
-          "description": "With in-depth experience in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area, including on corporate governance and good decision-making practices, data protection and regulatory compliance, intellectual property rights, and ethical considerations."
+          "description": "Experienced in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area, including on corporate governance and good decision-making practices, data protection and regulatory compliance, intellectual property rights, and ethical considerations."
         },
         "service6": {
           "title": "Philosophy",
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "Künstliche Intelligenz und Large Language Models",
-          "description": "Dank seiner umfassenden Erfahrung im Einsatz von KI-Tools und großen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas regelmäßig zu neuartigen rechtlichen Fragestellungen in diesem Gebiet. Schwerpunkte seiner Beratung bilden gute Unternehmensführung und Entscheidungsprozesse, die Nutzung hochwertiger Trainingsdaten, Datenschutz und regulatorische Anforderungen, der Schutz geistigen Eigentums sowie ethische Aspekte."
+          "description": "Mit seiner Erfahrung im Einsatz von KI-Tools und großen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas regelmäßig zu neuartigen rechtlichen Fragestellungen in diesem Gebiet. Schwerpunkte seiner Beratung bilden gute Unternehmensführung und Entscheidungsprozesse, die Nutzung hochwertiger Trainingsdaten, Datenschutz und regulatorische Anforderungen, der Schutz geistigen Eigentums sowie ethische Aspekte."
         },
         "service6": {
           "title": "Philosophie",
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er maßgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner aktiv in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Publizierte Artikel <i>hier</i></a>."
+        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er maßgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner aktiv in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Publizierte Artikel <i>hier</i></a>"
       },
       "contact": {
         "heading": "Kontakt",
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "L'intelligence artificielle et des grands modèles de langage",
-          "description": "Fort d’une expérience approfondie dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) dans les domaines de la gouvernance et de l’éducation, Jonas conseille régulièrement ses clients sur les questions juridiques émergentes dans ce secteur, notamment sur les bonnes pratiques de gouvernance et de prise de décision, l’utilisation de données d’entraînement de haute qualité, la protection des données et la conformité réglementaire, les droits de propriété intellectuelle ainsi que les enjeux éthiques."
+          "description": "Expérimenté dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) appliqués à la gouvernance et à l’éducation, Jonas conseille régulièrement ses clients sur les questions juridiques émergentes dans ce secteur, notamment sur les bonnes pratiques de gouvernance et de prise de décision, l’utilisation de données d’entraînement de haute qualité, la protection des données et la conformité réglementaire, les droits de propriété intellectuelle ainsi que les enjeux éthiques."
         },
         "service6": {
           "title": "Philosophie",
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts. <br><br><a href='notes.html'>Notes publiées <i>ici</i></a>."
+        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts. <br><br><a href='notes.html'>Notes publiées <i>ici</i></a>"
       },
       "contact": {
         "heading": "Contact",
@@ -182,12 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to change language
   function changeLanguage(lang) {
-    // Update all elements with data-key attributes
     document.querySelectorAll('[data-key]').forEach(element => {
       const key = element.getAttribute('data-key');
       const keys = key.split('.');
       let text = content[lang];
-
       keys.forEach(k => {
         if (text && text[k] !== undefined) {
           text = text[k];
@@ -195,8 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
           text = '';
         }
       });
-
-      // Use innerHTML if element has data-html="true"
       if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
         element.placeholder = text;
       } else if (element.tagName === 'IMG') {
@@ -209,8 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
-
-    // Update active language button
     languageButtons.forEach(btn => {
       btn.classList.remove('active');
       btn.setAttribute('aria-pressed', 'false');
@@ -220,26 +214,21 @@ document.addEventListener('DOMContentLoaded', () => {
       activeBtn.classList.add('active');
       activeBtn.setAttribute('aria-pressed', 'true');
     }
-
-    // Store selected language in localStorage
     localStorage.setItem('language', lang);
-
-    // Update the lang attribute on the html tag
     document.documentElement.lang = lang;
   }
 
   // Function to adjust navbar style based on current section
   function adjustNavbarStyle(currentSection = 'home') {
     if (currentSection === 'home' || currentSection === 'jh' || currentSection === 'services1' || currentSection === 'services3' || currentSection === 'services5' || currentSection === 'bio') {
-      navbar.classList.remove('dark'); // Light navbar for home and certain sections
-      languageSwitcher.style.color = 'white'; // Ensure font color is white
+      navbar.classList.remove('dark');
+      languageSwitcher.style.color = 'white';
     } else {
-      navbar.classList.add('dark'); // Dark navbar for other sections
-      languageSwitcher.style.color = ''; // Revert to default or inherited styling
+      navbar.classList.add('dark');
+      languageSwitcher.style.color = '';
     }
   }
 
-  // Event listeners for language buttons
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.split('-')[1];
@@ -247,29 +236,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Load language on page load
   const storedLang = localStorage.getItem('language') || 'en';
   changeLanguage(storedLang);
-  adjustNavbarStyle('home'); // Set initial navbar style
+  adjustNavbarStyle('home');
 
-  // Intersection Observer for Navbar Style based on visible section
   const options = {
-    root: null, // Observe relative to the viewport
+    root: null,
     rootMargin: '0px',
-    threshold: 0.6 // 60% of the section is visible
+    threshold: 0.6
   };
 
   const callback = (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Adjust navbar style based on current section
         adjustNavbarStyle(entry.target.id);
       }
     });
   };
 
   const observer = new IntersectionObserver(callback, options);
-
   sections.forEach(section => {
     observer.observe(section);
   });

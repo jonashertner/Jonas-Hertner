@@ -28,9 +28,9 @@
     
     /* Font Sizes */
     --font-size-base: 16px;
-    --font-size-small: 0.875rem; /* 14px */
-    --font-size-large: 1.25rem; /* 20px */
-    --font-size-xlarge: 2rem; /* 32px */
+    --font-size-small: 0.875rem;
+    --font-size-large: 1.25rem;
+    --font-size-xlarge: 2rem;
     
     /* Font Weights */
     --font-weight-normal: 400;
@@ -66,7 +66,7 @@ html, body {
     color: var(--color-primary);
     line-height: var(--line-height-base);
     scroll-behavior: smooth;
-    overflow: hidden; /* Prevents the browser scrollbar from interfering */
+    overflow: hidden;
 }
 
 a {
@@ -86,13 +86,13 @@ main {
     overflow-y: scroll;
     height: 100vh;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
     padding-top: 0; 
     padding-bottom: 0;
 }
 
 main::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
 }
 
 /* Disable scroll snap for desktops (≥992px) */
@@ -170,10 +170,6 @@ p {
     background-color: transparent;
     transition: background-color 0.3s ease;
 }
-
-/*.navbar.dark {
-    background-color: var(--color-navbar-bg-dark);
-}*/
 
 .language-switcher {
     display: flex;
@@ -324,7 +320,6 @@ p {
 }
 
 #contact {
-/*    background-image: url('../images/jh.jpg');*/
     background-size: cover;
     background-position: center;
     color: var(--color-primary);
