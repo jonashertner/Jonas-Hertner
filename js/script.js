@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service3": {
           "title": "Droit pénal",
-          "description": "Jonas possède une vaste expérience dans la conduite de procédures pénales à tous les niveaux judiciaires, en particulier dans les domaines de la responsabilité pénale des entreprises, de la criminalité économique et financière, ainsi que de la protection des droits fondamentaux."
+          "description": "Jonas possède une expérience approfondie dans la conduite de procédures pénales à tous les niveaux judiciaires, en particulier dans les domaines de la responsabilité pénale des entreprises, de la criminalité économique et financière, ainsi que de la protection des droits fondamentaux."
         },
         "service4": {
           "title": "Droit constitutionnel, droits civils et litiges stratégiques",
