@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service6": {
           "title": "Philosophie",
-          "description": "«Im Mittelpunkt meiner Tätigkeit steht das unerschütterliche Engagement für die langfristigen Interessen meiner Mandanten, geprägt von fundierter Erfahrung auf höchster Ebene der anwaltlichen Beratung. Ich hinterfrage vermeintliche Gewissheiten und betrachte jede Fragestellung aus unterschiedlichen Perspektiven, um aus komplexen Situationen praktikable und wirkungsvolle Lösungen abzuleiten. Geleitet von Neugier, Empathie, höchstem Anspruch an Qualität und Integrität sowie dem Streben nach fairen und gerechten Ergebnissen fokussiere ich mich auf das, was wirklich zählt. So begleite ich meine Mandanten durch anspruchsvolle Situationen, schütze ihre Rechte und unterstütze sie dabei, ihre Ziele zu verwirklichen.»"
+          "description": "«Im Mittelpunkt meiner Tätigkeit steht das unerschütterliche Engagement für die langfristigen Interessen meiner Mandanten, geprägt von fundierter Erfahrung auf höchster Ebene der anwaltlichen Beratung. Geleitet von Neugier, Empathie, höchstem Anspruch an Qualität und Integrität sowie dem Streben nach fairen und gerechten Ergebnissen fokussiere ich mich auf das, was wirklich zählt. So begleite ich meine Mandanten durch anspruchsvolle Situationen, schütze ihre Rechte und unterstütze sie dabei, ihre Ziele zu verwirklichen.»"
         }
       },
       "bio": {
