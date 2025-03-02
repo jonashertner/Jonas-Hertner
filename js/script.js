@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "Künstliche Intelligenz und Large Language Models",
-          "description": "Mit seiner Erfahrung im Einsatz von KI-Tools und großen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas regelmäßig zu neuartigen rechtlichen Fragestellungen in diesem Gebiet. Schwerpunkte seiner Beratung bilden gute Unternehmensführung und Entscheidungsprozesse, die Nutzung hochwertiger Trainingsdaten, Datenschutz und regulatorische Anforderungen, der Schutz geistigen Eigentums sowie ethische Aspekte."
+          "description": "Mit seiner Erfahrung im Einsatz von KI-Tools und grossen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas regelmässig zu neuartigen rechtlichen Fragestellungen in diesem Gebiet. Schwerpunkte seiner Beratung bilden gute Unternehmensführung und Entscheidungsprozesse, die Nutzung hochwertiger Trainingsdaten, Datenschutz und regulatorische Anforderungen, der Schutz geistigen Eigentums sowie ethische Aspekte."
         },
         "service6": {
           "title": "Philosophie",
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er maßgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner aktiv in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Publizierte Artikel <i>hier</i></a>"
+        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er massgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner aktiv in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Publizierte Artikel <i>hier</i></a>"
       },
       "contact": {
         "heading": "Kontakt",
