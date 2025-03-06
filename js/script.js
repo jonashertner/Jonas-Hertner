@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "Artificial intelligence and large language models",
-          "description": "Experienced in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area, including on corporate governance and good decision-making practices, data protection and regulatory compliance, intellectual property rights, and ethical considerations."
+          "description": "Experienced in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area, including related to technical limitations, privacy and data security, intellectual property rights, and ethical considerations as well as on their use in corporate governance and decision-making."
         },
         "service6": {
           "title": "Philosophy",
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "Künstliche Intelligenz und Large Language Models",
-          "description": "Mit seiner Erfahrung im Einsatz von KI-Tools und grossen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas regelmässig zu neuartigen rechtlichen Fragestellungen in diesem Gebiet. Schwerpunkte seiner Beratung bilden gute Unternehmensführung und Entscheidungsprozesse, die Nutzung hochwertiger Trainingsdaten, Datenschutz und regulatorische Anforderungen, der Schutz geistigen Eigentums sowie ethische Aspekte."
+          "description": "Mit seiner Erfahrung im Einsatz von KI-Tools und grossen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas zu aufkommenden Rechtsfragen in diesem Gebiet, insbesondere in Bezug auf technische Einschränkungen, Datenschutz und Datensicherheit, Rechte des geistigen Eigentums und ethische Überlegungen sowie deren Einsatz in der Unternehmensführung und Entscheidungsfindung."
         },
         "service6": {
           "title": "Philosophie",
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "L'intelligence artificielle et des grands modèles de langage",
-          "description": "Expérimenté dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) appliqués à la gouvernance et à l’éducation, Jonas conseille régulièrement ses clients sur les questions juridiques émergentes dans ce secteur, notamment sur les bonnes pratiques de gouvernance et de prise de décision, l’utilisation de données d’entraînement de haute qualité, la protection des données et la conformité réglementaire, les droits de propriété intellectuelle ainsi que les enjeux éthiques."
+          "description": "Expérimenté dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) appliqués à la gouvernance et à l’éducation, Jonas conseille ses clients sur les questions juridiques émergentes dans ce domaine, notamment en ce qui concerne les limitations techniques, la confidentialité et la sécurité des données, les droits de propriété intellectuelle et les réflexions éthiques, ainsi que sur leur utilisation dans la gouvernance d'entreprise et la prise de décision."
         },
         "service6": {
           "title": "Philosophie",
