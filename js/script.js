@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service4": {
           "title": "Droit constitutionnel, droits civils et litiges stratégiques",
-          "description": "Jonas collabore avec des acteurs en Suisse et à l’international afin de mener des procédures judiciaires visant à protéger les droits et libertés fondamentaux, notamment en matière de protection de l’environnement (préservation des habitats) et de nouvelles technologies."
+          "description": "Jonas collabore avec des acteurs en Suisse et à l’international afin de mener des procédures judiciaires visant à protéger les droits et libertés fondamentaux, en particulier dans les domaines de la protection de l’environnement (préservation des habitats) et des nouvelles technologies."
         },
         "service5": {
           "title": "L'intelligence artificielle et des grands modèles de langage",
