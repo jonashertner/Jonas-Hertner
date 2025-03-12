@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biography",
-        "content": "Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children’s education, ecology, and the arts. <br><br><a href='notes.html'>Published notes <i>here</i>.</a>"
+        "content": "Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children’s education, ecology, and the arts. <br><br><a href='notes.html'>Personal blog <i>here</i>.</a>"
       },
       "contact": {
         "heading": "Contact",
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er massgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner aktiv in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Publizierte Artikel <i>hier</i>.</a>"
+        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er massgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner aktiv in den Bereichen Bildung, Ökologie und Kunst. <br><br><a href='notes.html'>Persönlicher Blog <i>hier</i>.</a>"
       },
       "contact": {
         "heading": "Kontakt",
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts. <br><br><a href='notes.html'>Notes publiées <i>ici</i>.</a>"
+        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts. <br><br><a href='notes.html'>Blog personnel <i>ici</i>.</a>"
       },
       "contact": {
         "heading": "Contact",
