@@ -4,10 +4,88 @@
   <meta charset="UTF-8" />
   <!-- Responsive Meta Tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jonas Hertner - Notes of Change</title>
+  
+  <!-- Primary Meta Tags -->
+  <title>Notes of Change | Lawyer & Thought Leadership by Jonas Hertner</title>
+  <meta name="description" content="Explore lawyer Jonas Hertner’s insights on personalized LLM tutors, modern governance, and AI-driven transformation. Stay updated with legal perspectives and emerging technologies." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Notes of Change | Lawyer & Thought Leadership by Jonas Hertner" />
+  <meta property="og:description" content="Explore lawyer Jonas Hertner’s insights on personalized LLM tutors, modern governance, and AI-driven transformation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.jonashertner.com/" />
+  <meta property="og:image" content="https://www.jonashertner.com/images/preview.jpg" /> 
+  <!-- Replace with an actual preview image URL -->
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Notes of Change | Lawyer & Thought Leadership by Jonas Hertner" />
+  <meta name="twitter:description" content="Insights on personalized LLM tutors, modern governance, and AI-driven transformation." />
+  <meta name="twitter:image" content="https://www.jonashertner.com/images/preview.jpg" />
+  
+  <!-- Favicon and Touch Icons -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- JSON-LD Structured Data for a personal blog with 2 articles -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.jonashertner.com/"
+    },
+    "name": "Notes of Change",
+    "author": {
+      "@type": "Person",
+      "name": "Jonas Hertner",
+      "url": "https://www.jonashertner.com"
+    },
+    "description": "Insights on technology, AI, and legal frameworks by lawyer Jonas Hertner.",
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Personalized LLM Tutors",
+        "author": "Jonas Hertner",
+        "datePublished": "2025-03-13",
+        "dateModified": "2025-03-13",
+        "image": "https://www.jonashertner.com/images/preview.jpg",
+        "url": "https://www.jonashertner.com/#personalized-llm-tutors",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Jonas Hertner",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.jonashertner.com/images/apple-touch-icon.png"
+          }
+        },
+        "description": "How large language models can revolutionize personalized education."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Modern Governance Requires AI: Updating the Business Judgment Rule",
+        "author": "Jonas Hertner",
+        "datePublished": "2025-03-10",
+        "dateModified": "2025-03-10",
+        "image": "https://www.jonashertner.com/images/preview.jpg",
+        "url": "https://www.jonashertner.com/#modern-governance-requires-ai",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Jonas Hertner",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.jonashertner.com/images/apple-touch-icon.png"
+          }
+        },
+        "description": "Adapting the Business Judgment Rule for AI-driven boardrooms."
+      }
+    ]
+  }
+  </script>
 
   <style>
     body {
@@ -18,6 +96,7 @@
     }
 
     main {
+      /* Extra styling can be added here if desired */
     }
 
     .snap-section {
@@ -50,19 +129,19 @@
       z-index: -1;
     }
 
-    /* Section 2: Note Article (solid background) */
-.note-section {
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow-y: auto;
-  padding-top: 60px;
-  padding-bottom: 100px;
-}    
+    /* Section 2 & 3: Note Article (solid background) */
+    .note-section {
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
+      padding-top: 60px;
+      padding-bottom: 100px;
+    }
 
-.note {
+    .note {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
@@ -78,85 +157,103 @@
       text-align: left;
     }
     .note p {
-      font-size: clamp(1.1rem, 3vw, 1.3rem)
+      font-size: clamp(1.1rem, 3vw, 1.3rem);
       line-height: 1.6;
       text-align: justify;
       margin-bottom: 1em;
     }
   </style>
 </head>
+
 <body>
   <header>
+    <!-- You can add a navigation bar or links to other sections/pages here -->
   </header>
 
   <main>
-
+    <!-- Section 1: Landing -->
     <section class="landing snap-section">
-      <video class="bg-video" autoplay loop muted playsinline>
+      <video class="bg-video" autoplay loop muted playsinline aria-label="Background ocean animation">
         <source src="images/ocean anim 2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <h1>« Notes of Change »</h1>
     </section>
 
-    <!-- Article -->
-        <!-- Section 3: Article with Solid Background -->
-    <section class="note-section snap-section">
+    <!-- Section 2: Article on Personalized LLM Tutors -->
+    <section id="personalized-llm-tutors" class="note-section snap-section">
       <article class="note">
         <h2>Personalized LLM Tutors</h2>
         <div class="meta">
           <span class="date">2025-03-13</span> | 
-          <span class="author">Jonas Hertner</span>
+          <span class="author">By Jonas Hertner</span>
         </div>
         <p>
-We stand at an unprecedented moment in education, thanks to advances in Large Language Models (LLMs). For the first time, LLMs can be trained comprehensively on the complete canon of fiction and non-fiction literature, unlocking extraordinary potential for personalized learning.       </p>
+          We stand at an unprecedented moment in education, thanks to advances in Large Language Models (LLMs). For the first time, LLMs can be trained comprehensively on the complete canon of fiction and non-fiction literature, unlocking extraordinary potential for personalized learning.
+        </p>
         <p>
-These models can be specifically trained and fine-tuned to align with individual students' needs, interests, and learning styles. Decades of educational research confirm that one-on-one tutoring significantly enhances student success. Previously limited by resources, personalized education is now achievable at scale through LLM tutors.      </p>
+          These models can be specifically trained and fine-tuned to align with individual students' needs, interests, and learning styles. Decades of educational research confirm that one-on-one tutoring significantly enhances student success. Previously limited by resources, personalized education is now achievable at scale through LLM tutors.
+        </p>
         <p>
-This innovation does not seek to replace human educators or diminish the critical role of classroom and social interactions. Meaningful engagement with peers and teachers remains essential for children's holistic development. Instead, LLM tutors supplement traditional education by providing customized attention and relieving educators from repetitive tasks, allowing them to focus more effectively on fostering interactive and enriching classroom experiences.    </p>
+          This innovation does not seek to replace human educators or diminish the critical role of classroom and social interactions. Meaningful engagement with peers and teachers remains essential for children's holistic development. Instead, LLM tutors supplement traditional education by providing customized attention and relieving educators from repetitive tasks, allowing them to focus more effectively on fostering interactive and enriching classroom experiences.
+        </p>
         <p>
-With appropriate safeguards, concerns related to safety, ethics, and privacy can be proactively managed, ensuring responsible integration of these advanced tools into educational environments.      </p>
+          With appropriate safeguards, concerns related to safety, ethics, and privacy can be proactively managed, ensuring responsible integration of these advanced tools into educational environments.
+        </p>
         <p>
-The adaptability of LLM tutors enables individualized approaches, enhancing their effectiveness by aligning lessons with each child's personality, pace, and preferences. LLM tutors are uniquely capable of exploring both specific subjects and different modes of thinking, connecting educational content directly with a student’s personal interests and curiosity.      </p>
+          The adaptability of LLM tutors enables individualized approaches, enhancing their effectiveness by aligning lessons with each child's personality, pace, and preferences. LLM tutors are uniquely capable of exploring both specific subjects and different modes of thinking, connecting educational content directly with a student’s personal interests and curiosity.
+        </p>
         <p>
-Additionally, LLM tutors' multilingual capabilities offer remarkable benefits, particularly for migrant children facing language barriers. These tutors facilitate easier integration and provide immediate academic support, significantly improving educational outcomes for linguistically diverse students.    </p>
+          Additionally, LLM tutors' multilingual capabilities offer remarkable benefits, particularly for migrant children facing language barriers. These tutors facilitate easier integration and provide immediate academic support, significantly improving educational outcomes for linguistically diverse students.
+        </p>
         <p>
-Personalized, multilingual, and interest-aligned LLM tutors will transform education, offering every student tailored and effective learning experiences.  </p>
-
+          Personalized, multilingual, and interest-aligned LLM tutors will transform education, offering every student tailored and effective learning experiences.
+        </p>
       </article>
     </section>
-    <!-- Article -->
-        <!-- Section 2: Article with Solid Background -->
-    <section class="note-section snap-section">
+
+    <!-- Section 3: Article on Modern Governance -->
+    <section id="modern-governance-requires-ai" class="note-section snap-section">
       <article class="note">
         <h2>Modern Governance Requires AI: Updating the Business Judgment Rule</h2>
         <div class="meta">
           <span class="date">2025-03-10</span> | 
-          <span class="author">Jonas Hertner</span>
+          <span class="author">By Jonas Hertner</span>
         </div>
         <p>
-Corporate boardrooms today operate in a world of unprecedented complexity and rapid change. Relying solely on intuition and traditional advisors is no longer sufficient. Directors must now augment their decision-making processes with advanced, locally deployed large language models (LLMs) specifically trained on proprietary company data.        </p>
+          Corporate boardrooms today operate in a world of unprecedented complexity and rapid change. Relying solely on intuition and traditional advisors is no longer sufficient. Directors must now augment their decision-making processes with advanced, locally deployed large language models (LLMs) specifically trained on proprietary company data.
+        </p>
         <p>
-Historically, the Business Judgment Rule has shielded directors acting in good faith and with reasonable diligence. However, "reasonable diligence" today must encompass utilizing the most effective tools available. Alongside legal and financial counsel, AI-driven systems can swiftly parse vast datasets, delivering actionable insights with clarity and precision.        </p>
+          Historically, the Business Judgment Rule has shielded directors acting in good faith and with reasonable diligence. However, "reasonable diligence" today must encompass utilizing the most effective tools available. Alongside legal and financial counsel, AI-driven systems can swiftly parse vast datasets, delivering actionable insights with clarity and precision.
+        </p>
         <p>
-In high-stakes professions, dependence on advanced technological tools is already commonplace: pilots rely on sophisticated instruments; surgeons trust in precision diagnostics. Similarly, LLMs can function as personalized analytical assistants for board members, offering targeted guidance on complex areas like supply chain management, regulatory compliance, or emerging market developments.        </p>
+          In high-stakes professions, dependence on advanced technological tools is already commonplace: pilots rely on sophisticated instruments; surgeons trust in precision diagnostics. Similarly, LLMs can function as personalized analytical assistants for board members, offering targeted guidance on complex areas like supply chain management, regulatory compliance, or emerging market developments.
+        </p>
         <p>
-Crucially, deploying these AI models locally ensures both customization and security. Locally hosted AI can be finely tuned to address each firm’s specific strategic challenges, maintaining the confidentiality of sensitive corporate information. Companies can leverage AI to identify risks and opportunities while adhering strictly to data privacy standards.        </p>
+          Crucially, deploying these AI models locally ensures both customization and security. Locally hosted AI can be finely tuned to address each firm’s specific strategic challenges, maintaining the confidentiality of sensitive corporate information. Companies can leverage AI to identify risks and opportunities while adhering strictly to data privacy standards.
+        </p>
         <p>
-Nevertheless, ethical oversight must govern AI integration. AI is an enhancement—not a replacement—of human judgment. Directors must remain proactive, ensuring technology complements rather than diminishes their critical role. Over-reliance risks complacency; thus, balanced integration is essential.        </p>
+          Nevertheless, ethical oversight must govern AI integration. AI is an enhancement—not a replacement—of human judgment. Directors must remain proactive, ensuring technology complements rather than diminishes their critical role. Over-reliance risks complacency; thus, balanced integration is essential.
+        </p>
         <p>
-A transformative way to conceptualize AI is as an advanced educational aid for board members. Consider each director receiving personalized, AI-generated briefings before meetings—highlighting potential issues, insights, and relevant, probing questions. This approach democratizes expertise, mitigates the risks of groupthink, and fosters a more informed decision-making environment.       </p>
+          A transformative way to conceptualize AI is as an advanced educational aid for board members. Consider each director receiving personalized, AI-generated briefings before meetings—highlighting potential issues, insights, and relevant, probing questions. This approach democratizes expertise, mitigates the risks of groupthink, and fosters a more informed decision-making environment.
+        </p>
         <p>
-As global business continues to evolve, so too must governance frameworks. Just as risk management protocols and disclosure obligations have progressed, the Business Judgment Rule itself must adapt. Directors who overlook advanced tools such as AI may risk falling short of the informed standard expected today—potentially exposing shareholders, employees, and society to avoidable risks.      </p>
-
+          As global business continues to evolve, so too must governance frameworks. Just as risk management protocols and disclosure obligations have progressed, the Business Judgment Rule itself must adapt. Directors who overlook advanced tools such as AI may risk falling short of the informed standard expected today—potentially exposing shareholders, employees, and society to avoidable risks.
+        </p>
         <p>
-Integrating locally hosted, customized AI into board deliberations isn't merely innovative; it's necessary. Mandating AI-informed consultation establishes a new benchmark for transparency and accountability, ensuring strategic decisions are consistently supported by comprehensive, data-driven analysis within an ethical framework.      </p>
+          Integrating locally hosted, customized AI into board deliberations isn't merely innovative; it's necessary. Mandating AI-informed consultation establishes a new benchmark for transparency and accountability, ensuring strategic decisions are consistently supported by comprehensive, data-driven analysis within an ethical framework.
+        </p>
         <p>
-Ultimately, the increasing complexity of the modern business environment demands similarly advanced tools. Reinterpreting the Business Judgment Rule to incorporate AI isn't just progressive—it's a critical step in safeguarding the interests of all stakeholders. The future of effective governance depends on our willingness to embrace these digital tools in a meaningful way.     </p>
+          Ultimately, the increasing complexity of the modern business environment demands similarly advanced tools. Reinterpreting the Business Judgment Rule to incorporate AI isn't just progressive—it's a critical step in safeguarding the interests of all stakeholders. The future of effective governance depends on our willingness to embrace these digital tools in a meaningful way.
+        </p>
       </article>
     </section>
-
   </main>
+
+  <footer>
+    <!-- Optional: add contact info, social links, or disclaimers here -->
+  </footer>
 
   <script src="js/script.js"></script>
 </body>
