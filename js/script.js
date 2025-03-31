@@ -1,14 +1,6 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  const password = prompt("Please enter the password:");
-  if (password !== "ff") {
-    document.body.innerHTML = "<h1>Don't panic.</h1>";
-    return;
-  }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
   // Select essential DOM elements
   const languageButtons = document.querySelectorAll('.lang-btn');
   const navbar = document.querySelector('.navbar');
