@@ -20,6 +20,18 @@
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <script>
+    (function(){
+      var correctPassword = "m";
+      var enteredPassword = prompt("Enter the password to access this site:");
+      if (enteredPassword !== correctPassword) {
+        document.write("<h1>Don't panic</h1>");
+        document.close();
+      }
+    })();
+  </script>
+
 </head>
 <body>
 
