@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "hero": { "title": "Jonas Hertner", "subtitle": "AVOCAT" },
       "about": {
         "heading": "Jonas Hertner",
-        "content": "Jonas Hertner est avocat indépendant établi à Zurich et à Bâle. Fort de plus de dix ans d'expérience, il accompagne une clientèle suisse et internationale dans des litiges complexes à fort enjeu, souvent portés devant plusieurs juridictions. Il conseille des particuliers, des familles, des fondations et des entreprises confrontés à des situations délicates, les aidant à atteindre leurs objectifs stratégiques. Ses clients trouvent en lui un conseiller de confiance et un défenseur déterminé, engagé à protéger et à promouvoir durablement leurs intérêts avec rigueur et excellence."
+        "content": "Jonas Hertner est avocat indépendant établi à Zurich et à Bâle. Fort de plus de dix ans d’expérience, il accompagne une clientèle suisse et internationale dans des litiges complexes à forts enjeux, souvent portés devant plusieurs juridictions. Il conseille des particuliers, des familles, des fondations et des entreprises confrontés à des situations délicates, les aidant à atteindre leurs objectifs stratégiques. Ses clients trouvent en lui un conseiller de confiance et un défenseur déterminé, engagé à protéger et à promouvoir leurs intérêts avec rigueur et excellence sur le long terme."
       },
       "services": {
         "heading": "Expertise",
