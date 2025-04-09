@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service5": {
           "title": "Künstliche Intelligenz und Large Language Models",
-          "description": "Mit seiner Erfahrung im Einsatz von KI-Tools und grossen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas zu aufkommenden Rechtsfragen in diesem Gebiet, insbesondere in Bezug auf technische Einschränkungen, Datenschutz und Datensicherheit, Rechte des geistigen Eigentums und ethische Überlegungen sowie deren Einsatz in der Unternehmensführung und Entscheidungsfindung."
+          "description": "Mit seiner Erfahrung im Einsatz von grossen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas zu aufkommenden Rechtsfragen in diesem Gebiet, insbesondere in Bezug auf technische Nutzungsbeschränkungen, Datenschutz und Datensicherheit, Rechte des geistigen Eigentums und ethische Überlegungen sowie deren Einsatz in der Unternehmensführung und Entscheidungsfindung."
         },
         "service6": {
           "title": "Philosophie",
