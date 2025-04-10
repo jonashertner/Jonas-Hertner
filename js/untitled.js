@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
   // Select essential DOM elements
   const languageButtons = document.querySelectorAll('.lang-btn');
@@ -92,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er massgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner in den Bereichen Bildung, Ökologie und Kunst."
+        "content": "Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er massgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner in den Bereichen Bildung, Ökologie und Kunst."
       },
       "contact": {
         "heading": "Kontakt",
@@ -140,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts.</a>"
+        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts."
       },
       "contact": {
         "heading": "Contact",
@@ -154,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Determine the active section based on which section's top is closest to the viewport top
+  // Determine the active section based on which section's top is closest to the viewport
   function onScroll() {
     let closestSection = null;
     let minDistance = Infinity;
@@ -172,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Function to change language
+  // Function to change language content on the page
   function changeLanguage(lang) {
     document.querySelectorAll('[data-key]').forEach(element => {
       const key = element.getAttribute('data-key');
@@ -202,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = lang;
   }
 
-  // Function to adjust navbar style based on current section
+  // Function to adjust navbar style based on the current section
   function adjustNavbarStyle(currentSection = 'home') {
     if (
       currentSection === 'home' ||
@@ -220,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Set up language buttons to change language on click
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.split('-')[1];
@@ -231,9 +230,25 @@ document.addEventListener('DOMContentLoaded', () => {
   changeLanguage(storedLang);
   adjustNavbarStyle('home');
 
-  // Listen for scroll events on the scrolling container instead of window
+  // Listen for scroll events on the main scrolling container
   mainContent.addEventListener('scroll', onScroll);
 
-  // Optionally, call onScroll on load to set initial navbar style
+  // --- Locking Scroll Beyond the Home Section ---
+  // This function forces the scroll position to remain at the top.
+  function lockScroll() {
+    if (mainContent.scrollTop !== 0) {
+      mainContent.scrollTop = 0;
+    }
+  }
+  // Add the lock scroll listener to ensure the home section stays in view
+  mainContent.addEventListener('scroll', lockScroll);
+
+  // --- Mobile: Prevent touch scrolling ---
+  // For mobile devices, also prevent scroll via touch events.
+  mainContent.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+
+  // Optionally, initialize the navbar style
   onScroll();
 });
