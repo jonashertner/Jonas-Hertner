@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Disable scrolling globally (this is a safety-net in case CSS isn't fully supported)
-  document.documentElement.style.overflow = 'hidden';
-  document.body.style.overflow = 'hidden';
-
   // Select essential DOM elements
   const languageButtons = document.querySelectorAll('.lang-btn');
   const navbar = document.querySelector('.navbar');
   const sections = document.querySelectorAll('.section');
   const languageSwitcher = document.querySelector('.language-switcher');
-  const mainContent = document.getElementById('main-content'); // scrolling container
+  const mainContent = document.getElementById('main-content'); // scrolling container if needed
+
+  // Immediately hide all sections except the "home" section.
+  sections.forEach(section => {
+    if (section.id !== "home") {
+      section.style.display = "none";
+    }
+  });
 
   // Content Object (English, German, and French translations)
   const content = {
@@ -188,22 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = lang;
   }
 
-  // Function to adjust navbar style based on the current section
-  function adjustNavbarStyle(currentSection = 'home') {
-    if (
-      currentSection === 'home' ||
-      currentSection === 'jh' ||
-      currentSection === 'services1' ||
-      currentSection === 'services3' ||
-      currentSection === 'services5' ||
-      currentSection === 'bio'
-    ) {
-      navbar.classList.remove('dark');
-      languageSwitcher.style.color = 'white';
-    } else {
-      navbar.classList.add('dark');
-      languageSwitcher.style.color = '';
-    }
+  // Function to adjust the navbar style for the home section view
+  function adjustNavbarStyle() {
+    navbar.classList.remove('dark');
+    languageSwitcher.style.color = 'white';
   }
 
   // Set up language switching buttons
@@ -214,10 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Initialize language and navbar style based on stored preferences
   const storedLang = localStorage.getItem('language') || 'en';
   changeLanguage(storedLang);
-  adjustNavbarStyle('home');
+  adjustNavbarStyle();
 
-  // Because scrolling is completely disabled via CSS, there is no need to add scroll or touch event listeners.
-  // This approach yields a very static, non-wobbly page layout on both desktop and mobile.
+  // No scroll events or additional view adjustments are necessary
 });
