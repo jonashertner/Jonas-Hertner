@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Disable scrolling globally (this is a safety-net in case CSS isn't fully supported)
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
   // Select essential DOM elements
   const languageButtons = document.querySelectorAll('.lang-btn');
   const navbar = document.querySelector('.navbar');
@@ -152,24 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Determine the active section based on which section's top is closest to the viewport
-  function onScroll() {
-    let closestSection = null;
-    let minDistance = Infinity;
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      // Use the absolute distance of the top from 0
-      const distance = Math.abs(rect.top);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestSection = section;
-      }
-    });
-    if (closestSection) {
-      adjustNavbarStyle(closestSection.id);
-    }
-  }
-
   // Function to change language content on the page
   function changeLanguage(lang) {
     document.querySelectorAll('[data-key]').forEach(element => {
@@ -184,7 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (element.tagName === 'IMG') {
         element.alt = text;
       } else {
-        element.getAttribute('data-html') === "true" ? element.innerHTML = text : element.textContent = text;
+        element.getAttribute('data-html') === "true"
+          ? element.innerHTML = text
+          : element.textContent = text;
       }
     });
     languageButtons.forEach(btn => {
@@ -218,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Set up language buttons to change language on click
+  // Set up language switching buttons
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.split('-')[1];
@@ -230,19 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
   changeLanguage(storedLang);
   adjustNavbarStyle('home');
 
-  // Listen for scroll events on the main scrolling container
-  mainContent.addEventListener('scroll', onScroll);
-
-  // --- Locking Scroll Beyond the Home Section ---
-  // This function forces the scroll position to remain at the top.
-  function lockScroll() {
-    if (mainContent.scrollTop !== 0) {
-      mainContent.scrollTop = 0;
-    }
-  }
-  // Add the lock scroll listener to ensure the home section stays in view
-  mainContent.addEventListener('scroll', lockScroll);
-
-  // Optionally, initialize the navbar style
-  onScroll();
+  // Because scrolling is completely disabled via CSS, there is no need to add scroll or touch event listeners.
+  // This approach yields a very static, non-wobbly page layout on both desktop and mobile.
 });

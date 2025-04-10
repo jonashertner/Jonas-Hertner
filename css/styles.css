@@ -20,6 +20,8 @@
     font-style: normal;
 }
 
+
+
 /* Define CSS Variables for Typography and Colors */
 :root {
     /* Font Families */
@@ -67,6 +69,7 @@ html, body {
     line-height: var(--line-height-base);
     scroll-behavior: smooth;
     overflow: hidden;
+    height: 100vh; /*this*/
 }
 
 a {
