@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   const sections = document.querySelectorAll('.section');
   const languageSwitcher = document.querySelector('.language-switcher');
-  const mainContent = document.getElementById('main-content'); // scrolling container
+  const mainContent = document.getElementById('main-content'); // scrolling container if needed
 
   // hide all sections except the "home" section.
   // sections.forEach(section => {
@@ -159,24 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
- // Determine the active section based on which section's top is closest to the viewport
-  function onScroll() {
-    let closestSection = null;
-    let minDistance = Infinity;
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      // Use the absolute distance of the top from 0
-      const distance = Math.abs(rect.top);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestSection = section;
-      }
-    });
-    if (closestSection) {
-      adjustNavbarStyle(closestSection.id);
-    }
-  }
-
   // Function to change language content on the page
   function changeLanguage(lang) {
     document.querySelectorAll('[data-key]').forEach(element => {
@@ -191,7 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (element.tagName === 'IMG') {
         element.alt = text;
       } else {
-        element.getAttribute('data-html') === "true" ? element.innerHTML = text : element.textContent = text;
+        element.getAttribute('data-html') === "true"
+          ? element.innerHTML = text
+          : element.textContent = text;
       }
     });
     languageButtons.forEach(btn => {
@@ -207,25 +191,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = lang;
   }
 
-  // Function to adjust navbar style based on the current section
-  function adjustNavbarStyle(currentSection = 'home') {
-    if (
-      currentSection === 'home' ||
-      currentSection === 'jh' ||
-      currentSection === 'services1' ||
-      currentSection === 'services3' ||
-      currentSection === 'services5' ||
-      currentSection === 'bio'
-    ) {
-      navbar.classList.remove('dark');
-      languageSwitcher.style.color = 'white';
-    } else {
-      navbar.classList.add('dark');
-      languageSwitcher.style.color = '';
-    }
+  // Function to adjust the navbar style for the home section view
+  function adjustNavbarStyle() {
+    navbar.classList.remove('dark');
+    languageSwitcher.style.color = 'white';
   }
 
-  // Set up language buttons to change language on click
+  // Set up language switching buttons
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.split('-')[1];
@@ -233,29 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Initialize language and navbar style based on stored preferences
   const storedLang = localStorage.getItem('language') || 'en';
   changeLanguage(storedLang);
-  adjustNavbarStyle('home');
+  adjustNavbarStyle();
 
-  // Listen for scroll events on the main scrolling container
-  mainContent.addEventListener('scroll', onScroll);
-
-  // --- Locking Scroll Beyond the Home Section ---
-  // This function forces the scroll position to remain at the top.
-  function lockScroll() {
-    if (mainContent.scrollTop !== 0) {
-      mainContent.scrollTop = 0;
-    }
-  }
-  // Add the lock scroll listener to ensure the home section stays in view
-  mainContent.addEventListener('scroll', lockScroll);
-
-  // --- Mobile: Prevent touch scrolling ---
-  // For mobile devices, also prevent scroll via touch events.
-  mainContent.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-  }, { passive: false });
-
-  // Optionally, initialize the navbar style
-  onScroll();
+  // No scroll events or additional view adjustments are necessary
 });

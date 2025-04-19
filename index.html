@@ -1,69 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" style="visibility:hidden">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="description"
         content="Jonas Hertner is an experienced attorney in Zurich and Basel, guiding Swiss and international clients through complex legal situations."/>
   <meta name="keywords"
-        content="Jonas Hertner, attorney, lawyer, Zurich, Basel, complex disputes, impact litigation, litigation, criminal law, constitutional law, AI law, shareholder disputes, Anwalt, Rechtsanwalt, Zürich, Basel, komplexe Streitigkeiten, strategische Prozessführung, Prozessführung, Strafrecht, Verfassungsrecht, KI-Recht, Aktionärsstreitigkeiten, avocat, juriste, Zurich, Bâle, litiges complexes, contentieux stratégique, contentieux, droit pénal, droit constitutionnel, droit de l'IA, litiges entre actionnaires, don't panic"/>
+        content="Jonas Hertner, attorney, lawyer, Zurich, Basel, complex disputes, impact litigation, litigation, criminal law, constitutional law, AI law, shareholder disputes, Anwalt, Rechtsanwalt, Zürich, Basel, komplexe Streitigkeiten, strategische Prozessführung, Prozessführung, Strafrecht, Verfassungsrecht, KI-Recht, Aktionärsstreitigkeiten, avocat, juriste, Zurich, Bâle, litiges complexes, contentieux stratégique, contentieux, droit pénal, droit constitutionnel, droit de l'IA, litiges entre actionnaires, don&apos;t panic"/>
   <meta name="robots" content="index, follow"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta property="og:title" content="Jonas Hertner"/>
-  <meta property="og:description" content="Experienced attorney in Zurich and Basel."/>
-  <meta property="og:url" content="https://www.jonashertner.com"/>
-  <meta property="og:image" content="https://www.jonashertner.com/images/jh.jpg"/>
+  <meta property="og:title" content="Jonas Hertner" />
+  <meta property="og:description" content="Experienced attorney in Zurich and Basel." />
+  <meta property="og:url" content="https://www.jonashertner.com" />
+  <meta property="og:image" content="https://www.jonashertner.com/images/jh.jpg" />
 
   <title>Jonas Hertner</title>
-
+    
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://www.jonashertner.com/">
-  <link rel="alternate" hreflang="en-CH" href="https://www.jonashertner.com/en/">
-  <link rel="alternate" hreflang="de-CH" href="https://www.jonashertner.com/de/">
-  <link rel="alternate" hreflang="fr-CH" href="https://www.jonashertner.com/fr/">
+  <link rel="stylesheet" href="css/styles.css">
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Attorney",
-    "name":"Jonas Hertner",
-    "url":"https://www.jonashertner.com",
-    "email":"mailto:jh@jonashertner.com",
-    "address":{
-      "@type":"PostalAddress",
-      "streetAddress":"Asylstrasse 41",
-      "addressLocality":"Zurich",
-      "postalCode":"8032",
-      "addressCountry":"CH"
-    }
-  }
-  </script>
-
-  <style>
-    .navbar {
-      position: fixed; top: 0; width: 100%;
-      display: flex; justify-content: flex-end; align-items: center;
-      padding: 15px 30px; background: transparent;
-      transition: background-color .3s ease;
-    }
-    .lang-btn {
-      font-family: var(--font-family-primary);
-    }
-  </style>
-
-  <link rel="preload" as="style" href="dist/styles.min.css"
-        onload="this.rel='stylesheet';document.documentElement.style.visibility='visible'">
-  <noscript>
-    <link rel="stylesheet" href="dist/styles.min.css">
-    <script>document.documentElement.style.visibility='visible'</script>
-  </noscript>
-
-  <script src="dist/script.min.js" defer></script>
 </head>
 <body>
-  <header role="banner">
+
+  <header>
     <nav class="navbar" role="navigation" aria-label="Language Switcher">
       <div class="language-switcher">
         <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
@@ -74,8 +35,10 @@
   </header>
 
   <main id="main-content">
+    <!-- Home Section -->
     <section id="home" class="section" aria-labelledby="home-heading">
       <picture class="hero-image">
+        <!-- Fallback Image with Lazy Loading -->
         <img src="images/services5-bg.jpg" alt="Hero background" loading="lazy">
       </picture>
       <div class="hero-content">
@@ -84,6 +47,7 @@
       </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="section" aria-labelledby="about-heading">
       <div class="about-content">
         <h2 id="about-heading" data-key="about.heading">About Me</h2>
@@ -91,6 +55,7 @@
       </div>
     </section>
 
+    <!-- Services Section 1 -->
     <section id="services1" class="section services-section" aria-labelledby="services1-heading">
       <div class="services-content">
         <h2 id="services1-heading" data-key="services.service1.title">Service Title 1</h2>
@@ -100,6 +65,7 @@
       </div>
     </section>
 
+    <!-- Services Section 2 -->
     <section id="services2" class="section services-section" aria-labelledby="services2-heading">
       <div class="services-content">
         <h2 id="services2-heading" data-key="services.service2.title">Service Title 2</h2>
@@ -109,6 +75,7 @@
       </div>
     </section>
 
+    <!-- Services Section 3 -->
     <section id="services3" class="section services-section" aria-labelledby="services3-heading">
       <div class="services-content">
         <h2 id="services3-heading" data-key="services.service3.title">Service Title 3</h2>
@@ -118,6 +85,7 @@
       </div>
     </section>
 
+    <!-- Services Section 4 -->
     <section id="services4" class="section services-section" aria-labelledby="services4-heading">
       <div class="services-content">
         <h2 id="services4-heading" data-key="services.service4.title">Service Title 4</h2>
@@ -127,6 +95,7 @@
       </div>
     </section>
 
+    <!-- Services Section 5 -->
     <section id="services5" class="section services-section" aria-labelledby="services5-heading">
       <div class="services-content">
         <h2 id="services5-heading" data-key="services.service5.title">Service Title 5</h2>
@@ -136,6 +105,7 @@
       </div>
     </section>
 
+    <!-- Services Section 6 -->
     <section id="services6" class="section services-section" aria-labelledby="services6-heading">
       <div class="services-content">
         <h2 id="services6-heading" data-key="services.service6.title">Service Title 6</h2>
@@ -145,13 +115,16 @@
       </div>
     </section>
 
+    <!-- Bio Section -->
     <section id="bio" class="section" aria-labelledby="bio-heading">
       <div class="about-content">
         <h2 id="bio-heading" data-key="bio.heading">Biography</h2>
+        <!-- The data-html attribute instructs the script to render HTML -->
         <p data-key="bio.content" data-html="true">Bio</p>
       </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
       <div class="contact-content">
         <h2 id="contact-heading" data-key="contact.heading">Contact</h2>
@@ -171,6 +144,12 @@
         </div>
       </div>
     </section>
+
+    <section id="jh" class="section contact-section">
+      <div class="contact-content">
+        <!-- Additional content if needed -->
+      </div>
+    </section>
   </main>
 
   <noscript>
@@ -182,5 +161,8 @@
       }
     </style>
   </noscript>
+
+  <!-- Include script.js before closing body -->
+  <script src="js/script.js"></script>
 </body>
 </html>
