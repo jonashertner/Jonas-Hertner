@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Select essential DOM elements
   const languageButtons = document.querySelectorAll('.lang-btn');
-  const navbar = document.querySelector('.navbar');
-  const sections = document.querySelectorAll('.section');
-  const languageSwitcher = document.querySelector('.language-switcher');
-  const mainContent = document.getElementById('main-content'); // scrolling container if needed
+  const navbar          = document.querySelector('.navbar');
+  const heroSection     = document.getElementById('home');
 
   // hide all sections except the "home" section.
   // sections.forEach(section => {
@@ -159,15 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Function to change language content on the page
-  function changeLanguage(lang) {
+ function changeLanguage(lang) {
     document.querySelectorAll('[data-key]').forEach(element => {
       const key = element.getAttribute('data-key');
       const keys = key.split('.');
       let text = content[lang];
-      keys.forEach(k => {
-        text = text && text[k] !== undefined ? text[k] : '';
-      });
+      keys.forEach(k => text = text && text[k] !== undefined ? text[k] : '');
       if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
         element.placeholder = text;
       } else if (element.tagName === 'IMG') {
@@ -191,13 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = lang;
   }
 
-  // Function to adjust the navbar style for the home section view
-  function adjustNavbarStyle() {
-    navbar.classList.remove('dark');
-    languageSwitcher.style.color = 'white';
-  }
+  // Initialize language
+  const storedLang = localStorage.getItem('language') || 'en';
+  changeLanguage(storedLang);
 
-  // Set up language switching buttons
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.split('-')[1];
@@ -205,10 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Initialize language and navbar style based on stored preferences
-  const storedLang = localStorage.getItem('language') || 'en';
-  changeLanguage(storedLang);
-  adjustNavbarStyle();
-
-  // No scroll events or additional view adjustments are necessary
+  // Toggle .dark on navbar when scrolling past hero
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navbar.classList.remove('dark');
+      } else {
+        navbar.classList.add('dark');
+      }
+    });
+  }, { threshold: 0.1 });
+  observer.observe(heroSection);
 });
