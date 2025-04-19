@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Select essential DOM elements
   const languageButtons = document.querySelectorAll('.lang-btn');
-  const navbar          = document.querySelector('.navbar');
-  const sections        = document.querySelectorAll('.section');
+  const navbar = document.querySelector('.navbar');
+  const sections = document.querySelectorAll('.section');
+  const languageSwitcher = document.querySelector('.language-switcher');
+  const mainContent = document.getElementById('main-content'); // scrolling container if needed
 
   // hide all sections except the "home" section.
   // sections.forEach(section => {
@@ -156,46 +159,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-   function changeLanguage(lang) {
-    document.querySelectorAll('[data-key]').forEach(el => {
-      const keys = el.dataset.key.split('.');
+  // Function to change language content on the page
+  function changeLanguage(lang) {
+    document.querySelectorAll('[data-key]').forEach(element => {
+      const key = element.getAttribute('data-key');
+      const keys = key.split('.');
       let text = content[lang];
-      keys.forEach(k => text = text && text[k] !== undefined ? text[k] : '');
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = text;
-      } else if (el.tagName === 'IMG') {
-        el.alt = text;
+      keys.forEach(k => {
+        text = text && text[k] !== undefined ? text[k] : '';
+      });
+      if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+        element.placeholder = text;
+      } else if (element.tagName === 'IMG') {
+        element.alt = text;
       } else {
-        el.innerHTML = el.getAttribute('data-html') === 'true' ? text : text;
+        element.getAttribute('data-html') === "true"
+          ? element.innerHTML = text
+          : element.textContent = text;
       }
     });
     languageButtons.forEach(btn => {
       btn.classList.remove('active');
-      btn.ariaPressed = 'false';
+      btn.setAttribute('aria-pressed', 'false');
     });
     const activeBtn = document.getElementById('lang-' + lang);
-    activeBtn.classList.add('active');
-    activeBtn.ariaPressed = 'true';
+    if (activeBtn) {
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-pressed', 'true');
+    }
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
   }
 
-  // Init language
-  const stored = localStorage.getItem('language') || 'en';
-  changeLanguage(stored);
-  languageButtons.forEach(btn =>
-    btn.addEventListener('click', () => changeLanguage(btn.id.split('-')[1]))
-  );
+  // Function to adjust the navbar style for the home section view
+  function adjustNavbarStyle() {
+    navbar.classList.remove('dark');
+    languageSwitcher.style.color = 'white';
+  }
 
-  // Observe each section: if it has no background-image, add .dark
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const bg = getComputedStyle(entry.target).backgroundImage;
-      if (bg === 'none') navbar.classList.add('dark');
-      else             navbar.classList.remove('dark');
+  // Set up language switching buttons
+  languageButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.id.split('-')[1];
+      changeLanguage(lang);
     });
-  }, { threshold: 0.6 });
+  });
 
-  sections.forEach(sec => obs.observe(sec));
+  // Initialize language and navbar style based on stored preferences
+  const storedLang = localStorage.getItem('language') || 'en';
+  changeLanguage(storedLang);
+  adjustNavbarStyle();
+
+  // No scroll events or additional view adjustments are necessary
 });

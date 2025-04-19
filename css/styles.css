@@ -1,3 +1,5 @@
+/* styles.css */
+
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
@@ -20,16 +22,25 @@
 
 /* Define CSS Variables for Typography and Colors */
 :root {
+    /* Font Families */
     --font-family-primary: 'Bradford', sans-serif;
     --font-family-secondary: 'Open Sans', sans-serif;
+    
+    /* Font Sizes */
     --font-size-base: 16px;
     --font-size-small: 0.875rem;
     --font-size-large: 1.25rem;
     --font-size-xlarge: 2rem;
+    
+    /* Font Weights */
     --font-weight-normal: 400;
     --font-weight-bold: 700;
+    
+    /* Line Heights */
     --line-height-base: 1.6;
     --line-height-heading: 1.2;
+    
+    /* Colors */
     --color-primary: #333;
     --color-secondary: #fff;
     --color-accent: #555;
@@ -55,7 +66,8 @@ html, body {
     color: var(--color-primary);
     line-height: var(--line-height-base);
     scroll-behavior: smooth;
-    overflow: auto; /* allow normal scrolling */ 
+    overflow: hidden;
+    height: 100vh; /*this*/
 }
 
 a {
@@ -76,7 +88,7 @@ main {
     height: 100vh;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-top: 0;
+    padding-top: 0; 
     padding-bottom: 0;
 }
 
@@ -153,10 +165,11 @@ p {
     width: 100%;
     z-index: 2000;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; 
     align-items: center;
     padding: 15px 30px;
     background-color: transparent;
+    transition: background-color 0.3s ease;
 }
 
 .language-switcher {
@@ -174,19 +187,20 @@ p {
     font-family: var(--font-family-primary);
     padding: 5px 10px;
     border-radius: 3px;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
 }
 
 .lang-btn:hover,
 .lang-btn.active {
     background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
-/* Color-switching for language buttons */
-.navbar.dark .lang-btn {
+.navbar.dark .language-switcher .lang-btn {
     color: var(--color-text-dark);
 }
 
-.navbar:not(.dark) .lang-btn {
+.navbar:not(.dark) .language-switcher .lang-btn {
     color: var(--color-text-light);
 }
 
@@ -224,9 +238,9 @@ p {
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
     color: var(--color-text-light);
     z-index: 1;
     max-width: 800px;
@@ -296,10 +310,10 @@ p {
 }
 
 #bio {
-    background-image: url('../images/bio-bg.jpg');
+    background-image: url('../images/bio-bg.jpg'); 
     background-size: cover;
     background-position: center;
-    color: var(--color-text-light);
+    color: var(--color-text-light); 
     padding: 60px 20px;
     min-height: 100vh;
     display: grid;
@@ -310,6 +324,91 @@ p {
     background-size: cover;
     background-position: center;
     color: var(--color-primary);
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+#services1 {
+    background-image: url('../images/services1-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light);
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+#services3 {
+    background-image: url('../images/library.png');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light);
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+#services5 {
+    background-image: url('../images/services0-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light);
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+#services6 {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--color-secondary);
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.contact-info {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+    align-self: start;
+}
+
+.contact-info p {
+    margin-bottom: 20px;
+}
+
+.contact-info a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: var(--color-primary);
+}
+
+#jh {
+    background-image: url('../images/jh.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-light);
     padding: 60px 20px;
     min-height: 100vh;
     display: grid;
