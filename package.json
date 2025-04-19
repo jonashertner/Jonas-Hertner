@@ -3,28 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:css": "postcss css/styles.css -o dist/styles.min.css",
-    "build:js":  "terser js/script.js -o dist/script.min.js --compress --mangle",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "build:css": "postcss css/styles.css -o dist/styles.min.css",
+  "build:js":  "terser js/script.js -o dist/script.min.js --compress --mangle",
+  "lint:css":  "stylelint 'css/**/*.css'",
+  "validate:html": "html-validate index.html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jonashertner/Jonas-Hertner.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jonas Hertner",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jonashertner/Jonas-Hertner/issues"
   },
   "homepage": "https://github.com/jonashertner/Jonas-Hertner#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "cssnano": "^7.0.6",
-    "postcss-cli": "^11.0.1",
-    "terser": "^5.39.0"
-  },
-  "dependencies": {
+    
     "acorn": "^8.14.1",
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",
@@ -138,6 +134,14 @@
     "yaml": "^2.7.1",
     "yargs": "^17.7.2",
     "yargs-parser": "^21.1.1"
+
+
+  },
+  "dependencies": {
+        "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.6",
+    "postcss-cli": "^11.0.1",
+    "terser": "^5.39.0"
   },
   "description": ""
 }
