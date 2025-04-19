@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const languageButtons = document.querySelectorAll('.lang-btn');
   const navbar          = document.querySelector('.navbar');
-  const heroSection     = document.getElementById('home');
+  const sections        = document.querySelectorAll('.section');
 
   // hide all sections except the "home" section.
   // sections.forEach(section => {
@@ -157,19 +157,18 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
  function changeLanguage(lang) {
-    document.querySelectorAll('[data-key]').forEach(element => {
-      const key = element.getAttribute('data-key');
-      const keys = key.split('.');
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const keys = el.getAttribute('data-key').split('.');
       let text = content[lang];
       keys.forEach(k => text = text && text[k] !== undefined ? text[k] : '');
-      if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-        element.placeholder = text;
-      } else if (element.tagName === 'IMG') {
-        element.alt = text;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else if (el.tagName === 'IMG') {
+        el.alt = text;
       } else {
-        element.getAttribute('data-html') === "true"
-          ? element.innerHTML = text
-          : element.textContent = text;
+        el.getAttribute('data-html') === "true"
+          ? el.innerHTML = text
+          : el.textContent = text;
       }
     });
     languageButtons.forEach(btn => {
@@ -191,20 +190,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const lang = btn.id.split('-')[1];
-      changeLanguage(lang);
+      changeLanguage(btn.id.split('-')[1]);
     });
   });
 
-  // Toggle .dark on navbar when scrolling past hero
+  // IntersectionObserver: toggle .dark based on whether section has a background-image
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navbar.classList.remove('dark');
+      if (!entry.isIntersecting) return;
+      const style = getComputedStyle(entry.target);
+      const hasBg = style.backgroundImage && style.backgroundImage !== 'none';
+      if (hasBg) {
+        navbar.classList.remove('dark');   // white buttons over images
       } else {
-        navbar.classList.add('dark');
+        navbar.classList.add('dark');      // black buttons on plain sections
       }
     });
-  }, { threshold: 0.1 });
-  observer.observe(heroSection);
+  }, {
+    threshold: 0.6   // when ~60% of section is in view
+  });
+
+  sections.forEach(sec => observer.observe(sec));
 });
