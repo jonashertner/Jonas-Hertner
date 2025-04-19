@@ -66,6 +66,7 @@ html, body {
     scroll-behavior: smooth;
     overflow: hidden;
     height: 100vh; /*this*/
+      overscroll-behavior: none;
 }
 
 a {
@@ -88,6 +89,8 @@ main {
     scrollbar-width: none;
     padding-top: 0; 
     padding-bottom: 0;
+      overscroll-behavior: none;
+
 }
 
 main::-webkit-scrollbar {
