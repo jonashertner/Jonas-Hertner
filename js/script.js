@@ -4,14 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   const sections = document.querySelectorAll('.section');
   const languageSwitcher = document.querySelector('.language-switcher');
-  const mainContent = document.getElementById('main-content'); // scrolling container if needed
-
-  // hide all sections except the "home" section.
-  // sections.forEach(section => {
-  //   if (section.id !== "home") {
-  //     section.style.display = "none";
-  //   }
-  // });
+  const mainContent = document.getElementById('main-content'); // scrolling container
 
   // Content Object (English, German, and French translations)
   const content = {
@@ -97,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er massgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner in den Bereichen Bildung, Ökologie und Kunst."
+        "content": "  Jonas Hertner schloss sein Studium der Rechtswissenschaften an den Universitäten Luzern und Genf mit Auszeichnung ab. Sein beruflicher Weg führte ihn zu gemeinnützigen Organisationen, zur Direktion für Völkerrecht im Eidgenössischen Departement für auswärtige Angelegenheiten und an das Appellationsgericht Basel-Stadt. Später war er massgeblich am Aufbau des Schweizer Büros der internationalen Anwaltskanzlei Quinn Emanuel Urquhart & Sullivan beteiligt. Neben seiner anwaltlichen Tätigkeit engagiert sich Jonas Hertner in den Bereichen Bildung, Ökologie und Kunst."
       },
       "contact": {
         "heading": "Kontakt",
@@ -145,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "bio": {
         "heading": "Biographie",
-        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts."
+        "content": "Jonas Hertner est titulaire d’un diplôme en droit obtenu avec mention aux universités de Lucerne et de Genève. Son parcours professionnel l’a mené auprès d’organisations à but non lucratif, à la Direction du droit international du Département fédéral des affaires étrangères ainsi qu’à la Cour d’appel de Bâle-Ville. Il a par la suite contribué à l’établissement du bureau suisse du cabinet international Quinn Emanuel Urquhart & Sullivan. En parallèle à sa pratique juridique, Jonas s’investit dans des projets consacrés à l’éducation des enfants, à l’écologie et aux arts.</a>"
       },
       "contact": {
         "heading": "Contact",
@@ -159,7 +152,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Function to change language content on the page
+  // Determine the active section based on which section's top is closest to the viewport top
+  function onScroll() {
+    let closestSection = null;
+    let minDistance = Infinity;
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      // Use the absolute distance of the top from 0
+      const distance = Math.abs(rect.top);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestSection = section;
+      }
+    });
+    if (closestSection) {
+      adjustNavbarStyle(closestSection.id);
+    }
+  }
+
+  // Function to change language
   function changeLanguage(lang) {
     document.querySelectorAll('[data-key]').forEach(element => {
       const key = element.getAttribute('data-key');
@@ -173,9 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (element.tagName === 'IMG') {
         element.alt = text;
       } else {
-        element.getAttribute('data-html') === "true"
-          ? element.innerHTML = text
-          : element.textContent = text;
+        element.getAttribute('data-html') === "true" ? element.innerHTML = text : element.textContent = text;
       }
     });
     languageButtons.forEach(btn => {
@@ -191,13 +200,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = lang;
   }
 
-  // Function to adjust the navbar style for the home section view
-  function adjustNavbarStyle() {
-    navbar.classList.remove('dark');
-    languageSwitcher.style.color = 'white';
+  // Function to adjust navbar style based on current section
+  function adjustNavbarStyle(currentSection = 'home') {
+    if (
+      currentSection === 'home' ||
+      currentSection === 'jh' ||
+      currentSection === 'services1' ||
+      currentSection === 'services3' ||
+      currentSection === 'services5' ||
+      currentSection === 'bio'
+    ) {
+      navbar.classList.remove('dark');
+      languageSwitcher.style.color = 'white';
+    } else {
+      navbar.classList.add('dark');
+      languageSwitcher.style.color = '';
+    }
   }
 
-  // Set up language switching buttons
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.split('-')[1];
@@ -205,10 +225,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Initialize language and navbar style based on stored preferences
   const storedLang = localStorage.getItem('language') || 'en';
   changeLanguage(storedLang);
-  adjustNavbarStyle();
+  adjustNavbarStyle('home');
 
-  // No scroll events or additional view adjustments are necessary
+  // Listen for scroll events on the scrolling container instead of window
+  mainContent.addEventListener('scroll', onScroll);
+
+  // Optionally, call onScroll on load to set initial navbar style
+  onScroll();
 });
