@@ -157,7 +157,6 @@ p {
     align-items: center;
     padding: 15px 30px;
     background-color: transparent;
-    transition: background-color 0.3s ease;
 }
 
 .language-switcher {
