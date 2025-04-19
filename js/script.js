@@ -156,9 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
- function changeLanguage(lang) {
+   function changeLanguage(lang) {
     document.querySelectorAll('[data-key]').forEach(el => {
-      const keys = el.getAttribute('data-key').split('.');
+      const keys = el.dataset.key.split('.');
       let text = content[lang];
       keys.forEach(k => text = text && text[k] !== undefined ? text[k] : '');
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
@@ -166,49 +166,36 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (el.tagName === 'IMG') {
         el.alt = text;
       } else {
-        el.getAttribute('data-html') === "true"
-          ? el.innerHTML = text
-          : el.textContent = text;
+        el.innerHTML = el.getAttribute('data-html') === 'true' ? text : text;
       }
     });
     languageButtons.forEach(btn => {
       btn.classList.remove('active');
-      btn.setAttribute('aria-pressed', 'false');
+      btn.ariaPressed = 'false';
     });
     const activeBtn = document.getElementById('lang-' + lang);
-    if (activeBtn) {
-      activeBtn.classList.add('active');
-      activeBtn.setAttribute('aria-pressed', 'true');
-    }
+    activeBtn.classList.add('active');
+    activeBtn.ariaPressed = 'true';
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
   }
 
-  // Initialize language
-  const storedLang = localStorage.getItem('language') || 'en';
-  changeLanguage(storedLang);
+  // Init language
+  const stored = localStorage.getItem('language') || 'en';
+  changeLanguage(stored);
+  languageButtons.forEach(btn =>
+    btn.addEventListener('click', () => changeLanguage(btn.id.split('-')[1]))
+  );
 
-  languageButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      changeLanguage(btn.id.split('-')[1]);
-    });
-  });
-
-  // IntersectionObserver: toggle .dark based on whether section has a background-image
-  const observer = new IntersectionObserver(entries => {
+  // Observe each section: if it has no background-image, add .dark
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const style = getComputedStyle(entry.target);
-      const hasBg = style.backgroundImage && style.backgroundImage !== 'none';
-      if (hasBg) {
-        navbar.classList.remove('dark');   // white buttons over images
-      } else {
-        navbar.classList.add('dark');      // black buttons on plain sections
-      }
+      const bg = getComputedStyle(entry.target).backgroundImage;
+      if (bg === 'none') navbar.classList.add('dark');
+      else             navbar.classList.remove('dark');
     });
-  }, {
-    threshold: 0.6   // when ~60% of section is in view
-  });
+  }, { threshold: 0.6 });
 
-  sections.forEach(sec => observer.observe(sec));
+  sections.forEach(sec => obs.observe(sec));
 });
