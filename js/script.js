@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       "services": {
         "service1": {
-          "title": "Advocacy and litigation",
+          "title": "Litigation and mediation",
           "description": "Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of top-level litigation experience, Jonas will help you consider not only your own perspective, but also those of the opposing side and any arbiter who may ultimately decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest."
         },
         "service2": {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "addressLabel1": "",
         "addressPlaceholder1": "Asylstrasse 41, 8032 Zurich",
         "addressLabel2": "",
-        "addressPlaceholder2": "PO Box, 4010 Basel",
+        "addressPlaceholder2": "PO Box, 4001 Basel",
         "emailLabel": "",
         "emailPlaceholder": "jh@jonashertner.com"
       }
@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
       "hero": { "title": "Jonas Hertner", "subtitle": "ADVOKAT" },
       "about": {
         "heading": "Jonas Hertner",
-        "content": "Jonas Hertner ist ein unabhängiger Anwalt in Zürich und Basel mit über einem Jahrzehnt Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der grössten Rechtsstreitigkeiten in der Schweiz. Jonas berät Privatpersonen, Familien, Stiftungen und Unternehmen auf dem Weg zur Erreichung ihrer Ziele. Für seine Mandanten ist Jonas ein verlässlicher Berater und unerschütterlicher Advokat, der sich mit dem Anspruch an höchste Qualität für die langfristigen Interessen seiner Mandanten einsetzt."
+        "content": "Jonas Hertner ist unabhängiger Rechtsanwalt in Zürich und Basel mit über einem Jahrzehnt Erfahrung als Berater für Schweizer und internationale Mandanten in einigen der grössten Rechtsstreitigkeiten in der Schweiz. Er berät Privatpersonen, Familien, Stiftungen und Unternehmen und unterstützt sie dabei, in anspruchsvollen Situationen ihre Ziele zu verwirklichen. Seine Mandanten schätzen ihn als verlässlichen Berater und entschlossenen Anwalt, der ihre langfristigen Interessen mit höchstem Anspruch schützt und fördert."
       },
       "services": {
         "heading": "Expertise",
         "service1": {
-          "title": "Rechtsstreitigkeiten",
+          "title": "Rechtsstreitigkeiten und Mediation",
           "description": "Nicht jeder Streit muss vor Gericht gebracht werden. Oft gelangen die Parteien einvernehmlich oder durch Mediation zu einer vernünftigen Einigung. Um in einem Rechtsstreit ein gutes Ergebnis zu erzielen, sind die möglichen Folgen eines jeden Schrittes früh zu antizipieren, wenn sich ein Streit abzeichnet. Jonas verfügt über ein Jahrzehnt an Erfahrung in Rechtsstreitigkeiten auf höchster Ebene und hilft Ihnen, die eigene Perspektive und die Perspektiven der gegnerischen Seite und eines eventuellen Gerichts, das über den Streit entscheidet, zu durchdenken, um bei jedem Schritt die effektivste Massnahme ergreifen zu können."
         },
         "service2": {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "addressLabel1": "",
         "addressPlaceholder1": "Asylstrasse 41, 8032 Zürich",
         "addressLabel2": "",
-        "addressPlaceholder2": "Postfach, 4010 Basel",
+        "addressPlaceholder2": "Postfach, 4001 Basel",
         "emailLabel": "",
         "emailPlaceholder": "jh@jonashertner.com"
       }
@@ -112,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
       "services": {
         "heading": "Expertise",
         "service1": {
-          "title": "Litiges",
-          "description": "Tous les litiges ne doivent pas nécessairement finir devant les tribunaux. Une solution avantageuse peut souvent être trouvée à l’amiable ou par médiation. Afin d'obtenir le meilleur résultat, que ce soit en justice ou en dehors, il est essentiel d’anticiper les conséquences de chaque décision dès les premiers signes d’un différend. Avec plus de dix ans d’expérience dans les litiges complexes, Jonas vous aide à évaluer votre position ainsi que celles de la partie adverse et des autorités concernées. Vous pourrez ainsi agir avec confiance et efficacité pour protéger au mieux vos intérêts."
+          "title": "Litiges et médiation",
+          "description": "Tous les litiges ne doivent pas nécessairement finir devant les tribunaux. Une solution avantageuse peut souvent être trouvée à l’amiable ou par médiation. Afin d'obtenir le meilleur résultat, que ce soit en justice ou en dehors, il est essentiel d’anticiper les conséquences de chaque décision dès les premiers signes d’un différend. Avec plus de dix ans d’expérience dans les litiges complexes, Jonas vous aide à évaluer votre position ainsi que celles de la partie adverse et de tout juge ou arbitre susceptible de trancher l’affaire, afin de vous permettre, à chaque étape, de prendre la mesure la plus efficace pour défendre vos intérêts."
         },
         "service2": {
           "title": "Familles, fondations et particuliers",
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
           "description": "Jonas collabore avec des acteurs en Suisse et à l’international afin de mener des procédures judiciaires visant à protéger les droits et libertés fondamentaux, en particulier dans les domaines de la protection de l’environnement (préservation des habitats) et des nouvelles technologies."
         },
         "service5": {
-          "title": "L'intelligence artificielle et des grands modèles de langage",
+          "title": "L'intelligence artificielle et les grands modèles de langage",
           "description": "Expérimenté dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) appliqués à la gouvernance et à l’éducation, Jonas conseille ses clients sur les questions juridiques émergentes dans ce domaine, notamment en ce qui concerne les limitations techniques, la confidentialité et la sécurité des données, les droits de propriété intellectuelle et les réflexions éthiques, ainsi que sur leur utilisation dans la gouvernance d'entreprise et la prise de décision."
         },
         "service6": {
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "addressLabel1": "",
         "addressPlaceholder1": "Asylstrasse 41, 8032 Zurich",
         "addressLabel2": "",
-        "addressPlaceholder2": "Case postale, 4010 Bâle",
+        "addressPlaceholder2": "Case postale, 4001 Bâle",
         "emailLabel": "",
         "emailPlaceholder": "jh@jonashertner.com"
       }
