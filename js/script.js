@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service2": {
           "title": "Families, foundations, and individuals",
-          "description": "Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value assets, due diligence, and good governance advice."
+          "description": "Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value assets, due diligence, good governance, and generational transitions."
         },
         "service3": {
           "title": "Criminal law",
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service2": {
           "title": "Familien, Stiftungen und Einzelpersonen",
-          "description": "Jonas verfügt über umfassende Erfahrung in der Beratung von Familien und Privatpersonen in der Schweiz und international auf höchstem Niveau. Er begleitet sie in komplexen rechtlichen Angelegenheiten, insbesondere bei gesellschaftsrechtlichen Streitigkeiten und Aktionärsdisputen, Finanzstreitigkeiten und strafrechtlichen Untersuchungen. Zudem berät er bei Themen wie Gründungen, dem Erwerb hochwertiger Vermögenswerte, Due-Diligence-Prüfungen sowie der Einführung wirksamer Corporate-Governance-Strukturen."
+          "description": "Jonas verfügt über umfassende Erfahrung in der Beratung von Familien und Privatpersonen in der Schweiz und international auf höchstem Niveau. Er begleitet sie in komplexen rechtlichen Angelegenheiten, insbesondere bei gesellschaftsrechtlichen Streitigkeiten und Aktionärsdisputen, Finanzstreitigkeiten und strafrechtlichen Untersuchungen. Zudem berät er bei Themen wie Gründungen, dem Erwerb hochwertiger Vermögenswerte, Due-Diligence-Prüfungen, der Einführung wirksamer Corporate-Governance-Strukturen und bei Generationenwechsel."
         },
         "service3": {
           "title": "Strafrecht",
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "service2": {
           "title": "Familles, fondations et particuliers",
-          "description": "Jonas possède une vaste expérience du conseil au plus haut niveau auprès de familles et de particuliers établis en Suisse et à l’international, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires à fort enjeu, de contentieux financiers importants et d’enquêtes sur des infractions pénales, ainsi que dans des contextes non litigieux tels que la création d’entreprises, l’acquisition d’actifs de grande valeur, les procédures de due diligence et la mise en place de bonnes pratiques de gouvernance."
+          "description": "Jonas possède une vaste expérience du conseil au plus haut niveau auprès de familles et de particuliers établis en Suisse et à l’international, dans des situations juridiques complexes, notamment dans le cadre de litiges entre actionnaires à fort enjeu, de contentieux financiers importants et d’enquêtes sur des infractions pénales, ainsi que dans des contextes non litigieux tels que la création d’entreprises, l’acquisition d’actifs de grande valeur, les procédures de due diligence, la mise en place de bonnes pratiques de gouvernance et les transitions générationnelles."
         },
         "service3": {
           "title": "Droit pénal",
