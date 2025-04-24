@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const languageSwitcher = document.querySelector('.language-switcher');
   const mainContent = document.getElementById('main-content'); // scrolling container
 
+
+  // Hide all sections except the "home" section.
+  sections.forEach(section => {
+    if (section.id !== "home") {
+      section.style.display = "none";
+    }
+  });
+
+
   // Content Object (English, German, and French translations)
   const content = {
     "en": {
