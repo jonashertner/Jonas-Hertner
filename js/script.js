@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainContent = document.getElementById('main-content'); // scrolling container
 
 
-  // Hide all sections except the "home" section.
-  sections.forEach(section => {
-    if (section.id !== "home") {
-      section.style.display = "none";
-    }
-  });
+  // // Hide all sections except the "home" section.
+  // sections.forEach(section => {
+  //   if (section.id !== "home") {
+  //     section.style.display = "none";
+  //   }
+  // });
 
 
   // Content Object (English, German, and French translations)
