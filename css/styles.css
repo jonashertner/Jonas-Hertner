@@ -556,3 +556,32 @@ a:focus,
     font-size: clamp(1.2rem, 3vw, 1.4rem);
   }
 }
+
+/* Typewriter Cursor Animation */
+.cursor {
+  display: inline-block;
+  vertical-align: baseline;
+  animation: blink 0.7s steps(1) infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Typewriter cursor blink */
+.cursor {
+  display: inline-block;
+  vertical-align: baseline;
+  animation: blink 0.7s steps(1) infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Respect reduced motion: no blinking/animation */
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none !important; }
+}

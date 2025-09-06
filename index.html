@@ -2,25 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="description"
-        content="Jonas Hertner is an experienced attorney in Zurich and Basel, guiding Swiss and international clients through complex legal situations."/>
-  <meta name="keywords"
-        content="Jonas Hertner, attorney, lawyer, Zurich, Basel, complex disputes, impact litigation, litigation, criminal law, constitutional law, AI law, shareholder disputes, Anwalt, Rechtsanwalt, Zürich, Basel, komplexe Streitigkeiten, strategische Prozessführung, Prozessführung, Strafrecht, Verfassungsrecht, KI-Recht, Aktionärsstreitigkeiten, avocat, juriste, Zurich, Bâle, litiges complexes, contentieux stratégique, contentieux, droit pénal, droit constitutionnel, droit de l'IA, litiges entre actionnaires, don&apos;t panic"/>
-  <meta name="robots" content="index, follow"/>
+  <meta name="description" content="Jonas Hertner is an experienced attorney in Zurich and Basel, guiding Swiss and international clients through complex legal situations.">
+  <meta name="keywords" content="Jonas Hertner, attorney, lawyer, Zurich, Basel, complex disputes, impact litigation, litigation, criminal law, constitutional law, AI law, shareholder disputes, Anwalt, Rechtsanwalt, Zürich, Basel, komplexe Streitigkeiten, strategische Prozessführung, Prozessführung, Strafrecht, Verfassungsrecht, KI-Recht, Aktionärsstreitigkeiten, avocat, juriste, Zurich, Bâle, litiges complexes, contentieux stratégique, contentieux, droit pénal, droit constitutionnel, droit de l'IA, litiges entre actionnaires, don't panic">
+  <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta property="og:title" content="Jonas Hertner" />
-  <meta property="og:description" content="Experienced attorney in Zurich and Basel." />
-  <meta property="og:url" content="https://www.jonashertner.com" />
-  <meta property="og:image" content="https://www.jonashertner.com/images/jh.jpg" />
+  <meta property="og:title" content="Jonas Hertner">
+  <meta property="og:description" content="Experienced attorney in Zurich and Basel.">
+  <meta property="og:url" content="https://www.jonashertner.com">
+  <meta property="og:image" content="https://www.jonashertner.com/images/jh.jpg">
 
   <title>Jonas Hertner</title>
-    
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-
   <link rel="stylesheet" href="css/styles.css">
-
 </head>
 <body>
 
@@ -42,7 +37,8 @@
         <img src="images/services5-bg.jpg" alt="Hero background" loading="lazy">
       </picture>
       <div class="hero-content">
-        <h1 id="home-heading" data-key="hero.title">Jonas Hertner</h1>
+        <!-- Screen readers get a stable label; visuals will be typed by JS -->
+        <h1 id="home-heading" data-key="hero.title" aria-label="Jonas Hertner, ATTORNEY">Jonas Hertner</h1>
         <p data-key="hero.subtitle">ATTORNEY</p>
       </div>
     </section>
@@ -119,7 +115,6 @@
     <section id="bio" class="section" aria-labelledby="bio-heading">
       <div class="about-content">
         <h2 id="bio-heading" data-key="bio.heading">Biography</h2>
-        <!-- The data-html attribute instructs the script to render HTML -->
         <p data-key="bio.content" data-html="true">Bio</p>
       </div>
     </section>
@@ -154,15 +149,11 @@
 
   <noscript>
     <style>
-      .language-switcher {
-        display: flex;
-        justify-content: flex-end;
-        padding: 15px 30px;
-      }
+      .language-switcher { display: flex; justify-content: flex-end; padding: 15px 30px; }
     </style>
   </noscript>
 
-  <!-- Include script.js before closing body -->
-  <script src="js/script.js"></script>
+  <!-- Your main JS; runs after DOM is parsed -->
+  <script src="js/script.js" defer></script>
 </body>
 </html>
