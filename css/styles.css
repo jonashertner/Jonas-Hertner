@@ -243,7 +243,7 @@ p {
     justify-content: center; 
     text-align: center; 
     color: var(--color-text-light);
-    z-index: 1;
+    z-index: 2;
     max-width: 800px;
     padding: 0 20px;
 }
@@ -584,4 +584,10 @@ a:focus,
 /* Respect reduced motion: no blinking/animation */
 @media (prefers-reduced-motion: reduce) {
   .cursor { animation: none !important; }
+}
+
+.has-fog { position: relative; isolation: isolate; }
+
+@media (prefers-reduced-motion: reduce) {
+  #fog-canvas { display: none !important; }
 }
