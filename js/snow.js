@@ -21,6 +21,17 @@
   let snowWindTarget = 0.0;
   let snowStopping = false;
 
+  // --- Snow pile (last section) ---
+  let pileSection = null;
+  let pileCanvas = null;
+  let pileCtx = null;
+  let pileBins = null; // Float32Array heights in px
+  let pileBinCount = 0;
+  let pileMaxPx = 0;
+  let pileShake = 0; // 0..1 animation intensity
+  let pileClear = 0; // 0..1 clear animation progress
+  let pileRO = null;
+
   onReady(init);
 
   function onReady(fn) {
@@ -40,6 +51,8 @@
       snowBtn.title = 'Disabled (Reduce Motion enabled)';
       return;
     }
+
+    initPileIfPossible();
 
     // Restore persisted state
     const stored = safeGet(STORAGE_KEY);
@@ -66,6 +79,9 @@
       const next = (!isOn).toString();
       snowBtn.setAttribute('aria-pressed', next);
       try { localStorage.setItem(STORAGE_KEY, !isOn ? '1' : '0'); } catch {}
+
+      // iOS motion permission is user-gesture gated; attempt once on first interaction.
+      maybeEnableShakeControls();
     });
   }
 
@@ -181,6 +197,32 @@
       f.x += (f.vx + snowWind * (0.18 + f.r * 0.22) + drift) * dt;
       f.y += f.vy * dt;
 
+      // Pile-up behavior in last section: flakes that reach the "snow drift" get absorbed.
+      if (pileCtx && pileSection && pileBins) {
+        const rect = pileSection.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < h) {
+          const localY = f.y - rect.top;
+          if (localY >= 0 && localY <= rect.height) {
+            const bin = pileBinCount > 0 ? clamp(Math.floor((f.x / w) * pileBinCount), 0, pileBinCount - 1) : 0;
+            const pileHere = pileBins[bin] || 0;
+            const groundY = rect.height - pileHere - 10;
+            if (localY >= groundY) {
+              // absorb + add snow (spread a little to neighbors)
+              const add = 0.25 + f.r * 0.85;
+              addToPile(bin, add);
+              // respawn at top unless we're draining/stopping
+              if (snowStopping) {
+                f.dead = true;
+              } else {
+                f.y = -40 - Math.random() * 120;
+                f.x = Math.random() * w;
+              }
+              continue;
+            }
+          }
+        }
+      }
+
       // Wrap
       if (f.y > h + 40) {
         if (snowStopping) {
@@ -211,6 +253,9 @@
       // Once all flakes have drained out, fade and tear down.
       finishStopSnow();
     }
+
+    // Render pile (if present)
+    tickAndRenderPile(dt);
   }
 
   function startSnow() {
@@ -234,6 +279,9 @@
     snowRaf = requestAnimationFrame(snowTick);
     window.addEventListener('resize', onSnowResize, { passive: true });
     window.visualViewport?.addEventListener('resize', onSnowResize, { passive: true });
+
+    // Ensure pile visuals are ready when snow starts
+    initPileIfPossible();
   }
 
   function requestStopSnow() {
@@ -268,10 +316,213 @@
     if (!snowCanvas) return;
     setSnowSize();
     buildSnowFlakes();
+    resizePileCanvas();
   }
 
   function clamp(v, lo, hi) {
     return Math.min(hi, Math.max(lo, v));
+  }
+
+  // -------------------------------
+  // Snow pile implementation
+  // -------------------------------
+  function initPileIfPossible() {
+    // Only on the main one-page layout where #jh exists
+    pileSection = document.getElementById('jh');
+    if (!pileSection) return;
+
+    pileSection.classList.add('has-snow-pile');
+
+    if (!pileCanvas) {
+      pileCanvas = document.createElement('canvas');
+      pileCanvas.className = 'snow-pile-canvas';
+      pileSection.appendChild(pileCanvas);
+      pileCtx = pileCanvas.getContext('2d');
+    }
+
+    if (!pileRO && 'ResizeObserver' in window) {
+      pileRO = new ResizeObserver(() => resizePileCanvas());
+      pileRO.observe(pileSection);
+    }
+    resizePileCanvas();
+    if (!pileBins) resetPile();
+  }
+
+  function resizePileCanvas() {
+    if (!pileCanvas || !pileSection) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const r = pileSection.getBoundingClientRect();
+    const w = Math.max(1, Math.floor(r.width * dpr));
+    const h = Math.max(1, Math.floor(r.height * dpr));
+    if (pileCanvas.width !== w || pileCanvas.height !== h) {
+      pileCanvas.width = w;
+      pileCanvas.height = h;
+      pileCanvas.style.width = '100%';
+      pileCanvas.style.height = '100%';
+      pileCtx = pileCanvas.getContext('2d');
+      if (pileCtx) pileCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // choose bin count based on section width in CSS pixels
+    const wCss = Math.max(1, r.width);
+    pileBinCount = clamp(Math.round(wCss / 6), 80, 220);
+    pileMaxPx = clamp(Math.round(r.height * 0.28), 90, 220);
+    if (!pileBins || pileBins.length !== pileBinCount) {
+      pileBins = new Float32Array(pileBinCount);
+    }
+  }
+
+  function resetPile() {
+    if (!pileBins) return;
+    pileBins.fill(0);
+    pileShake = 0;
+    pileClear = 0;
+  }
+
+  function addToPile(bin, amountPx) {
+    if (!pileBins) return;
+    const spread = 3;
+    for (let k = -spread; k <= spread; k++) {
+      const idx = bin + k;
+      if (idx < 0 || idx >= pileBins.length) continue;
+      const w = 1 - Math.abs(k) / (spread + 0.01);
+      pileBins[idx] = Math.min(pileMaxPx, pileBins[idx] + amountPx * w * 0.28);
+    }
+
+    // Gentle smoothing to keep it fluffy
+    if (Math.random() < 0.35) smoothPileOnce();
+  }
+
+  function smoothPileOnce() {
+    if (!pileBins || pileBins.length < 3) return;
+    const tmp = new Float32Array(pileBins.length);
+    tmp[0] = pileBins[0];
+    tmp[tmp.length - 1] = pileBins[tmp.length - 1];
+    for (let i = 1; i < pileBins.length - 1; i++) {
+      tmp[i] = (pileBins[i - 1] + pileBins[i] * 2 + pileBins[i + 1]) / 4;
+    }
+    pileBins = tmp;
+  }
+
+  function tickAndRenderPile(dt) {
+    if (!pileCtx || !pileCanvas || !pileSection || !pileBins) return;
+    const r = pileSection.getBoundingClientRect();
+    if (r.bottom <= 0 || r.top >= window.innerHeight) return; // only when near viewport
+
+    // Clear animation after shake
+    if (pileClear > 0) {
+      pileClear = Math.min(1, pileClear + dt * 2.2);
+      for (let i = 0; i < pileBins.length; i++) {
+        pileBins[i] = pileBins[i] * (1 - 0.22 * dt * 60);
+        if (pileBins[i] < 0.2) pileBins[i] = 0;
+      }
+      if (pileClear >= 1) pileClear = 0;
+    }
+
+    // Shake decay
+    if (pileShake > 0) {
+      pileShake = Math.max(0, pileShake - dt * 1.6);
+    }
+
+    const ctx = pileCtx;
+    const w = r.width;
+    const h = r.height;
+    ctx.clearRect(0, 0, w, h);
+
+    // Determine max height for gradient
+    let maxH = 0;
+    for (let i = 0; i < pileBins.length; i++) maxH = Math.max(maxH, pileBins[i]);
+    if (maxH < 1) return;
+
+    const baseY = h;
+    const step = w / (pileBins.length - 1);
+    const jitter = pileShake * 6;
+
+    // Fill drift shape
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+
+    const grad = ctx.createLinearGradient(0, baseY - maxH - 40, 0, baseY);
+    grad.addColorStop(0, 'rgba(255,255,255,0.95)');
+    grad.addColorStop(0.55, 'rgba(255,255,255,0.55)');
+    grad.addColorStop(1, 'rgba(255,255,255,0.22)');
+
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(0, baseY);
+    for (let i = 0; i < pileBins.length; i++) {
+      const x = i * step;
+      const y = baseY - pileBins[i] + (Math.random() - 0.5) * jitter;
+      ctx.lineTo(x, y);
+    }
+    ctx.lineTo(w, baseY);
+    ctx.closePath();
+    ctx.fill();
+
+    // Soft highlight ridge
+    ctx.globalAlpha = 0.35;
+    ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let i = 0; i < pileBins.length; i++) {
+      const x = i * step;
+      const y = baseY - pileBins[i];
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  // -------------------------------
+  // Shake detection (mobile)
+  // -------------------------------
+  let shakeEnabled = false;
+  let lastShakeT = 0;
+
+  function maybeEnableShakeControls() {
+    if (shakeEnabled) return;
+    if (!pileSection) return;
+
+    // iOS 13+ permission model
+    const DME = window.DeviceMotionEvent;
+    if (DME && typeof DME.requestPermission === 'function') {
+      DME.requestPermission().then((state) => {
+        if (state === 'granted') enableShakeListener();
+      }).catch(() => {
+        // ignore
+      });
+    } else {
+      enableShakeListener();
+    }
+  }
+
+  function enableShakeListener() {
+    if (shakeEnabled) return;
+    shakeEnabled = true;
+    window.addEventListener('devicemotion', onDeviceMotion, { passive: true });
+  }
+
+  function onDeviceMotion(e) {
+    if (!pileBins) return;
+    const a = e.accelerationIncludingGravity || e.acceleration;
+    if (!a) return;
+    const ax = a.x || 0, ay = a.y || 0, az = a.z || 0;
+    const mag = Math.sqrt(ax * ax + ay * ay + az * az);
+
+    // Threshold tuned for "shake phone"
+    const now = performance.now();
+    if (mag > 22 && (now - lastShakeT) > 450) {
+      lastShakeT = now;
+      triggerPileShakeClear();
+    }
+  }
+
+  function triggerPileShakeClear() {
+    if (!pileBins) return;
+    pileShake = 1;
+    pileClear = 0.001;
   }
 })();
 
