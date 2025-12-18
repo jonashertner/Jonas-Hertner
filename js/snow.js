@@ -23,8 +23,6 @@
 
   // --- Snow pile (last section) ---
   let pileSection = null;
-  let pileCanvas = null;
-  let pileCtx = null;
   let pileBins = null; // Float32Array heights in px
   let pileBinCount = 0;
   let pileMaxPx = 0;
@@ -202,7 +200,7 @@
       f.y += f.vy * dt;
 
       // Pile-up behavior in last section: flakes that reach the "snow drift" get absorbed.
-      if (pileCtx && pileSection && pileBins) {
+      if (pileSection && pileBins) {
         const rect = pileSection.getBoundingClientRect();
         // Convert rect into snow-canvas-local coordinates
         const rectTopInCanvas = rect.top - canvasRect.top;
@@ -264,7 +262,7 @@
     }
 
     // Render pile (if present)
-    tickAndRenderPile(dt);
+    tickAndRenderPile(dt, snowCtx, canvasRect);
   }
 
   function startSnow() {
@@ -342,13 +340,6 @@
 
     pileSection.classList.add('has-snow-pile');
 
-    if (!pileCanvas) {
-      pileCanvas = document.createElement('canvas');
-      pileCanvas.className = 'snow-pile-canvas';
-      pileSection.appendChild(pileCanvas);
-      pileCtx = pileCanvas.getContext('2d');
-    }
-
     if (!pileRO && 'ResizeObserver' in window) {
       pileRO = new ResizeObserver(() => resizePileCanvas());
       pileRO.observe(pileSection);
@@ -358,20 +349,8 @@
   }
 
   function resizePileCanvas() {
-    if (!pileCanvas || !pileSection) return;
-    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (!pileSection) return;
     const r = pileSection.getBoundingClientRect();
-    const w = Math.max(1, Math.floor(r.width * dpr));
-    const h = Math.max(1, Math.floor(r.height * dpr));
-    if (pileCanvas.width !== w || pileCanvas.height !== h) {
-      pileCanvas.width = w;
-      pileCanvas.height = h;
-      pileCanvas.style.width = '100%';
-      pileCanvas.style.height = '100%';
-      pileCtx = pileCanvas.getContext('2d');
-      if (pileCtx) pileCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
     // choose bin count based on section width in CSS pixels
     const wCss = Math.max(1, r.width);
     pileBinCount = clamp(Math.round(wCss / 6), 80, 220);
@@ -414,7 +393,10 @@
   }
 
   function tickAndRenderPile(dt) {
-    if (!pileCtx || !pileCanvas || !pileSection || !pileBins) return;
+  }
+
+  function tickAndRenderPile(dt, ctx, canvasRect) {
+    if (!ctx || !pileSection || !pileBins) return;
     const r = pileSection.getBoundingClientRect();
     const vh = window.visualViewport?.height || window.innerHeight;
     if (r.bottom <= 0 || r.top >= vh) return; // only when near viewport
@@ -434,10 +416,13 @@
       pileShake = Math.max(0, pileShake - dt * 1.6);
     }
 
-    const ctx = pileCtx;
+    // Convert section rect into snow-canvas-local coords and render there
     const w = r.width;
     const h = r.height;
-    ctx.clearRect(0, 0, w, h);
+    const x0 = r.left - canvasRect.left;
+    const y0 = r.top - canvasRect.top;
+    // If the section isn't actually intersecting the snow canvas box, do nothing
+    if (x0 > (window.visualViewport?.width || window.innerWidth) || y0 > (window.visualViewport?.height || window.innerHeight)) return;
 
     // Determine max height for gradient
     let maxH = 0;
@@ -450,6 +435,11 @@
 
     // Fill drift shape
     ctx.save();
+    // Clip to the section rect area on the snow canvas
+    ctx.beginPath();
+    ctx.rect(x0, y0, w, h);
+    ctx.clip();
+    ctx.translate(x0, y0);
     ctx.globalCompositeOperation = 'lighter';
 
     const grad = ctx.createLinearGradient(0, baseY - maxH - 40, 0, baseY);
@@ -496,14 +486,34 @@
 
   function maybeEnableShakeControls() {
     if (shakeEnabled) return;
+    if (!pileSection) initPileIfPossible();
     if (!pileSection) return;
 
     // iOS 13+ permission model
     const DME = window.DeviceMotionEvent;
+    const DOE = window.DeviceOrientationEvent;
     if (DME && typeof DME.requestPermission === 'function') {
       if (motionPermissionAttempted) return;
       motionPermissionAttempted = true;
       DME.requestPermission()
+        .then((state) => {
+          if (state === 'granted') {
+            enableShakeListener();
+            const btn = document.getElementById('snow-toggle');
+            if (btn) btn.title = 'Shake to clear snow pile';
+          } else {
+            const btn = document.getElementById('snow-toggle');
+            if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
+          }
+        })
+        .catch(() => {
+          const btn = document.getElementById('snow-toggle');
+          if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
+        });
+    } else if (DOE && typeof DOE.requestPermission === 'function') {
+      if (motionPermissionAttempted) return;
+      motionPermissionAttempted = true;
+      DOE.requestPermission()
         .then((state) => {
           if (state === 'granted') {
             enableShakeListener();
