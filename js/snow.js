@@ -33,6 +33,13 @@
   let snowTearingDown = false;
   let snowTeardownTimer = 0;
 
+  // --- Tilt-to-gravity (mobile): make snow fall "down" relative to real gravity ---
+  let tiltEnabled = false;
+  let tiltTargetX = 0;
+  let tiltTargetY = 1;
+  let tiltX = 0;
+  let tiltY = 1;
+
   // --- Snow pile (last section) ---
   let pileSection = null;
   let pileBins = null; // Float32Array heights in px
@@ -89,6 +96,7 @@
       try { localStorage.setItem(STORAGE_KEY, !isOn ? '1' : '0'); } catch {}
 
       // iOS motion permission is user-gesture gated; attempt once on first interaction.
+      maybeEnableTiltControls();
       maybeEnableShakeControls();
     });
   }
@@ -215,6 +223,17 @@
 
     const density = getSnowDensity(t); // 0..1
 
+    // Smooth gravity direction (when tilt is enabled)
+    const k = 1 - Math.exp(-dt * 7.5);
+    tiltX += (tiltTargetX - tiltX) * k;
+    tiltY += (tiltTargetY - tiltY) * k;
+    const gMag = Math.hypot(tiltX, tiltY) || 1;
+    const gdx = tiltX / gMag;
+    const gdy = tiltY / gMag;
+    // Perpendicular to gravity (used for wind + wobble so the snow "dances" around the fall direction)
+    const pdx = -gdy;
+    const pdy = gdx;
+
     // Constant dreamy wind (does NOT intensify over time)
     if (Math.random() < 0.006) snowWindTarget = (Math.random() * 2 - 1) * 22;
     snowWind += (snowWindTarget - snowWind) * 0.010;
@@ -233,6 +252,7 @@
     ctx.restore();
 
     let alive = 0;
+    const margin = 90;
     for (let i = 0; i < snowFlakes.length; i++) {
       const f = snowFlakes[i];
       if (f.dead) continue;
@@ -242,20 +262,20 @@
         if (density < f.birth) continue;
         // Activate and (re)spawn from above so they enter naturally.
         f.active = true;
-        f.y = -40 - Math.random() * 120;
-        f.x = Math.random() * w;
+        respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
       }
       // When stopping, we do NOT activate new flakes.
       // Only flakes that were already seen on-screen should be allowed to finish falling.
 
       f.wobble += f.wobbleSpeed * dt;
 
-      const drift = Math.sin(f.wobble) * (12 * f.r);
       // Constant dreamy motion (no acceleration over time)
-      const vx = f.baseVx;
       const vy = f.baseVy;
-      f.x += (vx + snowWind * (0.18 + f.r * 0.22) + drift) * dt;
-      f.y += vy * dt;
+      const lateral = (f.baseVx + snowWind * (0.18 + f.r * 0.22));
+      const wobble = Math.sin(f.wobble) * (8.5 * f.r);
+      // Gravity-directed fall + dreamy lateral motion perpendicular to gravity
+      f.x += (gdx * vy + pdx * (lateral + wobble)) * dt;
+      f.y += (gdy * vy + pdy * (lateral + wobble)) * dt;
 
       // Pile-up behavior in last section: flakes that reach the "snow drift" get absorbed.
       if (pileSection && pileBins) {
@@ -280,14 +300,12 @@
                 // During ramp-down, progressively stop respawning based on density.
                 // Natural: flakes disappear only after falling out, not mid-air.
                 if (density > f.birth) {
-                  f.y = -40 - Math.random() * 120;
-                  f.x = Math.random() * w;
+                  respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
                 } else {
                   f.dead = true;
                 }
               } else {
-                f.y = -40 - Math.random() * 120;
-                f.x = Math.random() * w;
+                respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
               }
               continue;
             }
@@ -296,23 +314,19 @@
       }
 
       // Wrap
-      if (f.y > h + 40) {
+      if (f.x < -margin || f.x > w + margin || f.y < -margin || f.y > h + margin) {
         if (snowStopping) {
           // Ramp down density: allow fewer flakes to respawn, until none do.
           if (density > f.birth) {
-            f.y = -40 - Math.random() * 120;
-            f.x = Math.random() * w;
+            respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
           } else {
             f.dead = true;
           }
           continue;
         } else {
-          f.y = -40 - Math.random() * 120;
-          f.x = Math.random() * w;
+          respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
         }
       }
-      if (f.x < -80) f.x = w + 80;
-      if (f.x > w + 80) f.x = -80;
 
       // pick sprite by size
       const sIdx = f.r < 1.0 ? 0 : (f.r < 1.6 ? 1 : 2);
@@ -461,6 +475,21 @@
 
   function clamp(v, lo, hi) {
     return Math.min(hi, Math.max(lo, v));
+  }
+
+  function respawnFlakeAtEdge(f, w, h, fallX, fallY, margin) {
+    // Spawn just outside the viewport on the "upstream" edge of the fall direction.
+    const ax = Math.abs(fallX);
+    const ay = Math.abs(fallY);
+    if (ax > ay) {
+      // Mostly horizontal fall
+      f.x = fallX > 0 ? -margin : w + margin;
+      f.y = Math.random() * h;
+    } else {
+      // Mostly vertical fall
+      f.y = fallY > 0 ? -margin : h + margin;
+      f.x = Math.random() * w;
+    }
   }
 
   // -------------------------------
@@ -617,6 +646,89 @@
   let magLP = 0;
   let motionPermissionAttempted = false;
 
+  function maybeEnableTiltControls() {
+    if (tiltEnabled) return;
+
+    const DME = window.DeviceMotionEvent;
+    const DOE = window.DeviceOrientationEvent;
+    if (DME && typeof DME.requestPermission === 'function') {
+      if (motionPermissionAttempted) return;
+      motionPermissionAttempted = true;
+      DME.requestPermission()
+        .then((state) => {
+          if (state === 'granted') enableTiltListener();
+        })
+        .catch(() => {});
+    } else if (DOE && typeof DOE.requestPermission === 'function') {
+      if (motionPermissionAttempted) return;
+      motionPermissionAttempted = true;
+      DOE.requestPermission()
+        .then((state) => {
+          if (state === 'granted') enableTiltListener();
+        })
+        .catch(() => {});
+    } else {
+      enableTiltListener();
+    }
+  }
+
+  function enableTiltListener() {
+    if (tiltEnabled) return;
+    tiltEnabled = true;
+    // Start with screen-down so the first frame is stable.
+    tiltTargetX = 0;
+    tiltTargetY = 1;
+    tiltX = 0;
+    tiltY = 1;
+    window.addEventListener('devicemotion', onTiltMotion, { passive: true });
+  }
+
+  function onTiltMotion(e) {
+    const a = e.accelerationIncludingGravity || e.acceleration;
+    if (!a) return;
+    const ax = a.x || 0;
+    const ay = a.y || 0;
+
+    // Map device axes into screen axes based on current orientation angle.
+    const angleRaw =
+      (screen.orientation && typeof screen.orientation.angle === 'number')
+        ? screen.orientation.angle
+        : (typeof window.orientation === 'number' ? window.orientation : 0);
+    const angle = ((angleRaw % 360) + 360) % 360;
+
+    let x = ax;
+    let y = ay;
+    // Invert Y so "down" in screen coords tends toward positive Y.
+    if (angle === 0) {
+      x = ax;
+      y = -ay;
+    } else if (angle === 90) {
+      x = ay;
+      y = ax;
+    } else if (angle === 180) {
+      x = -ax;
+      y = ay;
+    } else if (angle === 270) {
+      x = -ay;
+      y = -ax;
+    }
+
+    // Normalize to a unit-ish vector.
+    let gx = clamp(x / 9.8, -1, 1);
+    let gy = clamp(y / 9.8, -1, 1);
+    const m = Math.hypot(gx, gy);
+    if (m < 0.12) {
+      gx = 0;
+      gy = 1;
+    } else {
+      gx /= m;
+      gy /= m;
+    }
+
+    tiltTargetX = gx;
+    tiltTargetY = gy;
+  }
+
   function maybeEnableShakeControls() {
     if (shakeEnabled) return;
     if (!pileSection) initPileIfPossible();
@@ -707,6 +819,7 @@
   // This fixes the common "doesn't work on mobile" case where motion events are blocked until a gesture.
   (function armMotionPermissionOnce() {
     const handler = () => {
+      maybeEnableTiltControls();
       maybeEnableShakeControls();
       window.removeEventListener('pointerdown', handler);
       window.removeEventListener('touchstart', handler);
