@@ -11,12 +11,18 @@
   const prefersReducedMotionSnow =
     window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 
+  // --- Snow "ramp" (start slow/dreamy, then build to heavy) ---
+  // Tune these to taste.
+  const SNOW_RAMP_SECONDS = 28; // how long until full "heavy" intensity
+  const SNOW_START_INTENSITY = 0.14; // 0..1 starting density/speed/opacity
+
   let snowCanvas = null;
   let snowCtx = null;
   let snowRaf = 0;
   let snowFlakes = [];
   let snowSprites = null; // offscreen sprites for speed
   let snowLastT = 0;
+  let snowStartT = 0;
   let snowWind = 0.0;
   let snowWindTarget = 0.0;
   let snowStopping = false;
@@ -151,14 +157,33 @@
         // Start from the top: spawn above viewport and let flakes naturally enter
         y: -40 - Math.random() * (h + 140),
         r: size,
-        vy: speed,
-        vx: (Math.random() * 12 - 6) * (0.26 + depth * 0.9),
+        baseVy: speed,
+        baseVx: (Math.random() * 12 - 6) * (0.26 + depth * 0.9),
         wobble: Math.random() * Math.PI * 2,
         wobbleSpeed: 0.35 + Math.random() * 0.9,
-        alpha: 0.14 + depth * 0.38,
-        dead: false
+        baseAlpha: 0.14 + depth * 0.38,
+        // Each flake gets a "when do I join" threshold along the ramp.
+        // This lets the scene start sparse and grow denser naturally.
+        birth: Math.random(),
+        active: false,
+        dead: false,
       };
     });
+  }
+
+  function snowEase01(t) {
+    // smoothstep (0..1)
+    const x = clamp(t, 0, 1);
+    return x * x * (3 - 2 * x);
+  }
+
+  function getSnowIntensity(nowT) {
+    if (!snowStartT) return 1;
+    if (snowStopping) return 1;
+    const elapsed = Math.max(0, (nowT - snowStartT) / 1000);
+    const ramp = elapsed / SNOW_RAMP_SECONDS;
+    const eased = snowEase01(ramp);
+    return clamp(SNOW_START_INTENSITY + (1 - SNOW_START_INTENSITY) * eased, 0, 1);
   }
 
   function snowTick(t) {
@@ -172,9 +197,15 @@
     const dt = Math.min(0.05, (t - (snowLastT || t)) / 1000);
     snowLastT = t;
 
-    // Dreamier wind: smaller amplitude + slower changes
-    if (Math.random() < 0.008) snowWindTarget = (Math.random() * 2 - 1) * 40;
-    snowWind += (snowWindTarget - snowWind) * 0.012;
+    const intensity = getSnowIntensity(t); // 0..1
+    const eased = snowEase01(intensity);   // re-ease for nicer feel near the start
+
+    // Wind scales with intensity (calmer at the start, stronger when heavy)
+    const windMax = 16 + eased * 34;      // px/s-ish contribution
+    const windChance = 0.003 + eased * 0.007;
+    const windLerp = 0.008 + eased * 0.01;
+    if (Math.random() < windChance) snowWindTarget = (Math.random() * 2 - 1) * windMax;
+    snowWind += (snowWindTarget - snowWind) * windLerp;
 
     const ctx = snowCtx;
     ctx.clearRect(0, 0, w, h);
@@ -184,7 +215,7 @@
 
     // Subtle overall haze
     ctx.save();
-    ctx.globalAlpha = 0.095;
+    ctx.globalAlpha = 0.03 + eased * 0.07;
     ctx.fillStyle = 'rgba(255,255,255,1)';
     ctx.fillRect(0, 0, w, h);
     ctx.restore();
@@ -193,11 +224,29 @@
     for (let i = 0; i < snowFlakes.length; i++) {
       const f = snowFlakes[i];
       if (f.dead) continue;
+
+       // Ramp in: keep flakes "inactive" until their birth threshold is reached.
+      if (!f.active && !snowStopping) {
+        if (intensity < f.birth) continue;
+        // Activate and (re)spawn from above so they enter naturally.
+        f.active = true;
+        f.y = -40 - Math.random() * 120;
+        f.x = Math.random() * w;
+      }
+      if (!f.active && snowStopping) {
+        // If stopping before ramp completed, just treat remaining flakes as active so they can drain out.
+        f.active = true;
+      }
+
       f.wobble += f.wobbleSpeed * dt;
 
       const drift = Math.sin(f.wobble) * (12 * f.r);
-      f.x += (f.vx + snowWind * (0.18 + f.r * 0.22) + drift) * dt;
-      f.y += f.vy * dt;
+      const speedScale = 0.32 + eased * 0.68;
+      const alphaScale = 0.28 + eased * 0.72;
+      const vx = f.baseVx * speedScale;
+      const vy = f.baseVy * speedScale;
+      f.x += (vx + snowWind * (0.18 + f.r * 0.22) + drift) * dt;
+      f.y += vy * dt;
 
       // Pile-up behavior in last section: flakes that reach the "snow drift" get absorbed.
       if (pileSection && pileBins) {
@@ -248,7 +297,7 @@
       const sIdx = f.r < 1.0 ? 0 : (f.r < 1.6 ? 1 : 2);
       const spr = sprites[sIdx];
       const drawR = spr.r * (0.7 + f.r * 0.6);
-      ctx.globalAlpha = f.alpha;
+      ctx.globalAlpha = f.baseAlpha * alphaScale;
       ctx.drawImage(spr.canvas, f.x - drawR, f.y - drawR, drawR * 2, drawR * 2);
       alive++;
     }
@@ -280,6 +329,7 @@
     setSnowSize();
     buildSnowFlakes();
     snowLastT = 0;
+    snowStartT = performance.now();
     snowWind = 0;
     snowWindTarget = 0;
     snowStopping = false;
@@ -316,6 +366,7 @@
     snowFlakes = [];
     snowSprites = null;
     snowLastT = 0;
+    snowStartT = 0;
     snowStopping = false;
   }
 
