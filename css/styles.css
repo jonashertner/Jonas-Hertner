@@ -591,3 +591,50 @@ a:focus,
 @media (prefers-reduced-motion: reduce) {
   #fog-canvas { display: none !important; }
 }
+
+/* --- Snow (toggle + overlay) --- */
+[hidden] { display: none !important; }
+
+.snow-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: fixed;
+  top: 15px;
+  left: 30px;
+  z-index: 2600;
+}
+
+.snow-toggle::before {
+  content: "❄";
+  font-size: 1em;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.snow-toggle[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+#snow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2500;
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+#snow-canvas.is-on { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  #snow-canvas { display: none !important; }
+  .snow-toggle { display: none !important; }
+}

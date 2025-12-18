@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- DOM refs ---
-  const languageButtons = document.querySelectorAll('.lang-btn');
+  const languageButtons = document.querySelectorAll('.lang-btn[id^="lang-"]');
   const navbar = document.querySelector('.navbar');
   const sections = document.querySelectorAll('.section');
   const languageSwitcher = document.querySelector('.language-switcher');
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const content = {
     en: {
       hero: { title: "Jonas Hertner", subtitle: "ATTORNEY" },
+      snow: { on: "Let it snow", off: "Stop snow" },
       about: {
         heading: "Jonas Hertner",
         content:
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     de: {
       nav: { home: "Home", about: "Über", services: "Dienstleistungen", contact: "Kontakt" },
       hero: { title: "Jonas Hertner", subtitle: "ADVOKAT" },
+      snow: { on: "Lass es schneien", off: "Schnee aus" },
       about: {
         heading: "Jonas Hertner",
         content:
@@ -123,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fr: {
       nav: { home: "Accueil", about: "À propos", services: "Services", contact: "Contact" },
       hero: { title: "Jonas Hertner", subtitle: "AVOCAT" },
+      snow: { on: "Qu’il neige", off: "Arrêter la neige" },
       about: {
         heading: "Jonas Hertner",
         content:
@@ -186,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let hasTyped = false;
 
   function updateAriaLabel(lang) {
+    if (!heroHeading) return;
     const t = content[lang].hero.title;
     const s = content[lang].hero.subtitle;
     heroHeading.setAttribute('aria-label', `${t}, ${s}`);
@@ -196,10 +200,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (titleInterval) clearInterval(titleInterval);
     if (startSubtitleTimeout) clearTimeout(startSubtitleTimeout);
     if (cursorSpan && cursorSpan.parentNode) cursorSpan.parentNode.removeChild(cursorSpan);
-    heroSubtitle.style.visibility = 'visible';
+    if (heroSubtitle) heroSubtitle.style.visibility = 'visible';
   }
 
   function startTypewriter(lang) {
+    if (!heroHeading || !heroSubtitle) return;
     if (hasTyped) return; // run once
     hasTyped = true;
 
@@ -295,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function adjustNavbarStyle(currentSection = 'home') {
+    if (!navbar || !languageSwitcher) return;
     if (['home', 'jh', 'services1', 'services3', 'services5', 'bio'].includes(currentSection)) {
       navbar.classList.remove('dark');
       languageSwitcher.style.color = 'white';
@@ -329,11 +335,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- init ---
-  const storedLang = localStorage.getItem('language') || 'en';
+  const rawStoredLang = localStorage.getItem('language');
+  const storedLang = content[rawStoredLang] ? rawStoredLang : 'en';
   changeLanguage(storedLang);       // set all text for chosen language first
   adjustNavbarStyle('home');
-  mainContent.addEventListener('scroll', onScroll);
-  onScroll();
+  if (mainContent) {
+    mainContent.addEventListener('scroll', onScroll);
+    onScroll();
+  }
 
   // Finally start the one-time typewriter for landing title
   startTypewriter(storedLang);

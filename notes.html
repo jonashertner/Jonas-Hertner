@@ -167,7 +167,11 @@
 
 <body>
   <header>
-    <!-- You can add a navigation bar or links to other sections/pages here -->
+    <nav class="navbar" role="navigation" aria-label="Site controls">
+      <div class="language-switcher">
+        <button id="snow-toggle" class="lang-btn snow-toggle" aria-label="Toggle snow" aria-pressed="false"></button>
+      </div>
+    </nav>
   </header>
 
   <main>
@@ -256,6 +260,7 @@
     <!-- Optional: add contact info, social links, or disclaimers here --> 
   </footer>
 
-  <script src="js/script.js"></script>
+  <script defer src="js/script.js"></script>
+  <script defer src="js/snow.js"></script>
 </body>
 </html>
