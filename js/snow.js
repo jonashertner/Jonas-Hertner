@@ -19,6 +19,7 @@
   let snowLastT = 0;
   let snowWind = 0.0;
   let snowWindTarget = 0.0;
+  let snowStopping = false;
 
   onReady(init);
 
@@ -47,8 +48,17 @@
 
     snowBtn.addEventListener('click', () => {
       const isOn = !!snowCanvas;
-      if (isOn) stopSnow();
+      // If we are currently "draining" (stopping from top), clicking again resumes immediately.
+      if (isOn && snowStopping) {
+        snowStopping = false;
+        snowBtn.setAttribute('aria-pressed', 'true');
+        try { localStorage.setItem(STORAGE_KEY, '1'); } catch {}
+        return;
+      }
+
+      if (isOn) requestStopSnow();
       else startSnow();
+
       const next = (!isOn).toString();
       snowBtn.setAttribute('aria-pressed', next);
       try { localStorage.setItem(STORAGE_KEY, !isOn ? '1' : '0'); } catch {}
@@ -117,13 +127,15 @@
       const speed = 55 + depth * 220;
       return {
         x: Math.random() * w,
-        y: Math.random() * h,
+        // Start from the top: spawn above viewport and let flakes naturally enter
+        y: -40 - Math.random() * (h + 140),
         r: size,
         vy: speed,
         vx: (Math.random() * 16 - 8) * (0.3 + depth),
         wobble: Math.random() * Math.PI * 2,
         wobbleSpeed: 0.6 + Math.random() * 1.2,
-        alpha: 0.14 + depth * 0.38
+        alpha: 0.14 + depth * 0.38,
+        dead: false
       };
     });
   }
@@ -154,8 +166,10 @@
     ctx.fillRect(0, 0, w, h);
     ctx.restore();
 
+    let alive = 0;
     for (let i = 0; i < snowFlakes.length; i++) {
       const f = snowFlakes[i];
+      if (f.dead) continue;
       f.wobble += f.wobbleSpeed * dt;
 
       const drift = Math.sin(f.wobble) * (14 * f.r);
@@ -164,8 +178,14 @@
 
       // Wrap
       if (f.y > h + 40) {
-        f.y = -40 - Math.random() * 120;
-        f.x = Math.random() * w;
+        if (snowStopping) {
+          // "End from top": do not respawn at the top; let flakes drain out.
+          f.dead = true;
+          continue;
+        } else {
+          f.y = -40 - Math.random() * 120;
+          f.x = Math.random() * w;
+        }
       }
       if (f.x < -80) f.x = w + 80;
       if (f.x > w + 80) f.x = -80;
@@ -176,15 +196,25 @@
       const drawR = spr.r * (0.7 + f.r * 0.6);
       ctx.globalAlpha = f.alpha;
       ctx.drawImage(spr.canvas, f.x - drawR, f.y - drawR, drawR * 2, drawR * 2);
+      alive++;
     }
 
     ctx.globalCompositeOperation = 'source-over';
     ctx.globalAlpha = 1;
+
+    if (snowStopping && alive === 0) {
+      // Once all flakes have drained out, fade and tear down.
+      finishStopSnow();
+    }
   }
 
   function startSnow() {
     if (prefersReducedMotionSnow) return;
-    if (snowCanvas) return;
+    if (snowCanvas) {
+      // If we were draining, resume immediately.
+      snowStopping = false;
+      return;
+    }
     snowCanvas = document.createElement('canvas');
     snowCanvas.id = 'snow-canvas';
     document.body.appendChild(snowCanvas);
@@ -195,21 +225,27 @@
     snowLastT = 0;
     snowWind = 0;
     snowWindTarget = 0;
+    snowStopping = false;
     snowRaf = requestAnimationFrame(snowTick);
     window.addEventListener('resize', onSnowResize, { passive: true });
     window.visualViewport?.addEventListener('resize', onSnowResize, { passive: true });
   }
 
-  function stopSnow() {
+  function requestStopSnow() {
+    if (!snowCanvas) return;
+    // "End from top": stop respawning; let existing flakes continue down until gone.
+    snowStopping = true;
+    window.removeEventListener('resize', onSnowResize);
+    window.visualViewport?.removeEventListener('resize', onSnowResize);
+  }
+
+  function finishStopSnow() {
     if (!snowCanvas) return;
     cancelAnimationFrame(snowRaf);
     snowRaf = 0;
-    window.removeEventListener('resize', onSnowResize);
-    window.visualViewport?.removeEventListener('resize', onSnowResize);
 
     const c = snowCanvas;
     c.classList.remove('is-on');
-    // let CSS opacity transition finish before removing
     setTimeout(() => {
       if (snowCanvas !== c) return;
       c.remove();
@@ -220,6 +256,7 @@
     snowFlakes = [];
     snowSprites = null;
     snowLastT = 0;
+    snowStopping = false;
   }
 
   function onSnowResize() {
