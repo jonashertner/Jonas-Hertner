@@ -48,9 +48,13 @@
 
     snowBtn.addEventListener('click', () => {
       const isOn = !!snowCanvas;
-      // If we are currently "draining" (stopping from top), clicking again resumes immediately.
+      // If we are currently "draining" (stopping from top), clicking again must restore full intensity.
+      // Otherwise we'd keep many flakes marked dead and the snow would look weaker.
       if (isOn && snowStopping) {
         snowStopping = false;
+        setSnowSize();
+        buildSnowFlakes();
+        snowLastT = 0;
         snowBtn.setAttribute('aria-pressed', 'true');
         try { localStorage.setItem(STORAGE_KEY, '1'); } catch {}
         return;
@@ -124,16 +128,17 @@
     snowFlakes = new Array(target).fill(0).map(() => {
       const depth = Math.random(); // 0..1
       const size = 0.6 + depth * 1.6;
-      const speed = 55 + depth * 220;
+      // Dreamier flow: slower fall speeds, still layered by depth
+      const speed = 38 + depth * 175;
       return {
         x: Math.random() * w,
         // Start from the top: spawn above viewport and let flakes naturally enter
         y: -40 - Math.random() * (h + 140),
         r: size,
         vy: speed,
-        vx: (Math.random() * 16 - 8) * (0.3 + depth),
+        vx: (Math.random() * 12 - 6) * (0.26 + depth * 0.9),
         wobble: Math.random() * Math.PI * 2,
-        wobbleSpeed: 0.6 + Math.random() * 1.2,
+        wobbleSpeed: 0.35 + Math.random() * 0.9,
         alpha: 0.14 + depth * 0.38,
         dead: false
       };
@@ -149,9 +154,9 @@
     const dt = Math.min(0.05, (t - (snowLastT || t)) / 1000);
     snowLastT = t;
 
-    // Slow wind changes feel “natural”
-    if (Math.random() < 0.01) snowWindTarget = (Math.random() * 2 - 1) * 55;
-    snowWind += (snowWindTarget - snowWind) * 0.02;
+    // Dreamier wind: smaller amplitude + slower changes
+    if (Math.random() < 0.008) snowWindTarget = (Math.random() * 2 - 1) * 40;
+    snowWind += (snowWindTarget - snowWind) * 0.012;
 
     const ctx = snowCtx;
     ctx.clearRect(0, 0, w, h);
@@ -161,7 +166,7 @@
 
     // Subtle overall haze
     ctx.save();
-    ctx.globalAlpha = 0.08;
+    ctx.globalAlpha = 0.095;
     ctx.fillStyle = 'rgba(255,255,255,1)';
     ctx.fillRect(0, 0, w, h);
     ctx.restore();
@@ -172,7 +177,7 @@
       if (f.dead) continue;
       f.wobble += f.wobbleSpeed * dt;
 
-      const drift = Math.sin(f.wobble) * (14 * f.r);
+      const drift = Math.sin(f.wobble) * (12 * f.r);
       f.x += (f.vx + snowWind * (0.18 + f.r * 0.22) + drift) * dt;
       f.y += f.vy * dt;
 
