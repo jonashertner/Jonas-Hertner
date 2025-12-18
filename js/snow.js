@@ -11,10 +11,12 @@
   const prefersReducedMotionSnow =
     window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 
-  // --- Snow "ramp" (start slow/dreamy, then build to heavy) ---
+  // --- Snow density ramp (dreamy constant motion; only density changes) ---
   // Tune these to taste.
-  const SNOW_RAMP_SECONDS = 28; // how long until full "heavy" intensity
-  const SNOW_START_INTENSITY = 0.14; // 0..1 starting density/speed/opacity
+  const SNOW_RAMP_UP_SECONDS = 26;   // how long until full density
+  const SNOW_RAMP_DOWN_SECONDS = 7;  // how long to ramp density down after toggle-off (shorter = snappier stop)
+  const SNOW_START_DENSITY = 0.09;   // 0..1 starting density (few flakes)
+  const SNOW_RESUME_PRESERVE_MS = 1400; // quick off->on keeps current flakes for a smoother transition
 
   let snowCanvas = null;
   let snowCtx = null;
@@ -23,9 +25,13 @@
   let snowSprites = null; // offscreen sprites for speed
   let snowLastT = 0;
   let snowStartT = 0;
+  let snowStopT = 0;
+  let snowStartDensity = SNOW_START_DENSITY;
   let snowWind = 0.0;
   let snowWindTarget = 0.0;
   let snowStopping = false;
+  let snowTearingDown = false;
+  let snowTeardownTimer = 0;
 
   // --- Snow pile (last section) ---
   let pileSection = null;
@@ -58,20 +64,18 @@
 
     initPileIfPossible();
 
-    // Restore persisted state
-    const stored = safeGet(STORAGE_KEY);
-    if (stored === '1') startSnow();
-    snowBtn.setAttribute('aria-pressed', stored === '1' ? 'true' : 'false');
+    // Do NOT auto-start snow on page load.
+    // Snow should only start via an explicit user toggle.
+    snowBtn.setAttribute('aria-pressed', 'false');
+    try { localStorage.setItem(STORAGE_KEY, '0'); } catch {}
 
     snowBtn.addEventListener('click', () => {
       const isOn = !!snowCanvas;
       // If we are currently "draining" (stopping from top), clicking again must restore full intensity.
       // Otherwise we'd keep many flakes marked dead and the snow would look weaker.
-      if (isOn && snowStopping) {
-        snowStopping = false;
-        setSnowSize();
-        buildSnowFlakes();
-        snowLastT = 0;
+      if (isOn && (snowStopping || snowTearingDown)) {
+        // Smooth resume: cancel any pending teardown/fade-out and restart the ramp.
+        resumeSnow();
         snowBtn.setAttribute('aria-pressed', 'true');
         try { localStorage.setItem(STORAGE_KEY, '1'); } catch {}
         return;
@@ -150,22 +154,23 @@
     snowFlakes = new Array(target).fill(0).map(() => {
       const depth = Math.random(); // 0..1
       const size = 0.6 + depth * 1.6;
-      // Dreamier flow: slower fall speeds, still layered by depth
-      const speed = 38 + depth * 175;
+      // Dreamy: slower fall + layered by depth (constant over time)
+      const speed = 18 + depth * 120;
       return {
         x: Math.random() * w,
         // Start from the top: spawn above viewport and let flakes naturally enter
         y: -40 - Math.random() * (h + 140),
         r: size,
         baseVy: speed,
-        baseVx: (Math.random() * 12 - 6) * (0.26 + depth * 0.9),
+        baseVx: (Math.random() * 10 - 5) * (0.22 + depth * 0.75),
         wobble: Math.random() * Math.PI * 2,
-        wobbleSpeed: 0.35 + Math.random() * 0.9,
-        baseAlpha: 0.14 + depth * 0.38,
+        wobbleSpeed: 0.26 + Math.random() * 0.75,
+        baseAlpha: 0.10 + depth * 0.28,
         // Each flake gets a "when do I join" threshold along the ramp.
         // This lets the scene start sparse and grow denser naturally.
         birth: Math.random(),
         active: false,
+        seen: false,
         dead: false,
       };
     });
@@ -177,13 +182,24 @@
     return x * x * (3 - 2 * x);
   }
 
-  function getSnowIntensity(nowT) {
+  function getSnowDensity(nowT) {
+    // 0..1 density factor; only affects how many flakes are active/respawning
     if (!snowStartT) return 1;
-    if (snowStopping) return 1;
+
+    // While stopping: ramp density down smoothly toward 0.
+    if (snowStopping) {
+      if (!snowStopT) return 0;
+      const elapsed = Math.max(0, (nowT - snowStopT) / 1000);
+      const ramp = elapsed / SNOW_RAMP_DOWN_SECONDS;
+      const eased = snowEase01(ramp);
+      return clamp(1 - eased, 0, 1);
+    }
+
+    // While starting: ramp density up from a low initial density.
     const elapsed = Math.max(0, (nowT - snowStartT) / 1000);
-    const ramp = elapsed / SNOW_RAMP_SECONDS;
+    const ramp = elapsed / SNOW_RAMP_UP_SECONDS;
     const eased = snowEase01(ramp);
-    return clamp(SNOW_START_INTENSITY + (1 - SNOW_START_INTENSITY) * eased, 0, 1);
+    return clamp(snowStartDensity + (1 - snowStartDensity) * eased, 0, 1);
   }
 
   function snowTick(t) {
@@ -197,15 +213,11 @@
     const dt = Math.min(0.05, (t - (snowLastT || t)) / 1000);
     snowLastT = t;
 
-    const intensity = getSnowIntensity(t); // 0..1
-    const eased = snowEase01(intensity);   // re-ease for nicer feel near the start
+    const density = getSnowDensity(t); // 0..1
 
-    // Wind scales with intensity (calmer at the start, stronger when heavy)
-    const windMax = 16 + eased * 34;      // px/s-ish contribution
-    const windChance = 0.003 + eased * 0.007;
-    const windLerp = 0.008 + eased * 0.01;
-    if (Math.random() < windChance) snowWindTarget = (Math.random() * 2 - 1) * windMax;
-    snowWind += (snowWindTarget - snowWind) * windLerp;
+    // Constant dreamy wind (does NOT intensify over time)
+    if (Math.random() < 0.006) snowWindTarget = (Math.random() * 2 - 1) * 22;
+    snowWind += (snowWindTarget - snowWind) * 0.010;
 
     const ctx = snowCtx;
     ctx.clearRect(0, 0, w, h);
@@ -215,7 +227,7 @@
 
     // Subtle overall haze
     ctx.save();
-    ctx.globalAlpha = 0.03 + eased * 0.07;
+    ctx.globalAlpha = 0.045;
     ctx.fillStyle = 'rgba(255,255,255,1)';
     ctx.fillRect(0, 0, w, h);
     ctx.restore();
@@ -227,24 +239,21 @@
 
        // Ramp in: keep flakes "inactive" until their birth threshold is reached.
       if (!f.active && !snowStopping) {
-        if (intensity < f.birth) continue;
+        if (density < f.birth) continue;
         // Activate and (re)spawn from above so they enter naturally.
         f.active = true;
         f.y = -40 - Math.random() * 120;
         f.x = Math.random() * w;
       }
-      if (!f.active && snowStopping) {
-        // If stopping before ramp completed, just treat remaining flakes as active so they can drain out.
-        f.active = true;
-      }
+      // When stopping, we do NOT activate new flakes.
+      // Only flakes that were already seen on-screen should be allowed to finish falling.
 
       f.wobble += f.wobbleSpeed * dt;
 
       const drift = Math.sin(f.wobble) * (12 * f.r);
-      const speedScale = 0.32 + eased * 0.68;
-      const alphaScale = 0.28 + eased * 0.72;
-      const vx = f.baseVx * speedScale;
-      const vy = f.baseVy * speedScale;
+      // Constant dreamy motion (no acceleration over time)
+      const vx = f.baseVx;
+      const vy = f.baseVy;
       f.x += (vx + snowWind * (0.18 + f.r * 0.22) + drift) * dt;
       f.y += vy * dt;
 
@@ -268,7 +277,14 @@
               addToPile(bin, add);
               // respawn at top unless we're draining/stopping
               if (snowStopping) {
-                f.dead = true;
+                // During ramp-down, progressively stop respawning based on density.
+                // Natural: flakes disappear only after falling out, not mid-air.
+                if (density > f.birth) {
+                  f.y = -40 - Math.random() * 120;
+                  f.x = Math.random() * w;
+                } else {
+                  f.dead = true;
+                }
               } else {
                 f.y = -40 - Math.random() * 120;
                 f.x = Math.random() * w;
@@ -282,8 +298,13 @@
       // Wrap
       if (f.y > h + 40) {
         if (snowStopping) {
-          // "End from top": do not respawn at the top; let flakes drain out.
-          f.dead = true;
+          // Ramp down density: allow fewer flakes to respawn, until none do.
+          if (density > f.birth) {
+            f.y = -40 - Math.random() * 120;
+            f.x = Math.random() * w;
+          } else {
+            f.dead = true;
+          }
           continue;
         } else {
           f.y = -40 - Math.random() * 120;
@@ -297,8 +318,9 @@
       const sIdx = f.r < 1.0 ? 0 : (f.r < 1.6 ? 1 : 2);
       const spr = sprites[sIdx];
       const drawR = spr.r * (0.7 + f.r * 0.6);
-      ctx.globalAlpha = f.baseAlpha * alphaScale;
+      ctx.globalAlpha = f.baseAlpha;
       ctx.drawImage(spr.canvas, f.x - drawR, f.y - drawR, drawR * 2, drawR * 2);
+      f.seen = true;
       alive++;
     }
 
@@ -306,7 +328,7 @@
     ctx.globalAlpha = 1;
 
     if (snowStopping && alive === 0) {
-      // Once all flakes have drained out, fade and tear down.
+      // Once the last visible flake has drained out, fade and tear down.
       finishStopSnow();
     }
 
@@ -317,8 +339,8 @@
   function startSnow() {
     if (prefersReducedMotionSnow) return;
     if (snowCanvas) {
-      // If we were draining, resume immediately.
-      snowStopping = false;
+      // If we already have a canvas (including mid-fade), reuse it for smoother rapid toggles.
+      resumeSnow();
       return;
     }
     snowCanvas = document.createElement('canvas');
@@ -330,6 +352,8 @@
     buildSnowFlakes();
     snowLastT = 0;
     snowStartT = performance.now();
+    snowStopT = 0;
+    snowStartDensity = SNOW_START_DENSITY;
     snowWind = 0;
     snowWindTarget = 0;
     snowStopping = false;
@@ -341,10 +365,60 @@
     initPileIfPossible();
   }
 
+  function resumeSnow() {
+    if (!snowCanvas) return;
+    const now = performance.now();
+
+    if (snowTeardownTimer) {
+      clearTimeout(snowTeardownTimer);
+      snowTeardownTimer = 0;
+    }
+    snowCanvas.classList.add('is-on'); // if we were fading out, fade back in smoothly
+
+    // If user toggles back on quickly while stopping, preserve current flakes
+    // and just reverse the density curve from the current point (feels hyper-natural).
+    const canPreserve =
+      (snowStopping || snowTearingDown) &&
+      snowStopT &&
+      (now - snowStopT) < SNOW_RESUME_PRESERVE_MS &&
+      snowFlakes &&
+      snowFlakes.length > 0;
+
+    const currentDensity = getSnowDensity(now);
+
+    snowTearingDown = false;
+    snowStopping = false;
+    snowStopT = 0;
+    snowStartDensity = clamp(currentDensity, SNOW_START_DENSITY, 1);
+    snowStartT = now;
+
+    setSnowSize();
+    if (!canPreserve) {
+      buildSnowFlakes();
+    }
+    snowLastT = 0;
+    snowWind = 0;
+    snowWindTarget = 0;
+
+    // Ensure animation is running (rapid off->on can otherwise leave us with no RAF)
+    if (!snowRaf) snowRaf = requestAnimationFrame(snowTick);
+    window.addEventListener('resize', onSnowResize, { passive: true });
+    window.visualViewport?.addEventListener('resize', onSnowResize, { passive: true });
+    initPileIfPossible();
+  }
+
   function requestStopSnow() {
     if (!snowCanvas) return;
-    // "End from top": stop respawning; let existing flakes continue down until gone.
+    // Ramp down density then drain: fewer and fewer flakes respawn until none do,
+    // then wait until the last flake has fallen out.
     snowStopping = true;
+    snowStopT = performance.now();
+    snowStartDensity = 1;
+    snowTearingDown = false;
+    if (snowTeardownTimer) {
+      clearTimeout(snowTeardownTimer);
+      snowTeardownTimer = 0;
+    }
     window.removeEventListener('resize', onSnowResize);
     window.visualViewport?.removeEventListener('resize', onSnowResize);
   }
@@ -355,19 +429,27 @@
     snowRaf = 0;
 
     const c = snowCanvas;
+    snowTearingDown = true;
     c.classList.remove('is-on');
-    setTimeout(() => {
+    if (snowTeardownTimer) clearTimeout(snowTeardownTimer);
+    snowTeardownTimer = setTimeout(() => {
+      // If snow was re-enabled mid-fade, do nothing.
       if (snowCanvas !== c) return;
+      if (!snowTearingDown) return;
       c.remove();
-    }, 750);
 
-    snowCanvas = null;
-    snowCtx = null;
-    snowFlakes = [];
-    snowSprites = null;
-    snowLastT = 0;
-    snowStartT = 0;
-    snowStopping = false;
+      // Full cleanup only after removal for smoother rapid toggles.
+      snowCanvas = null;
+      snowCtx = null;
+      snowFlakes = [];
+      snowSprites = null;
+      snowLastT = 0;
+      snowStartT = 0;
+      snowStopT = 0;
+      snowStopping = false;
+      snowTearingDown = false;
+      snowTeardownTimer = 0;
+    }, 2800);
   }
 
   function onSnowResize() {
