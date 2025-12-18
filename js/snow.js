@@ -128,8 +128,10 @@
   function setSnowSize() {
     if (!snowCanvas) return;
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    snowCanvas.width = Math.max(1, Math.floor(window.innerWidth * dpr));
-    snowCanvas.height = Math.max(1, Math.floor(window.innerHeight * dpr));
+    const vw = window.visualViewport?.width || window.innerWidth;
+    const vh = window.visualViewport?.height || window.innerHeight;
+    snowCanvas.width = Math.max(1, Math.floor(vw * dpr));
+    snowCanvas.height = Math.max(1, Math.floor(vh * dpr));
     snowCanvas.style.width = '100%';
     snowCanvas.style.height = '100%';
     snowCtx = snowCanvas.getContext('2d');
@@ -137,8 +139,8 @@
   }
 
   function buildSnowFlakes() {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+    const w = window.visualViewport?.width || window.innerWidth;
+    const h = window.visualViewport?.height || window.innerHeight;
     // Heavy snow: density scales with screen area, capped for perf.
     const target = Math.round(clamp((w * h) / 1400, 420, 980));
     snowFlakes = new Array(target).fill(0).map(() => {
@@ -165,8 +167,10 @@
     if (!snowCanvas || !snowCtx) return;
     snowRaf = requestAnimationFrame(snowTick);
 
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+    // Use the actual canvas box as our coordinate space (mobile visual viewport can differ from window.innerHeight)
+    const canvasRect = snowCanvas.getBoundingClientRect();
+    const w = snowCanvas.clientWidth || (window.visualViewport?.width || window.innerWidth);
+    const h = snowCanvas.clientHeight || (window.visualViewport?.height || window.innerHeight);
     const dt = Math.min(0.05, (t - (snowLastT || t)) / 1000);
     snowLastT = t;
 
@@ -200,10 +204,15 @@
       // Pile-up behavior in last section: flakes that reach the "snow drift" get absorbed.
       if (pileCtx && pileSection && pileBins) {
         const rect = pileSection.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top < h) {
-          const localY = f.y - rect.top;
-          if (localY >= 0 && localY <= rect.height) {
-            const bin = pileBinCount > 0 ? clamp(Math.floor((f.x / w) * pileBinCount), 0, pileBinCount - 1) : 0;
+        // Convert rect into snow-canvas-local coordinates
+        const rectTopInCanvas = rect.top - canvasRect.top;
+        const rectLeftInCanvas = rect.left - canvasRect.left;
+        const rectBottomInCanvas = rectTopInCanvas + rect.height;
+        if (rectBottomInCanvas > 0 && rectTopInCanvas < h) {
+          const localY = f.y - rectTopInCanvas;
+          const localX = f.x - rectLeftInCanvas;
+          if (localY >= 0 && localY <= rect.height && localX >= 0 && localX <= rect.width) {
+            const bin = pileBinCount > 0 ? clamp(Math.floor((localX / rect.width) * pileBinCount), 0, pileBinCount - 1) : 0;
             const pileHere = pileBins[bin] || 0;
             const groundY = rect.height - pileHere - 10;
             if (localY >= groundY) {
@@ -407,7 +416,8 @@
   function tickAndRenderPile(dt) {
     if (!pileCtx || !pileCanvas || !pileSection || !pileBins) return;
     const r = pileSection.getBoundingClientRect();
-    if (r.bottom <= 0 || r.top >= window.innerHeight) return; // only when near viewport
+    const vh = window.visualViewport?.height || window.innerHeight;
+    if (r.bottom <= 0 || r.top >= vh) return; // only when near viewport
 
     // Clear animation after shake
     if (pileClear > 0) {
@@ -480,6 +490,9 @@
   // -------------------------------
   let shakeEnabled = false;
   let lastShakeT = 0;
+  let lastMag = 0;
+  let magLP = 0;
+  let motionPermissionAttempted = false;
 
   function maybeEnableShakeControls() {
     if (shakeEnabled) return;
@@ -488,11 +501,23 @@
     // iOS 13+ permission model
     const DME = window.DeviceMotionEvent;
     if (DME && typeof DME.requestPermission === 'function') {
-      DME.requestPermission().then((state) => {
-        if (state === 'granted') enableShakeListener();
-      }).catch(() => {
-        // ignore
-      });
+      if (motionPermissionAttempted) return;
+      motionPermissionAttempted = true;
+      DME.requestPermission()
+        .then((state) => {
+          if (state === 'granted') {
+            enableShakeListener();
+            const btn = document.getElementById('snow-toggle');
+            if (btn) btn.title = 'Shake to clear snow pile';
+          } else {
+            const btn = document.getElementById('snow-toggle');
+            if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
+          }
+        })
+        .catch(() => {
+          const btn = document.getElementById('snow-toggle');
+          if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
+        });
     } else {
       enableShakeListener();
     }
@@ -501,6 +526,9 @@
   function enableShakeListener() {
     if (shakeEnabled) return;
     shakeEnabled = true;
+    lastShakeT = 0;
+    lastMag = 0;
+    magLP = 0;
     window.addEventListener('devicemotion', onDeviceMotion, { passive: true });
   }
 
@@ -511,9 +539,16 @@
     const ax = a.x || 0, ay = a.y || 0, az = a.z || 0;
     const mag = Math.sqrt(ax * ax + ay * ay + az * az);
 
-    // Threshold tuned for "shake phone"
+    // Shake detection (dreamy/robust):
+    // Use a crude high-pass on magnitude ("jerk") so normal movement/gravity doesn't trigger.
     const now = performance.now();
-    if (mag > 22 && (now - lastShakeT) > 450) {
+    if (!magLP) magLP = mag;
+    magLP = magLP * 0.85 + mag * 0.15; // low-pass estimate
+    const jerk = Math.abs(mag - magLP) + Math.abs(mag - lastMag) * 0.6;
+    lastMag = mag;
+
+    // Typical resting mag ~ 9.8; shake produces spikes/jerk.
+    if (jerk > 7.5 && (now - lastShakeT) > 500) {
       lastShakeT = now;
       triggerPileShakeClear();
     }
@@ -524,6 +559,18 @@
     pileShake = 1;
     pileClear = 0.001;
   }
+
+  // Arm motion permission request on the first user gesture as well (mobile Safari requirement).
+  // This fixes the common "doesn't work on mobile" case where motion events are blocked until a gesture.
+  (function armMotionPermissionOnce() {
+    const handler = () => {
+      maybeEnableShakeControls();
+      window.removeEventListener('pointerdown', handler);
+      window.removeEventListener('touchstart', handler);
+    };
+    window.addEventListener('pointerdown', handler, { passive: true });
+    window.addEventListener('touchstart', handler, { passive: true });
+  })();
 })();
 
 
