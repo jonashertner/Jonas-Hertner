@@ -39,6 +39,7 @@
   let tiltTargetY = 1;
   let tiltX = 0;
   let tiltY = 1;
+  let tiltLastUpdateT = 0;
 
   // --- Snow pile (last section) ---
   let pileSection = null;
@@ -644,32 +645,58 @@
   let lastShakeT = 0;
   let lastMag = 0;
   let magLP = 0;
-  let motionPermissionAttempted = false;
+  // Centralized motion/orientation permission handling (iOS Safari requirement).
+  let motionPermPromise = null;
+  let motionPermState = 'unknown'; // 'unknown' | 'granted' | 'denied'
+
+  function requestMotionPermissionOnce() {
+    if (motionPermPromise) return motionPermPromise;
+
+    motionPermPromise = new Promise(async (resolve) => {
+      const DME = window.DeviceMotionEvent;
+      const DOE = window.DeviceOrientationEvent;
+
+      // If no permission API exists, assume allowed (non-iOS or older behavior).
+      const needsPermission =
+        (DME && typeof DME.requestPermission === 'function') ||
+        (DOE && typeof DOE.requestPermission === 'function');
+
+      if (!needsPermission) {
+        motionPermState = 'granted';
+        resolve(true);
+        return;
+      }
+
+      let granted = false;
+      try {
+        if (DME && typeof DME.requestPermission === 'function') {
+          const s = await DME.requestPermission();
+          if (s === 'granted') granted = true;
+        }
+      } catch {}
+
+      // Some iOS browsers expose only one of these, or require the other path.
+      if (!granted) {
+        try {
+          if (DOE && typeof DOE.requestPermission === 'function') {
+            const s2 = await DOE.requestPermission();
+            if (s2 === 'granted') granted = true;
+          }
+        } catch {}
+      }
+
+      motionPermState = granted ? 'granted' : 'denied';
+      resolve(granted);
+    });
+
+    return motionPermPromise;
+  }
 
   function maybeEnableTiltControls() {
     if (tiltEnabled) return;
-
-    const DME = window.DeviceMotionEvent;
-    const DOE = window.DeviceOrientationEvent;
-    if (DME && typeof DME.requestPermission === 'function') {
-      if (motionPermissionAttempted) return;
-      motionPermissionAttempted = true;
-      DME.requestPermission()
-        .then((state) => {
-          if (state === 'granted') enableTiltListener();
-        })
-        .catch(() => {});
-    } else if (DOE && typeof DOE.requestPermission === 'function') {
-      if (motionPermissionAttempted) return;
-      motionPermissionAttempted = true;
-      DOE.requestPermission()
-        .then((state) => {
-          if (state === 'granted') enableTiltListener();
-        })
-        .catch(() => {});
-    } else {
-      enableTiltListener();
-    }
+    requestMotionPermissionOnce().then((granted) => {
+      if (granted) enableTiltListener();
+    });
   }
 
   function enableTiltListener() {
@@ -680,7 +707,10 @@
     tiltTargetY = 1;
     tiltX = 0;
     tiltY = 1;
+    tiltLastUpdateT = 0;
+    // Use BOTH sources; some iOS browsers block devicemotion but allow deviceorientation.
     window.addEventListener('devicemotion', onTiltMotion, { passive: true });
+    window.addEventListener('deviceorientation', onTiltOrientation, { passive: true });
   }
 
   function onTiltMotion(e) {
@@ -688,6 +718,7 @@
     if (!a) return;
     const ax = a.x || 0;
     const ay = a.y || 0;
+    tiltLastUpdateT = performance.now();
 
     // Map device axes into screen axes based on current orientation angle.
     const angleRaw =
@@ -729,6 +760,61 @@
     tiltTargetY = gy;
   }
 
+  function onTiltOrientation(e) {
+    // Fallback when devicemotion is not available.
+    // Use beta/gamma to approximate gravity projection in screen plane.
+    // (Not physically perfect, but feels natural and keeps snow "downhill".)
+    const now = performance.now();
+    // If we recently received devicemotion, prefer it.
+    if (tiltLastUpdateT && (now - tiltLastUpdateT) < 350) return;
+
+    const beta = typeof e.beta === 'number' ? e.beta : 0; // front/back [-180..180]
+    const gamma = typeof e.gamma === 'number' ? e.gamma : 0; // left/right [-90..90]
+
+    const br = (beta * Math.PI) / 180;
+    const gr = (gamma * Math.PI) / 180;
+
+    // Approximate: gravity projection
+    let x = Math.sin(gr);
+    let y = Math.sin(br);
+
+    // Rotate into screen coords based on orientation angle.
+    const angleRaw =
+      (screen.orientation && typeof screen.orientation.angle === 'number')
+        ? screen.orientation.angle
+        : (typeof window.orientation === 'number' ? window.orientation : 0);
+    const angle = ((angleRaw % 360) + 360) % 360;
+
+    let gx = x, gy = y;
+    if (angle === 90) {
+      gx = y;
+      gy = -x;
+    } else if (angle === 180) {
+      gx = -x;
+      gy = -y;
+    } else if (angle === 270) {
+      gx = -y;
+      gy = x;
+    }
+
+    if (!Number.isFinite(gx) || !Number.isFinite(gy)) {
+      gx = 0;
+      gy = 1;
+    }
+
+    const m = Math.hypot(gx, gy);
+    if (m < 0.12) {
+      gx = 0;
+      gy = 1;
+    } else {
+      gx /= m;
+      gy /= m;
+    }
+
+    tiltTargetX = clamp(gx, -1, 1);
+    tiltTargetY = clamp(gy, -1, 1);
+  }
+
   function maybeEnableShakeControls() {
     if (shakeEnabled) return;
     if (!pileSection) initPileIfPossible();
@@ -737,30 +823,10 @@
     // iOS 13+ permission model
     const DME = window.DeviceMotionEvent;
     const DOE = window.DeviceOrientationEvent;
-    if (DME && typeof DME.requestPermission === 'function') {
-      if (motionPermissionAttempted) return;
-      motionPermissionAttempted = true;
-      DME.requestPermission()
-        .then((state) => {
-          if (state === 'granted') {
-            enableShakeListener();
-            const btn = document.getElementById('snow-toggle');
-            if (btn) btn.title = 'Shake to clear snow pile';
-          } else {
-            const btn = document.getElementById('snow-toggle');
-            if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
-          }
-        })
-        .catch(() => {
-          const btn = document.getElementById('snow-toggle');
-          if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
-        });
-    } else if (DOE && typeof DOE.requestPermission === 'function') {
-      if (motionPermissionAttempted) return;
-      motionPermissionAttempted = true;
-      DOE.requestPermission()
-        .then((state) => {
-          if (state === 'granted') {
+    if ((DME && typeof DME.requestPermission === 'function') || (DOE && typeof DOE.requestPermission === 'function')) {
+      requestMotionPermissionOnce()
+        .then((granted) => {
+          if (granted) {
             enableShakeListener();
             const btn = document.getElementById('snow-toggle');
             if (btn) btn.title = 'Shake to clear snow pile';
