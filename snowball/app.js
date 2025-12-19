@@ -262,8 +262,9 @@ class SnowballThrowFX {
     });
 
     // Snowball geometry/material
-    // Larger + smoother (more segments to reduce faceting)
-    this.sphereGeo = new THREE.SphereGeometry(26, 40, 28);
+    // Much bigger ball, but keep splash sizing independent.
+    this.ballRadius = 44;
+    this.sphereGeo = new THREE.SphereGeometry(this.ballRadius, 52, 36);
     this.sphereMat = new THREE.MeshStandardMaterial({
       color: 0xf7fbff,
       roughness: 0.95,
@@ -496,7 +497,8 @@ class SnowballThrowFX {
     const arc = Math.min(220, Math.max(80, distPx * 0.18));
 
     const P0 = new THREE.Vector3(w0.x, w0.y, zStart);
-    const P2 = new THREE.Vector3(w1.x, w1.y, 0.45);
+    // End with the ball touching the target plane (prevents clipping when ball is large)
+    const P2 = new THREE.Vector3(w1.x, w1.y, this.ballRadius);
     const P1 = new THREE.Vector3(mx + side, my + arc, zStart * 0.72);
 
     const ball = this.#getBall();
