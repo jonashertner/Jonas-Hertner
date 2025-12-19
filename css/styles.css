@@ -689,12 +689,14 @@ a:focus,
 }
 
 #jh .snow-back-top{
-  position: absolute;
+  /* Fixed + high z-index to reliably appear above WebGL canvas on iOS Chrome */
+  position: fixed;
   left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  z-index: 4;
-  pointer-events: auto;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  transform: translate3d(-50%, 10px, 0);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
 
   display: inline-flex;
   align-items: center;
@@ -714,6 +716,14 @@ a:focus,
   font: 13px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   letter-spacing: 0.01em;
   cursor: pointer;
+
+  transition: opacity 260ms ease, transform 260ms ease, background 260ms ease, border-color 260ms ease;
+}
+
+#jh .snow-back-top.is-visible{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(-50%, 0, 0);
 }
 
 #jh .snow-back-top::before{
@@ -729,7 +739,7 @@ a:focus,
 }
 
 #jh .snow-back-top:active{
-  transform: translateX(-50%) translateY(1px);
+  transform: translate3d(-50%, 1px, 0);
 }
 
 /* Snow pile overlay (last section) */

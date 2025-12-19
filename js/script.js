@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroHeading = document.getElementById('home-heading');
   const heroSubtitle = document.querySelector('[data-key="hero.subtitle"]');
   const backToTopBtn = document.getElementById('back-to-top');
+  const lastSection = document.getElementById('jh');
 
   // --- Translations (fixed FR bio stray </a>) ---
   const content = {
@@ -358,5 +359,23 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.scrollTop = 0;
       }
     });
+  }
+
+  // Only show the button when the last section is in view (prevents it floating everywhere).
+  if (backToTopBtn && mainContent && lastSection) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          const e = entries[0];
+          const on = !!e && (e.isIntersecting || e.intersectionRatio > 0.4);
+          backToTopBtn.classList.toggle('is-visible', on);
+        },
+        { root: mainContent, threshold: [0, 0.25, 0.4, 0.6] }
+      );
+      io.observe(lastSection);
+    } else {
+      // Fallback: keep it visible.
+      backToTopBtn.classList.add('is-visible');
+    }
   }
 });
