@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainContent = document.getElementById('main-content');
   const heroHeading = document.getElementById('home-heading');
   const heroSubtitle = document.querySelector('[data-key="hero.subtitle"]');
+  const backToTopBtn = document.getElementById('back-to-top');
 
   // --- Translations (fixed FR bio stray </a>) ---
   const content = {
@@ -346,4 +347,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Finally start the one-time typewriter for landing title
   startTypewriter(storedLang);
+
+  // Back-to-top (works with scroll container #main-content)
+  if (backToTopBtn && mainContent) {
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      try {
+        mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch {
+        mainContent.scrollTop = 0;
+      }
+    });
+  }
 });

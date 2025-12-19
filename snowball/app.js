@@ -51,8 +51,9 @@ class ImpactVideoFX {
       uniforms: {
         map: { value: null },
         // Smoother key: remove more near-black + soften the edge
-        threshold: { value: 0.07 }, // lower = keep more subtle splash detail (but may bring back some dark fringe)
-        softness:  { value: 0.26 }, // higher = smoother feathered edge
+        // Avoid dark fringe / haze: slightly higher threshold + softer transition
+        threshold: { value: 0.10 },
+        softness:  { value: 0.34 },
         opacity:   { value: 1.0 }
       },
       vertexShader: `
@@ -74,7 +75,11 @@ class ImpactVideoFX {
         void main() {
           vec4 c = texture2D(map, vUv);
           float a = smoothstep(threshold, threshold + softness, luma(c.rgb)) * opacity;
-          gl_FragColor = vec4(c.rgb * a, a);
+          // Push splashes brighter/whiter to avoid any dark shade from the source footage.
+          vec3 col = mix(c.rgb, vec3(1.0), 0.78);
+          col *= 1.25;
+          col = clamp(col, 0.0, 1.0);
+          gl_FragColor = vec4(col * a, a);
         }
       `
     });
@@ -296,6 +301,7 @@ class SnowballThrowFX {
     // Mouse/pen pointer interactions (touch handled separately to preserve 2-finger scrolling)
     this.onDown = (e) => {
       if (e.pointerType === "touch") return;
+      if (e.target && e.target.closest && e.target.closest(".snow-back-top")) return;
       e.preventDefault();
 
       if (!this._unlocked) {
@@ -357,6 +363,7 @@ class SnowballThrowFX {
     };
 
     this.onTouchStart = (e) => {
+      if (e.target && e.target.closest && e.target.closest(".snow-back-top")) return;
       if (!this._unlocked) {
         this._unlocked = true;
         this.impactFx.unlock();
