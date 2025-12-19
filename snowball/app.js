@@ -51,7 +51,7 @@ class ImpactVideoFX {
       uniforms: {
         map: { value: null },
         // Smoother key: remove more near-black + soften the edge
-        threshold: { value: 0.10 }, // higher = less dark fringe/haze
+        threshold: { value: 0.07 }, // lower = keep more subtle splash detail (but may bring back some dark fringe)
         softness:  { value: 0.26 }, // higher = smoother feathered edge
         opacity:   { value: 1.0 }
       },
