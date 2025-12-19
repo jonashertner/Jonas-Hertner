@@ -527,7 +527,8 @@ class SnowballThrowFX {
   #impactAt(wx, wy, sizePx) {
     // 1) Real footage splash (keyed)
     const rot = (Math.random() - 0.5) * 0.6;
-    this.impactFx.playAt(new THREE.Vector3(wx, wy, 1.2), sizePx * 1.25, rot);
+    // Make the .mp4 splash much larger (at least 2x the previous scale).
+    this.impactFx.playAt(new THREE.Vector3(wx, wy, 1.2), sizePx * 2.6, rot);
 
     // 2) Persistent wet snow splat (2D)
     this.#paintSplat(wx, wy, sizePx);
