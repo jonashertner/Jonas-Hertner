@@ -1,6 +1,14 @@
-// Robust Three.js loader: try jsDelivr first, then unpkg.
-// This avoids the common "module failed to load" / transient CDN issues.
-const THREE = await (async () => {
+// Avoid top-level await for broader mobile/browser compatibility.
+let THREE = null;
+
+function setSnowballHint(msg) {
+  const hint = document.querySelector(".snow-hint");
+  if (hint) hint.textContent = msg;
+}
+
+async function loadThree() {
+  // Robust Three.js loader: try jsDelivr first, then unpkg.
+  // This avoids the common "module failed to load" / transient CDN issues.
   try {
     return await import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js");
   } catch (e1) {
@@ -10,19 +18,6 @@ const THREE = await (async () => {
       console.error("Failed to load Three.js from both CDNs.", e1, e2);
       return null;
     }
-  }
-})();
-
-if (!THREE) {
-  // Try to show a visible hint if the DOM already has the hint element.
-  const hint = document.querySelector(".snow-hint");
-  if (hint) {
-    hint.textContent = "Snowballs disabled: failed to load Three.js (check console / network).";
-  }
-} else if (!("WebGLRenderingContext" in window)) {
-  const hint = document.querySelector(".snow-hint");
-  if (hint) {
-    hint.textContent = "Snowballs disabled: WebGL unavailable in this browser.";
   }
 }
 
@@ -157,6 +152,7 @@ class ImpactVideoFX {
 
     // Draw the last frame into a canvas texture so it stays visible without keeping the video "active".
     try {
+      if (!inst.freezeCtx) throw new Error("No 2D context available for freeze");
       inst.freezeCtx.drawImage(inst.video, 0, 0, inst.freezeCanvas.width, inst.freezeCanvas.height);
       inst.freezeTex.needsUpdate = true;
       inst.mat.uniforms.map.value = inst.freezeTex;
@@ -677,9 +673,28 @@ const splashSources = splashFiles.map((f) =>
   new URL(`./assets/splashes/${f}`, import.meta.url).toString()
 );
 
-new SnowballThrowFX({
-  el: document.getElementById("snowArea"),
-  canvas3d: document.getElementById("fx3d"),
-  canvas2d: document.getElementById("splat2d"),
-  splashSources
-});
+// Boot only if the section is present and the device supports required features.
+(async function bootSnowballs() {
+  const el = document.getElementById("snowArea");
+  const canvas3d = document.getElementById("fx3d");
+  const canvas2d = document.getElementById("splat2d");
+  if (!el || !canvas3d || !canvas2d) return;
+
+  if (!("WebGLRenderingContext" in window)) {
+    setSnowballHint("Snowballs disabled: WebGL unavailable in this browser.");
+    return;
+  }
+
+  THREE = await loadThree();
+  if (!THREE) {
+    setSnowballHint("Snowballs disabled: failed to load Three.js.");
+    return;
+  }
+
+  try {
+    new SnowballThrowFX({ el, canvas3d, canvas2d, splashSources });
+  } catch (err) {
+    console.error("Snowball init failed:", err);
+    setSnowballHint("Snowballs disabled: init failed on this device.");
+  }
+})();

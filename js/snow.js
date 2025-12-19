@@ -40,6 +40,9 @@
   let tiltX = 0;
   let tiltY = 1;
   let tiltLastUpdateT = 0;
+  let tiltOriX = 0;
+  let tiltOriY = 1;
+  let tiltOriT = 0;
 
   // --- Snow pile (last section) ---
   let pileSection = null;
@@ -756,6 +759,17 @@
       gy /= m;
     }
 
+    // Android devices/browsers sometimes report devicemotion axes inverted relative to screen,
+    // which makes "down" point upward. If we have a recent deviceorientation estimate, use it
+    // to auto-correct by flipping the devicemotion vector when they disagree.
+    if (tiltOriT && (tiltLastUpdateT - tiltOriT) < 600) {
+      const dot = gx * tiltOriX + gy * tiltOriY;
+      if (dot < 0) {
+        gx = -gx;
+        gy = -gy;
+      }
+    }
+
     tiltTargetX = gx;
     tiltTargetY = gy;
   }
@@ -765,8 +779,6 @@
     // Use beta/gamma to approximate gravity projection in screen plane.
     // (Not physically perfect, but feels natural and keeps snow "downhill".)
     const now = performance.now();
-    // If we recently received devicemotion, prefer it.
-    if (tiltLastUpdateT && (now - tiltLastUpdateT) < 350) return;
 
     const beta = typeof e.beta === 'number' ? e.beta : 0; // front/back [-180..180]
     const gamma = typeof e.gamma === 'number' ? e.gamma : 0; // left/right [-90..90]
@@ -811,8 +823,16 @@
       gy /= m;
     }
 
-    tiltTargetX = clamp(gx, -1, 1);
-    tiltTargetY = clamp(gy, -1, 1);
+    // Always keep a recent orientation-based estimate (used to correct devicemotion on Android).
+    tiltOriX = clamp(gx, -1, 1);
+    tiltOriY = clamp(gy, -1, 1);
+    tiltOriT = now;
+
+    // If we recently received devicemotion, prefer it for actual control.
+    if (tiltLastUpdateT && (now - tiltLastUpdateT) < 350) return;
+
+    tiltTargetX = tiltOriX;
+    tiltTargetY = tiltOriY;
   }
 
   function maybeEnableShakeControls() {
