@@ -37,6 +37,10 @@ class ImpactVideoFX {
     this.aspect = 576 / 1024;
 
     this.pool = [];
+    this.frozen = [];
+    // Keep splashes visible by freezing their last frame.
+    // Cap to avoid unbounded GPU/DOM growth; older frozen splashes are recycled.
+    this.maxFrozen = 18;
 
     this.geo = new THREE.PlaneGeometry(1, this.aspect);
 
@@ -96,6 +100,10 @@ class ImpactVideoFX {
   playAt(pos, sizePx, rotRad = 0) {
     const inst = this.pool.pop() || this.#makeInstance();
 
+    // If this instance was previously frozen, reset it back to video playback mode.
+    inst.frozen = false;
+    inst.mat.uniforms.map.value = inst.videoTex;
+
     const src = this.sources[(Math.random() * this.sources.length) | 0];
     if (inst.video.src !== src) {
       inst.video.src = src;
@@ -119,12 +127,52 @@ class ImpactVideoFX {
     inst.video.play().catch(() => {});
 
     const onEnd = () => {
-      inst.mesh.visible = false;
-      this.pool.push(inst);
+      this.#freezeLastFrame(inst);
     };
 
     inst.video.addEventListener("ended", onEnd, { once: true });
     return inst;
+  }
+
+  clear() {
+    // Remove all frozen splashes (used for "double-tap to clear").
+    while (this.frozen.length) {
+      const inst = this.frozen.pop();
+      inst.frozen = false;
+      inst.mesh.visible = false;
+      inst.mat.uniforms.map.value = inst.videoTex;
+      this.pool.push(inst);
+    }
+  }
+
+  #freezeLastFrame(inst) {
+    try {
+      inst.video.pause();
+    } catch (_) {}
+
+    // Draw the last frame into a canvas texture so it stays visible without keeping the video "active".
+    try {
+      inst.freezeCtx.drawImage(inst.video, 0, 0, inst.freezeCanvas.width, inst.freezeCanvas.height);
+      inst.freezeTex.needsUpdate = true;
+      inst.mat.uniforms.map.value = inst.freezeTex;
+      inst.mesh.visible = true;
+      inst.frozen = true;
+      this.frozen.push(inst);
+    } catch (_) {
+      // If we can't snapshot (rare), fall back to hiding it.
+      inst.mesh.visible = false;
+      this.pool.push(inst);
+      return;
+    }
+
+    // Recycle oldest if we exceed cap.
+    if (this.frozen.length > this.maxFrozen) {
+      const old = this.frozen.shift();
+      old.frozen = false;
+      old.mesh.visible = false;
+      old.mat.uniforms.map.value = old.videoTex;
+      this.pool.push(old);
+    }
   }
 
   #makeInstance() {
@@ -135,21 +183,31 @@ class ImpactVideoFX {
     video.loop = false;
     video.crossOrigin = "anonymous";
 
-    const tex = new THREE.VideoTexture(video);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.minFilter = THREE.LinearFilter;
-    tex.magFilter = THREE.LinearFilter;
+    const videoTex = new THREE.VideoTexture(video);
+    videoTex.colorSpace = THREE.SRGBColorSpace;
+    videoTex.minFilter = THREE.LinearFilter;
+    videoTex.magFilter = THREE.LinearFilter;
+
+    // Snapshot canvas for "freeze last frame"
+    const freezeCanvas = document.createElement("canvas");
+    freezeCanvas.width = 1024;
+    freezeCanvas.height = 576;
+    const freezeCtx = freezeCanvas.getContext("2d");
+    const freezeTex = new THREE.CanvasTexture(freezeCanvas);
+    freezeTex.colorSpace = THREE.SRGBColorSpace;
+    freezeTex.minFilter = THREE.LinearFilter;
+    freezeTex.magFilter = THREE.LinearFilter;
 
     const mat = this.matTemplate.clone();
     mat.uniforms = THREE.UniformsUtils.clone(this.matTemplate.uniforms);
-    mat.uniforms.map.value = tex;
+    mat.uniforms.map.value = videoTex;
 
     const mesh = new THREE.Mesh(this.geo, mat);
     mesh.visible = false;
     mesh.renderOrder = 10;
     this.scene.add(mesh);
 
-    return { video, tex, mesh };
+    return { video, videoTex, freezeCanvas, freezeCtx, freezeTex, mat, mesh, frozen: false };
   }
 }
 
@@ -231,6 +289,7 @@ class SnowballThrowFX {
     const dpr = Math.max(1, window.devicePixelRatio || 1);
     this.ctx2d.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx2d.clearRect(0, 0, this.viewW * dpr, this.viewH * dpr);
+    this.impactFx.clear();
   }
 
   #bind() {
@@ -468,7 +527,7 @@ class SnowballThrowFX {
   #impactAt(wx, wy, sizePx) {
     // 1) Real footage splash (keyed)
     const rot = (Math.random() - 0.5) * 0.6;
-    this.impactFx.playAt(new THREE.Vector3(wx, wy, 1.2), sizePx, rot);
+    this.impactFx.playAt(new THREE.Vector3(wx, wy, 1.2), sizePx * 1.25, rot);
 
     // 2) Persistent wet snow splat (2D)
     this.#paintSplat(wx, wy, sizePx);
