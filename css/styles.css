@@ -414,6 +414,7 @@ p {
     min-height: 100vh;
     display: grid;
     place-items: center;
+    position: relative; /* anchor snowball overlay */
 }
 
 /* Mobile Styles */
@@ -646,6 +647,43 @@ a:focus,
 @media (prefers-reduced-motion: reduce) {
   #snow-canvas { display: none !important; }
   .snow-toggle { display: none !important; }
+}
+
+/* --- Snowball section (last section) --- */
+#jh .snow-section{
+  /* Full-bleed transparent interaction layer on top of #jh's existing background image */
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none; /* prevents scroll while swiping inside the section */
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+#jh .snow-canvas2d,
+#jh .snow-canvas3d{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#jh .snow-canvas3d{ pointer-events: auto; }
+#jh .snow-canvas2d{ pointer-events: none; }
+
+#jh .snow-hint{
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  padding: 8px 10px;
+  font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: rgba(0,0,0,.45);
+  color: rgba(255,255,255,.92);
+  border-radius: 10px;
+  pointer-events: none;
 }
 
 /* Snow pile overlay (last section) */

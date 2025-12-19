@@ -141,9 +141,11 @@
       </div>
     </section>
 
-    <section id="jh" class="section contact-section">
-      <div class="contact-content">
-        <!-- Additional content if needed -->
+    <section id="jh" class="section contact-section" aria-label="Snowball area">
+      <div class="snow-section" id="snowArea">
+        <canvas class="snow-canvas2d" id="splat2d"></canvas>
+        <canvas class="snow-canvas3d" id="fx3d"></canvas>
+        <div class="snow-hint">Swipe/flick to throw. Double-tap to clear.</div>
       </div>
     </section>
   </main>
@@ -157,5 +159,6 @@
   <script defer src="js/fog.js"></script>
   <script defer src="js/script.js"></script>
   <script defer src="js/snow.js"></script>
+  <script type="module" src="/snowball/app.js"></script>
 </body>
 </html>
