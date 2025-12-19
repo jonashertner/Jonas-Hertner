@@ -488,7 +488,8 @@ class SnowballThrowFX {
     const w1 = this.#toWorld(p1);
 
     // Longer swipe -> shorter flight -> more impact.
-    const flight = Math.min(0.60, Math.max(0.24, 0.58 - distPx * 0.00055));
+    // Snappier overall (less perceived lag before impact).
+    const flight = Math.min(0.46, Math.max(0.16, 0.44 - distPx * 0.00045));
 
     const zStart = Math.min(420, Math.max(220, this.viewH * 0.55));
 
