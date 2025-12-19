@@ -657,7 +657,8 @@ a:focus,
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: none; /* prevents scroll while swiping inside the section */
+  /* Allow page scroll gestures; JS will block only for 1-finger throws. */
+  touch-action: pan-y pinch-zoom;
   width: 100%;
   height: 100%;
   background: transparent;

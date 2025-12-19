@@ -46,8 +46,9 @@ class ImpactVideoFX {
       depthTest: true,
       uniforms: {
         map: { value: null },
-        threshold: { value: 0.06 }, // raise if you see a dark haze
-        softness:  { value: 0.18 }, // raise if edges look too harsh
+        // Smoother key: remove more near-black + soften the edge
+        threshold: { value: 0.10 }, // higher = less dark fringe/haze
+        softness:  { value: 0.26 }, // higher = smoother feathered edge
         opacity:   { value: 1.0 }
       },
       vertexShader: `
@@ -202,7 +203,8 @@ class SnowballThrowFX {
     });
 
     // Snowball geometry/material
-    this.sphereGeo = new THREE.SphereGeometry(18, 24, 18);
+    // Larger + smoother (more segments to reduce faceting)
+    this.sphereGeo = new THREE.SphereGeometry(26, 40, 28);
     this.sphereMat = new THREE.MeshStandardMaterial({
       color: 0xf7fbff,
       roughness: 0.95,
@@ -232,7 +234,9 @@ class SnowballThrowFX {
   }
 
   #bind() {
+    // Mouse/pen pointer interactions (touch handled separately to preserve 2-finger scrolling)
     this.onDown = (e) => {
+      if (e.pointerType === "touch") return;
       e.preventDefault();
 
       if (!this._unlocked) {
@@ -277,6 +281,104 @@ class SnowballThrowFX {
     this.el.addEventListener("pointerdown", this.onDown, { passive: false });
     window.addEventListener("pointermove", this.onMove, { passive: true });
     window.addEventListener("pointerup", this.onUp, { passive: true });
+
+    // Touch interactions:
+    // - 1 finger: throw (we preventDefault only once we detect a 1-finger drag)
+    // - 2 fingers: allow page scroll (no preventDefault)
+    this.touchStart = null;
+    this.touchLast = null;
+    this._touchActiveId = null;
+
+    const getTouchPoint = (t) => {
+      const r = this.el.getBoundingClientRect();
+      return {
+        x: Math.min(Math.max(0, t.clientX - r.left), r.width),
+        y: Math.min(Math.max(0, t.clientY - r.top), r.height)
+      };
+    };
+
+    this.onTouchStart = (e) => {
+      if (!this._unlocked) {
+        this._unlocked = true;
+        this.impactFx.unlock();
+      }
+
+      // If multi-touch, don't start a throw gesture.
+      if (e.touches.length !== 1) {
+        this.touchStart = null;
+        this.touchLast = null;
+        this._touchActiveId = null;
+        return;
+      }
+
+      const t = e.touches[0];
+      this._touchActiveId = t.identifier;
+      const p = getTouchPoint(t);
+      this.touchStart = p;
+      this.touchLast = p;
+
+      // Double tap support (simple) — do NOT preventDefault here, so 2-finger scroll remains possible.
+      const now = performance.now();
+      if (this._lastTap && (now - this._lastTap) < 260) {
+        this.clearSplats();
+        this._lastTap = 0;
+      } else {
+        this._lastTap = now;
+      }
+    };
+
+    this.onTouchMove = (e) => {
+      // If user adds a second finger, allow scroll and cancel throw.
+      if (e.touches.length !== 1) {
+        this.touchStart = null;
+        this.touchLast = null;
+        this._touchActiveId = null;
+        return;
+      }
+      if (!this.touchStart) return;
+
+      // Find the active touch
+      let t = null;
+      for (let i = 0; i < e.touches.length; i++) {
+        if (e.touches[i].identifier === this._touchActiveId) {
+          t = e.touches[i];
+          break;
+        }
+      }
+      t = t || e.touches[0];
+      const p = getTouchPoint(t);
+      this.touchLast = p;
+
+      // Only block scrolling once the user is actually dragging with 1 finger.
+      const dx = p.x - this.touchStart.x;
+      const dy = p.y - this.touchStart.y;
+      if (Math.hypot(dx, dy) > 4) {
+        e.preventDefault();
+      }
+    };
+
+    this.onTouchEnd = (e) => {
+      if (!this.touchStart) return;
+      // If no touches remain, finalize the throw.
+      if (e.touches.length === 0) {
+        const p0 = this.touchStart;
+        const p1 = this.touchLast || p0;
+        this.touchStart = null;
+        this.touchLast = null;
+        this._touchActiveId = null;
+
+        const dx = p1.x - p0.x;
+        const dy = p1.y - p0.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 8) return;
+        this.#throw(p0, p1, dist);
+      }
+    };
+
+    this.el.addEventListener("touchstart", this.onTouchStart, { passive: true });
+    this.el.addEventListener("touchmove", this.onTouchMove, { passive: false });
+    this.el.addEventListener("touchend", this.onTouchEnd, { passive: true });
+    this.el.addEventListener("touchcancel", this.onTouchEnd, { passive: true });
 
     this.el.addEventListener("dblclick", (e) => {
       e.preventDefault();
@@ -349,7 +451,8 @@ class SnowballThrowFX {
         (Math.random() - 0.5) * 10
       ),
       impactPos: new THREE.Vector2(w1.x, w1.y),
-      impactSize: Math.min(520, Math.max(220, 220 + distPx * 0.55))
+      // Bigger impacts to match larger snowballs
+      impactSize: Math.min(720, Math.max(280, 280 + distPx * 0.75))
     });
   }
 
