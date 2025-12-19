@@ -720,6 +720,13 @@ a:focus,
   transition: opacity 260ms ease, transform 260ms ease, background 260ms ease, border-color 260ms ease;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  /* iOS Chrome bottom toolbar can cover fixed elements; lift the button on touch devices */
+  #jh .snow-back-top{
+    bottom: calc(14px + env(safe-area-inset-bottom) + 64px);
+  }
+}
+
 #jh .snow-back-top.is-visible{
   opacity: 1;
   pointer-events: auto;
