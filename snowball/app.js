@@ -1,14 +1,6 @@
-// Avoid top-level await for broader mobile/browser compatibility.
-let THREE = null;
-
-function setSnowballHint(msg) {
-  const hint = document.querySelector(".snow-hint");
-  if (hint) hint.textContent = msg;
-}
-
-async function loadThree() {
-  // Robust Three.js loader: try jsDelivr first, then unpkg.
-  // This avoids the common "module failed to load" / transient CDN issues.
+// Robust Three.js loader: try jsDelivr first, then unpkg.
+// This avoids the common "module failed to load" / transient CDN issues.
+const THREE = await (async () => {
   try {
     return await import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js");
   } catch (e1) {
@@ -18,6 +10,19 @@ async function loadThree() {
       console.error("Failed to load Three.js from both CDNs.", e1, e2);
       return null;
     }
+  }
+})();
+
+if (!THREE) {
+  // Try to show a visible hint if the DOM already has the hint element.
+  const hint = document.querySelector(".snow-hint");
+  if (hint) {
+    hint.textContent = "Snowballs disabled: failed to load Three.js (check console / network).";
+  }
+} else if (!("WebGLRenderingContext" in window)) {
+  const hint = document.querySelector(".snow-hint");
+  if (hint) {
+    hint.textContent = "Snowballs disabled: WebGL unavailable in this browser.";
   }
 }
 
@@ -32,10 +37,6 @@ class ImpactVideoFX {
     this.aspect = 576 / 1024;
 
     this.pool = [];
-    this.frozen = [];
-    // Keep splashes visible by freezing their last frame.
-    // Cap to avoid unbounded GPU/DOM growth; older frozen splashes are recycled.
-    this.maxFrozen = 18;
 
     this.geo = new THREE.PlaneGeometry(1, this.aspect);
 
@@ -45,10 +46,8 @@ class ImpactVideoFX {
       depthTest: true,
       uniforms: {
         map: { value: null },
-        // Smoother key: remove more near-black + soften the edge
-        // Avoid dark fringe / haze: slightly higher threshold + softer transition
-        threshold: { value: 0.10 },
-        softness:  { value: 0.34 },
+        threshold: { value: 0.06 }, // raise if you see a dark haze
+        softness:  { value: 0.18 }, // raise if edges look too harsh
         opacity:   { value: 1.0 }
       },
       vertexShader: `
@@ -70,11 +69,7 @@ class ImpactVideoFX {
         void main() {
           vec4 c = texture2D(map, vUv);
           float a = smoothstep(threshold, threshold + softness, luma(c.rgb)) * opacity;
-          // Push splashes brighter/whiter to avoid any dark shade from the source footage.
-          vec3 col = mix(c.rgb, vec3(1.0), 0.78);
-          col *= 1.25;
-          col = clamp(col, 0.0, 1.0);
-          gl_FragColor = vec4(col * a, a);
+          gl_FragColor = vec4(c.rgb * a, a);
         }
       `
     });
@@ -100,10 +95,6 @@ class ImpactVideoFX {
   playAt(pos, sizePx, rotRad = 0) {
     const inst = this.pool.pop() || this.#makeInstance();
 
-    // If this instance was previously frozen, reset it back to video playback mode.
-    inst.frozen = false;
-    inst.mat.uniforms.map.value = inst.videoTex;
-
     const src = this.sources[(Math.random() * this.sources.length) | 0];
     if (inst.video.src !== src) {
       inst.video.src = src;
@@ -127,53 +118,12 @@ class ImpactVideoFX {
     inst.video.play().catch(() => {});
 
     const onEnd = () => {
-      this.#freezeLastFrame(inst);
+      inst.mesh.visible = false;
+      this.pool.push(inst);
     };
 
     inst.video.addEventListener("ended", onEnd, { once: true });
     return inst;
-  }
-
-  clear() {
-    // Remove all frozen splashes (used for "double-tap to clear").
-    while (this.frozen.length) {
-      const inst = this.frozen.pop();
-      inst.frozen = false;
-      inst.mesh.visible = false;
-      inst.mat.uniforms.map.value = inst.videoTex;
-      this.pool.push(inst);
-    }
-  }
-
-  #freezeLastFrame(inst) {
-    try {
-      inst.video.pause();
-    } catch (_) {}
-
-    // Draw the last frame into a canvas texture so it stays visible without keeping the video "active".
-    try {
-      if (!inst.freezeCtx) throw new Error("No 2D context available for freeze");
-      inst.freezeCtx.drawImage(inst.video, 0, 0, inst.freezeCanvas.width, inst.freezeCanvas.height);
-      inst.freezeTex.needsUpdate = true;
-      inst.mat.uniforms.map.value = inst.freezeTex;
-      inst.mesh.visible = true;
-      inst.frozen = true;
-      this.frozen.push(inst);
-    } catch (_) {
-      // If we can't snapshot (rare), fall back to hiding it.
-      inst.mesh.visible = false;
-      this.pool.push(inst);
-      return;
-    }
-
-    // Recycle oldest if we exceed cap.
-    if (this.frozen.length > this.maxFrozen) {
-      const old = this.frozen.shift();
-      old.frozen = false;
-      old.mesh.visible = false;
-      old.mat.uniforms.map.value = old.videoTex;
-      this.pool.push(old);
-    }
   }
 
   #makeInstance() {
@@ -184,31 +134,21 @@ class ImpactVideoFX {
     video.loop = false;
     video.crossOrigin = "anonymous";
 
-    const videoTex = new THREE.VideoTexture(video);
-    videoTex.colorSpace = THREE.SRGBColorSpace;
-    videoTex.minFilter = THREE.LinearFilter;
-    videoTex.magFilter = THREE.LinearFilter;
-
-    // Snapshot canvas for "freeze last frame"
-    const freezeCanvas = document.createElement("canvas");
-    freezeCanvas.width = 1024;
-    freezeCanvas.height = 576;
-    const freezeCtx = freezeCanvas.getContext("2d");
-    const freezeTex = new THREE.CanvasTexture(freezeCanvas);
-    freezeTex.colorSpace = THREE.SRGBColorSpace;
-    freezeTex.minFilter = THREE.LinearFilter;
-    freezeTex.magFilter = THREE.LinearFilter;
+    const tex = new THREE.VideoTexture(video);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.minFilter = THREE.LinearFilter;
+    tex.magFilter = THREE.LinearFilter;
 
     const mat = this.matTemplate.clone();
     mat.uniforms = THREE.UniformsUtils.clone(this.matTemplate.uniforms);
-    mat.uniforms.map.value = videoTex;
+    mat.uniforms.map.value = tex;
 
     const mesh = new THREE.Mesh(this.geo, mat);
     mesh.visible = false;
     mesh.renderOrder = 10;
     this.scene.add(mesh);
 
-    return { video, videoTex, freezeCanvas, freezeCtx, freezeTex, mat, mesh, frozen: false };
+    return { video, tex, mesh };
   }
 }
 
@@ -262,9 +202,7 @@ class SnowballThrowFX {
     });
 
     // Snowball geometry/material
-    // Much bigger ball, but keep splash sizing independent.
-    this.ballRadius = 44;
-    this.sphereGeo = new THREE.SphereGeometry(this.ballRadius, 52, 36);
+    this.sphereGeo = new THREE.SphereGeometry(18, 24, 18);
     this.sphereMat = new THREE.MeshStandardMaterial({
       color: 0xf7fbff,
       roughness: 0.95,
@@ -291,14 +229,10 @@ class SnowballThrowFX {
     const dpr = Math.max(1, window.devicePixelRatio || 1);
     this.ctx2d.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx2d.clearRect(0, 0, this.viewW * dpr, this.viewH * dpr);
-    this.impactFx.clear();
   }
 
   #bind() {
-    // Mouse/pen pointer interactions (touch handled separately to preserve 2-finger scrolling)
     this.onDown = (e) => {
-      if (e.pointerType === "touch") return;
-      if (e.target && e.target.closest && e.target.closest(".snow-back-top")) return;
       e.preventDefault();
 
       if (!this._unlocked) {
@@ -344,105 +278,6 @@ class SnowballThrowFX {
     window.addEventListener("pointermove", this.onMove, { passive: true });
     window.addEventListener("pointerup", this.onUp, { passive: true });
 
-    // Touch interactions:
-    // - 1 finger: throw (we preventDefault only once we detect a 1-finger drag)
-    // - 2 fingers: allow page scroll (no preventDefault)
-    this.touchStart = null;
-    this.touchLast = null;
-    this._touchActiveId = null;
-
-    const getTouchPoint = (t) => {
-      const r = this.el.getBoundingClientRect();
-      return {
-        x: Math.min(Math.max(0, t.clientX - r.left), r.width),
-        y: Math.min(Math.max(0, t.clientY - r.top), r.height)
-      };
-    };
-
-    this.onTouchStart = (e) => {
-      if (e.target && e.target.closest && e.target.closest(".snow-back-top")) return;
-      if (!this._unlocked) {
-        this._unlocked = true;
-        this.impactFx.unlock();
-      }
-
-      // If multi-touch, don't start a throw gesture.
-      if (e.touches.length !== 1) {
-        this.touchStart = null;
-        this.touchLast = null;
-        this._touchActiveId = null;
-        return;
-      }
-
-      const t = e.touches[0];
-      this._touchActiveId = t.identifier;
-      const p = getTouchPoint(t);
-      this.touchStart = p;
-      this.touchLast = p;
-
-      // Double tap support (simple) — do NOT preventDefault here, so 2-finger scroll remains possible.
-      const now = performance.now();
-      if (this._lastTap && (now - this._lastTap) < 260) {
-        this.clearSplats();
-        this._lastTap = 0;
-      } else {
-        this._lastTap = now;
-      }
-    };
-
-    this.onTouchMove = (e) => {
-      // If user adds a second finger, allow scroll and cancel throw.
-      if (e.touches.length !== 1) {
-        this.touchStart = null;
-        this.touchLast = null;
-        this._touchActiveId = null;
-        return;
-      }
-      if (!this.touchStart) return;
-
-      // Find the active touch
-      let t = null;
-      for (let i = 0; i < e.touches.length; i++) {
-        if (e.touches[i].identifier === this._touchActiveId) {
-          t = e.touches[i];
-          break;
-        }
-      }
-      t = t || e.touches[0];
-      const p = getTouchPoint(t);
-      this.touchLast = p;
-
-      // Only block scrolling once the user is actually dragging with 1 finger.
-      const dx = p.x - this.touchStart.x;
-      const dy = p.y - this.touchStart.y;
-      if (Math.hypot(dx, dy) > 4) {
-        e.preventDefault();
-      }
-    };
-
-    this.onTouchEnd = (e) => {
-      if (!this.touchStart) return;
-      // If no touches remain, finalize the throw.
-      if (e.touches.length === 0) {
-        const p0 = this.touchStart;
-        const p1 = this.touchLast || p0;
-        this.touchStart = null;
-        this.touchLast = null;
-        this._touchActiveId = null;
-
-        const dx = p1.x - p0.x;
-        const dy = p1.y - p0.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < 8) return;
-        this.#throw(p0, p1, dist);
-      }
-    };
-
-    this.el.addEventListener("touchstart", this.onTouchStart, { passive: true });
-    this.el.addEventListener("touchmove", this.onTouchMove, { passive: false });
-    this.el.addEventListener("touchend", this.onTouchEnd, { passive: true });
-    this.el.addEventListener("touchcancel", this.onTouchEnd, { passive: true });
-
     this.el.addEventListener("dblclick", (e) => {
       e.preventDefault();
       this.clearSplats();
@@ -485,8 +320,7 @@ class SnowballThrowFX {
     const w1 = this.#toWorld(p1);
 
     // Longer swipe -> shorter flight -> more impact.
-    // Snappier overall (less perceived lag before impact).
-    const flight = Math.min(0.46, Math.max(0.16, 0.44 - distPx * 0.00045));
+    const flight = Math.min(0.60, Math.max(0.24, 0.58 - distPx * 0.00055));
 
     const zStart = Math.min(420, Math.max(220, this.viewH * 0.55));
 
@@ -497,8 +331,7 @@ class SnowballThrowFX {
     const arc = Math.min(220, Math.max(80, distPx * 0.18));
 
     const P0 = new THREE.Vector3(w0.x, w0.y, zStart);
-    // End with the ball touching the target plane (prevents clipping when ball is large)
-    const P2 = new THREE.Vector3(w1.x, w1.y, this.ballRadius);
+    const P2 = new THREE.Vector3(w1.x, w1.y, 0.45);
     const P1 = new THREE.Vector3(mx + side, my + arc, zStart * 0.72);
 
     const ball = this.#getBall();
@@ -516,8 +349,7 @@ class SnowballThrowFX {
         (Math.random() - 0.5) * 10
       ),
       impactPos: new THREE.Vector2(w1.x, w1.y),
-      // Bigger impacts to match larger snowballs
-      impactSize: Math.min(720, Math.max(280, 280 + distPx * 0.75))
+      impactSize: Math.min(520, Math.max(220, 220 + distPx * 0.55))
     });
   }
 
@@ -533,8 +365,7 @@ class SnowballThrowFX {
   #impactAt(wx, wy, sizePx) {
     // 1) Real footage splash (keyed)
     const rot = (Math.random() - 0.5) * 0.6;
-    // Make the .mp4 splash much larger (at least 2x the previous scale).
-    this.impactFx.playAt(new THREE.Vector3(wx, wy, 1.2), sizePx * 2.6, rot);
+    this.impactFx.playAt(new THREE.Vector3(wx, wy, 1.2), sizePx, rot);
 
     // 2) Persistent wet snow splat (2D)
     this.#paintSplat(wx, wy, sizePx);
@@ -675,28 +506,9 @@ const splashSources = splashFiles.map((f) =>
   new URL(`./assets/splashes/${f}`, import.meta.url).toString()
 );
 
-// Boot only if the section is present and the device supports required features.
-(async function bootSnowballs() {
-  const el = document.getElementById("snowArea");
-  const canvas3d = document.getElementById("fx3d");
-  const canvas2d = document.getElementById("splat2d");
-  if (!el || !canvas3d || !canvas2d) return;
-
-  if (!("WebGLRenderingContext" in window)) {
-    setSnowballHint("Snowballs disabled: WebGL unavailable in this browser.");
-    return;
-  }
-
-  THREE = await loadThree();
-  if (!THREE) {
-    setSnowballHint("Snowballs disabled: failed to load Three.js.");
-    return;
-  }
-
-  try {
-    new SnowballThrowFX({ el, canvas3d, canvas2d, splashSources });
-  } catch (err) {
-    console.error("Snowball init failed:", err);
-    setSnowballHint("Snowballs disabled: init failed on this device.");
-  }
-})();
+new SnowballThrowFX({
+  el: document.getElementById("snowArea"),
+  canvas3d: document.getElementById("fx3d"),
+  canvas2d: document.getElementById("splat2d"),
+  splashSources
+});

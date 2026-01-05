@@ -406,15 +406,70 @@ p {
 }
 
 #jh {
-    background-image: url('../images/jh.jpg');
-    background-size: cover;
-    background-position: center;
     color: var(--color-text-light);
-    padding: 60px 20px;
     min-height: 100vh;
     display: grid;
-    place-items: center;
-    position: relative; /* anchor snowball overlay */
+    place-items: stretch;
+    padding: 0;
+    background: #000;
+}
+
+/* Snowball interaction section */
+.snow-section{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none; /* prevents scroll while swiping inside the section */
+  width: 100%;
+  height: 100%;
+}
+
+.snow-section img{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+
+/* In the last section, the snowball playfield should fill the viewport */
+#jh .snow-section{
+  position: absolute;
+  inset: 0;
+  height: auto;
+  min-height: 0;
+  border-radius: 0;
+  z-index: 2601; /* above #snow-canvas (2500) so you can see the image + balls */
+}
+
+#jh .snow-canvas3d{ z-index: 2602; }
+#jh .snow-canvas2d{ z-index: 2603; }
+#jh .snow-hint{ z-index: 2604; }
+
+.snow-canvas2d,
+.snow-canvas3d{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.snow-canvas3d{ pointer-events:auto; }
+.snow-canvas2d{ pointer-events:none; }
+
+.snow-hint{
+  position:absolute;
+  left:14px;
+  bottom:12px;
+  padding:8px 10px;
+  font:12px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:rgba(0,0,0,.45);
+  color:rgba(255,255,255,.92);
+  border-radius:10px;
+  pointer-events:none;
 }
 
 /* Mobile Styles */
@@ -613,22 +668,14 @@ a:focus,
 }
 
 .snow-toggle::before {
-  /* Force text glyph (not emoji) so CSS `color` can tint it */
-  content: "❄︎";
+  content: "❄";
   font-size: 1em;
   line-height: 1;
   opacity: 0.95;
-  color: inherit;
 }
 
-/* Higher specificity than `.navbar... .lang-btn` so the ON color actually applies */
-.navbar .language-switcher .snow-toggle[aria-pressed="true"] {
+.snow-toggle[aria-pressed="true"] {
   background: rgba(255, 255, 255, 0.22);
-  color: rgba(175, 220, 255, 0.98);
-}
-
-.snow-toggle[aria-pressed="true"]::before {
-  opacity: 1;
 }
 
 #snow-canvas {
@@ -639,7 +686,7 @@ a:focus,
   pointer-events: none;
   z-index: 2500;
   opacity: 0;
-  transition: opacity 2600ms ease;
+  transition: opacity 700ms ease;
 }
 
 #snow-canvas.is-on { opacity: 1; }
@@ -647,106 +694,6 @@ a:focus,
 @media (prefers-reduced-motion: reduce) {
   #snow-canvas { display: none !important; }
   .snow-toggle { display: none !important; }
-}
-
-/* --- Snowball section (last section) --- */
-#jh .snow-section{
-  /* Full-bleed transparent interaction layer on top of #jh's existing background image */
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  user-select: none;
-  -webkit-user-select: none;
-  /* Allow page scroll gestures; JS will block only for 1-finger throws. */
-  touch-action: pan-y pinch-zoom;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-}
-
-#jh .snow-canvas2d,
-#jh .snow-canvas3d{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-#jh .snow-canvas3d{ pointer-events: auto; z-index: 1; }
-#jh .snow-canvas2d{ pointer-events: none; }
-
-#jh .snow-hint{
-  position: absolute;
-  left: 14px;
-  bottom: 12px;
-  padding: 8px 10px;
-  font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: rgba(0,0,0,.45);
-  color: rgba(255,255,255,.92);
-  border-radius: 10px;
-  pointer-events: none;
-  z-index: 3;
-}
-
-#jh .snow-back-top{
-  /* Fixed + high z-index to reliably appear above WebGL canvas on iOS Chrome */
-  position: fixed;
-  left: 50%;
-  bottom: calc(14px + env(safe-area-inset-bottom));
-  transform: translate3d(-50%, 10px, 0);
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 999px;
-
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.22),
-    inset 0 1px 0 rgba(255,255,255,0.18);
-
-  color: rgba(255, 255, 255, 0.92);
-  font: 13px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-
-  transition: opacity 260ms ease, transform 260ms ease, background 260ms ease, border-color 260ms ease;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  /* iOS Chrome bottom toolbar can cover fixed elements; lift the button on touch devices */
-  #jh .snow-back-top{
-    bottom: calc(14px + env(safe-area-inset-bottom) + 64px);
-  }
-}
-
-#jh .snow-back-top.is-visible{
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate3d(-50%, 0, 0);
-}
-
-#jh .snow-back-top::before{
-  content: "↑";
-  font-size: 14px;
-  line-height: 1;
-  opacity: 0.9;
-}
-
-#jh .snow-back-top:hover{
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.28);
-}
-
-#jh .snow-back-top:active{
-  transform: translate3d(-50%, 1px, 0);
 }
 
 /* Snow pile overlay (last section) */

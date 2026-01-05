@@ -11,38 +11,17 @@
   const prefersReducedMotionSnow =
     window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 
-  // --- Snow density ramp (dreamy constant motion; only density changes) ---
-  // Tune these to taste.
-  const SNOW_RAMP_UP_SECONDS = 26;   // how long until full density
-  const SNOW_RAMP_DOWN_SECONDS = 7;  // how long to ramp density down after toggle-off (shorter = snappier stop)
-  const SNOW_START_DENSITY = 0.09;   // 0..1 starting density (few flakes)
-  const SNOW_RESUME_PRESERVE_MS = 1400; // quick off->on keeps current flakes for a smoother transition
-
   let snowCanvas = null;
   let snowCtx = null;
   let snowRaf = 0;
   let snowFlakes = [];
   let snowSprites = null; // offscreen sprites for speed
   let snowLastT = 0;
-  let snowStartT = 0;
-  let snowStopT = 0;
-  let snowStartDensity = SNOW_START_DENSITY;
   let snowWind = 0.0;
   let snowWindTarget = 0.0;
   let snowStopping = false;
-  let snowTearingDown = false;
-  let snowTeardownTimer = 0;
-
-  // --- Tilt-to-gravity (mobile): make snow fall "down" relative to real gravity ---
-  let tiltEnabled = false;
-  let tiltTargetX = 0;
-  let tiltTargetY = 1;
-  let tiltX = 0;
-  let tiltY = 1;
-  let tiltLastUpdateT = 0;
-  let tiltOriX = 0;
-  let tiltOriY = 1;
-  let tiltOriT = 0;
+  let snowStopDeadline = 0;
+  let snowWarmup = 0; // 0..1 spawn ramp when toggling on
 
   // --- Snow pile (last section) ---
   let pileSection = null;
@@ -52,6 +31,8 @@
   let pileShake = 0; // 0..1 animation intensity
   let pileClear = 0; // 0..1 clear animation progress
   let pileRO = null;
+
+  // (No snowball throwing / splash effects)
 
   onReady(init);
 
@@ -75,34 +56,31 @@
 
     initPileIfPossible();
 
-    // Do NOT auto-start snow on page load.
-    // Snow should only start via an explicit user toggle.
+    // Default OFF on every page load (no auto-start).
+    // If a previous session stored "on", reset it so users can always choose explicitly.
     snowBtn.setAttribute('aria-pressed', 'false');
     try { localStorage.setItem(STORAGE_KEY, '0'); } catch {}
 
     snowBtn.addEventListener('click', () => {
-      const isOn = !!snowCanvas;
-      // If we are currently "draining" (stopping from top), clicking again must restore full intensity.
-      // Otherwise we'd keep many flakes marked dead and the snow would look weaker.
-      if (isOn && (snowStopping || snowTearingDown)) {
-        // Smooth resume: cancel any pending teardown/fade-out and restart the ramp.
-        resumeSnow();
+      // Use the button state as the source of truth, not the canvas presence.
+      // (During graceful drain, canvas still exists but user intent is "off".)
+      const currentlyOn = snowBtn.getAttribute('aria-pressed') === 'true';
+      const wantsOn = !currentlyOn;
+
+      if (wantsOn) {
+        startSnow({ forceRebuild: true });
         snowBtn.setAttribute('aria-pressed', 'true');
         try { localStorage.setItem(STORAGE_KEY, '1'); } catch {}
-        return;
+      } else {
+        // Smooth stop: stop from the top, let remaining flakes fall out, then fade/remove.
+        requestStopSnow();
+        snowBtn.setAttribute('aria-pressed', 'false');
+        try { localStorage.setItem(STORAGE_KEY, '0'); } catch {}
       }
-
-      if (isOn) requestStopSnow();
-      else startSnow();
-
-      const next = (!isOn).toString();
-      snowBtn.setAttribute('aria-pressed', next);
-      try { localStorage.setItem(STORAGE_KEY, !isOn ? '1' : '0'); } catch {}
-
-      // iOS motion permission is user-gesture gated; attempt once on first interaction.
-      maybeEnableTiltControls();
-      maybeEnableShakeControls();
     });
+
+    // UX hint
+    snowBtn.title = 'Toggle snow';
   }
 
   function safeGet(key) {
@@ -166,52 +144,23 @@
     snowFlakes = new Array(target).fill(0).map(() => {
       const depth = Math.random(); // 0..1
       const size = 0.6 + depth * 1.6;
-      // Dreamy: slower fall + layered by depth (constant over time)
-      const speed = 18 + depth * 120;
+      // Dreamier flow: slower fall speeds, still layered by depth
+      const speed = 38 + depth * 175;
       return {
         x: Math.random() * w,
         // Start from the top: spawn above viewport and let flakes naturally enter
         y: -40 - Math.random() * (h + 140),
         r: size,
-        baseVy: speed,
-        baseVx: (Math.random() * 10 - 5) * (0.22 + depth * 0.75),
+        vy: speed,
+        vx: (Math.random() * 12 - 6) * (0.26 + depth * 0.9),
         wobble: Math.random() * Math.PI * 2,
-        wobbleSpeed: 0.26 + Math.random() * 0.75,
-        baseAlpha: 0.10 + depth * 0.28,
-        // Each flake gets a "when do I join" threshold along the ramp.
-        // This lets the scene start sparse and grow denser naturally.
-        birth: Math.random(),
-        active: false,
-        seen: false,
+        wobbleSpeed: 0.35 + Math.random() * 0.9,
+        alpha: 0.14 + depth * 0.38,
         dead: false,
+        spawned: false,
+        spawnAt: Math.random() // 0..1, used for warmup spawn ramp
       };
     });
-  }
-
-  function snowEase01(t) {
-    // smoothstep (0..1)
-    const x = clamp(t, 0, 1);
-    return x * x * (3 - 2 * x);
-  }
-
-  function getSnowDensity(nowT) {
-    // 0..1 density factor; only affects how many flakes are active/respawning
-    if (!snowStartT) return 1;
-
-    // While stopping: ramp density down smoothly toward 0.
-    if (snowStopping) {
-      if (!snowStopT) return 0;
-      const elapsed = Math.max(0, (nowT - snowStopT) / 1000);
-      const ramp = elapsed / SNOW_RAMP_DOWN_SECONDS;
-      const eased = snowEase01(ramp);
-      return clamp(1 - eased, 0, 1);
-    }
-
-    // While starting: ramp density up from a low initial density.
-    const elapsed = Math.max(0, (nowT - snowStartT) / 1000);
-    const ramp = elapsed / SNOW_RAMP_UP_SECONDS;
-    const eased = snowEase01(ramp);
-    return clamp(snowStartDensity + (1 - snowStartDensity) * eased, 0, 1);
   }
 
   function snowTick(t) {
@@ -225,22 +174,9 @@
     const dt = Math.min(0.05, (t - (snowLastT || t)) / 1000);
     snowLastT = t;
 
-    const density = getSnowDensity(t); // 0..1
-
-    // Smooth gravity direction (when tilt is enabled)
-    const k = 1 - Math.exp(-dt * 7.5);
-    tiltX += (tiltTargetX - tiltX) * k;
-    tiltY += (tiltTargetY - tiltY) * k;
-    const gMag = Math.hypot(tiltX, tiltY) || 1;
-    const gdx = tiltX / gMag;
-    const gdy = tiltY / gMag;
-    // Perpendicular to gravity (used for wind + wobble so the snow "dances" around the fall direction)
-    const pdx = -gdy;
-    const pdy = gdx;
-
-    // Constant dreamy wind (does NOT intensify over time)
-    if (Math.random() < 0.006) snowWindTarget = (Math.random() * 2 - 1) * 22;
-    snowWind += (snowWindTarget - snowWind) * 0.010;
+    // Dreamier wind: smaller amplitude + slower changes
+    if (Math.random() < 0.008) snowWindTarget = (Math.random() * 2 - 1) * 40;
+    snowWind += (snowWindTarget - snowWind) * 0.012;
 
     const ctx = snowCtx;
     ctx.clearRect(0, 0, w, h);
@@ -248,41 +184,53 @@
 
     const sprites = snowSprites || (snowSprites = makeSnowSprites());
 
+    // Warmup ramp: when toggling on, spawn gradually + start slower, more dreamy.
+    // During stop/drain, do NOT spawn new flakes (top clears first).
+    if (!snowStopping) {
+      // Slower + fewer flakes at the beginning: longer warmup + steeper curve.
+      snowWarmup = Math.min(1, snowWarmup + dt / 5.2);
+    }
+    const warmEase = smoothstep(0, 1, snowWarmup);
+    const spawnEase = Math.pow(warmEase, 2.4); // very few flakes initially, then ramps up
+    const startSpeedMul = 0.40 + 0.60 * warmEase; // slower at start, reaches 1.0
+
     // Subtle overall haze
     ctx.save();
-    ctx.globalAlpha = 0.045;
+    ctx.globalAlpha = 0.030 + 0.065 * warmEase;
     ctx.fillStyle = 'rgba(255,255,255,1)';
     ctx.fillRect(0, 0, w, h);
     ctx.restore();
 
     let alive = 0;
-    const margin = 90;
     for (let i = 0; i < snowFlakes.length; i++) {
       const f = snowFlakes[i];
       if (f.dead) continue;
 
-       // Ramp in: keep flakes "inactive" until their birth threshold is reached.
-      if (!f.active && !snowStopping) {
-        if (density < f.birth) continue;
-        // Activate and (re)spawn from above so they enter naturally.
-        f.active = true;
-        respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
+      // Spawn gating for warm dreamy start
+      if (!f.spawned) {
+        if (snowStopping) {
+          // If we're stopping before this flake ever spawned, ignore it.
+          continue;
+        }
+        if (spawnEase < f.spawnAt) {
+          continue;
+        }
+        // Spawn now, from the top
+        f.spawned = true;
+        f.x = Math.random() * w;
+        f.y = -40 - Math.random() * 140;
       }
-      // When stopping, we do NOT activate new flakes.
-      // Only flakes that were already seen on-screen should be allowed to finish falling.
 
       f.wobble += f.wobbleSpeed * dt;
 
-      // Constant dreamy motion (no acceleration over time)
-      const vy = f.baseVy;
-      const lateral = (f.baseVx + snowWind * (0.18 + f.r * 0.22));
-      const wobble = Math.sin(f.wobble) * (8.5 * f.r);
-      // Gravity-directed fall + dreamy lateral motion perpendicular to gravity
-      f.x += (gdx * vy + pdx * (lateral + wobble)) * dt;
-      f.y += (gdy * vy + pdy * (lateral + wobble)) * dt;
+      const drift = Math.sin(f.wobble) * (12 * f.r);
+      f.x += (f.vx + snowWind * (0.18 + f.r * 0.22) + drift) * dt * startSpeedMul;
+      // During stopping/drain, let remaining flakes "fly down" a bit faster so it doesn't feel stuck.
+      f.y += f.vy * (snowStopping ? 1.35 : 1) * dt * startSpeedMul;
 
       // Pile-up behavior in last section: flakes that reach the "snow drift" get absorbed.
-      if (pileSection && pileBins) {
+      // During stop/drain we do NOT absorb flakes into the pile: they must keep falling to the bottom.
+      if (!snowStopping && pileSection && pileBins) {
         const rect = pileSection.getBoundingClientRect();
         // Convert rect into snow-canvas-local coordinates
         const rectTopInCanvas = rect.top - canvasRect.top;
@@ -301,15 +249,10 @@
               addToPile(bin, add);
               // respawn at top unless we're draining/stopping
               if (snowStopping) {
-                // During ramp-down, progressively stop respawning based on density.
-                // Natural: flakes disappear only after falling out, not mid-air.
-                if (density > f.birth) {
-                  respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
-                } else {
-                  f.dead = true;
-                }
+                f.dead = true;
               } else {
-                respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
+                f.y = -40 - Math.random() * 120;
+                f.x = Math.random() * w;
               }
               continue;
             }
@@ -318,47 +261,57 @@
       }
 
       // Wrap
-      if (f.x < -margin || f.x > w + margin || f.y < -margin || f.y > h + margin) {
+      if (f.y > h + 40) {
         if (snowStopping) {
-          // Ramp down density: allow fewer flakes to respawn, until none do.
-          if (density > f.birth) {
-            respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
-          } else {
-            f.dead = true;
-          }
+          // "End from top": do not respawn at the top; let flakes drain out.
+          f.dead = true;
           continue;
         } else {
-          respawnFlakeAtEdge(f, w, h, gdx, gdy, margin);
+          f.y = -40 - Math.random() * 120;
+          f.x = Math.random() * w;
         }
       }
+      if (f.x < -80) f.x = w + 80;
+      if (f.x > w + 80) f.x = -80;
 
       // pick sprite by size
       const sIdx = f.r < 1.0 ? 0 : (f.r < 1.6 ? 1 : 2);
       const spr = sprites[sIdx];
       const drawR = spr.r * (0.7 + f.r * 0.6);
-      ctx.globalAlpha = f.baseAlpha;
+      ctx.globalAlpha = f.alpha;
       ctx.drawImage(spr.canvas, f.x - drawR, f.y - drawR, drawR * 2, drawR * 2);
-      f.seen = true;
       alive++;
     }
 
     ctx.globalCompositeOperation = 'source-over';
     ctx.globalAlpha = 1;
 
-    if (snowStopping && alive === 0) {
-      // Once the last visible flake has drained out, fade and tear down.
-      finishStopSnow();
+    if (snowStopping) {
+      if (alive === 0) {
+        // Once all flakes have drained out, fade and tear down.
+        finishStopSnow();
+      }
     }
 
     // Render pile (if present)
     tickAndRenderPile(dt, snowCtx, canvasRect);
+
   }
 
   function startSnow() {
+  }
+
+  function startSnow({ forceRebuild } = { forceRebuild: false }) {
     if (prefersReducedMotionSnow) return;
     if (snowCanvas) {
-      // If we already have a canvas (including mid-fade), reuse it for smoother rapid toggles.
-      resumeSnow();
+      // If we were draining, resume immediately and optionally rebuild for full intensity.
+      snowStopping = false;
+      snowStopDeadline = 0;
+      if (forceRebuild) {
+        setSnowSize();
+        buildSnowFlakes();
+        snowLastT = 0;
+      }
       return;
     }
     snowCanvas = document.createElement('canvas');
@@ -368,13 +321,12 @@
     requestAnimationFrame(() => snowCanvas && snowCanvas.classList.add('is-on'));
     setSnowSize();
     buildSnowFlakes();
+    snowWarmup = 0;
     snowLastT = 0;
-    snowStartT = performance.now();
-    snowStopT = 0;
-    snowStartDensity = SNOW_START_DENSITY;
     snowWind = 0;
     snowWindTarget = 0;
     snowStopping = false;
+    snowStopDeadline = 0;
     snowRaf = requestAnimationFrame(snowTick);
     window.addEventListener('resize', onSnowResize, { passive: true });
     window.visualViewport?.addEventListener('resize', onSnowResize, { passive: true });
@@ -383,62 +335,48 @@
     initPileIfPossible();
   }
 
-  function resumeSnow() {
-    if (!snowCanvas) return;
-    const now = performance.now();
-
-    if (snowTeardownTimer) {
-      clearTimeout(snowTeardownTimer);
-      snowTeardownTimer = 0;
-    }
-    snowCanvas.classList.add('is-on'); // if we were fading out, fade back in smoothly
-
-    // If user toggles back on quickly while stopping, preserve current flakes
-    // and just reverse the density curve from the current point (feels hyper-natural).
-    const canPreserve =
-      (snowStopping || snowTearingDown) &&
-      snowStopT &&
-      (now - snowStopT) < SNOW_RESUME_PRESERVE_MS &&
-      snowFlakes &&
-      snowFlakes.length > 0;
-
-    const currentDensity = getSnowDensity(now);
-
-    snowTearingDown = false;
-    snowStopping = false;
-    snowStopT = 0;
-    snowStartDensity = clamp(currentDensity, SNOW_START_DENSITY, 1);
-    snowStartT = now;
-
-    setSnowSize();
-    if (!canPreserve) {
-      buildSnowFlakes();
-    }
-    snowLastT = 0;
-    snowWind = 0;
-    snowWindTarget = 0;
-
-    // Ensure animation is running (rapid off->on can otherwise leave us with no RAF)
-    if (!snowRaf) snowRaf = requestAnimationFrame(snowTick);
-    window.addEventListener('resize', onSnowResize, { passive: true });
-    window.visualViewport?.addEventListener('resize', onSnowResize, { passive: true });
-    initPileIfPossible();
-  }
-
   function requestStopSnow() {
     if (!snowCanvas) return;
-    // Ramp down density then drain: fewer and fewer flakes respawn until none do,
-    // then wait until the last flake has fallen out.
+    // "End from top": stop respawning; let existing flakes continue down until gone.
     snowStopping = true;
-    snowStopT = performance.now();
-    snowStartDensity = 1;
-    snowTearingDown = false;
-    if (snowTeardownTimer) {
-      clearTimeout(snowTeardownTimer);
-      snowTeardownTimer = 0;
-    }
+    snowStopDeadline = 0;
     window.removeEventListener('resize', onSnowResize);
     window.visualViewport?.removeEventListener('resize', onSnowResize);
+  }
+
+  function stopSnowImmediate() {
+    if (!snowCanvas) return;
+    // Hard stop: immediately stop drawing and fade out the overlay.
+    snowStopping = false;
+    snowStopDeadline = 0;
+    window.removeEventListener('resize', onSnowResize);
+    window.visualViewport?.removeEventListener('resize', onSnowResize);
+
+    cancelAnimationFrame(snowRaf);
+    snowRaf = 0;
+
+    // Clear the canvas so the last frame (haze) doesn't "stick"
+    if (snowCtx && snowCanvas) {
+      try {
+        const w = snowCanvas.clientWidth || (window.visualViewport?.width || window.innerWidth);
+        const h = snowCanvas.clientHeight || (window.visualViewport?.height || window.innerHeight);
+        snowCtx.clearRect(0, 0, w, h);
+      } catch {}
+    }
+
+    const c = snowCanvas;
+    c.classList.remove('is-on');
+    setTimeout(() => {
+      if (snowCanvas !== c) return;
+      c.remove();
+    }, 750);
+
+    snowCanvas = null;
+    snowCtx = null;
+    snowFlakes = [];
+    snowSprites = null;
+    snowLastT = 0;
+
   }
 
   function finishStopSnow() {
@@ -447,33 +385,27 @@
     snowRaf = 0;
 
     const c = snowCanvas;
-    snowTearingDown = true;
     c.classList.remove('is-on');
-    if (snowTeardownTimer) clearTimeout(snowTeardownTimer);
-    snowTeardownTimer = setTimeout(() => {
-      // If snow was re-enabled mid-fade, do nothing.
+    setTimeout(() => {
       if (snowCanvas !== c) return;
-      if (!snowTearingDown) return;
       c.remove();
+    }, 750);
 
-      // Full cleanup only after removal for smoother rapid toggles.
-      snowCanvas = null;
-      snowCtx = null;
-      snowFlakes = [];
-      snowSprites = null;
-      snowLastT = 0;
-      snowStartT = 0;
-      snowStopT = 0;
-      snowStopping = false;
-      snowTearingDown = false;
-      snowTeardownTimer = 0;
-    }, 2800);
+    snowCanvas = null;
+    snowCtx = null;
+    snowFlakes = [];
+    snowSprites = null;
+    snowLastT = 0;
+    snowStopping = false;
+    snowStopDeadline = 0;
+
   }
 
   function onSnowResize() {
     if (!snowCanvas) return;
     setSnowSize();
     buildSnowFlakes();
+    snowWarmup = 0;
     resizePileCanvas();
   }
 
@@ -481,19 +413,9 @@
     return Math.min(hi, Math.max(lo, v));
   }
 
-  function respawnFlakeAtEdge(f, w, h, fallX, fallY, margin) {
-    // Spawn just outside the viewport on the "upstream" edge of the fall direction.
-    const ax = Math.abs(fallX);
-    const ay = Math.abs(fallY);
-    if (ax > ay) {
-      // Mostly horizontal fall
-      f.x = fallX > 0 ? -margin : w + margin;
-      f.y = Math.random() * h;
-    } else {
-      // Mostly vertical fall
-      f.y = fallY > 0 ? -margin : h + margin;
-      f.x = Math.random() * w;
-    }
+  function smoothstep(edge0, edge1, x) {
+    const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+    return t * t * (3 - 2 * t);
   }
 
   // -------------------------------
@@ -577,10 +499,8 @@
       if (pileClear >= 1) pileClear = 0;
     }
 
-    // Shake decay
-    if (pileShake > 0) {
-      pileShake = Math.max(0, pileShake - dt * 1.6);
-    }
+    // Impact wobble decay
+    if (pileShake > 0) pileShake = Math.max(0, pileShake - dt * 2.2);
 
     // Convert section rect into snow-canvas-local coords and render there
     const w = r.width;
@@ -641,278 +561,6 @@
     ctx.restore();
   }
 
-  // -------------------------------
-  // Shake detection (mobile)
-  // -------------------------------
-  let shakeEnabled = false;
-  let lastShakeT = 0;
-  let lastMag = 0;
-  let magLP = 0;
-  // Centralized motion/orientation permission handling (iOS Safari requirement).
-  let motionPermPromise = null;
-  let motionPermState = 'unknown'; // 'unknown' | 'granted' | 'denied'
-
-  function requestMotionPermissionOnce() {
-    if (motionPermPromise) return motionPermPromise;
-
-    motionPermPromise = new Promise(async (resolve) => {
-      const DME = window.DeviceMotionEvent;
-      const DOE = window.DeviceOrientationEvent;
-
-      // If no permission API exists, assume allowed (non-iOS or older behavior).
-      const needsPermission =
-        (DME && typeof DME.requestPermission === 'function') ||
-        (DOE && typeof DOE.requestPermission === 'function');
-
-      if (!needsPermission) {
-        motionPermState = 'granted';
-        resolve(true);
-        return;
-      }
-
-      let granted = false;
-      try {
-        if (DME && typeof DME.requestPermission === 'function') {
-          const s = await DME.requestPermission();
-          if (s === 'granted') granted = true;
-        }
-      } catch {}
-
-      // Some iOS browsers expose only one of these, or require the other path.
-      if (!granted) {
-        try {
-          if (DOE && typeof DOE.requestPermission === 'function') {
-            const s2 = await DOE.requestPermission();
-            if (s2 === 'granted') granted = true;
-          }
-        } catch {}
-      }
-
-      motionPermState = granted ? 'granted' : 'denied';
-      resolve(granted);
-    });
-
-    return motionPermPromise;
-  }
-
-  function maybeEnableTiltControls() {
-    if (tiltEnabled) return;
-    requestMotionPermissionOnce().then((granted) => {
-      if (granted) enableTiltListener();
-    });
-  }
-
-  function enableTiltListener() {
-    if (tiltEnabled) return;
-    tiltEnabled = true;
-    // Start with screen-down so the first frame is stable.
-    tiltTargetX = 0;
-    tiltTargetY = 1;
-    tiltX = 0;
-    tiltY = 1;
-    tiltLastUpdateT = 0;
-    // Use BOTH sources; some iOS browsers block devicemotion but allow deviceorientation.
-    window.addEventListener('devicemotion', onTiltMotion, { passive: true });
-    window.addEventListener('deviceorientation', onTiltOrientation, { passive: true });
-  }
-
-  function onTiltMotion(e) {
-    const a = e.accelerationIncludingGravity || e.acceleration;
-    if (!a) return;
-    const ax = a.x || 0;
-    const ay = a.y || 0;
-    tiltLastUpdateT = performance.now();
-
-    // Map device axes into screen axes based on current orientation angle.
-    const angleRaw =
-      (screen.orientation && typeof screen.orientation.angle === 'number')
-        ? screen.orientation.angle
-        : (typeof window.orientation === 'number' ? window.orientation : 0);
-    const angle = ((angleRaw % 360) + 360) % 360;
-
-    let x = ax;
-    let y = ay;
-    // Invert Y so "down" in screen coords tends toward positive Y.
-    if (angle === 0) {
-      x = ax;
-      y = -ay;
-    } else if (angle === 90) {
-      x = ay;
-      y = ax;
-    } else if (angle === 180) {
-      x = -ax;
-      y = ay;
-    } else if (angle === 270) {
-      x = -ay;
-      y = -ax;
-    }
-
-    // Normalize to a unit-ish vector.
-    let gx = clamp(x / 9.8, -1, 1);
-    let gy = clamp(y / 9.8, -1, 1);
-    const m = Math.hypot(gx, gy);
-    if (m < 0.12) {
-      gx = 0;
-      gy = 1;
-    } else {
-      gx /= m;
-      gy /= m;
-    }
-
-    // Android devices/browsers sometimes report devicemotion axes inverted relative to screen,
-    // which makes "down" point upward. If we have a recent deviceorientation estimate, use it
-    // to auto-correct by flipping the devicemotion vector when they disagree.
-    if (tiltOriT && (tiltLastUpdateT - tiltOriT) < 600) {
-      const dot = gx * tiltOriX + gy * tiltOriY;
-      if (dot < 0) {
-        gx = -gx;
-        gy = -gy;
-      }
-    }
-
-    tiltTargetX = gx;
-    tiltTargetY = gy;
-  }
-
-  function onTiltOrientation(e) {
-    // Fallback when devicemotion is not available.
-    // Use beta/gamma to approximate gravity projection in screen plane.
-    // (Not physically perfect, but feels natural and keeps snow "downhill".)
-    const now = performance.now();
-
-    const beta = typeof e.beta === 'number' ? e.beta : 0; // front/back [-180..180]
-    const gamma = typeof e.gamma === 'number' ? e.gamma : 0; // left/right [-90..90]
-
-    const br = (beta * Math.PI) / 180;
-    const gr = (gamma * Math.PI) / 180;
-
-    // Approximate: gravity projection
-    let x = Math.sin(gr);
-    let y = Math.sin(br);
-
-    // Rotate into screen coords based on orientation angle.
-    const angleRaw =
-      (screen.orientation && typeof screen.orientation.angle === 'number')
-        ? screen.orientation.angle
-        : (typeof window.orientation === 'number' ? window.orientation : 0);
-    const angle = ((angleRaw % 360) + 360) % 360;
-
-    let gx = x, gy = y;
-    if (angle === 90) {
-      gx = y;
-      gy = -x;
-    } else if (angle === 180) {
-      gx = -x;
-      gy = -y;
-    } else if (angle === 270) {
-      gx = -y;
-      gy = x;
-    }
-
-    if (!Number.isFinite(gx) || !Number.isFinite(gy)) {
-      gx = 0;
-      gy = 1;
-    }
-
-    const m = Math.hypot(gx, gy);
-    if (m < 0.12) {
-      gx = 0;
-      gy = 1;
-    } else {
-      gx /= m;
-      gy /= m;
-    }
-
-    // Always keep a recent orientation-based estimate (used to correct devicemotion on Android).
-    tiltOriX = clamp(gx, -1, 1);
-    tiltOriY = clamp(gy, -1, 1);
-    tiltOriT = now;
-
-    // If we recently received devicemotion, prefer it for actual control.
-    if (tiltLastUpdateT && (now - tiltLastUpdateT) < 350) return;
-
-    tiltTargetX = tiltOriX;
-    tiltTargetY = tiltOriY;
-  }
-
-  function maybeEnableShakeControls() {
-    if (shakeEnabled) return;
-    if (!pileSection) initPileIfPossible();
-    if (!pileSection) return;
-
-    // iOS 13+ permission model
-    const DME = window.DeviceMotionEvent;
-    const DOE = window.DeviceOrientationEvent;
-    if ((DME && typeof DME.requestPermission === 'function') || (DOE && typeof DOE.requestPermission === 'function')) {
-      requestMotionPermissionOnce()
-        .then((granted) => {
-          if (granted) {
-            enableShakeListener();
-            const btn = document.getElementById('snow-toggle');
-            if (btn) btn.title = 'Shake to clear snow pile';
-          } else {
-            const btn = document.getElementById('snow-toggle');
-            if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
-          }
-        })
-        .catch(() => {
-          const btn = document.getElementById('snow-toggle');
-          if (btn) btn.title = 'Enable Motion Access in Safari to shake-clear the snow pile';
-        });
-    } else {
-      enableShakeListener();
-    }
-  }
-
-  function enableShakeListener() {
-    if (shakeEnabled) return;
-    shakeEnabled = true;
-    lastShakeT = 0;
-    lastMag = 0;
-    magLP = 0;
-    window.addEventListener('devicemotion', onDeviceMotion, { passive: true });
-  }
-
-  function onDeviceMotion(e) {
-    if (!pileBins) return;
-    const a = e.accelerationIncludingGravity || e.acceleration;
-    if (!a) return;
-    const ax = a.x || 0, ay = a.y || 0, az = a.z || 0;
-    const mag = Math.sqrt(ax * ax + ay * ay + az * az);
-
-    // Shake detection (dreamy/robust):
-    // Use a crude high-pass on magnitude ("jerk") so normal movement/gravity doesn't trigger.
-    const now = performance.now();
-    if (!magLP) magLP = mag;
-    magLP = magLP * 0.85 + mag * 0.15; // low-pass estimate
-    const jerk = Math.abs(mag - magLP) + Math.abs(mag - lastMag) * 0.6;
-    lastMag = mag;
-
-    // Typical resting mag ~ 9.8; shake produces spikes/jerk.
-    if (jerk > 7.5 && (now - lastShakeT) > 500) {
-      lastShakeT = now;
-      triggerPileShakeClear();
-    }
-  }
-
-  function triggerPileShakeClear() {
-    if (!pileBins) return;
-    pileShake = 1;
-    pileClear = 0.001;
-  }
-
-  // Arm motion permission request on the first user gesture as well (mobile Safari requirement).
-  // This fixes the common "doesn't work on mobile" case where motion events are blocked until a gesture.
-  (function armMotionPermissionOnce() {
-    const handler = () => {
-      maybeEnableTiltControls();
-      maybeEnableShakeControls();
-      window.removeEventListener('pointerdown', handler);
-      window.removeEventListener('touchstart', handler);
-    };
-    window.addEventListener('pointerdown', handler, { passive: true });
-    window.addEventListener('touchstart', handler, { passive: true });
-  })();
 })();
 
 
