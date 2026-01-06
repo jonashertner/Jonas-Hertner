@@ -311,14 +311,17 @@ p {
 }
 
 #bio {
-    background-image: url('../images/bio-bg.jpg'); 
     background-size: cover;
     background-position: center;
-    color: var(--color-text-light); 
+    color: var(--color-text-light);
     padding: 60px 20px;
     min-height: 100vh;
     display: grid;
     place-items: center;
+}
+
+#bio.bg-loaded {
+    background-image: url('../images/bio-bg.jpg');
 }
 
 #contact {
@@ -332,7 +335,6 @@ p {
 }
 
 #services1 {
-    background-image: url('../images/services1-bg.jpg');
     background-size: cover;
     background-position: center;
     color: var(--color-text-light);
@@ -340,10 +342,13 @@ p {
     min-height: 100vh;
     display: grid;
     place-items: center;
+}
+
+#services1.bg-loaded {
+    background-image: url('../images/services1-bg.jpg');
 }
 
 #services3 {
-    background-image: url('../images/library.png');
     background-size: cover;
     background-position: center;
     color: var(--color-text-light);
@@ -353,8 +358,11 @@ p {
     place-items: center;
 }
 
+#services3.bg-loaded {
+    background-image: url('../images/library.png');
+}
+
 #services5 {
-    background-image: url('../images/services0-bg.jpg');
     background-size: cover;
     background-position: center;
     color: var(--color-text-light);
@@ -362,6 +370,10 @@ p {
     min-height: 100vh;
     display: grid;
     place-items: center;
+}
+
+#services5.bg-loaded {
+    background-image: url('../images/services0-bg.jpg');
 }
 
 #services6 {
@@ -406,7 +418,6 @@ p {
 }
 
 #jh {
-    background-image: url('../images/jh.jpg');
     background-size: cover;
     background-position: center;
     color: var(--color-text-light);
@@ -415,6 +426,10 @@ p {
     display: grid;
     place-items: center;
     position: relative; /* anchor snowball overlay */
+}
+
+#jh.bg-loaded {
+    background-image: url('../images/jh.jpg');
 }
 
 /* Mobile Styles */
@@ -494,8 +509,7 @@ p {
 a:focus,
 .lang-btn:focus,
 .btn:focus {
-    outline: 0px dashed var(--color-accent);
-    outline-offset: 1px;
+    outline: none;
 }
 
 /* Smooth transitions for interactive elements */
@@ -559,18 +573,6 @@ a:focus,
 }
 
 /* Typewriter Cursor Animation */
-.cursor {
-  display: inline-block;
-  vertical-align: baseline;
-  animation: blink 0.7s steps(1) infinite alternate;
-}
-
-@keyframes blink {
-  from { opacity: 1; }
-  to   { opacity: 0; }
-}
-
-/* Typewriter cursor blink */
 .cursor {
   display: inline-block;
   vertical-align: baseline;

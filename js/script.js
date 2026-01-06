@@ -10,6 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTopBtn = document.getElementById('back-to-top');
   const lastSection = document.getElementById('jh');
 
+  // --- Lazy load background images ---
+  const lazyBgSections = document.querySelectorAll('#services1, #services3, #services5, #bio, #jh');
+  if ('IntersectionObserver' in window && lazyBgSections.length) {
+    const bgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('bg-loaded');
+            bgObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { root: mainContent, rootMargin: '200px 0px', threshold: 0 }
+    );
+    lazyBgSections.forEach((section) => bgObserver.observe(section));
+  } else {
+    // Fallback: load all backgrounds immediately
+    lazyBgSections.forEach((section) => section.classList.add('bg-loaded'));
+  }
+
   // --- Translations (fixed FR bio stray </a>) ---
   const content = {
     en: {
