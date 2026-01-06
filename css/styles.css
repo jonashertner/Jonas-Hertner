@@ -322,6 +322,10 @@ p {
 
 #bio.bg-loaded {
     background-image: url('../images/bio-bg.jpg');
+    background-image: image-set(
+        url('../images/bio-bg.webp') type('image/webp'),
+        url('../images/bio-bg.jpg') type('image/jpeg')
+    );
 }
 
 #contact {
@@ -346,6 +350,10 @@ p {
 
 #services1.bg-loaded {
     background-image: url('../images/services1-bg.jpg');
+    background-image: image-set(
+        url('../images/services1-bg.webp') type('image/webp'),
+        url('../images/services1-bg.jpg') type('image/jpeg')
+    );
 }
 
 #services3 {
@@ -360,6 +368,10 @@ p {
 
 #services3.bg-loaded {
     background-image: url('../images/library.png');
+    background-image: image-set(
+        url('../images/library.webp') type('image/webp'),
+        url('../images/library.png') type('image/png')
+    );
 }
 
 #services5 {
@@ -374,6 +386,10 @@ p {
 
 #services5.bg-loaded {
     background-image: url('../images/services0-bg.jpg');
+    background-image: image-set(
+        url('../images/services0-bg.webp') type('image/webp'),
+        url('../images/services0-bg.jpg') type('image/jpeg')
+    );
 }
 
 #services6 {
@@ -430,6 +446,10 @@ p {
 
 #jh.bg-loaded {
     background-image: url('../images/jh.jpg');
+    background-image: image-set(
+        url('../images/jh.webp') type('image/webp'),
+        url('../images/jh.jpg') type('image/jpeg')
+    );
 }
 
 /* Mobile Styles */
@@ -761,4 +781,127 @@ a:focus,
   pointer-events: none;
   z-index: 3;
   opacity: 0.95;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  /* Reset page layout */
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Hide interactive and decorative elements */
+  .navbar,
+  .language-switcher,
+  .snow-toggle,
+  #snow-canvas,
+  #fog-canvas,
+  .hero-image,
+  .snow-section,
+  .snow-pile-canvas,
+  .snow-back-top,
+  .snow-hint,
+  #back-to-top,
+  video,
+  canvas {
+    display: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Main content flow */
+  #main-content {
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-type: none;
+  }
+
+  .section {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 1.5em 0 !important;
+    page-break-inside: avoid;
+    scroll-snap-align: none;
+    display: block !important;
+  }
+
+  /* Typography */
+  h1, h2 {
+    font-size: 18pt;
+    margin-bottom: 0.5em;
+    page-break-after: avoid;
+  }
+
+  p {
+    font-size: 11pt;
+    line-height: 1.6;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+  }
+
+  a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+  }
+
+  /* About and services sections */
+  .about-content,
+  .services-content,
+  .bio-content,
+  .contact-content {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Contact section - keep visible */
+  .contact-info {
+    display: block;
+  }
+
+  /* Hero section - show as header */
+  #home {
+    padding: 0 !important;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    margin-bottom: 1em;
+  }
+
+  .hero-content {
+    position: static;
+    transform: none;
+    padding: 1em 0;
+  }
+
+  /* Page breaks */
+  #about { page-break-before: avoid; }
+  #bio { page-break-before: always; }
+  #contact { page-break-before: always; }
 }
