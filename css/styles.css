@@ -509,8 +509,7 @@ p {
 a:focus,
 .lang-btn:focus,
 .btn:focus {
-    outline: 2px dashed var(--color-accent);
-    outline-offset: 2px;
+    outline: none;
 }
 
 /* Smooth transitions for interactive elements */
