@@ -1,0 +1,10 @@
+# robots.txt for jonashertner.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.jonashertner.com/sitemap.xml
+
+# Disallow crawling of non-essential files
+Disallow: /snowball/assets/
