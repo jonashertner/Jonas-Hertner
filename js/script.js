@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addressLabel2: "",
         addressPlaceholder2: "PO Box, 4001 Basel", // Use 4001 to match DE/FR; change here if 4010 is correct
         emailLabel: "",
-        emailPlaceholder: "jh@jonashertner.com"
+        emailPlaceholder: "team@jonashertner.com"
       }
     },
     de: {
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addressLabel2: "",
         addressPlaceholder2: "Postfach, 4001 Basel",
         emailLabel: "",
-        emailPlaceholder: "jh@jonashertner.com"
+        emailPlaceholder: "team@jonashertner.com"
       }
     },
     fr: {
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addressLabel2: "",
         addressPlaceholder2: "Case postale, 4001 Bâle",
         emailLabel: "",
-        emailPlaceholder: "jh@jonashertner.com"
+        emailPlaceholder: "team@jonashertner.com"
       }
     }
   };
