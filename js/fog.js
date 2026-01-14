@@ -6,7 +6,7 @@
  */
 (function () {
   const DPR_CAP = 1.5;
-  const DEBUG = true; // Set to true for debugging
+  const DEBUG = false;
 
   onReady(init);
 
@@ -51,7 +51,6 @@
       canvas.remove(); 
       return; 
     }
-    console.log('WebGL context created successfully');
 
     // VERTEX SHADER - This was missing!
     const vertSrc = `
@@ -188,11 +187,6 @@
       gl.uniform1f(uTime, time);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       
-      // Debug logging every 60 frames
-      if (DEBUG && frameCount++ % 60 === 0) {
-        console.log('Fog rendering, time:', time.toFixed(2));
-      }
-      
       if (document.visibilityState === 'visible') {
         raf = requestAnimationFrame(loop);
       }
@@ -212,6 +206,5 @@
     resize();
     raf = requestAnimationFrame(loop);
     
-    console.log('Fog initialization complete');
   }
 })();

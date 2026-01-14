@@ -10,6 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTopBtn = document.getElementById('back-to-top');
   const lastSection = document.getElementById('jh');
 
+  // --- Lazy load background images ---
+  const lazyBgSections = document.querySelectorAll('#services1, #services3, #services5, #bio, #jh');
+  if ('IntersectionObserver' in window && lazyBgSections.length) {
+    const bgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('bg-loaded');
+            bgObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { root: mainContent, rootMargin: '200px 0px', threshold: 0 }
+    );
+    lazyBgSections.forEach((section) => bgObserver.observe(section));
+  } else {
+    // Fallback: load all backgrounds immediately
+    lazyBgSections.forEach((section) => section.classList.add('bg-loaded'));
+  }
+
   // --- Translations (fixed FR bio stray </a>) ---
   const content = {
     en: {
@@ -42,9 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "Jonas is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies."
         },
         service5: {
-          title: "Artificial intelligence and large language models",
+          title: "Artificial intelligence",
           description:
-            "Experienced in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area, including related to technical limitations, privacy and data security, intellectual property rights, and ethical and psychological considerations as well as on their use in corporate governance and decision-making."
+            "Experienced in the application of AI tools across various modalities—including large language models, multimodal systems, and agentic AI—Jonas regularly advises on emerging legal issues in this rapidly evolving field. His practice covers technical capabilities and limitations, privacy and data security, intellectual property rights, liability frameworks, and ethical considerations, as well as the strategic use of AI in corporate governance and decision-making."
         },
         service6: {
           title: "Philosophy",
@@ -64,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addressLabel2: "",
         addressPlaceholder2: "PO Box, 4001 Basel", // Use 4001 to match DE/FR; change here if 4010 is correct
         emailLabel: "",
-        emailPlaceholder: "jh@jonashertner.com"
+        emailPlaceholder: "team@jonashertner.com"
       }
     },
     de: {
@@ -99,9 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "Jonas arbeitet mit Partnern in der Schweiz und auf internationaler Ebene zusammen, um Prozesse zum Schutz der Grundrechte und -freiheiten zu führen, insbesondere in den Bereichen Ökologie (Schutz von Lebensräumen) und neue Technologien."
         },
         service5: {
-          title: "Künstliche Intelligenz und Large Language Models",
+          title: "Künstliche Intelligenz",
           description:
-            "Mit seiner Erfahrung im Einsatz von grossen Sprachmodellen (LLMs) in den Bereichen Governance und Bildung berät Jonas zu aufkommenden Rechtsfragen in diesem Gebiet, insbesondere in Bezug auf technische Nutzungsbeschränkungen, Datenschutz und Datensicherheit, Rechte des geistigen Eigentums und ethische und psychologische Überlegungen sowie deren Einsatz in der Unternehmensführung und Entscheidungsfindung."
+            "Mit Erfahrung im Einsatz von KI-Werkzeugen verschiedener Modalitäten—darunter grosse Sprachmodelle, multimodale Systeme und agentische KI—berät Jonas regelmässig zu aufkommenden Rechtsfragen in diesem sich rasch entwickelnden Bereich. Seine Praxis umfasst technische Möglichkeiten und Grenzen, Datenschutz und Datensicherheit, Rechte des geistigen Eigentums, Haftungsfragen und ethische Überlegungen sowie den strategischen Einsatz von KI in der Unternehmensführung und Entscheidungsfindung."
         },
         service6: {
           title: "Philosophie",
@@ -121,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addressLabel2: "",
         addressPlaceholder2: "Postfach, 4001 Basel",
         emailLabel: "",
-        emailPlaceholder: "jh@jonashertner.com"
+        emailPlaceholder: "team@jonashertner.com"
       }
     },
     fr: {
@@ -156,9 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "Jonas collabore avec des acteurs en Suisse et à l’international afin de mener des procédures judiciaires visant à protéger les droits et libertés fondamentaux, en particulier dans les domaines de la protection de l’environnement (préservation des habitats) et des nouvelles technologies."
         },
         service5: {
-          title: "L'intelligence artificielle et les grands modèles de langage",
+          title: "Intelligence artificielle",
           description:
-            "Expérimenté dans l’utilisation des outils d’intelligence artificielle (IA) et des grands modèles de langage (LLM) appliqués à la gouvernance et à l’éducation, Jonas conseille ses clients sur les questions juridiques émergentes dans ce domaine, notamment en ce qui concerne les limitations techniques, la confidentialité et la sécurité des données, les droits de propriété intellectuelle et les réflexions éthiques et psychologiques, ainsi que sur leur utilisation dans la gouvernance d'entreprise et la prise de décision."
+            "Fort d'une expérience dans l'application d'outils d'IA de diverses modalités—notamment les grands modèles de langage, les systèmes multimodaux et l'IA agentique—Jonas conseille régulièrement sur les questions juridiques émergentes dans ce domaine en rapide évolution. Sa pratique couvre les capacités et limitations techniques, la confidentialité et la sécurité des données, les droits de propriété intellectuelle, les cadres de responsabilité et les considérations éthiques, ainsi que l'utilisation stratégique de l'IA dans la gouvernance d'entreprise et la prise de décision."
         },
         service6: {
           title: "Philosophie",
@@ -178,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addressLabel2: "",
         addressPlaceholder2: "Case postale, 4001 Bâle",
         emailLabel: "",
-        emailPlaceholder: "jh@jonashertner.com"
+        emailPlaceholder: "team@jonashertner.com"
       }
     }
   };
