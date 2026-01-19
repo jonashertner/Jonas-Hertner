@@ -7,11 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainContent = document.getElementById('main-content');
   const heroHeading = document.getElementById('home-heading');
   const heroSubtitle = document.querySelector('[data-key="hero.subtitle"]');
-  const backToTopBtn = document.getElementById('back-to-top');
-  const lastSection = document.getElementById('jh');
 
   // --- Lazy load background images ---
-  const lazyBgSections = document.querySelectorAll('#services1, #services3, #services5, #bio, #jh');
+  const lazyBgSections = document.querySelectorAll('#services1, #services3, #services5, #bio');
   if ('IntersectionObserver' in window && lazyBgSections.length) {
     const bgObserver = new IntersectionObserver(
       (entries) => {
@@ -34,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const content = {
     en: {
       hero: { title: "Jonas Hertner", subtitle: "ATTORNEY" },
-      snow: { on: "Let it snow", off: "Stop snow" },
       about: {
         heading: "Jonas Hertner",
         content:
@@ -90,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     de: {
       nav: { home: "Home", about: "Über", services: "Dienstleistungen", contact: "Kontakt" },
       hero: { title: "Jonas Hertner", subtitle: "ADVOKAT" },
-      snow: { on: "Lass es schneien", off: "Schnee aus" },
       about: {
         heading: "Jonas Hertner",
         content:
@@ -147,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fr: {
       nav: { home: "Accueil", about: "À propos", services: "Services", contact: "Contact" },
       hero: { title: "Jonas Hertner", subtitle: "AVOCAT" },
-      snow: { on: "Qu’il neige", off: "Arrêter la neige" },
       about: {
         heading: "Jonas Hertner",
         content:
@@ -323,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function adjustNavbarStyle(currentSection = 'home') {
     if (!navbar || !languageSwitcher) return;
-    if (['home', 'jh', 'services1', 'services3', 'services5', 'bio'].includes(currentSection)) {
+    if (['home', 'services1', 'services3', 'services5', 'bio'].includes(currentSection)) {
       navbar.classList.remove('dark');
       languageSwitcher.style.color = 'white';
     } else {
@@ -368,34 +363,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Finally start the one-time typewriter for landing title
   startTypewriter(storedLang);
-
-  // Back-to-top (works with scroll container #main-content)
-  if (backToTopBtn && mainContent) {
-    backToTopBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      try {
-        mainContent.scrollTo({ top: 0, behavior: 'smooth' });
-      } catch {
-        mainContent.scrollTop = 0;
-      }
-    });
-  }
-
-  // Only show the button when the last section is in view (prevents it floating everywhere).
-  if (backToTopBtn && mainContent && lastSection) {
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          const e = entries[0];
-          const on = !!e && (e.isIntersecting || e.intersectionRatio > 0.4);
-          backToTopBtn.classList.toggle('is-visible', on);
-        },
-        { root: mainContent, threshold: [0, 0.25, 0.4, 0.6] }
-      );
-      io.observe(lastSection);
-    } else {
-      // Fallback: keep it visible.
-      backToTopBtn.classList.add('is-visible');
-    }
-  }
 });
