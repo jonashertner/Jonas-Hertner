@@ -22,7 +22,6 @@
   <header>
     <nav class="navbar" role="navigation" aria-label="Language Switcher">
       <div class="language-switcher">
-        <button id="snow-toggle" class="lang-btn snow-toggle" aria-label="Toggle snow" aria-pressed="false"></button>
         <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
         <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
         <button id="lang-fr" class="lang-btn" aria-label="Switch to French" aria-pressed="false">FR</button>
@@ -141,16 +140,6 @@
       </div>
     </section>
 
-    <section id="jh" class="section contact-section" aria-label="Snowball area">
-      <div class="snow-section" id="snowArea">
-        <canvas class="snow-canvas2d" id="splat2d"></canvas>
-        <canvas class="snow-canvas3d" id="fx3d"></canvas>
-        <div class="snow-hint">Swipe/flick to throw. Double-tap to clear.</div>
-        <button class="snow-back-top" id="back-to-top" type="button" aria-label="Back to top">
-          Back to top
-        </button>
-      </div>
-    </section>
   </main>
 
   <noscript>
@@ -161,7 +150,5 @@
 
   <script defer src="js/fog.js"></script>
   <script defer src="js/script.js"></script>
-  <script defer src="js/snow.js"></script>
-  <script type="module" src="/snowball/app.js"></script>
 </body>
 </html>
