@@ -597,25 +597,44 @@ a:focus,
 }
 
 /* ========================================
-   PRINT STYLES — Elegant Legal Document
+   PRINT STYLES — Typographic Excellence
+
+   Based on classical book typography:
+   · Tschichold's principles of asymmetric typography
+   · Optimal measure: 66 characters per line
+   · Modular scale: 1.25 (major third)
+   · Baseline: 14pt
    ======================================== */
 @media print {
-  /* ---- Page Setup ---- */
+  /* ---- Page Geometry ----
+     Classical proportions inspired by Van de Graaf canon
+     Inner margin narrower than outer for binding
+     Head margin smaller than foot for optical balance */
   @page {
     size: A4;
-    margin: 2.5cm 2cm 2cm 2cm;
+    margin: 20mm 25mm 35mm 20mm;
   }
 
   @page :first {
-    margin-top: 1.5cm;
+    margin-top: 25mm;
   }
 
-  /* ---- Reset ---- */
+  @page :left {
+    margin-left: 25mm;
+    margin-right: 20mm;
+  }
+
+  @page :right {
+    margin-left: 20mm;
+    margin-right: 25mm;
+  }
+
+  /* ---- Foundation Reset ---- */
   *,
   *::before,
   *::after {
     background: transparent !important;
-    color: #000 !important;
+    color: #1a1a1a !important;
     box-shadow: none !important;
     text-shadow: none !important;
     -webkit-print-color-adjust: exact;
@@ -634,13 +653,18 @@ a:focus,
     display: none !important;
   }
 
-  /* ---- Document Flow ---- */
+  /* ---- Document Foundation ----
+     10.5pt body / 14pt baseline = 1.33 leading
+     Optimal for extended reading */
   html, body {
     height: auto !important;
     overflow: visible !important;
-    font-family: 'Bradford', 'Times New Roman', Georgia, serif;
-    font-size: 11pt;
-    line-height: 1.65;
+    font-family: 'Bradford', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-size: 10.5pt;
+    line-height: 14pt;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
     background: #fff !important;
   }
 
@@ -650,15 +674,15 @@ a:focus,
     scroll-snap-type: none;
   }
 
-  /* ---- Header / Hero ---- */
+  /* ---- Masthead ---- */
   #home {
     min-height: auto !important;
     height: auto !important;
-    padding: 0 0 1.5em 0 !important;
-    margin-bottom: 1.5em;
-    border-bottom: 0.5pt solid #000;
+    padding: 0 !important;
+    margin-bottom: 28pt;
     display: block !important;
     text-align: left;
+    border: none;
   }
 
   .hero-content {
@@ -669,27 +693,44 @@ a:focus,
     display: block;
   }
 
+  /* Display type: 32pt on 36pt baseline */
   .hero-content h1 {
-    font-size: 28pt;
+    font-size: 32pt;
+    line-height: 36pt;
     font-weight: normal;
-    letter-spacing: 0.02em;
-    margin-bottom: 0.15em;
+    letter-spacing: 0.01em;
+    margin: 0 0 4pt 0;
   }
 
+  /* Small caps for role - synthesized if unavailable */
   .hero-content p {
-    font-size: 11pt;
+    font-size: 9pt;
+    line-height: 14pt;
     font-weight: normal;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
+    font-variant: small-caps;
     margin: 0;
+    color: #444 !important;
   }
 
-  /* ---- Sections ---- */
+  /* Elegant separator after masthead */
+  #home::after {
+    content: '';
+    display: block;
+    width: 40pt;
+    height: 0.75pt;
+    background: #1a1a1a !important;
+    margin-top: 18pt;
+  }
+
+  /* ---- Section Rhythm ----
+     Each section: 2 baseline units spacing */
   .section {
     min-height: auto !important;
     height: auto !important;
     padding: 0 !important;
-    margin-bottom: 1.75em;
+    margin-bottom: 28pt;
     scroll-snap-align: none;
     display: block !important;
     page-break-inside: avoid;
@@ -699,39 +740,62 @@ a:focus,
     margin-bottom: 0;
   }
 
-  /* ---- Typography ---- */
+  /* ---- Headings ----
+     13pt on 14pt = tight leading for display
+     Tracked small caps for authority */
   h2 {
-    font-family: 'Bradford', 'Times New Roman', Georgia, serif;
-    font-size: 13pt;
+    font-family: 'Bradford', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-size: 9.5pt;
+    line-height: 14pt;
     font-weight: normal;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 0.6em;
-    padding-bottom: 0.3em;
-    border-bottom: 0.25pt solid #999;
+    font-variant: small-caps;
+    margin: 0 0 10pt 0;
+    padding: 0;
+    border: none;
     page-break-after: avoid;
+    color: #333 !important;
   }
 
+  /* ---- Body Typography ----
+     Justified with careful hyphenation
+     Last line left-aligned (default browser behavior) */
   p {
     font-size: 10.5pt;
-    line-height: 1.7;
-    margin-bottom: 0.8em;
+    line-height: 14pt;
+    margin: 0 0 14pt 0;
     text-align: justify;
+    text-justify: inter-word;
     hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-chars: 6 3 2;
+    hyphenate-limit-lines: 2;
+    hyphenate-limit-last: always;
     orphans: 3;
     widows: 3;
   }
 
+  /* No bottom margin on final paragraphs */
   p:last-child {
     margin-bottom: 0;
   }
 
-  /* ---- Content Containers ---- */
+  /* First paragraph after heading: no indent */
+  h2 + .about-content p:first-of-type,
+  h2 + .service-item p:first-of-type,
+  .about-content p:first-of-type,
+  .service-item p:first-of-type {
+    text-indent: 0;
+  }
+
+  /* ---- Content Measure ----
+     Constrain to ~66 chars for optimal readability */
   .about-content,
   .services-content,
   .bio-content,
   .contact-content {
-    max-width: 100%;
+    max-width: 33em;
     padding: 0;
   }
 
@@ -739,51 +803,86 @@ a:focus,
     margin: 0;
   }
 
-  /* ---- Links ---- */
+  /* ---- Links ----
+     Subtle underline, no URL expansion for clean layout */
   a {
     text-decoration: none;
-    border-bottom: 0.5pt solid #666;
+    border-bottom: 0.4pt solid #666;
+    padding-bottom: 0.5pt;
   }
 
-  a[href^="mailto"]::after {
+  a[href^="mailto"]::after,
+  a[href^="http"]::after {
     content: none;
   }
 
-  /* ---- Contact Section ---- */
+  /* ---- Philosophy Section ----
+     Elegant blockquote treatment with hanging punctuation */
+  #services6 {
+    margin-top: 14pt;
+    margin-bottom: 28pt;
+  }
+
+  #services6 h2 {
+    margin-bottom: 14pt;
+  }
+
+  #services6 p {
+    font-style: italic;
+    text-align: left;
+    margin-left: 0;
+    padding-left: 14pt;
+    border-left: 1.5pt solid #ccc;
+    text-indent: -0.4em; /* Optical alignment for opening quote */
+  }
+
+  /* ---- Biography Section ---- */
+  #bio {
+    page-break-before: auto;
+  }
+
+  /* ---- Contact Section ----
+     Clean, functional layout as document footer */
   #contact {
-    margin-top: 2em;
-    padding-top: 1.5em !important;
-    border-top: 0.5pt solid #000;
+    margin-top: 42pt;
+    padding-top: 14pt !important;
+    border-top: 0.5pt solid #1a1a1a;
+    page-break-before: auto;
+    page-break-inside: avoid;
   }
 
   #contact h2 {
-    border-bottom: none;
-    padding-bottom: 0;
+    margin-bottom: 14pt;
   }
 
   .contact-info {
-    display: block;
-    column-count: 2;
-    column-gap: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14pt;
   }
 
   .contact-info p {
     text-align: left;
-    margin-bottom: 0.4em;
-    break-inside: avoid;
+    margin-bottom: 0;
+    font-size: 9pt;
+    line-height: 13pt;
   }
 
   .contact-info strong {
     font-weight: normal;
     text-transform: uppercase;
-    font-size: 8pt;
-    letter-spacing: 0.1em;
+    font-size: 7pt;
+    letter-spacing: 0.15em;
     display: block;
-    margin-bottom: 0.1em;
-    color: #555 !important;
+    margin-bottom: 3pt;
+    color: #666 !important;
   }
 
-  /* ---- Page Breaks ---- */
+  .contact-info a {
+    border: none;
+  }
+
+  /* ---- Page Break Control ---- */
   #about {
     page-break-before: avoid;
   }
@@ -797,33 +896,15 @@ a:focus,
     page-break-inside: avoid;
   }
 
-  #bio {
-    page-break-before: auto;
-  }
-
-  #contact {
-    page-break-before: auto;
-    page-break-inside: avoid;
-  }
-
-  /* ---- Philosophy Quote Styling ---- */
-  #services6 p {
-    font-style: italic;
-    text-align: left;
-    padding-left: 1em;
-    border-left: 2pt solid #ccc;
-  }
-
-  /* ---- Footer with URL ---- */
+  /* ---- Colophon ---- */
   #contact::after {
-    content: "jonashertner.com";
+    content: '·  jonashertner.com  ·';
     display: block;
-    margin-top: 3em;
-    padding-top: 1em;
-    border-top: 0.25pt solid #ccc;
-    font-size: 9pt;
-    letter-spacing: 0.1em;
-    color: #666 !important;
+    margin-top: 42pt;
+    font-size: 7.5pt;
+    letter-spacing: 0.2em;
+    text-transform: lowercase;
+    color: #888 !important;
     text-align: center;
   }
 }
