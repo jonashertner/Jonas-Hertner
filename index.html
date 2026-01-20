@@ -2,82 +2,153 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Jonas Hertner — Attorney</title>
-  <meta name="description" content="Jonas Hertner is an independent lawyer in Zurich and Basel.">
-  <link rel="canonical" href="https://www.jonashertner.com/">
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="preload" href="fonts/BradfordLLWeb-Book.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="description" content="Jonas Hertner is an experienced attorney in Zurich and Basel, guiding Swiss and international clients through complex legal situations.">
+  <meta name="keywords" content="Jonas Hertner, attorney, lawyer, Zurich, Basel, complex disputes, impact litigation, litigation, criminal law, constitutional law, AI law, shareholder disputes, Anwalt, Rechtsanwalt, Zürich, Basel, komplexe Streitigkeiten, strategische Prozessführung, Prozessführung, Strafrecht, Verfassungsrecht, KI-Recht, Aktionärsstreitigkeiten, avocat, juriste, Zurich, Bâle, litiges complexes, contentieux stratégique, contentieux, droit pénal, droit constitutionnel, droit de l'IA, litiges entre actionnaires, don't panic">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="Jonas Hertner">
+  <meta property="og:description" content="Experienced attorney in Zurich and Basel.">
+  <meta property="og:url" content="https://www.jonashertner.com">
+  <meta property="og:image" content="https://www.jonashertner.com/images/jh.jpg">
+
+  <title>Jonas Hertner</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Controls -->
-  <nav class="ctrl">
-    <div class="lang">
-      <button class="lang__btn active" id="lang-en">EN</button>
-      <button class="lang__btn" id="lang-de">DE</button>
-      <button class="lang__btn" id="lang-fr">FR</button>
-    </div>
-    <button class="theme" id="theme-toggle" aria-label="Toggle theme"></button>
-  </nav>
 
-  <!-- Navigation Dots -->
-  <div class="dots">
-    <button class="dot active" data-panel="0" aria-label="Panel 1"></button>
-    <button class="dot" data-panel="1" aria-label="Panel 2"></button>
-  </div>
-
-  <!-- Panels -->
-  <main class="panels" id="panels">
-    <!-- Panel 0: Hero -->
-    <section class="panel active" data-index="0">
-      <div class="hero">
-        <h1 class="hero__name"><span class="tw" data-key="hero.name">Jonas Hertner</span></h1>
-        <p class="hero__role tw" data-key="hero.role">Attorney</p>
-        <p class="hero__loc" data-key="hero.loc">Zurich · Basel</p>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Language Switcher">
+      <div class="language-switcher">
+        <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
+        <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
+        <button id="lang-fr" class="lang-btn" aria-label="Switch to French" aria-pressed="false">FR</button>
       </div>
-      <p class="hint">→</p>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- Home Section -->
+    <section id="home" class="section" aria-labelledby="home-heading">
+      <picture class="hero-image">
+
+        <img src="images/services5-bg.jpg" alt="Hero background">
+      </picture>
+      <div class="hero-content">
+
+        <h1 id="home-heading" data-key="hero.title" aria-label="Jonas Hertner, ATTORNEY">Jonas Hertner</h1>
+        <p data-key="hero.subtitle">ATTORNEY</p>
+      </div>
     </section>
 
-    <!-- Panel 1: Content -->
-    <section class="panel" data-index="1">
-      <div class="content">
-        <div class="col col--a">
-          <pre class="ascii" id="ascii" aria-hidden="true"></pre>
-          <p class="about" data-key="about">Independent lawyer with over a decade guiding Swiss and international clients through high-stakes disputes. Trusted advisor committed to excellence.</p>
-        </div>
-        <div class="col col--b">
-          <h2 class="lbl" data-key="practice.title">Practice</h2>
-          <ul class="list">
-            <li data-key="practice.1">Litigation & Mediation</li>
-            <li data-key="practice.2">Families & Foundations</li>
-            <li data-key="practice.3">Criminal Law</li>
-            <li data-key="practice.4">Constitutional Law</li>
-            <li data-key="practice.5">Artificial Intelligence</li>
-          </ul>
-          <blockquote class="quote" data-key="quote">"Curiosity, excellence, empathy."</blockquote>
-        </div>
-        <div class="col col--c">
-          <h2 class="lbl" data-key="bio.title">Biography</h2>
-          <p class="bio" data-key="bio.text">Lucerne · Geneva · FDFA · Basel Court · Quinn Emanuel</p>
-          <h2 class="lbl" data-key="notes.title">Feldnotizen</h2>
-          <a href="notes.html" class="link" data-key="notes.1">LLM Tutors</a>
-          <a href="notes.html" class="link" data-key="notes.2">AI Governance</a>
-          <address class="addr">
-            <span>Zurich · Asylstrasse 41</span>
-            <span>Basel · PO Box 4001</span>
-            <a href="mailto:team@jonashertner.com">team@jonashertner.com</a>
-          </address>
-          <small class="copy">&copy; <span id="year"></span></small>
+    <!-- About Section -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="about-content">
+        <h2 id="about-heading" data-key="about.heading">Jonas Hertner</h2>
+        <p data-key="about.content">Jonas Hertner is an independent lawyer based in Zurich and Basel, with more than a decade of experience guiding Swiss and international clients through high-stakes legal disputes, often across multiple jurisdictions. He advises individuals, families, foundations, and companies in navigating complex situations as they work toward achieving their goals. To his clients, he is a trusted advisor and unwavering advocate, committed to excellence in protecting and advancing their long-term interests.</p>
+      </div>
+    </section>
+
+    <!-- Services Section 1 -->
+    <section id="services1" class="section services-section" aria-labelledby="services1-heading">
+      <div class="services-content">
+        <h2 id="services1-heading" data-key="services.service1.title">Litigation and mediation</h2>
+        <div class="service-item">
+          <p data-key="services.service1.description">Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of top-level litigation experience, Jonas will help you consider not only your own perspective, but also those of the opposing side and any arbiter who may ultimately decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest.</p>
         </div>
       </div>
     </section>
+
+    <!-- Services Section 2 -->
+    <section id="services2" class="section services-section" aria-labelledby="services2-heading">
+      <div class="services-content">
+        <h2 id="services2-heading" data-key="services.service2.title">Families, foundations, and individuals</h2>
+        <div class="service-item">
+          <p data-key="services.service2.description">Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value assets, due diligence, good governance, and generational transitions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 3 -->
+    <section id="services3" class="section services-section" aria-labelledby="services3-heading">
+      <div class="services-content">
+        <h2 id="services3-heading" data-key="services.service3.title">Criminal law</h2>
+        <div class="service-item">
+          <p data-key="services.service3.description">Jonas has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 4 -->
+    <section id="services4" class="section services-section" aria-labelledby="services4-heading">
+      <div class="services-content">
+        <h2 id="services4-heading" data-key="services.service4.title">Constitutional law, civil rights and impact litigation</h2>
+        <div class="service-item">
+          <p data-key="services.service4.description">Jonas is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 5 -->
+    <section id="services5" class="section services-section" aria-labelledby="services5-heading">
+      <div class="services-content">
+        <h2 id="services5-heading" data-key="services.service5.title">Artificial intelligence and large language models</h2>
+        <div class="service-item">
+          <p data-key="services.service5.description">Experienced in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area, including related to technical limitations, privacy and data security, intellectual property rights, and ethical and psychological considerations as well as on their use in corporate governance and decision-making.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section 6 -->
+    <section id="services6" class="section services-section" aria-labelledby="services6-heading">
+      <div class="services-content">
+        <h2 id="services6-heading" data-key="services.service6.title">Philosophy</h2>
+        <div class="service-item">
+          <p data-key="services.service6.description">«At the heart of my practice is an unwavering dedication to my clients' long-term interests, informed by my extensive experience at the highest level of the profession. I question assumptions and consider every angle to identify the most effective approach, distilling a complex array of factors into actionable advice. Guided by curiosity, excellence, empathy, and a pursuit of fair and just outcomes, I remain focused on what truly matters. In doing so, I help clients navigate complexity, protect their rights, and achieve their goals.»</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section id="bio" class="section" aria-labelledby="bio-heading">
+      <div class="about-content">
+        <h2 id="bio-heading" data-key="bio.heading">Biography</h2>
+        <p data-key="bio.content" data-html="true">Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children's education, ecology, and the arts.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="contact-content">
+        <h2 id="contact-heading" data-key="contact.heading">Contact</h2>
+        <div class="contact-info">
+          <p>
+            <strong data-key="contact.addressLabel1">Address:</strong>
+            <span data-key="contact.addressPlaceholder1">Asylstrasse 41, 8032 Zurich</span>
+          </p>
+          <p>
+            <strong data-key="contact.addressLabel2">Address:</strong>
+            <span data-key="contact.addressPlaceholder2">PO Box, 4001 Basel</span>
+          </p>
+          <p>
+            <strong data-key="contact.emailLabel">Email:</strong>
+            <a href="mailto:jh@jonashertner.com" data-key="contact.emailPlaceholder">jh@jonashertner.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Arrow Navigation -->
-  <button class="arrow arrow--l" data-dir="-1" aria-label="Previous">‹</button>
-  <button class="arrow arrow--r" data-dir="1" aria-label="Next">›</button>
+  <noscript>
+    <style>
+      .language-switcher { display: flex; justify-content: flex-end; padding: 15px 30px; }
+    </style>
+  </noscript>
 
-  <script src="js/script.js"></script>
+  <script defer src="js/fog.js"></script>
+  <script defer src="js/script.js"></script>
 </body>
 </html>
