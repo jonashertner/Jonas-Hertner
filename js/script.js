@@ -1,6 +1,6 @@
 /**
  * Jonas Hertner — Website Script
- * Theme toggle, language switching, practice accordion, scroll reveal
+ * Theme toggle, language switching, typewriter effect, scroll reveal
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const sunIcon = document.querySelector('.theme-toggle__sun');
   const moonIcon = document.querySelector('.theme-toggle__moon');
   const languageButtons = document.querySelectorAll('.lang-switcher__btn');
-  const practiceHeaders = document.querySelectorAll('.practice__header');
   const revealElements = document.querySelectorAll('.reveal');
   const yearSpan = document.getElementById('year');
 
@@ -196,6 +195,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // --- Typewriter Effect ---
+  let typewriterActive = false;
+  let typewriterTimeouts = [];
+
+  function clearTypewriter() {
+    typewriterTimeouts.forEach(t => clearTimeout(t));
+    typewriterTimeouts = [];
+    typewriterActive = false;
+  }
+
+  function typewrite(element, text, speed = 60, callback) {
+    if (!element) return;
+
+    // Clear existing content and cursor
+    element.innerHTML = '';
+
+    // Check for reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      element.textContent = text;
+      if (callback) callback();
+      return;
+    }
+
+    // Create cursor
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+
+    let i = 0;
+    const textNode = document.createTextNode('');
+    element.appendChild(textNode);
+    element.appendChild(cursor);
+
+    function type() {
+      if (i < text.length) {
+        textNode.textContent += text.charAt(i);
+        i++;
+        const timeout = setTimeout(type, speed);
+        typewriterTimeouts.push(timeout);
+      } else if (callback) {
+        callback();
+      }
+    }
+
+    type();
+  }
+
+  function startTypewriter(lang) {
+    if (typewriterActive) return;
+    typewriterActive = true;
+
+    const titleSpan = document.querySelector('.hero__title .typewriter');
+    const subtitleEl = document.querySelector('.hero__subtitle');
+
+    const titleText = content[lang].hero.title;
+    const subtitleText = content[lang].hero.subtitle;
+
+    // First type the title
+    typewrite(titleSpan, titleText, 70, () => {
+      // Then type the subtitle after a pause
+      const pauseTimeout = setTimeout(() => {
+        typewrite(subtitleEl, subtitleText, 50, () => {
+          typewriterActive = false;
+        });
+      }, 300);
+      typewriterTimeouts.push(pauseTimeout);
+    });
+  }
+
   // --- Theme Toggle ---
   function getSystemTheme() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -220,11 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.dataset.theme = 'light';
       if (sunIcon) sunIcon.style.display = 'block';
       if (moonIcon) moonIcon.style.display = 'none';
-    }
-
-    // Update particles if available
-    if (typeof window.updateParticleTheme === 'function') {
-      window.updateParticleTheme(theme === 'dark');
     }
   }
 
@@ -254,14 +317,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return path.split('.').reduce((acc, key) => acc && acc[key], obj);
   }
 
-  function changeLanguage(lang) {
+  function changeLanguage(lang, animate = false) {
     if (!content[lang]) return;
+
+    // Clear typewriter if running
+    clearTypewriter();
 
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.getAttribute('data-key');
       const text = getNestedValue(content[lang], key);
 
       if (text !== undefined) {
+        // Skip typewriter elements if animating
+        if (animate && el.classList.contains('typewriter')) return;
+        if (animate && el.classList.contains('hero__subtitle')) return;
+
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
           el.placeholder = text;
         } else {
@@ -284,46 +354,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
+
+    // Start typewriter if animating
+    if (animate) {
+      startTypewriter(lang);
+    }
   }
 
   // Initialize language
   const storedLang = localStorage.getItem('language');
   const initialLang = storedLang && content[storedLang] ? storedLang : 'en';
-  changeLanguage(initialLang);
+
+  // Set initial content without animation
+  changeLanguage(initialLang, false);
+
+  // Start typewriter after a brief delay
+  setTimeout(() => {
+    startTypewriter(initialLang);
+  }, 500);
 
   // Language button listeners
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.replace('lang-', '');
-      changeLanguage(lang);
-    });
-  });
-
-  // --- Practice Accordion ---
-  practiceHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.closest('.practice__item');
-      const isExpanded = item.classList.contains('expanded');
-
-      // Close all items
-      document.querySelectorAll('.practice__item.expanded').forEach(openItem => {
-        openItem.classList.remove('expanded');
-        openItem.querySelector('.practice__header').setAttribute('aria-expanded', 'false');
-      });
-
-      // Open clicked item if it wasn't already open
-      if (!isExpanded) {
-        item.classList.add('expanded');
-        header.setAttribute('aria-expanded', 'true');
-      }
-    });
-
-    // Keyboard support
-    header.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        header.click();
-      }
+      changeLanguage(lang, true);
     });
   });
 

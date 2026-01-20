@@ -69,18 +69,20 @@
 <body>
   <!-- SVG Halftone Filter -->
   <svg class="halftone-filter" xmlns="http://www.w3.org/2000/svg">
-    <filter id="halftone" x="0" y="0" width="100%" height="100%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur"/>
-      <feComponentTransfer in="blur" result="contrast">
-        <feFuncR type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1"/>
-        <feFuncG type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1"/>
-        <feFuncB type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1"/>
-      </feComponentTransfer>
-    </filter>
+    <defs>
+      <pattern id="halftone-pattern" patternUnits="userSpaceOnUse" width="4" height="4">
+        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+      </pattern>
+      <filter id="halftone" x="0" y="0" width="100%" height="100%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
+        <feComponentTransfer in="blur" result="threshold">
+          <feFuncR type="discrete" tableValues="0 0.15 0.3 0.45 0.6 0.75 0.9 1"/>
+          <feFuncG type="discrete" tableValues="0 0.15 0.3 0.45 0.6 0.75 0.9 1"/>
+          <feFuncB type="discrete" tableValues="0 0.15 0.3 0.45 0.6 0.75 0.9 1"/>
+        </feComponentTransfer>
+      </filter>
+    </defs>
   </svg>
-
-  <!-- Three.js Canvas Container -->
-  <div id="canvas-container" aria-hidden="true"></div>
 
   <!-- Header -->
   <header class="header">
@@ -105,9 +107,11 @@
   <main>
     <!-- Hero Section -->
     <section class="section section--hero" id="hero">
-      <div class="hero reveal">
-        <h1 class="hero__title" data-key="hero.title">Jonas Hertner</h1>
-        <p class="hero__subtitle" data-key="hero.subtitle">ATTORNEY</p>
+      <div class="hero">
+        <h1 class="hero__title" id="hero-title" aria-label="Jonas Hertner, Attorney, Zurich and Basel">
+          <span class="typewriter" data-key="hero.title">Jonas Hertner</span>
+        </h1>
+        <p class="hero__subtitle typewriter" data-key="hero.subtitle">ATTORNEY</p>
         <p class="hero__location" data-key="hero.location">Zurich · Basel</p>
       </div>
     </section>
@@ -125,53 +129,31 @@
       <div class="practice reveal">
         <span class="content__label" data-key="practice.label">Practice</span>
         <h2 class="content__heading" data-key="practice.heading">Areas of Expertise</h2>
-        <ul class="practice__list">
-          <li class="practice__item">
-            <div class="practice__header" tabindex="0" role="button" aria-expanded="false">
-              <h3 class="practice__title" data-key="practice.litigation.title">Litigation and mediation</h3>
-              <span class="practice__arrow" aria-hidden="true">+</span>
-            </div>
-            <div class="practice__body">
-              <p class="practice__description" data-key="practice.litigation.description">Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of top-level litigation experience, Jonas will help you consider not only your own perspective, but also those of the opposing side and any arbiter who may ultimately decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest.</p>
-            </div>
-          </li>
-          <li class="practice__item">
-            <div class="practice__header" tabindex="0" role="button" aria-expanded="false">
-              <h3 class="practice__title" data-key="practice.families.title">Families, foundations, and individuals</h3>
-              <span class="practice__arrow" aria-hidden="true">+</span>
-            </div>
-            <div class="practice__body">
-              <p class="practice__description" data-key="practice.families.description">Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value assets, due diligence, good governance, and generational transitions.</p>
-            </div>
-          </li>
-          <li class="practice__item">
-            <div class="practice__header" tabindex="0" role="button" aria-expanded="false">
-              <h3 class="practice__title" data-key="practice.criminal.title">Criminal law</h3>
-              <span class="practice__arrow" aria-hidden="true">+</span>
-            </div>
-            <div class="practice__body">
-              <p class="practice__description" data-key="practice.criminal.description">Jonas has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights.</p>
-            </div>
-          </li>
-          <li class="practice__item">
-            <div class="practice__header" tabindex="0" role="button" aria-expanded="false">
-              <h3 class="practice__title" data-key="practice.constitutional.title">Constitutional law, civil rights and impact litigation</h3>
-              <span class="practice__arrow" aria-hidden="true">+</span>
-            </div>
-            <div class="practice__body">
-              <p class="practice__description" data-key="practice.constitutional.description">Jonas is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies.</p>
-            </div>
-          </li>
-          <li class="practice__item">
-            <div class="practice__header" tabindex="0" role="button" aria-expanded="false">
-              <h3 class="practice__title" data-key="practice.ai.title">Artificial intelligence</h3>
-              <span class="practice__arrow" aria-hidden="true">+</span>
-            </div>
-            <div class="practice__body">
-              <p class="practice__description" data-key="practice.ai.description">Experienced in the application of AI tools across various modalities—including large language models, multimodal systems, and agentic AI—Jonas regularly advises on emerging legal issues in this rapidly evolving field. His practice covers technical capabilities and limitations, privacy and data security, intellectual property rights, liability frameworks, and ethical considerations, as well as the strategic use of AI in corporate governance and decision-making.</p>
-            </div>
-          </li>
-        </ul>
+
+        <div class="practice__area">
+          <h3 class="practice__title" data-key="practice.litigation.title">Litigation and mediation</h3>
+          <p class="practice__description" data-key="practice.litigation.description">Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon. With more than a decade of top-level litigation experience, Jonas will help you consider not only your own perspective, but also those of the opposing side and any arbiter who may ultimately decide the dispute, allowing you to take the most effective action at each turn on the way to securing your interest.</p>
+        </div>
+
+        <div class="practice__area">
+          <h3 class="practice__title" data-key="practice.families.title">Families, foundations, and individuals</h3>
+          <p class="practice__description" data-key="practice.families.description">Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations–including on high-stakes shareholder disputes, important financial litigation, investigations of criminal acts as well as non-litigious situations such as assisting with the building of business ventures, acquisitions of high-value assets, due diligence, good governance, and generational transitions.</p>
+        </div>
+
+        <div class="practice__area">
+          <h3 class="practice__title" data-key="practice.criminal.title">Criminal law</h3>
+          <p class="practice__description" data-key="practice.criminal.description">Jonas has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights.</p>
+        </div>
+
+        <div class="practice__area">
+          <h3 class="practice__title" data-key="practice.constitutional.title">Constitutional law, civil rights and impact litigation</h3>
+          <p class="practice__description" data-key="practice.constitutional.description">Jonas is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms, notably in the areas of ecology and new technologies.</p>
+        </div>
+
+        <div class="practice__area">
+          <h3 class="practice__title" data-key="practice.ai.title">Artificial intelligence</h3>
+          <p class="practice__description" data-key="practice.ai.description">Experienced in the application of AI tools across various modalities—including large language models, multimodal systems, and agentic AI—Jonas regularly advises on emerging legal issues in this rapidly evolving field. His practice covers technical capabilities and limitations, privacy and data security, intellectual property rights, liability frameworks, and ethical considerations, as well as the strategic use of AI in corporate governance and decision-making.</p>
+        </div>
       </div>
     </section>
 
@@ -183,11 +165,16 @@
       </div>
     </section>
 
-    <!-- Biography Section -->
+    <!-- Biography Section with Halftone Portrait -->
     <section class="section section--alt" id="biography">
-      <div class="content reveal">
-        <span class="content__label" data-key="bio.label">Biography</span>
-        <p class="content__text" data-key="bio.content">Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children's education, ecology, and the arts.</p>
+      <div class="bio reveal">
+        <div class="bio__portrait">
+          <img src="images/jh.webp" alt="Jonas Hertner" class="bio__image halftone-img" loading="lazy">
+        </div>
+        <div class="bio__content">
+          <span class="content__label" data-key="bio.label">Biography</span>
+          <p class="content__text" data-key="bio.content">Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt. Later, he helped establish the Swiss office of the law firm Quinn Emanuel Urquhart & Sullivan. In addition to his legal practice, Jonas engages in ventures involving children's education, ecology, and the arts.</p>
+        </div>
       </div>
     </section>
 
@@ -237,9 +224,7 @@
     <p class="footer__copy">&copy; <span id="year"></span> Jonas Hertner</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="js/particles.js" defer></script>
+  <!-- Script -->
   <script src="js/script.js" defer></script>
 </body>
 </html>
