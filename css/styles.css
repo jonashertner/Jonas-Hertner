@@ -464,21 +464,105 @@ a {
   transform: none;
 }
 
-/* --- Responsive --- */
+/* --- Responsive (Mobile: Full-height sections with scroll snap) --- */
 @media (max-width: 768px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* All main sections become full viewport */
+  .hero,
+  .about,
+  .practice,
+  .philosophy,
+  .bio,
+  .notes {
+    min-height: 100vh;
+    min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .footer {
+    scroll-snap-align: start;
+  }
+
+  /* Hero adjustments */
+  .hero {
+    padding: var(--space-8) var(--gutter);
+  }
+
+  /* About adjustments */
   .about {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: var(--space-4);
+    padding: var(--space-8) var(--gutter);
+    max-width: none;
   }
 
   .about__portrait {
     position: static;
-    max-width: 200px;
+    max-width: 140px;
     order: -1;
+  }
+
+  .about__text {
+    font-size: var(--text-base);
+  }
+
+  /* Practice adjustments */
+  .practice {
+    padding: var(--space-6) var(--gutter);
+    overflow-y: auto;
+  }
+
+  .practice__heading {
+    margin-bottom: var(--space-4);
   }
 
   .practice__grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .practice__area {
+    padding-top: var(--space-3);
+  }
+
+  .practice__desc {
+    font-size: var(--text-xs);
+    line-height: var(--leading-base);
+  }
+
+  /* Philosophy adjustments */
+  .philosophy {
+    padding: var(--space-8) var(--gutter);
+  }
+
+  .philosophy__quote {
+    font-size: var(--text-lg);
+    padding-left: var(--space-3);
+  }
+
+  /* Bio adjustments */
+  .bio {
+    padding: var(--space-8) var(--gutter);
+    max-width: none;
+  }
+
+  .bio__text {
+    font-size: var(--text-sm);
+  }
+
+  /* Notes adjustments */
+  .notes {
+    padding: var(--space-8) var(--gutter);
   }
 
   .notes__link {
@@ -486,8 +570,16 @@ a {
     gap: 0.25em;
   }
 
+  /* Footer adjustments */
+  .footer {
+    min-height: auto;
+    padding: var(--space-6) var(--gutter);
+  }
+
   .footer__contact {
     grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
   }
 }
 
@@ -574,6 +666,7 @@ a {
 
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none !important;
   }
 
   .reveal {
