@@ -2,81 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Jonas Hertner — Attorney</title>
   <meta name="description" content="Jonas Hertner is an independent lawyer in Zurich and Basel.">
   <link rel="canonical" href="https://www.jonashertner.com/">
   <link rel="icon" href="images/favicon.ico">
   <link rel="preload" href="fonts/BradfordLLWeb-Book.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Attorney","name":"Jonas Hertner","url":"https://www.jonashertner.com"}</script>
 </head>
 <body>
   <!-- Controls -->
-  <nav class="controls">
+  <nav class="ctrl">
     <div class="lang">
       <button class="lang__btn active" id="lang-en">EN</button>
       <button class="lang__btn" id="lang-de">DE</button>
       <button class="lang__btn" id="lang-fr">FR</button>
     </div>
-    <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">
-      <span class="theme-btn__icon"></span>
-    </button>
+    <button class="theme" id="theme-toggle" aria-label="Toggle theme"></button>
   </nav>
 
-  <!-- Screen 1: Hero -->
-  <section class="screen hero">
-    <h1 class="hero__name"><span class="tw" data-key="hero.name">Jonas Hertner</span></h1>
-    <p class="hero__role tw" data-key="hero.role">Attorney</p>
-    <p class="hero__loc" data-key="hero.loc">Zurich · Basel</p>
-  </section>
+  <!-- Navigation Dots -->
+  <div class="dots">
+    <button class="dot active" data-panel="0" aria-label="Panel 1"></button>
+    <button class="dot" data-panel="1" aria-label="Panel 2"></button>
+  </div>
 
-  <!-- Screen 2: Main Content -->
-  <section class="screen main">
-    <div class="main__grid">
-      <!-- Left Column: Portrait + About -->
-      <div class="col col--left">
-        <figure class="portrait">
-          <img src="images/jh.webp" alt="Jonas Hertner" class="portrait__img">
-        </figure>
-        <p class="about" data-key="about">Jonas Hertner is an independent lawyer with over a decade of experience guiding Swiss and international clients through high-stakes disputes. A trusted advisor committed to excellence in protecting long-term interests.</p>
+  <!-- Panels -->
+  <main class="panels" id="panels">
+    <!-- Panel 0: Hero -->
+    <section class="panel active" data-index="0">
+      <div class="hero">
+        <h1 class="hero__name"><span class="tw" data-key="hero.name">Jonas Hertner</span></h1>
+        <p class="hero__role tw" data-key="hero.role">Attorney</p>
+        <p class="hero__loc" data-key="hero.loc">Zurich · Basel</p>
       </div>
+      <p class="hint">→</p>
+    </section>
 
-      <!-- Center Column: Practice -->
-      <div class="col col--center">
-        <h2 class="col__title" data-key="practice.title">Practice</h2>
-        <ul class="practice">
-          <li><span data-key="practice.1">Litigation & Mediation</span></li>
-          <li><span data-key="practice.2">Families & Foundations</span></li>
-          <li><span data-key="practice.3">Criminal Law</span></li>
-          <li><span data-key="practice.4">Constitutional Law</span></li>
-          <li><span data-key="practice.5">Artificial Intelligence</span></li>
-        </ul>
-        <blockquote class="quote" data-key="quote">Guided by curiosity, excellence, and empathy, I remain focused on what truly matters.</blockquote>
-      </div>
-
-      <!-- Right Column: Bio + Notes + Contact -->
-      <div class="col col--right">
-        <div class="bio">
-          <h2 class="col__title" data-key="bio.title">Biography</h2>
-          <p data-key="bio.text">Universities of Lucerne and Geneva. Federal Department of Foreign Affairs. Court of Appeal Basel-Stadt. Quinn Emanuel Urquhart & Sullivan.</p>
+    <!-- Panel 1: Content -->
+    <section class="panel" data-index="1">
+      <div class="content">
+        <div class="col col--a">
+          <pre class="ascii" id="ascii" aria-hidden="true"></pre>
+          <p class="about" data-key="about">Independent lawyer with over a decade guiding Swiss and international clients through high-stakes disputes. Trusted advisor committed to excellence.</p>
         </div>
-        <div class="notes">
-          <h2 class="col__title" data-key="notes.title">Feldnotizen</h2>
-          <a href="notes.html" class="notes__link" data-key="notes.1">LLM Tutors</a>
-          <a href="notes.html" class="notes__link" data-key="notes.2">AI Governance</a>
+        <div class="col col--b">
+          <h2 class="lbl" data-key="practice.title">Practice</h2>
+          <ul class="list">
+            <li data-key="practice.1">Litigation & Mediation</li>
+            <li data-key="practice.2">Families & Foundations</li>
+            <li data-key="practice.3">Criminal Law</li>
+            <li data-key="practice.4">Constitutional Law</li>
+            <li data-key="practice.5">Artificial Intelligence</li>
+          </ul>
+          <blockquote class="quote" data-key="quote">"Curiosity, excellence, empathy."</blockquote>
         </div>
-        <address class="contact">
-          <div><span class="contact__label">Zurich</span> Asylstrasse 41</div>
-          <div><span class="contact__label">Basel</span> PO Box 4001</div>
-          <a href="mailto:team@jonashertner.com" class="contact__email">team@jonashertner.com</a>
-        </address>
+        <div class="col col--c">
+          <h2 class="lbl" data-key="bio.title">Biography</h2>
+          <p class="bio" data-key="bio.text">Lucerne · Geneva · FDFA · Basel Court · Quinn Emanuel</p>
+          <h2 class="lbl" data-key="notes.title">Feldnotizen</h2>
+          <a href="notes.html" class="link" data-key="notes.1">LLM Tutors</a>
+          <a href="notes.html" class="link" data-key="notes.2">AI Governance</a>
+          <address class="addr">
+            <span>Zurich · Asylstrasse 41</span>
+            <span>Basel · PO Box 4001</span>
+            <a href="mailto:team@jonashertner.com">team@jonashertner.com</a>
+          </address>
+          <small class="copy">&copy; <span id="year"></span></small>
+        </div>
       </div>
-    </div>
-    <footer class="footer">
-      <span>&copy; <span id="year"></span> Jonas Hertner</span>
-    </footer>
-  </section>
+    </section>
+  </main>
+
+  <!-- Arrow Navigation -->
+  <button class="arrow arrow--l" data-dir="-1" aria-label="Previous">‹</button>
+  <button class="arrow arrow--r" data-dir="1" aria-label="Next">›</button>
 
   <script src="js/script.js"></script>
 </body>
