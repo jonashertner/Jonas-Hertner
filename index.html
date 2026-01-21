@@ -26,6 +26,7 @@
     <!-- LEFT COLUMN: Image + Navigation -->
     <aside class="left-col">
       <div class="halftone-bg"></div>
+      <div class="left-overlay"></div>
 
       <div class="left-content">
         <header class="brand">
@@ -124,52 +125,96 @@
 
   </div>
 
-  <!-- ===== MOBILE LAYOUT ===== -->
+  <!-- ===== MOBILE: ORIGINAL SCROLL LAYOUT ===== -->
   <div class="mobile">
-    <header class="mobile-head">
-      <h1>Jonas Hertner</h1>
-      <p>Attorney · Zurich · Basel</p>
-      <div class="mobile-lang">
-        <button class="m-lang active" data-lang="en">EN</button>
-        <button class="m-lang" data-lang="de">DE</button>
-        <button class="m-lang" data-lang="fr">FR</button>
-      </div>
+    <header>
+      <nav class="navbar">
+        <div class="language-switcher">
+          <button id="lang-en" class="lang-btn-mobile active" data-lang="en">EN</button>
+          <button id="lang-de" class="lang-btn-mobile" data-lang="de">DE</button>
+          <button id="lang-fr" class="lang-btn-mobile" data-lang="fr">FR</button>
+        </div>
+      </nav>
     </header>
 
-    <main class="mobile-main">
-      <section class="m-section">
-        <h2 data-key="about.heading">About</h2>
-        <p data-key="about.content">Jonas Hertner is an independent lawyer based in Zurich and Basel, with more than a decade of experience guiding Swiss and international clients through high-stakes legal disputes, often across multiple jurisdictions. He advises individuals, families, foundations, and companies in navigating complex situations as they work toward achieving their goals.</p>
+    <main id="main-content">
+      <section id="home" class="section">
+        <picture class="hero-image">
+          <img src="images/services5-bg.jpg" alt="Hero background">
+        </picture>
+        <div class="hero-content">
+          <h1 data-key="hero.title">Jonas Hertner</h1>
+          <p data-key="hero.subtitle">ATTORNEY</p>
+        </div>
       </section>
 
-      <section class="m-section">
-        <h2 data-key="services.service1.title">Litigation</h2>
-        <p data-key="services.service1.description">Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. With more than a decade of top-level litigation experience, Jonas will help you consider not only your own perspective, but also those of the opposing side and any arbiter who may ultimately decide the dispute.</p>
+      <section id="m-about" class="section">
+        <div class="about-content">
+          <h2 data-key="about.heading">Jonas Hertner</h2>
+          <p data-key="about.content">Jonas Hertner is an independent lawyer based in Zurich and Basel, with more than a decade of experience guiding Swiss and international clients through high-stakes legal disputes, often across multiple jurisdictions. He advises individuals, families, foundations, and companies in navigating complex situations as they work toward achieving their goals. To his clients, he is a trusted advisor and unwavering advocate, committed to excellence in protecting and advancing their long-term interests.</p>
+        </div>
       </section>
 
-      <section class="m-section">
-        <h2 data-key="services.service2.title">Families & Individuals</h2>
-        <p data-key="services.service2.description">Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations.</p>
+      <section id="m-services1" class="section services-section has-bg">
+        <div class="services-content">
+          <h2 data-key="services.service1.title">Litigation and mediation</h2>
+          <p data-key="services.service1.description">Not every legal dispute is worth taking to court. Often, parties can find a reasonable settlement out of court. To reach a favourable outcome in or out of court, or through mediation, in any legal dispute, it is important to anticipate possible consequences of any step taken as early as possible when a dispute is on the horizon.</p>
+        </div>
       </section>
 
-      <section class="m-section">
-        <h2 data-key="bio.heading">Biography</h2>
-        <p data-key="bio.content">Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, the Federal Department of Foreign Affairs, and the Court of Appeal of Basel-Stadt.</p>
+      <section id="m-services2" class="section services-section">
+        <div class="services-content">
+          <h2 data-key="services.service2.title">Families, foundations, and individuals</h2>
+          <p data-key="services.service2.description">Jonas has extensive experience advising Switzerland-based and international families and individual clients at the highest level on complex legal situations.</p>
+        </div>
       </section>
 
-      <section class="m-section">
-        <h2 data-key="contact.heading">Contact</h2>
-        <p>
-          Asylstrasse 41, 8032 Zurich<br>
-          PO Box, 4001 Basel<br>
-          <a href="mailto:jh@jonashertner.com">jh@jonashertner.com</a>
-        </p>
+      <section id="m-services3" class="section services-section has-bg">
+        <div class="services-content">
+          <h2 data-key="services.service3.title">Criminal law</h2>
+          <p data-key="services.service3.description">Jonas has extensive experience in conducting criminal proceedings through all instances, in particular in the areas of corporate criminal liability, white collar/economic crime, and civil rights.</p>
+        </div>
+      </section>
+
+      <section id="m-services4" class="section services-section">
+        <div class="services-content">
+          <h2 data-key="services.service4.title">Constitutional law</h2>
+          <p data-key="services.service4.description">Jonas is collaborating with parties in Switzerland and internationally to pursue litigation to protect fundamental rights and freedoms.</p>
+        </div>
+      </section>
+
+      <section id="m-services5" class="section services-section has-bg">
+        <div class="services-content">
+          <h2 data-key="services.service5.title">Artificial intelligence</h2>
+          <p data-key="services.service5.description">Experienced in the application of AI tools and LLMs in governance and education, Jonas regularly advises on emerging legal issues in this area.</p>
+        </div>
+      </section>
+
+      <section id="m-services6" class="section services-section">
+        <div class="services-content">
+          <h2 data-key="services.service6.title">Philosophy</h2>
+          <p data-key="services.service6.description">«At the heart of my practice is an unwavering dedication to my clients' long-term interests, informed by my extensive experience at the highest level of the profession.»</p>
+        </div>
+      </section>
+
+      <section id="m-bio" class="section has-bg">
+        <div class="about-content">
+          <h2 data-key="bio.heading">Biography</h2>
+          <p data-key="bio.content">Jonas Hertner graduated with honors from the Universities of Lucerne and Geneva. His career has included roles at non-profit organizations, at the Directorate of International Law of the Federal Department of Foreign Affairs, and at the Court of Appeal of Basel-Stadt.</p>
+        </div>
+      </section>
+
+      <section id="m-contact" class="section contact-section">
+        <div class="contact-content">
+          <h2 data-key="contact.heading">Contact</h2>
+          <div class="contact-info-mobile">
+            <p>Asylstrasse 41, 8032 Zurich</p>
+            <p>PO Box, 4001 Basel</p>
+            <p><a href="mailto:jh@jonashertner.com">jh@jonashertner.com</a></p>
+          </div>
+        </div>
       </section>
     </main>
-
-    <footer class="mobile-foot">
-      <span>© Jonas Hertner</span>
-    </footer>
   </div>
 
   <script src="js/script.js"></script>

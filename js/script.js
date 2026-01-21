@@ -204,7 +204,7 @@
     });
 
     // Update button states
-    $$('.lang-btn, .m-lang').forEach(btn => {
+    $$('.lang-btn, .lang-btn-mobile').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
 
@@ -252,7 +252,7 @@
     });
 
     // Language
-    $$('.lang-btn, .m-lang').forEach(btn => {
+    $$('.lang-btn, .lang-btn-mobile').forEach(btn => {
       btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
     });
 
