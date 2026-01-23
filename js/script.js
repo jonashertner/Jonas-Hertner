@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function adjustNavbarStyle(currentSection = 'home') {
     if (!navbar || !languageSwitcher) return;
-    if (['home', 'services1', 'services3', 'services5', 'bio'].includes(currentSection)) {
+    if (['home', 'services1', 'services3', 'services5', 'bio', 'portrait'].includes(currentSection)) {
       navbar.classList.remove('dark');
       languageSwitcher.style.color = 'white';
     } else {
