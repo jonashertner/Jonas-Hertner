@@ -15,6 +15,10 @@
   <title>Jonas Hertner</title>
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/BradfordLLSub-Book.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -33,7 +37,8 @@
     <!-- Home Section -->
     <section id="home" class="section" aria-labelledby="home-heading">
       <picture class="hero-image">
-
+        <source srcset="images/services5-bg.avif" type="image/avif">
+        <source srcset="images/services5-bg.webp" type="image/webp">
         <img src="images/services5-bg.jpg" alt="Hero background">
       </picture>
       <div class="hero-content">
@@ -143,7 +148,11 @@
     <!-- Portrait Section -->
     <section id="portrait" class="section portrait-section">
       <div class="portrait-content">
-        <img src="images/jh.jpg" alt="Jonas Hertner">
+        <picture>
+          <source srcset="images/jh.avif" type="image/avif">
+          <source srcset="images/jh.webp" type="image/webp">
+          <img src="images/jh.jpg" alt="Jonas Hertner" loading="lazy">
+        </picture>
       </div>
     </section>
 

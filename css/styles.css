@@ -1,13 +1,11 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-
-/* Import Bradford Font */
+/* Bradford Font */
 @font-face {
     font-family: 'Bradford';
     src: url('../fonts/BradfordLLSub-Book.woff2') format('woff2'),
          url('../fonts/BradfordLLSub-Book.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -16,6 +14,7 @@
          url('../fonts/BradfordLLWeb-Book.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 /* Define CSS Variables for Typography and Colors */
@@ -323,6 +322,7 @@ p {
 #bio.bg-loaded {
     background-image: url('../images/bio-bg.jpg');
     background-image: image-set(
+        url('../images/bio-bg.avif') type('image/avif'),
         url('../images/bio-bg.webp') type('image/webp'),
         url('../images/bio-bg.jpg') type('image/jpeg')
     );
@@ -351,6 +351,7 @@ p {
 #services1.bg-loaded {
     background-image: url('../images/services1-bg.jpg');
     background-image: image-set(
+        url('../images/services1-bg.avif') type('image/avif'),
         url('../images/services1-bg.webp') type('image/webp'),
         url('../images/services1-bg.jpg') type('image/jpeg')
     );
@@ -369,6 +370,7 @@ p {
 #services3.bg-loaded {
     background-image: url('../images/library.png');
     background-image: image-set(
+        url('../images/library.avif') type('image/avif'),
         url('../images/library.webp') type('image/webp'),
         url('../images/library.png') type('image/png')
     );
@@ -387,6 +389,7 @@ p {
 #services5.bg-loaded {
     background-image: url('../images/services0-bg.jpg');
     background-image: image-set(
+        url('../images/services0-bg.avif') type('image/avif'),
         url('../images/services0-bg.webp') type('image/webp'),
         url('../images/services0-bg.jpg') type('image/jpeg')
     );
