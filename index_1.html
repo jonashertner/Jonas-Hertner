@@ -7,8 +7,6 @@
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="ask-api" content="/api/ask">
-
   <meta property="og:title" content="Jonas Hertner">
   <meta property="og:description" content="Experienced attorney in Zurich and Basel.">
   <meta property="og:url" content="https://www.jonashertner.com">
@@ -22,7 +20,6 @@
   <link rel="preload" href="fonts/BradfordLLSub-Book.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/ask.css">
 </head>
 <body>
 
@@ -32,7 +29,6 @@
         <button id="lang-en" class="lang-btn active" aria-label="Switch to English" aria-pressed="true">EN</button>
         <button id="lang-de" class="lang-btn" aria-label="Switch to German" aria-pressed="false">DE</button>
         <button id="lang-fr" class="lang-btn" aria-label="Switch to French" aria-pressed="false">FR</button>
-        <button id="ask-toggle" class="ask-toggle" type="button" aria-label="Open Ask (AI)" aria-controls="ask-field" aria-expanded="false">ASK</button>
       </div>
     </nav>
   </header>
@@ -162,8 +158,6 @@
 
   </main>
 
-  <textarea id="ask-field" class="ask-field" hidden aria-label="Ask Jonas" spellcheck="true" autocomplete="off" autocapitalize="sentences"></textarea>
-
   <noscript>
     <style>
       .language-switcher { display: flex; justify-content: flex-end; padding: 15px 30px; }
@@ -172,6 +166,5 @@
 
   <script defer src="js/fog.js"></script>
   <script defer src="js/script.js"></script>
-  <script defer src="js/ask.js"></script>
 </body>
 </html>

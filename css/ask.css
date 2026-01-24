@@ -1,0 +1,104 @@
+/* ASK MODE — isolated; does not touch the rest of the site unless body.ask-mode is set. */
+
+:root{
+  --ask-bg: #ffffff;
+  --ask-fg: #111111;
+  --ask-muted: rgba(17,17,17,.62);
+  --ask-border: rgba(17,17,17,.16);
+  --ask-grid: rgba(17,17,17,.04);
+  --ask-selection: rgba(17,17,17,.14);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --ask-bg: #0a0a0a;
+    --ask-fg: #eaeaea;
+    --ask-muted: rgba(234,234,234,.68);
+    --ask-border: rgba(234,234,234,.18);
+    --ask-grid: rgba(234,234,234,.05);
+    --ask-selection: rgba(234,234,234,.18);
+  }
+}
+
+/* Subtle toggle in the existing nav */
+.ask-toggle{
+  margin-left: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--ask-border);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+
+  opacity: .82;
+  border-radius: 999px;
+}
+
+.ask-toggle:hover{ opacity: 1; }
+.ask-toggle:focus-visible{
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* The alternate view: only the textarea is visible */
+.ask-field[hidden]{ display: none !important; }
+
+body.ask-mode{
+  overflow: hidden;
+}
+
+body.ask-mode header,
+body.ask-mode main,
+body.ask-mode noscript{
+  display: none !important;
+}
+
+body.ask-mode .ask-field{
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  outline: 0;
+  resize: none;
+
+  background: var(--ask-bg);
+  color: var(--ask-fg);
+  caret-color: var(--ask-fg);
+  color-scheme: light dark;
+
+  padding: clamp(18px, 3.2vw, 56px) clamp(16px, 6vw, 140px);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 400;
+  font-size: clamp(14px, 0.55vw + 12px, 18px);
+  line-height: 1.55;
+  letter-spacing: .02em;
+  tab-size: 2;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+
+  /* Subtle machine texture */
+  background-image:
+    linear-gradient(to bottom, var(--ask-grid) 1px, transparent 1px);
+  background-size: 100% 26px;
+  background-attachment: local;
+}
+
+body.ask-mode .ask-field::selection{
+  background: var(--ask-selection);
+}
+
+/* Keep scrollbars quiet */
+body.ask-mode .ask-field{
+  scrollbar-width: thin;
+}
