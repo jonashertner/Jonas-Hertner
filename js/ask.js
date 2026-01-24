@@ -6,6 +6,24 @@
   const apiMeta = document.querySelector('meta[name="ask-api"]');
   const API = (apiMeta && (apiMeta.content || "").trim()) || "/api/ask";
 
+  const ALLOWED_ORIGINS = new Set([
+    "https://jonashertner.com",
+    "https://www.jonashertner.com",
+    "http://localhost:3000",
+    "http://localhost:5173",
+  ]);
+
+  function applyCors(req, res) {
+    const origin = req.headers.origin;
+    if (origin && ALLOWED_ORIGINS.has(origin)) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+      res.setHeader("Vary", "Origin");
+    }
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Max-Age", "86400");
+  }
+
   const BOOT = {
     en: [
       "ASK (AI)",
@@ -38,6 +56,12 @@
 
   const PROMPT = "\n> ";
   let busy = false;
+
+  applyCors(req, res);
+
+  if (req.method === "OPTIONS") {
+    return res.status(204).end();
+  }
 
   function currentLang() {
     const active = document.querySelector(".lang-btn.active");
