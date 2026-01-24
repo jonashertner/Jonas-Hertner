@@ -325,18 +325,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let currentNavSection = 'home';
+
   function onScroll() {
-    let closestSection = null;
-    let minDistance = Infinity;
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      const distance = Math.abs(rect.top);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestSection = section;
+    // Find section whose top has crossed the threshold (20% from top of viewport)
+    const threshold = window.innerHeight * 0.2;
+    let activeSection = null;
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const rect = sections[i].getBoundingClientRect();
+      if (rect.top <= threshold) {
+        activeSection = sections[i];
+        break;
       }
-    });
-    if (closestSection) adjustNavbarStyle(closestSection.id);
+    }
+
+    // Fallback to first section if none found
+    if (!activeSection) activeSection = sections[0];
+
+    // Only update if section actually changed
+    if (activeSection && activeSection.id !== currentNavSection) {
+      currentNavSection = activeSection.id;
+      adjustNavbarStyle(currentNavSection);
+    }
   }
 
   // language switch clicks (also stop typing if user switches mid-animation)
