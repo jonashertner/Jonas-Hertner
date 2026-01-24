@@ -73,8 +73,8 @@ body.ask-mode {
 }
 
 body.ask-mode > header,
-body.ask-mode main,
-body.ask-mode noscript {
+body.ask-mode > main,
+body.ask-mode > noscript {
   display: none !important;
 }
 
