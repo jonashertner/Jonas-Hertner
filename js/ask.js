@@ -6,24 +6,6 @@
   const apiMeta = document.querySelector('meta[name="ask-api"]');
   const API = (apiMeta && (apiMeta.content || "").trim()) || "/api/ask";
 
-  const ALLOWED_ORIGINS = new Set([
-    "https://jonashertner.com",
-    "https://www.jonashertner.com",
-    "http://localhost:3000",
-    "http://localhost:5173",
-  ]);
-
-  function applyCors(req, res) {
-    const origin = req.headers.origin;
-    if (origin && ALLOWED_ORIGINS.has(origin)) {
-      res.setHeader("Access-Control-Allow-Origin", origin);
-      res.setHeader("Vary", "Origin");
-    }
-    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Max-Age", "86400");
-  }
-
   const BOOT = {
     en: [
       "ASK (AI)",
@@ -56,12 +38,7 @@
 
   const PROMPT = "\n> ";
   let busy = false;
-
-  applyCors(req, res);
-
-  if (req.method === "OPTIONS") {
-    return res.status(204).end();
-  }
+  let pushedState = false;
 
   function currentLang() {
     const active = document.querySelector(".lang-btn.active");
@@ -96,8 +73,13 @@
     bootIfEmpty();
     focusEnd();
 
-    // Back button exits (mobile-friendly)
-    history.pushState({ ask: true }, "");
+    // Back button exits on mobile.
+    try {
+      history.pushState({ ask: true }, "");
+      pushedState = true;
+    } catch {
+      pushedState = false;
+    }
   }
 
   function exitAskMode(fromPopstate = false) {
@@ -107,18 +89,22 @@
     field.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
 
-    if (!fromPopstate) {
-      // Pop the state we added in enterAskMode()
+    if (!fromPopstate && pushedState) {
       try { history.back(); } catch { /* ignore */ }
     }
+  }
+
+  function extractQuestion() {
+    const v = field.value || "";
+    const idx = v.lastIndexOf(PROMPT);
+    const q = (idx >= 0 ? v.slice(idx + PROMPT.length) : v).trim();
+    return q;
   }
 
   async function send() {
     if (busy) return;
 
-    const v = field.value || "";
-    const idx = v.lastIndexOf(PROMPT);
-    const q = (idx >= 0 ? v.slice(idx + PROMPT.length) : v).trim();
+    const q = extractQuestion();
     if (!q) return;
 
     busy = true;
@@ -145,7 +131,10 @@
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        const msg = (data && (data.error || data.message)) ? String(data.error || data.message) : "Request failed.";
+        const msg =
+          (data && (data.error || data.message))
+            ? String(data.error || data.message)
+            : `Request failed (${res.status}).`;
         throw new Error(msg);
       }
 
@@ -174,7 +163,6 @@
   });
 
   window.addEventListener("popstate", () => {
-    // If we are in ask-mode and the user hit back, exit without calling history.back() again.
     if (document.body.classList.contains("ask-mode")) exitAskMode(true);
   });
 
@@ -193,6 +181,5 @@
     }
   });
 
-  // Allow deep-link entry via #ask if you want it (optional)
   if (location.hash === "#ask") enterAskMode();
 })();
