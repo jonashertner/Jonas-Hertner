@@ -1,105 +1,316 @@
-/* ASK MODE — isolated; does not touch the rest of the site unless body.ask-mode is set. */
+/* ==========================================================================
+   ASK MODE — Brutalist Terminal Interface
+   Monochrome · Machine-like · Day/Night Auto Theme
+   ========================================================================== */
 
-:root{
-  --ask-bg: #ffffff;
-  --ask-fg: #111111;
-  --ask-muted: rgba(17,17,17,.62);
-  --ask-border: rgba(17,17,17,.16);
-  --ask-grid: rgba(17,17,17,.04);
-  --ask-selection: rgba(17,17,17,.14);
+:root {
+  /* Light mode (day) */
+  --ask-bg: #fafafa;
+  --ask-fg: #0a0a0a;
+  --ask-muted: rgba(10, 10, 10, 0.5);
+  --ask-dim: rgba(10, 10, 10, 0.25);
+  --ask-border: rgba(10, 10, 10, 0.12);
+  --ask-grid: rgba(10, 10, 10, 0.03);
+  --ask-selection: rgba(10, 10, 10, 0.1);
+  --ask-glow: rgba(10, 10, 10, 0.02);
 }
 
-@media (prefers-color-scheme: dark){
-  :root{
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode (night) */
     --ask-bg: #0a0a0a;
-    --ask-fg: #eaeaea;
-    --ask-muted: rgba(234,234,234,.68);
-    --ask-border: rgba(234,234,234,.18);
-    --ask-grid: rgba(234,234,234,.05);
-    --ask-selection: rgba(234,234,234,.18);
+    --ask-fg: #e8e8e8;
+    --ask-muted: rgba(232, 232, 232, 0.5);
+    --ask-dim: rgba(232, 232, 232, 0.25);
+    --ask-border: rgba(232, 232, 232, 0.1);
+    --ask-grid: rgba(232, 232, 232, 0.025);
+    --ask-selection: rgba(232, 232, 232, 0.12);
+    --ask-glow: rgba(232, 232, 232, 0.01);
   }
 }
 
-/* Subtle toggle in the existing nav */
-.ask-toggle{
+/* --------------------------------------------------------------------------
+   Toggle Button (in navbar)
+   -------------------------------------------------------------------------- */
+.ask-toggle {
   margin-left: 14px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border: 1px solid currentColor;
-  border-radius: 999px;
+  border-radius: 0;
   background: transparent;
   color: inherit;
   cursor: pointer;
 
-  font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-weight: 700;
-  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 500;
+  font-size: 10px;
   line-height: 1;
-  letter-spacing: .28em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 
-  opacity: .82;
-  transition: color 0.4s ease, border-color 0.4s ease, opacity 0.2s ease;
+  opacity: 0.7;
+  transition: color 0.4s ease, border-color 0.4s ease, opacity 0.15s ease;
 }
 
-.ask-toggle:hover{ opacity: 1; }
-.ask-toggle:focus-visible{
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+.ask-toggle:hover {
+  opacity: 1;
 }
 
-/* The alternate view: only the textarea is visible */
-.ask-field[hidden]{ display: none !important; }
+.ask-toggle:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+}
 
-body.ask-mode{
+/* --------------------------------------------------------------------------
+   Container
+   -------------------------------------------------------------------------- */
+.ask-container[hidden] {
+  display: none !important;
+}
+
+body.ask-mode {
   overflow: hidden;
 }
 
 body.ask-mode header,
 body.ask-mode main,
-body.ask-mode noscript{
+body.ask-mode noscript {
   display: none !important;
 }
 
-body.ask-mode .ask-field{
-  display: block;
+body.ask-mode .ask-container {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   inset: 0;
   z-index: 9999;
 
-  width: 100vw;
-  height: 100vh;
+  background: var(--ask-bg);
+  color: var(--ask-fg);
+  color-scheme: light dark;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.ask-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px clamp(20px, 5vw, 80px);
+  border-bottom: 1px solid var(--ask-border);
+  background: var(--ask-glow);
+}
+
+.ask-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ask-muted);
+}
+
+.ask-status {
+  flex: 1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--ask-dim);
+  text-align: center;
+}
+
+.ask-status.loading::after {
+  content: '';
+  display: inline-block;
+  animation: ask-blink 1s steps(2, start) infinite;
+}
+
+@keyframes ask-blink {
+  to { opacity: 0; }
+}
+
+.ask-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--ask-border);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ask-muted);
+  cursor: pointer;
+
+  font-family: ui-monospace, monospace;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1;
+
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.ask-close:hover {
+  color: var(--ask-fg);
+  border-color: var(--ask-fg);
+}
+
+.ask-close:focus-visible {
+  outline: 1px solid var(--ask-fg);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Text Area (Terminal)
+   -------------------------------------------------------------------------- */
+.ask-field {
+  flex: 1;
+  width: 100%;
   border: 0;
   outline: 0;
   resize: none;
 
-  background: var(--ask-bg);
+  background: transparent;
   color: var(--ask-fg);
   caret-color: var(--ask-fg);
-  color-scheme: light dark;
 
-  padding: clamp(18px, 3.2vw, 56px) clamp(16px, 6vw, 140px);
+  padding: clamp(20px, 4vw, 48px) clamp(20px, 5vw, 80px);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-weight: 400;
-  font-size: clamp(14px, 0.55vw + 12px, 18px);
-  line-height: 1.55;
-  letter-spacing: .02em;
+  font-size: clamp(13px, 0.4vw + 12px, 16px);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   tab-size: 2;
 
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 
-  /* Subtle machine texture */
+  /* Machine grid texture */
   background-image:
     linear-gradient(to bottom, var(--ask-grid) 1px, transparent 1px);
-  background-size: 100% 26px;
+  background-size: 100% calc(1.7 * clamp(13px, 0.4vw + 12px, 16px));
   background-attachment: local;
 }
 
-body.ask-mode .ask-field::selection{
+.ask-field::selection {
   background: var(--ask-selection);
 }
 
-/* Keep scrollbars quiet */
-body.ask-mode .ask-field{
+.ask-field::placeholder {
+  color: var(--ask-dim);
+}
+
+.ask-field:read-only {
+  opacity: 0.7;
+}
+
+/* Scrollbar styling */
+.ask-field {
   scrollbar-width: thin;
+  scrollbar-color: var(--ask-border) transparent;
+}
+
+.ask-field::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ask-field::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ask-field::-webkit-scrollbar-thumb {
+  background: var(--ask-border);
+  border-radius: 0;
+}
+
+.ask-field::-webkit-scrollbar-thumb:hover {
+  background: var(--ask-dim);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.ask-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(20px, 5vw, 80px);
+  border-top: 1px solid var(--ask-border);
+  background: var(--ask-glow);
+}
+
+.ask-hint {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ask-dim);
+}
+
+.ask-meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ask-dim);
+}
+
+/* --------------------------------------------------------------------------
+   Loading State
+   -------------------------------------------------------------------------- */
+body.ask-mode.ask-loading .ask-field {
+  cursor: wait;
+}
+
+body.ask-mode.ask-loading .ask-status::after {
+  content: ' ···';
+  animation: ask-dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes ask-dots {
+  0%, 20% { content: ' ·'; }
+  40% { content: ' ··'; }
+  60% { content: ' ···'; }
+  80%, 100% { content: ' ····'; }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .ask-header {
+    padding: 12px 16px;
+  }
+
+  .ask-field {
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    background-size: 100% calc(1.6 * 14px);
+  }
+
+  .ask-footer {
+    padding: 10px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .ask-meta {
+    align-self: flex-end;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print: Hide entirely
+   -------------------------------------------------------------------------- */
+@media print {
+  .ask-container,
+  .ask-toggle {
+    display: none !important;
+  }
 }
