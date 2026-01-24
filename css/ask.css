@@ -117,18 +117,8 @@ body.ask-mode .ask-container {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 11px;
   letter-spacing: 0.05em;
-  color: var(--ask-dim);
+  color: var(--ask-muted);
   text-align: center;
-}
-
-.ask-status.loading::after {
-  content: '';
-  display: inline-block;
-  animation: ask-blink 1s steps(2, start) infinite;
-}
-
-@keyframes ask-blink {
-  to { opacity: 0; }
 }
 
 .ask-close {
