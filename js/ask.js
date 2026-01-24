@@ -6,9 +6,6 @@
   const toggle = document.getElementById("ask-toggle");
   const container = document.getElementById("ask-container");
   const field = document.getElementById("ask-field");
-  const closeBtn = document.getElementById("ask-close");
-  const statusEl = document.getElementById("ask-status");
-  const hintEl = document.getElementById("ask-hint");
 
   if (!toggle || !container || !field) return;
 
@@ -16,7 +13,7 @@
   const apiMeta = document.querySelector('meta[name="ask-api"]');
   const API = (apiMeta?.content?.trim()) || "/api/ask";
   const TIMEOUT_MS = 30000;
-  const TYPEWRITER_SPEED = 12; // ms per character
+  const TYPEWRITER_SPEED = 12;
 
   // State
   let busy = false;
@@ -34,42 +31,30 @@
         "AI assistant based on materials from Jonas Hertner.",
         "This is not legal advice. No attorney-client relationship.",
         "",
-        "Type your question below."
+        "Type your question below. Press Enter to send, Esc to close."
       ],
-      hint: "ENTER send · ESC close",
-      hintMobile: "Send · Close ×",
-      thinking: "Processing",
-      ready: "Ready",
-      error: "Error",
-      timeout: "Request timed out"
+      timeout: "Request timed out",
+      error: "Error"
     },
     de: {
       boot: [
         "KI-Assistent basierend auf Materialien von Jonas Hertner.",
         "Keine Rechtsberatung. Kein Mandatsverhältnis.",
         "",
-        "Geben Sie Ihre Frage unten ein."
+        "Geben Sie Ihre Frage ein. Enter zum Senden, Esc zum Schliessen."
       ],
-      hint: "ENTER senden · ESC schliessen",
-      hintMobile: "Senden · Schliessen ×",
-      thinking: "Verarbeitung",
-      ready: "Bereit",
-      error: "Fehler",
-      timeout: "Zeitüberschreitung"
+      timeout: "Zeitüberschreitung",
+      error: "Fehler"
     },
     fr: {
       boot: [
         "Assistant IA basé sur des documents de Jonas Hertner.",
         "Pas de conseil juridique. Pas de relation avocat-client.",
         "",
-        "Tapez votre question ci-dessous."
+        "Tapez votre question. Entrée pour envoyer, Esc pour fermer."
       ],
-      hint: "ENTRÉE envoyer · ESC fermer",
-      hintMobile: "Envoyer · Fermer ×",
-      thinking: "Traitement",
-      ready: "Prêt",
-      error: "Erreur",
-      timeout: "Délai dépassé"
+      timeout: "Délai dépassé",
+      error: "Erreur"
     }
   };
 
@@ -89,24 +74,23 @@
     return L10N[lang]?.[key] || L10N.en[key] || key;
   }
 
-  function isMobile() {
-    return window.innerWidth <= 600;
-  }
+  // Animated dots in textarea
+  let dotsBase = "";
+  let dotCount = 0;
 
-  // Animated dots for loading status
   function startLoadingDots() {
-    let dotCount = 0;
-    const baseText = t("thinking");
+    dotsBase = field.value;
+    dotCount = 0;
 
     function updateDots() {
-      dotCount = (dotCount + 1) % 4;
-      const dots = "·".repeat(dotCount || 1);
-      if (statusEl) statusEl.textContent = baseText + " " + dots;
+      dotCount = (dotCount % 3) + 1;
+      const dots = ".".repeat(dotCount);
+      field.value = dotsBase + dots;
+      scrollToBottom();
     }
 
     updateDots();
     dotsInterval = setInterval(updateDots, 400);
-    document.body.classList.add("ask-loading");
   }
 
   function stopLoadingDots() {
@@ -114,15 +98,8 @@
       clearInterval(dotsInterval);
       dotsInterval = null;
     }
-    document.body.classList.remove("ask-loading");
-  }
-
-  function setStatus(text) {
-    if (statusEl) statusEl.textContent = text;
-  }
-
-  function setHint() {
-    if (hintEl) hintEl.textContent = isMobile() ? t("hintMobile") : t("hint");
+    // Remove the dots, restore base
+    field.value = dotsBase;
   }
 
   function bootIfEmpty() {
@@ -177,8 +154,6 @@
     toggle.setAttribute("aria-expanded", "true");
 
     bootIfEmpty();
-    setHint();
-    setStatus(t("ready"));
     focusEnd();
 
     try {
@@ -192,7 +167,6 @@
   function exitAskMode(fromPopstate = false) {
     if (!document.body.classList.contains("ask-mode")) return;
 
-    // Cancel any pending operations
     if (abortController) {
       abortController.abort();
       abortController = null;
@@ -200,7 +174,7 @@
     stopLoadingDots();
     cancelTypewriter();
 
-    document.body.classList.remove("ask-mode", "ask-loading");
+    document.body.classList.remove("ask-mode");
     container.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
 
@@ -222,17 +196,17 @@
 
     busy = true;
     field.readOnly = true;
-    startLoadingDots();
 
     // Ensure clean line ending
     if (!field.value.endsWith("\n")) field.value += "\n";
     field.value += "\n";
     scrollToBottom();
 
-    // Add to history
+    // Start animated dots
+    startLoadingDots();
+
     conversationHistory.push({ role: "user", content: q });
 
-    // Setup abort controller with timeout
     abortController = new AbortController();
     const timeoutId = setTimeout(() => abortController.abort(), TIMEOUT_MS);
 
@@ -282,7 +256,6 @@
         questionIndex = field.value.length;
         busy = false;
         field.readOnly = false;
-        setStatus(t("ready"));
         focusEnd();
       });
     }
@@ -294,16 +267,8 @@
     else enterAskMode();
   });
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => exitAskMode(false));
-  }
-
   window.addEventListener("popstate", () => {
     if (document.body.classList.contains("ask-mode")) exitAskMode(true);
-  });
-
-  window.addEventListener("resize", () => {
-    if (document.body.classList.contains("ask-mode")) setHint();
   });
 
   field.addEventListener("keydown", (e) => {

@@ -4,28 +4,20 @@
    ========================================================================== */
 
 :root {
-  /* Light mode (day) */
   --ask-bg: #fafafa;
   --ask-fg: #0a0a0a;
   --ask-muted: rgba(10, 10, 10, 0.5);
   --ask-dim: rgba(10, 10, 10, 0.25);
-  --ask-border: rgba(10, 10, 10, 0.12);
-  --ask-grid: rgba(10, 10, 10, 0.03);
   --ask-selection: rgba(10, 10, 10, 0.1);
-  --ask-glow: rgba(10, 10, 10, 0.02);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Dark mode (night) */
     --ask-bg: #0a0a0a;
     --ask-fg: #e8e8e8;
     --ask-muted: rgba(232, 232, 232, 0.5);
     --ask-dim: rgba(232, 232, 232, 0.25);
-    --ask-border: rgba(232, 232, 232, 0.1);
-    --ask-grid: rgba(232, 232, 232, 0.025);
     --ask-selection: rgba(232, 232, 232, 0.12);
-    --ask-glow: rgba(232, 232, 232, 0.01);
   }
 }
 
@@ -80,79 +72,12 @@ body.ask-mode > noscript {
 
 body.ask-mode .ask-container {
   display: flex;
-  flex-direction: column;
   position: fixed;
   inset: 0;
   z-index: 9999;
-
   background: var(--ask-bg);
   color: var(--ask-fg);
   color-scheme: light dark;
-}
-
-/* --------------------------------------------------------------------------
-   Header
-   -------------------------------------------------------------------------- */
-.ask-header {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px clamp(20px, 5vw, 80px);
-  border-bottom: 1px solid var(--ask-border);
-  background: var(--ask-glow);
-}
-
-.ask-title {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--ask-muted);
-}
-
-.ask-status {
-  flex: 1;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ask-fg);
-  opacity: 0.6;
-  text-align: center;
-}
-
-.ask-close {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid var(--ask-border);
-  border-radius: 0;
-  background: transparent;
-  color: var(--ask-muted);
-  cursor: pointer;
-
-  font-family: ui-monospace, monospace;
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 1;
-
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.ask-close:hover {
-  color: var(--ask-fg);
-  border-color: var(--ask-fg);
-}
-
-.ask-close:focus-visible {
-  outline: 1px solid var(--ask-fg);
-  outline-offset: 2px;
 }
 
 /* --------------------------------------------------------------------------
@@ -165,14 +90,14 @@ body.ask-mode .ask-container {
   outline: 0;
   resize: none;
 
-  background: transparent;
+  background: var(--ask-bg);
   color: var(--ask-fg);
   caret-color: var(--ask-fg);
 
-  padding: clamp(20px, 4vw, 48px) clamp(20px, 5vw, 80px);
+  padding: clamp(24px, 5vw, 80px);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-weight: 400;
-  font-size: clamp(13px, 0.4vw + 12px, 16px);
+  font-size: clamp(14px, 0.5vw + 13px, 18px);
   line-height: 1.7;
   letter-spacing: 0.01em;
   tab-size: 2;
@@ -190,17 +115,17 @@ body.ask-mode .ask-container {
 }
 
 .ask-field:read-only {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
-/* Scrollbar styling */
+/* Scrollbar */
 .ask-field {
   scrollbar-width: thin;
-  scrollbar-color: var(--ask-border) transparent;
+  scrollbar-color: var(--ask-dim) transparent;
 }
 
 .ask-field::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 .ask-field::-webkit-scrollbar-track {
@@ -208,114 +133,31 @@ body.ask-mode .ask-container {
 }
 
 .ask-field::-webkit-scrollbar-thumb {
-  background: var(--ask-border);
+  background: var(--ask-dim);
   border-radius: 0;
 }
 
-.ask-field::-webkit-scrollbar-thumb:hover {
-  background: var(--ask-dim);
-}
-
 /* --------------------------------------------------------------------------
-   Footer
-   -------------------------------------------------------------------------- */
-.ask-footer {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px clamp(20px, 5vw, 80px);
-  border-top: 1px solid var(--ask-border);
-  background: var(--ask-glow);
-}
-
-.ask-hint {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--ask-dim);
-}
-
-.ask-meta {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ask-dim);
-}
-
-/* --------------------------------------------------------------------------
-   Loading State
-   -------------------------------------------------------------------------- */
-body.ask-mode.ask-loading .ask-field {
-  cursor: wait;
-}
-
-/* --------------------------------------------------------------------------
-   Responsive — Mobile
+   Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 600px) {
-  .ask-header {
-    padding: 12px 16px;
-    gap: 12px;
-  }
-
-  .ask-title {
-    font-size: 10px;
-  }
-
-  .ask-status {
-    font-size: 10px;
-  }
-
-  .ask-close {
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
-  }
-
   .ask-field {
-    padding: 16px;
+    padding: 20px;
     font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .ask-footer {
-    padding: 12px 16px;
-  }
-
-  .ask-hint {
-    font-size: 9px;
-  }
-
-  .ask-meta {
-    font-size: 8px;
+    line-height: 1.6;
   }
 }
 
-/* --------------------------------------------------------------------------
-   Responsive — Large Desktop
-   -------------------------------------------------------------------------- */
 @media (min-width: 1200px) {
-  .ask-header {
-    padding: 20px clamp(80px, 10vw, 200px);
-  }
-
   .ask-field {
-    padding: 48px clamp(80px, 10vw, 200px);
+    padding: clamp(60px, 8vw, 120px);
     font-size: 17px;
     line-height: 1.75;
   }
-
-  .ask-footer {
-    padding: 16px clamp(80px, 10vw, 200px);
-  }
 }
 
 /* --------------------------------------------------------------------------
-   Print: Hide entirely
+   Print: Hide
    -------------------------------------------------------------------------- */
 @media print {
   .ask-container,
