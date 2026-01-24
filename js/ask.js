@@ -16,13 +16,16 @@
   const apiMeta = document.querySelector('meta[name="ask-api"]');
   const API = (apiMeta?.content?.trim()) || "/api/ask";
   const TIMEOUT_MS = 30000;
+  const TYPEWRITER_SPEED = 12; // ms per character
 
   // State
   let busy = false;
   let pushedState = false;
   let abortController = null;
-  let questionIndex = 0; // Robust tracking instead of searching for prompt
-  const history = []; // Conversation history for context
+  let questionIndex = 0;
+  let dotsInterval = null;
+  let typewriterTimeout = null;
+  const conversationHistory = [];
 
   // Localized content
   const L10N = {
@@ -33,7 +36,8 @@
         "",
         "Type your question below."
       ],
-      hint: "ENTER send · ESC close · SHIFT+ENTER newline",
+      hint: "ENTER send · ESC close",
+      hintMobile: "Send · Close ×",
       thinking: "Processing",
       ready: "Ready",
       error: "Error",
@@ -46,7 +50,8 @@
         "",
         "Geben Sie Ihre Frage unten ein."
       ],
-      hint: "ENTER senden · ESC schliessen · SHIFT+ENTER neue Zeile",
+      hint: "ENTER senden · ESC schliessen",
+      hintMobile: "Senden · Schliessen ×",
       thinking: "Verarbeitung",
       ready: "Bereit",
       error: "Fehler",
@@ -59,7 +64,8 @@
         "",
         "Tapez votre question ci-dessous."
       ],
-      hint: "ENTRÉE envoyer · ESC fermer · MAJ+ENTRÉE nouvelle ligne",
+      hint: "ENTRÉE envoyer · ESC fermer",
+      hintMobile: "Envoyer · Fermer ×",
       thinking: "Traitement",
       ready: "Prêt",
       error: "Erreur",
@@ -83,23 +89,47 @@
     return L10N[lang]?.[key] || L10N.en[key] || key;
   }
 
-  function setStatus(text, loading = false) {
-    if (statusEl) {
-      statusEl.textContent = text;
-      statusEl.classList.toggle("loading", loading);
-    }
-    document.body.classList.toggle("ask-loading", loading);
+  function isMobile() {
+    return window.innerWidth <= 600;
   }
 
-  function setHint(text) {
-    if (hintEl) hintEl.textContent = text;
+  // Animated dots for loading status
+  function startLoadingDots() {
+    let dotCount = 0;
+    const baseText = t("thinking");
+
+    function updateDots() {
+      dotCount = (dotCount + 1) % 4;
+      const dots = "·".repeat(dotCount || 1);
+      if (statusEl) statusEl.textContent = baseText + " " + dots;
+    }
+
+    updateDots();
+    dotsInterval = setInterval(updateDots, 400);
+    document.body.classList.add("ask-loading");
+  }
+
+  function stopLoadingDots() {
+    if (dotsInterval) {
+      clearInterval(dotsInterval);
+      dotsInterval = null;
+    }
+    document.body.classList.remove("ask-loading");
+  }
+
+  function setStatus(text) {
+    if (statusEl) statusEl.textContent = text;
+  }
+
+  function setHint() {
+    if (hintEl) hintEl.textContent = isMobile() ? t("hintMobile") : t("hint");
   }
 
   function bootIfEmpty() {
     if (field.value.trim()) return;
     field.value = t("boot").join("\n") + "\n\n> ";
     questionIndex = field.value.length;
-    history.length = 0;
+    conversationHistory.length = 0;
   }
 
   function focusEnd() {
@@ -107,6 +137,36 @@
     const n = field.value.length;
     field.setSelectionRange(n, n);
     field.scrollTop = field.scrollHeight;
+  }
+
+  function scrollToBottom() {
+    field.scrollTop = field.scrollHeight;
+  }
+
+  // Typewriter effect
+  function typewriterAppend(text, callback) {
+    let i = 0;
+
+    function typeNext() {
+      if (i < text.length) {
+        field.value += text[i];
+        i++;
+        scrollToBottom();
+        typewriterTimeout = setTimeout(typeNext, TYPEWRITER_SPEED);
+      } else {
+        typewriterTimeout = null;
+        if (callback) callback();
+      }
+    }
+
+    typeNext();
+  }
+
+  function cancelTypewriter() {
+    if (typewriterTimeout) {
+      clearTimeout(typewriterTimeout);
+      typewriterTimeout = null;
+    }
   }
 
   function enterAskMode() {
@@ -117,7 +177,7 @@
     toggle.setAttribute("aria-expanded", "true");
 
     bootIfEmpty();
-    setHint(t("hint"));
+    setHint();
     setStatus(t("ready"));
     focusEnd();
 
@@ -132,11 +192,13 @@
   function exitAskMode(fromPopstate = false) {
     if (!document.body.classList.contains("ask-mode")) return;
 
-    // Cancel any pending request
+    // Cancel any pending operations
     if (abortController) {
       abortController.abort();
       abortController = null;
     }
+    stopLoadingDots();
+    cancelTypewriter();
 
     document.body.classList.remove("ask-mode", "ask-loading");
     container.hidden = true;
@@ -148,7 +210,6 @@
   }
 
   function extractQuestion() {
-    // Get text from the last prompt marker
     const text = field.value.slice(questionIndex).trim();
     return text;
   }
@@ -161,15 +222,15 @@
 
     busy = true;
     field.readOnly = true;
-    setStatus(t("thinking"), true);
+    startLoadingDots();
 
     // Ensure clean line ending
     if (!field.value.endsWith("\n")) field.value += "\n";
     field.value += "\n";
-    focusEnd();
+    scrollToBottom();
 
     // Add to history
-    history.push({ role: "user", content: q });
+    conversationHistory.push({ role: "user", content: q });
 
     // Setup abort controller with timeout
     abortController = new AbortController();
@@ -186,7 +247,7 @@
           q,
           lang: currentLang(),
           page: location.pathname,
-          history: history.slice(-10) // Send last 10 messages for context
+          history: conversationHistory.slice(-10)
         })
       });
 
@@ -202,29 +263,28 @@
       answerText = typeof data?.answer === "string" ? data.answer : "";
       if (!answerText.trim()) answerText = "No response.";
 
-      // Add assistant response to history
-      history.push({ role: "assistant", content: answerText });
+      conversationHistory.push({ role: "assistant", content: answerText });
 
-      setStatus(t("ready"));
     } catch (err) {
       if (err.name === "AbortError") {
         answerText = `[${t("timeout")}]`;
       } else {
         answerText = `[${t("error")}: ${err.message || "Unknown error"}]`;
       }
-      setStatus(t("error"));
     } finally {
       clearTimeout(timeoutId);
       abortController = null;
+      stopLoadingDots();
 
-      // Append response and new prompt
-      field.value += answerText + "\n\n> ";
-      questionIndex = field.value.length;
-
-      busy = false;
-      field.readOnly = false;
-      setStatus(t("ready"));
-      focusEnd();
+      // Typewriter effect for response
+      typewriterAppend(answerText, () => {
+        field.value += "\n\n> ";
+        questionIndex = field.value.length;
+        busy = false;
+        field.readOnly = false;
+        setStatus(t("ready"));
+        focusEnd();
+      });
     }
   }
 
@@ -240,6 +300,10 @@
 
   window.addEventListener("popstate", () => {
     if (document.body.classList.contains("ask-mode")) exitAskMode(true);
+  });
+
+  window.addEventListener("resize", () => {
+    if (document.body.classList.contains("ask-mode")) setHint();
   });
 
   field.addEventListener("keydown", (e) => {
@@ -259,9 +323,12 @@
 
   // Prevent editing before the current prompt
   field.addEventListener("beforeinput", (e) => {
+    if (busy) {
+      e.preventDefault();
+      return;
+    }
     const start = field.selectionStart;
-    if (start < questionIndex && e.inputType !== "insertFromPaste") {
-      // Allow selection but prevent modification before prompt
+    if (start < questionIndex) {
       if (e.inputType.startsWith("delete") || e.inputType.startsWith("insert")) {
         e.preventDefault();
       }

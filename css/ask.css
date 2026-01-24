@@ -186,12 +186,6 @@ body.ask-mode .ask-container {
 
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
-
-  /* Machine grid texture */
-  background-image:
-    linear-gradient(to bottom, var(--ask-grid) 1px, transparent 1px);
-  background-size: 100% calc(1.7 * clamp(13px, 0.4vw + 12px, 16px));
-  background-attachment: local;
 }
 
 .ask-field::selection {
@@ -266,42 +260,64 @@ body.ask-mode.ask-loading .ask-field {
   cursor: wait;
 }
 
-body.ask-mode.ask-loading .ask-status::after {
-  content: ' ···';
-  animation: ask-dots 1.5s steps(4, end) infinite;
-}
-
-@keyframes ask-dots {
-  0%, 20% { content: ' ·'; }
-  40% { content: ' ··'; }
-  60% { content: ' ···'; }
-  80%, 100% { content: ' ····'; }
-}
-
 /* --------------------------------------------------------------------------
-   Responsive
+   Responsive — Mobile
    -------------------------------------------------------------------------- */
 @media (max-width: 600px) {
   .ask-header {
     padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .ask-title {
+    font-size: 10px;
+  }
+
+  .ask-status {
+    font-size: 10px;
+  }
+
+  .ask-close {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
   }
 
   .ask-field {
     padding: 16px;
-    font-size: 14px;
-    line-height: 1.6;
-    background-size: 100% calc(1.6 * 14px);
+    font-size: 15px;
+    line-height: 1.65;
   }
 
   .ask-footer {
-    padding: 10px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    padding: 12px 16px;
+  }
+
+  .ask-hint {
+    font-size: 9px;
   }
 
   .ask-meta {
-    align-self: flex-end;
+    font-size: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — Large Desktop
+   -------------------------------------------------------------------------- */
+@media (min-width: 1200px) {
+  .ask-header {
+    padding: 20px clamp(80px, 10vw, 200px);
+  }
+
+  .ask-field {
+    padding: 48px clamp(80px, 10vw, 200px);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .ask-footer {
+    padding: 16px clamp(80px, 10vw, 200px);
   }
 }
 
