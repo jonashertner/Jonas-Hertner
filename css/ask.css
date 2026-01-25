@@ -21,35 +21,54 @@
 }
 
 /* --------------------------------------------------------------------------
-   Toggle Button (in navbar)
+   Floating Toggle Button (bottom-right)
    -------------------------------------------------------------------------- */
 .ask-toggle {
-  margin-left: 14px;
-  padding: 8px 12px;
-  border: 1px solid currentColor;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+
+  padding: 14px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0;
-  background: transparent;
-  color: inherit;
+  background: #fff;
+  color: #000;
   cursor: pointer;
 
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-weight: 500;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 
-  opacity: 0.7;
-  transition: color 0.4s ease, border-color 0.4s ease, opacity 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ask-toggle:hover {
-  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .ask-toggle:focus-visible {
-  outline: 1px solid currentColor;
-  outline-offset: 3px;
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Hide when ask mode is open */
+body.ask-mode .ask-toggle {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .ask-toggle {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 16px;
+    font-size: 10px;
+  }
 }
 
 /* --------------------------------------------------------------------------

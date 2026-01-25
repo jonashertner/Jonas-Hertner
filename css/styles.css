@@ -195,8 +195,7 @@ p {
 }
 
 /* Dark navbar (light backgrounds) - black text */
-.navbar.dark .lang-btn,
-.navbar.dark .ask-toggle {
+.navbar.dark .lang-btn {
     color: var(--color-text-dark);
 }
 
@@ -205,23 +204,14 @@ p {
     background-color: rgba(0, 0, 0, 0.08);
 }
 
-.navbar.dark .ask-toggle {
-    border-color: rgba(0, 0, 0, 0.2);
-}
-
 /* Light navbar (dark backgrounds) - white text */
-.navbar:not(.dark) .lang-btn,
-.navbar:not(.dark) .ask-toggle {
+.navbar:not(.dark) .lang-btn {
     color: var(--color-text-light);
 }
 
 .navbar:not(.dark) .lang-btn:hover,
 .navbar:not(.dark) .lang-btn.active {
     background-color: rgba(255, 255, 255, 0.2);
-}
-
-.navbar:not(.dark) .ask-toggle {
-    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Hero Section */
