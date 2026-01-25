@@ -7,39 +7,78 @@
   const apiMeta = document.querySelector('meta[name="ask-api"]');
   const API = (apiMeta && (apiMeta.content || "").trim()) || "/api/ask";
 
+  function isMobile() {
+    return window.innerWidth <= 600;
+  }
+
   const BOOT = {
-    en: [
-      "ASK (AI)",
-      "AI-generated replies based on materials provided by Jonas Hertner.",
-      "No attorney-client relationship. Do not include confidential facts.",
-      "For representation: jh@jonashertner.com",
-      "Esc: exit   Shift+Enter: newline",
-      "",
-      "> "
-    ].join("\n"),
-    de: [
-      "ASK (AI)",
-      "KI-Antworten basierend auf von Jonas Hertner bereitgestellten Materialien.",
-      "Kein Mandatsverhältnis. Keine vertraulichen Informationen eingeben.",
-      "Für Mandate: jh@jonashertner.com",
-      "Esc: schließen   Shift+Enter: neue Zeile",
-      "",
-      "> "
-    ].join("\n"),
-    fr: [
-      "ASK (AI)",
-      "Réponses IA fondées sur des documents fournis par Jonas Hertner.",
-      "Aucune relation avocat-client. N'indiquez aucune information confidentielle.",
-      "Pour un mandat: jh@jonashertner.com",
-      "Esc: fermer   Shift+Enter: nouvelle ligne",
-      "",
-      "> "
-    ].join("\n")
+    en: {
+      desktop: [
+        "ASK (AI)",
+        "AI-generated replies based on materials provided by Jonas Hertner.",
+        "No attorney-client relationship. Do not include confidential facts.",
+        "For representation: jh@jonashertner.com",
+        "Enter to send. Esc to exit.",
+        "",
+        "> "
+      ].join("\n"),
+      mobile: [
+        "ASK (AI)",
+        "AI-generated replies based on materials provided by Jonas Hertner.",
+        "No attorney-client relationship. Do not include confidential facts.",
+        "For representation: jh@jonashertner.com",
+        "Enter to send. Back to exit.",
+        "",
+        "> "
+      ].join("\n")
+    },
+    de: {
+      desktop: [
+        "ASK (AI)",
+        "KI-Antworten basierend auf von Jonas Hertner bereitgestellten Materialien.",
+        "Kein Mandatsverhältnis. Keine vertraulichen Informationen eingeben.",
+        "Für Mandate: jh@jonashertner.com",
+        "Enter zum Senden. Esc zum Schließen.",
+        "",
+        "> "
+      ].join("\n"),
+      mobile: [
+        "ASK (AI)",
+        "KI-Antworten basierend auf von Jonas Hertner bereitgestellten Materialien.",
+        "Kein Mandatsverhältnis. Keine vertraulichen Informationen eingeben.",
+        "Für Mandate: jh@jonashertner.com",
+        "Enter zum Senden. Zurück zum Schließen.",
+        "",
+        "> "
+      ].join("\n")
+    },
+    fr: {
+      desktop: [
+        "ASK (AI)",
+        "Réponses IA fondées sur des documents fournis par Jonas Hertner.",
+        "Aucune relation avocat-client. N'indiquez aucune information confidentielle.",
+        "Pour un mandat: jh@jonashertner.com",
+        "Entrée pour envoyer. Esc pour quitter.",
+        "",
+        "> "
+      ].join("\n"),
+      mobile: [
+        "ASK (AI)",
+        "Réponses IA fondées sur des documents fournis par Jonas Hertner.",
+        "Aucune relation avocat-client. N'indiquez aucune information confidentielle.",
+        "Pour un mandat: jh@jonashertner.com",
+        "Entrée pour envoyer. Retour pour quitter.",
+        "",
+        "> "
+      ].join("\n")
+    }
   };
 
   const PROMPT = "\n> ";
   let busy = false;
   let pushedState = false;
+  let dotsInterval = null;
+  let dotsBase = "";
 
   function currentLang() {
     const active = document.querySelector(".lang-btn.active");
@@ -55,7 +94,31 @@
   function bootIfEmpty() {
     if ((field.value || "").trim().length) return;
     const lang = currentLang();
-    field.value = BOOT[lang] || BOOT.en;
+    const device = isMobile() ? "mobile" : "desktop";
+    const boot = BOOT[lang] || BOOT.en;
+    field.value = boot[device] || boot.desktop;
+  }
+
+  function startLoadingDots() {
+    dotsBase = field.value;
+    let dotCount = 0;
+
+    function updateDots() {
+      dotCount = (dotCount % 3) + 1;
+      field.value = dotsBase + ".".repeat(dotCount);
+      field.scrollTop = field.scrollHeight;
+    }
+
+    updateDots();
+    dotsInterval = setInterval(updateDots, 400);
+  }
+
+  function stopLoadingDots() {
+    if (dotsInterval) {
+      clearInterval(dotsInterval);
+      dotsInterval = null;
+    }
+    field.value = dotsBase;
   }
 
   function focusEnd() {
@@ -113,7 +176,11 @@
 
     // Ensure the question is terminated (so responses append cleanly)
     if (!field.value.endsWith("\n")) field.value += "\n";
-    focusEnd();
+    field.value += "\n";
+    field.scrollTop = field.scrollHeight;
+
+    // Start animated dots
+    startLoadingDots();
 
     let answerText = "";
     let sourcesLine = "";
@@ -149,6 +216,8 @@
       const msg = (err && err.message) ? err.message : "Request failed.";
       answerText = "Error: " + msg;
     } finally {
+      stopLoadingDots();
+
       const block = sourcesLine ? (answerText + "\n\n" + sourcesLine) : answerText;
       field.value += block + "\n\n> ";
 
