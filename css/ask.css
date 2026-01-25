@@ -170,6 +170,10 @@ body.ask-mode .ask-container {
   color: var(--ask-muted);
 }
 
+.ask-hint-mobile {
+  display: none;
+}
+
 .ask-meta {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 9px;
@@ -196,6 +200,14 @@ body.ask-mode .ask-container {
   .ask-hint {
     font-size: 8px;
     letter-spacing: 0.05em;
+  }
+
+  .ask-hint-desktop {
+    display: none;
+  }
+
+  .ask-hint-mobile {
+    display: inline;
   }
 
   .ask-meta {
