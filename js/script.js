@@ -318,10 +318,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function adjustNavbarStyle(currentSection = 'home') {
     if (!navbar) return;
-    if (['home', 'services1', 'services3', 'services5', 'bio', 'portrait'].includes(currentSection)) {
+    const isDark = ['home', 'services1', 'services3', 'services5', 'bio', 'portrait'].includes(currentSection);
+    if (isDark) {
       navbar.classList.remove('dark');
+      document.body.classList.add('on-dark');
+      document.body.classList.remove('on-light');
     } else {
       navbar.classList.add('dark');
+      document.body.classList.remove('on-dark');
+      document.body.classList.add('on-light');
     }
   }
 

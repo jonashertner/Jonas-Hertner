@@ -33,7 +33,6 @@
   border: none;
   border-radius: 0;
   background: transparent;
-  color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
 
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -43,10 +42,24 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
 
-  transition: color 0.2s ease;
+  transition: color 0.5s ease, opacity 0.2s ease;
 }
 
-.ask-toggle:hover {
+/* Light text on dark backgrounds */
+body.on-dark .ask-toggle {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.on-dark .ask-toggle:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Dark text on light backgrounds */
+body.on-light .ask-toggle {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+body.on-light .ask-toggle:hover {
   color: rgba(0, 0, 0, 0.7);
 }
 
