@@ -58,19 +58,13 @@
 
 html, body {
     height: 100%;
-    max-width: 100%;
     font-family: var(--font-family-primary);
     font-size: var(--font-size-base);
     color: var(--color-primary);
     line-height: var(--line-height-base);
     scroll-behavior: smooth;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    overscroll-behavior: none;
-}
-
-html {
     overflow: hidden;
+    overscroll-behavior: none;
 }
 
 a {
