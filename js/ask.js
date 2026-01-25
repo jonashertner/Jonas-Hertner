@@ -1,7 +1,8 @@
 (() => {
   const toggle = document.getElementById("ask-toggle");
+  const container = document.getElementById("ask-container");
   const field = document.getElementById("ask-field");
-  if (!toggle || !field) return;
+  if (!toggle || !container || !field) return;
 
   const apiMeta = document.querySelector('meta[name="ask-api"]');
   const API = (apiMeta && (apiMeta.content || "").trim()) || "/api/ask";
@@ -67,7 +68,7 @@
     if (document.body.classList.contains("ask-mode")) return;
 
     document.body.classList.add("ask-mode");
-    field.hidden = false;
+    container.hidden = false;
     toggle.setAttribute("aria-expanded", "true");
 
     bootIfEmpty();
@@ -86,7 +87,7 @@
     if (!document.body.classList.contains("ask-mode")) return;
 
     document.body.classList.remove("ask-mode");
-    field.hidden = true;
+    container.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
 
     if (!fromPopstate && pushedState) {
