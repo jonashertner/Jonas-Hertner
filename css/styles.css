@@ -56,15 +56,25 @@
     box-sizing: border-box;
 }
 
+/* Prevent horizontal scroll on iOS */
+html {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
 html, body {
     height: 100%;
+    width: 100%;
+    max-width: 100%;
     font-family: var(--font-family-primary);
     font-size: var(--font-size-base);
     color: var(--color-primary);
     line-height: var(--line-height-base);
     scroll-behavior: smooth;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
     overscroll-behavior: none;
+    position: relative;
 }
 
 a {
@@ -81,14 +91,16 @@ img {
 /* Scroll Snap Setup */
 main {
     scroll-snap-type: y mandatory;
+    overflow-x: hidden;
     overflow-y: scroll;
     height: 100vh;
+    width: 100%;
+    max-width: 100%;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-top: 0; 
+    padding-top: 0;
     padding-bottom: 0;
-      overscroll-behavior: none;
-
+    overscroll-behavior: none;
 }
 
 main::-webkit-scrollbar {
@@ -107,6 +119,8 @@ main::-webkit-scrollbar {
 .section {
     scroll-snap-align: start;
     height: 100vh;
+    width: 100%;
+    max-width: 100%;
     position: relative;
     box-sizing: border-box;
     display: flex;
@@ -161,12 +175,16 @@ p {
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
+    max-width: 100%;
     z-index: 2000;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     align-items: center;
     padding: 15px 30px;
+    box-sizing: border-box;
     background-color: transparent;
     transition: background-color 0.3s ease;
 }
