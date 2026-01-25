@@ -11,14 +11,13 @@
   --ask-selection: rgba(10, 10, 10, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ask-bg: #0a0a0a;
-    --ask-fg: #e8e8e8;
-    --ask-muted: rgba(232, 232, 232, 0.5);
-    --ask-dim: rgba(232, 232, 232, 0.25);
-    --ask-selection: rgba(232, 232, 232, 0.12);
-  }
+/* Night mode (6pm - 6am) applied via JS */
+.ask-night {
+  --ask-bg: #0a0a0a;
+  --ask-fg: #e8e8e8;
+  --ask-muted: rgba(232, 232, 232, 0.5);
+  --ask-dim: rgba(232, 232, 232, 0.25);
+  --ask-selection: rgba(232, 232, 232, 0.12);
 }
 
 /* --------------------------------------------------------------------------
@@ -72,12 +71,12 @@ body.ask-mode > noscript {
 
 body.ask-mode .ask-container {
   display: flex;
+  flex-direction: column;
   position: fixed;
   inset: 0;
   z-index: 9999;
   background: var(--ask-bg);
   color: var(--ask-fg);
-  color-scheme: light dark;
 }
 
 /* --------------------------------------------------------------------------
@@ -138,6 +137,35 @@ body.ask-mode .ask-container {
 }
 
 /* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.ask-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(24px, 5vw, 80px);
+  border-top: 1px solid var(--ask-dim);
+}
+
+.ask-hint {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ask-muted);
+}
+
+.ask-meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ask-dim);
+}
+
+/* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 600px) {
@@ -146,6 +174,14 @@ body.ask-mode .ask-container {
     font-size: 15px;
     line-height: 1.6;
   }
+
+  .ask-footer {
+    padding: 12px 20px;
+  }
+
+  .ask-hint {
+    font-size: 9px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -153,6 +189,10 @@ body.ask-mode .ask-container {
     padding: clamp(60px, 8vw, 120px);
     font-size: 17px;
     line-height: 1.75;
+  }
+
+  .ask-footer {
+    padding: 16px clamp(60px, 8vw, 120px);
   }
 }
 

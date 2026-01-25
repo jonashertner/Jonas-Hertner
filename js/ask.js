@@ -146,12 +146,20 @@
     }
   }
 
+  function isNightTime() {
+    const hour = new Date().getHours();
+    return hour < 6 || hour >= 18; // 6pm to 6am
+  }
+
   function enterAskMode() {
     if (document.body.classList.contains("ask-mode")) return;
 
     document.body.classList.add("ask-mode");
     container.hidden = false;
     toggle.setAttribute("aria-expanded", "true");
+
+    // Set day/night theme based on system time
+    container.classList.toggle("ask-night", isNightTime());
 
     bootIfEmpty();
     focusEnd();
