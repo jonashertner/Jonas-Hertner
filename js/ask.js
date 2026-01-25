@@ -31,7 +31,7 @@
         "AI assistant based on materials from Jonas Hertner.",
         "This is not legal advice. No attorney-client relationship.",
         "",
-        "Type your question below."
+        "Enter to send. Esc or Back to leave."
       ],
       timeout: "Request timed out",
       error: "Error"
@@ -41,7 +41,7 @@
         "KI-Assistent basierend auf Materialien von Jonas Hertner.",
         "Keine Rechtsberatung. Kein Mandatsverhältnis.",
         "",
-        "Geben Sie unten Ihre Frage ein."
+        "Enter zum Senden. Esc oder Zurück zum Verlassen."
       ],
       timeout: "Zeitüberschreitung",
       error: "Fehler"
@@ -51,7 +51,7 @@
         "Assistant IA basé sur des documents de Jonas Hertner.",
         "Pas de conseil juridique. Pas de relation avocat-client.",
         "",
-        "Tapez votre question ci-dessous."
+        "Entrée pour envoyer. Esc ou Retour pour quitter."
       ],
       timeout: "Délai dépassé",
       error: "Erreur"

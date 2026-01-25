@@ -61,6 +61,7 @@
 
 body.ask-mode {
   overflow: hidden !important;
+  touch-action: none;
 }
 
 body.ask-mode > header,
@@ -76,6 +77,7 @@ body.ask-mode .ask-container {
   inset: 0;
   z-index: 9999;
   overflow: hidden;
+  touch-action: pan-y;
   background: var(--ask-bg);
   color: var(--ask-fg);
 }
@@ -94,6 +96,7 @@ body.ask-mode .ask-container {
   overflow-y: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  touch-action: pan-y;
 
   background: var(--ask-bg);
   color: var(--ask-fg);
