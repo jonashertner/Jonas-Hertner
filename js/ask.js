@@ -243,7 +243,9 @@
       }
 
       answerText = typeof data?.answer === "string" ? data.answer : "";
-      if (!answerText.trim()) answerText = "No response.";
+      // Fix spacing before punctuation
+      answerText = answerText.replace(/ +\./g, '.').replace(/ +,/g, ',').trim();
+      if (!answerText) answerText = "No response.";
 
       conversationHistory.push({ role: "assistant", content: answerText });
 
