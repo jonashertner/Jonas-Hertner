@@ -25,33 +25,55 @@
   const conversationHistory = [];
 
   // Localized content
+  function isMobile() {
+    return window.innerWidth <= 600;
+  }
+
   const L10N = {
     en: {
-      boot: [
+      bootDesktop: [
         "AI assistant based on materials from Jonas Hertner.",
         "This is not legal advice. No attorney-client relationship.",
         "",
-        "Enter to send. Esc or Back to leave."
+        "Enter to send. Esc to leave."
+      ],
+      bootMobile: [
+        "AI assistant based on materials from Jonas Hertner.",
+        "This is not legal advice. No attorney-client relationship.",
+        "",
+        "Send. Back to leave."
       ],
       timeout: "Request timed out",
       error: "Error"
     },
     de: {
-      boot: [
+      bootDesktop: [
         "KI-Assistent basierend auf Materialien von Jonas Hertner.",
         "Keine Rechtsberatung. Kein Mandatsverhältnis.",
         "",
-        "Enter zum Senden. Esc oder Zurück zum Verlassen."
+        "Enter zum Senden. Esc zum Verlassen."
+      ],
+      bootMobile: [
+        "KI-Assistent basierend auf Materialien von Jonas Hertner.",
+        "Keine Rechtsberatung. Kein Mandatsverhältnis.",
+        "",
+        "Senden. Zurück zum Verlassen."
       ],
       timeout: "Zeitüberschreitung",
       error: "Fehler"
     },
     fr: {
-      boot: [
+      bootDesktop: [
         "Assistant IA basé sur des documents de Jonas Hertner.",
         "Pas de conseil juridique. Pas de relation avocat-client.",
         "",
-        "Entrée pour envoyer. Esc ou Retour pour quitter."
+        "Entrée pour envoyer. Esc pour quitter."
+      ],
+      bootMobile: [
+        "Assistant IA basé sur des documents de Jonas Hertner.",
+        "Pas de conseil juridique. Pas de relation avocat-client.",
+        "",
+        "Envoyer. Retour pour quitter."
       ],
       timeout: "Délai dépassé",
       error: "Erreur"
@@ -104,7 +126,8 @@
 
   function bootIfEmpty() {
     if (field.value.trim()) return;
-    field.value = t("boot").join("\n") + "\n\n> ";
+    const bootKey = isMobile() ? "bootMobile" : "bootDesktop";
+    field.value = t(bootKey).join("\n") + "\n\n> ";
     questionIndex = field.value.length;
     conversationHistory.length = 0;
   }
