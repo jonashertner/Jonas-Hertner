@@ -153,6 +153,11 @@
     container.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
 
+    // Reset horizontal scroll to prevent iOS wiggle
+    window.scrollTo(0, window.scrollY);
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+
     if (!fromPopstate && pushedState) {
       try { history.back(); } catch { /* ignore */ }
     }

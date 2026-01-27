@@ -58,20 +58,20 @@
 
 /* Prevent horizontal scroll on iOS */
 html {
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-overflow-scrolling: touch;
 }
 
 html, body {
     height: 100%;
     width: 100%;
-    max-width: 100%;
+    max-width: 100vw;
     font-family: var(--font-family-primary);
     font-size: var(--font-size-base);
     color: var(--color-primary);
     line-height: var(--line-height-base);
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
     overflow-y: hidden;
     overscroll-behavior: none;
     position: relative;
