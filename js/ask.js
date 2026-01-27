@@ -15,8 +15,10 @@
     en: {
       desktop: [
         "ASK (AI)",
-        "AI from Jonas Hertner's materials. Not legal advice—no confidential info.",
-        "No memory between questions. OpenAI (store=false): openai.com/enterprise-privacy",
+        "Ask about Jonas Hertner and his legal practice.",
+        "AI answers—not legal advice—no confidential info.",
+        "Include all context in one question (no memory).",
+        "No data retained here. OpenAI store=false (exceptions: openai.com/enterprise-privacy).",
         "For representation: jh@jonashertner.com",
         "Enter to send. Esc to exit.",
         "",
@@ -24,8 +26,10 @@
       ].join("\n"),
       mobile: [
         "ASK (AI)",
-        "AI from Jonas Hertner's materials. Not legal advice—no confidential info.",
-        "No memory between questions. OpenAI (store=false): openai.com/enterprise-privacy",
+        "Ask about Jonas Hertner and his legal practice.",
+        "AI answers—not legal advice—no confidential info.",
+        "Include all context in one question (no memory).",
+        "No data retained here. OpenAI store=false (exceptions: openai.com/enterprise-privacy).",
         "For representation: jh@jonashertner.com",
         "Enter to send. Back to exit.",
         "",
@@ -35,8 +39,10 @@
     de: {
       desktop: [
         "ASK (AI)",
-        "KI aus Materialien von Jonas Hertner. Keine Rechtsberatung—keine vertraulichen Infos.",
-        "Kein Gedächtnis zwischen Fragen. OpenAI (store=false): openai.com/enterprise-privacy",
+        "Fragen zu Jonas Hertner und seiner Anwaltspraxis.",
+        "KI-Antworten—keine Rechtsberatung—keine vertraulichen Infos.",
+        "Gesamten Kontext in einer Frage angeben (kein Gedächtnis).",
+        "Keine Daten hier gespeichert. OpenAI store=false (Ausnahmen: openai.com/enterprise-privacy).",
         "Für Mandate: jh@jonashertner.com",
         "Enter zum Senden. Esc zum Schließen.",
         "",
@@ -44,8 +50,10 @@
       ].join("\n"),
       mobile: [
         "ASK (AI)",
-        "KI aus Materialien von Jonas Hertner. Keine Rechtsberatung—keine vertraulichen Infos.",
-        "Kein Gedächtnis zwischen Fragen. OpenAI (store=false): openai.com/enterprise-privacy",
+        "Fragen zu Jonas Hertner und seiner Anwaltspraxis.",
+        "KI-Antworten—keine Rechtsberatung—keine vertraulichen Infos.",
+        "Gesamten Kontext in einer Frage angeben (kein Gedächtnis).",
+        "Keine Daten hier gespeichert. OpenAI store=false (Ausnahmen: openai.com/enterprise-privacy).",
         "Für Mandate: jh@jonashertner.com",
         "Enter zum Senden. Zurück zum Schließen.",
         "",
@@ -55,8 +63,10 @@
     fr: {
       desktop: [
         "ASK (AI)",
-        "IA à partir des documents de Jonas Hertner. Pas de conseil juridique—pas d'infos confidentielles.",
-        "Pas de mémoire entre questions. OpenAI (store=false): openai.com/enterprise-privacy",
+        "Questions sur Jonas Hertner et sa pratique juridique.",
+        "Réponses IA—pas de conseil juridique—pas d'infos confidentielles.",
+        "Inclure tout le contexte en une question (pas de mémoire).",
+        "Aucune donnée conservée ici. OpenAI store=false (exceptions: openai.com/enterprise-privacy).",
         "Pour un mandat: jh@jonashertner.com",
         "Entrée pour envoyer. Esc pour quitter.",
         "",
@@ -64,8 +74,10 @@
       ].join("\n"),
       mobile: [
         "ASK (AI)",
-        "IA à partir des documents de Jonas Hertner. Pas de conseil juridique—pas d'infos confidentielles.",
-        "Pas de mémoire entre questions. OpenAI (store=false): openai.com/enterprise-privacy",
+        "Questions sur Jonas Hertner et sa pratique juridique.",
+        "Réponses IA—pas de conseil juridique—pas d'infos confidentielles.",
+        "Inclure tout le contexte en une question (pas de mémoire).",
+        "Aucune donnée conservée ici. OpenAI store=false (exceptions: openai.com/enterprise-privacy).",
         "Pour un mandat: jh@jonashertner.com",
         "Entrée pour envoyer. Retour pour quitter.",
         "",
