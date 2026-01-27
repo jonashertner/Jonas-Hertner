@@ -15,8 +15,8 @@
     en: {
       desktop: [
         "ASK (AI)",
-        "AI-generated replies based on materials provided by Jonas Hertner.",
-        "No attorney-client relationship. Do not include confidential facts.",
+        "AI from Jonas Hertner's materials. Not legal advice—no confidential info.",
+        "No memory between questions. OpenAI (store=false): openai.com/enterprise-privacy",
         "For representation: jh@jonashertner.com",
         "Enter to send. Esc to exit.",
         "",
@@ -24,8 +24,8 @@
       ].join("\n"),
       mobile: [
         "ASK (AI)",
-        "AI-generated replies based on materials provided by Jonas Hertner.",
-        "No attorney-client relationship. Do not include confidential facts.",
+        "AI from Jonas Hertner's materials. Not legal advice—no confidential info.",
+        "No memory between questions. OpenAI (store=false): openai.com/enterprise-privacy",
         "For representation: jh@jonashertner.com",
         "Enter to send. Back to exit.",
         "",
@@ -35,8 +35,8 @@
     de: {
       desktop: [
         "ASK (AI)",
-        "KI-Antworten basierend auf von Jonas Hertner bereitgestellten Materialien.",
-        "Kein Mandatsverhältnis. Keine vertraulichen Informationen eingeben.",
+        "KI aus Materialien von Jonas Hertner. Keine Rechtsberatung—keine vertraulichen Infos.",
+        "Kein Gedächtnis zwischen Fragen. OpenAI (store=false): openai.com/enterprise-privacy",
         "Für Mandate: jh@jonashertner.com",
         "Enter zum Senden. Esc zum Schließen.",
         "",
@@ -44,8 +44,8 @@
       ].join("\n"),
       mobile: [
         "ASK (AI)",
-        "KI-Antworten basierend auf von Jonas Hertner bereitgestellten Materialien.",
-        "Kein Mandatsverhältnis. Keine vertraulichen Informationen eingeben.",
+        "KI aus Materialien von Jonas Hertner. Keine Rechtsberatung—keine vertraulichen Infos.",
+        "Kein Gedächtnis zwischen Fragen. OpenAI (store=false): openai.com/enterprise-privacy",
         "Für Mandate: jh@jonashertner.com",
         "Enter zum Senden. Zurück zum Schließen.",
         "",
@@ -55,8 +55,8 @@
     fr: {
       desktop: [
         "ASK (AI)",
-        "Réponses IA fondées sur des documents fournis par Jonas Hertner.",
-        "Aucune relation avocat-client. N'indiquez aucune information confidentielle.",
+        "IA à partir des documents de Jonas Hertner. Pas de conseil juridique—pas d'infos confidentielles.",
+        "Pas de mémoire entre questions. OpenAI (store=false): openai.com/enterprise-privacy",
         "Pour un mandat: jh@jonashertner.com",
         "Entrée pour envoyer. Esc pour quitter.",
         "",
@@ -64,8 +64,8 @@
       ].join("\n"),
       mobile: [
         "ASK (AI)",
-        "Réponses IA fondées sur des documents fournis par Jonas Hertner.",
-        "Aucune relation avocat-client. N'indiquez aucune information confidentielle.",
+        "IA à partir des documents de Jonas Hertner. Pas de conseil juridique—pas d'infos confidentielles.",
+        "Pas de mémoire entre questions. OpenAI (store=false): openai.com/enterprise-privacy",
         "Pour un mandat: jh@jonashertner.com",
         "Entrée pour envoyer. Retour pour quitter.",
         "",
