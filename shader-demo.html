@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shader Demo - Misty Forest</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      min-height: 100vh;
+    }
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      height: 100vh;
+    }
+    @media (max-width: 768px) {
+      .comparison {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+    }
+    .panel {
+      position: relative;
+      overflow: hidden;
+    }
+    .panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .shader-container {
+      width: 100%;
+      height: 100%;
+    }
+    .label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.7);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .size {
+      color: #888;
+      margin-left: 10px;
+    }
+    .controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.8);
+      padding: 15px;
+      font-size: 12px;
+      z-index: 100;
+      min-width: 200px;
+    }
+    .controls label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #888;
+    }
+    .controls input[type="range"] {
+      width: 100%;
+    }
+    .controls input[type="color"] {
+      width: 100%;
+      height: 30px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="comparison">
+    <div class="panel">
+      <img src="images/start.png" alt="Original misty forest">
+      <div class="label">Original<span class="size">5.7 MB</span></div>
+    </div>
+    <div class="panel">
+      <div id="shader" class="shader-container"></div>
+      <div class="label">Shader<span class="size">~50 KB JS</span></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <strong>Shader Controls</strong>
+
+    <label>Brightness</label>
+    <input type="range" id="brightness" min="0" max="1" step="0.05" value="0.6">
+
+    <label>Contrast</label>
+    <input type="range" id="contrast" min="0" max="1" step="0.05" value="0.5">
+
+    <label>Speed</label>
+    <input type="range" id="speed" min="0" max="0.5" step="0.01" value="0.15">
+
+    <label>Scale</label>
+    <input type="range" id="scale" min="0.5" max="3" step="0.1" value="1.2">
+
+    <label>Front (light)</label>
+    <input type="color" id="colorFront" value="#ffffff">
+
+    <label>Mid (fog)</label>
+    <input type="color" id="colorMid" value="#888888">
+
+    <label>Back (dark)</label>
+    <input type="color" id="colorBack" value="#1a1a1a">
+  </div>
+
+  <script type="module">
+    const SHADER_VERSION = '0.0.71';
+    const CDN = `https://unpkg.com/@paper-design/shaders@${SHADER_VERSION}/dist/index.mjs`;
+
+    let mount = null;
+
+    async function init() {
+      try {
+        const module = await import(CDN);
+        const { ShaderMount, neuroNoiseFragmentShader } = module;
+
+        const container = document.getElementById('shader');
+
+        mount = new ShaderMount(
+          container,
+          neuroNoiseFragmentShader,
+          {
+            u_colorFront: '#ffffff',
+            u_colorMid: '#888888',
+            u_colorBack: '#1a1a1a',
+            u_brightness: 0.6,
+            u_contrast: 0.5,
+            u_scale: 1.2,
+          },
+          { speed: 0.15 }
+        );
+
+        // Wire up controls
+        document.getElementById('brightness').addEventListener('input', e => {
+          mount.setUniforms({ u_brightness: parseFloat(e.target.value) });
+        });
+        document.getElementById('contrast').addEventListener('input', e => {
+          mount.setUniforms({ u_contrast: parseFloat(e.target.value) });
+        });
+        document.getElementById('speed').addEventListener('input', e => {
+          mount.setSpeed(parseFloat(e.target.value));
+        });
+        document.getElementById('scale').addEventListener('input', e => {
+          mount.setUniforms({ u_scale: parseFloat(e.target.value) });
+        });
+        document.getElementById('colorFront').addEventListener('input', e => {
+          mount.setUniforms({ u_colorFront: e.target.value });
+        });
+        document.getElementById('colorMid').addEventListener('input', e => {
+          mount.setUniforms({ u_colorMid: e.target.value });
+        });
+        document.getElementById('colorBack').addEventListener('input', e => {
+          mount.setUniforms({ u_colorBack: e.target.value });
+        });
+
+      } catch (err) {
+        console.error('Failed to load shader:', err);
+        document.getElementById('shader').innerHTML = '<p style="padding:20px;color:red;">Failed to load shader</p>';
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
