@@ -3,8 +3,7 @@
  * Replaces start.png (5.7MB) with a ~50KB generated effect
  */
 
-const SHADER_VERSION = '0.0.71';
-const CDN_BASE = `https://unpkg.com/@paper-design/shaders@${SHADER_VERSION}/dist`;
+const CDN = 'https://esm.sh/@paper-design/shaders@0.0.71';
 
 let ShaderMount = null;
 let neuroNoiseFragmentShader = null;
@@ -14,7 +13,7 @@ async function loadShaderLibrary() {
   if (ShaderMount) return true;
 
   try {
-    const module = await import(`${CDN_BASE}/index.mjs`);
+    const module = await import(CDN);
     ShaderMount = module.ShaderMount;
     neuroNoiseFragmentShader = module.neuroNoiseFragmentShader;
     neuroNoiseVertexShader = module.neuroNoiseVertexShader;
